@@ -1,0 +1,24 @@
+install:
+- source ./texlive_install.sh
+cache:
+  directories:
+  - "/tmp/texlive"
+  - "$HOME/.texlive"
+script:
+- mkdir _build
+- travis_wait 3 pdflatex -output-directory _build ./MatanColloc03.tex
+- travis_wait 3 pdflatex -output-directory _build ./MatanColloc03.tex
+before_deploy:
+- ls
+deploy:
+  provider: releases
+  api_key:
+  secure: "KLp3gW11ewPydMtbDvliD0V4q0Wavy+oYHBGFzM40LuzKI0zrsU/Ezwty3gbgKhz5fLXpnNjnZpg4WjSUaYeeN2v4iUbi18opGlXVYvySxMk8sQQcyVji3OzAsTP0EKIXJmi2IKVvUMJ2hxB8KC8J+tBv9P3K6nGugP+WOWG4GSN8irInj5I/6npevOFGuD1LDKUcMijUzfwfjuL0otHbbKZGseQ9wpSCQm2azJmYuMp5ZKKIedtpSAJITI1b4p85zCI3VhTFobJvc7LmTj/Kw2rctdp6SZHzgt+ICl0A3ZwcJpG8bUHnO0g5NhjOfsvoY728vmS95bDmoRDURiMIhX+HU5Hkb10kTMRb3otFX1u/3AOIaZTI/DTBr4wMDiz7mX/bqIIqUsrFY/V4kUxCh5xoL+I9SBln3G7xAy5CMsbA+rMhnb6l0NaZ9O4oQm1A54sB/rWoLDWVf1cIxWwlhNUYVu5FbecwDQTISKXyQ9vKKPO8zHq9L7lVa5+SLgFN9ATzPzd1kBMMeHQYG6d9VFqQ3h2oikkECspMjzG4UjiCKG+kArAI2HLNbIN/ZKtZ9cYTjnenzuKd+v7+VMJ9zfaR4iayXKbGqF9CO5kimdq+j/oDAdnM4oFfj/PnGWZrkrd3Vfnkeyu69yzirDSoHVgYSrXhzPh8Y5L4swQDIY="
+    file: "_build/MatanColloc03.pdf"
+  draft: true
+  overwrite: true
+  on:
+    repo: bot-mne-v-rot/math-analysis-1course-1.5sem
+    branch:  
+        - master 
+  skip_cleanup: 'true'
