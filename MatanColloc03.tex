@@ -49,8 +49,8 @@
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
 
-\newtheorem{theorem}{Предложение}
-\newtheorem*{theorem-non}{Теорема}
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{theorem-non}{Предложение}
 \newtheorem*{lemma}{Лемма}
 \theoremstyle{definition}
 \newtheorem*{conj}{Определение}
@@ -115,7 +115,10 @@
 
 \newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
     \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
-
+\newcommand*{\double}[2][.1ex]{%
+  \mathrel{\vcenter{\offinterlineskip%
+  \hbox{$#2$}\vskip#1\hbox{$#2$}}}}
+\newcommand*{\doublerightarrow}{\double{\rightarrow}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
