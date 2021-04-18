@@ -35,13 +35,14 @@
     \item $f_n \doublerightarrow f \Longrightarrow f_n \to f$
 \end{enumerate}
 
-\underline{Пример:}
-
-$E = (0, 1), \, f_n(x) = x^n, \, f_n \to f \equiv 0$
+\begin{example}
+    $E = (0, 1), \, f_n(x) = x^n, \, f_n \to f \equiv 0$
 
 Поймём, что равномерной сходимости нет:
 
 $\forall \varepsilon > 0 \; \exists N: \; \forall n \geqslant N \; \forall x \in (0, 1): \; x^n < \varepsilon \Longrightarrow 1 = \lim_{x \to 1^{-}} x^n \leqslant \varepsilon$ (т.е. для $\varepsilon < 1$ это неверно)
+\end{example}
+
 
 \begin{conj}
     Равномерно ограниченная последовательность.
@@ -97,11 +98,12 @@ $\forall \varepsilon > 0 \; \exists N: \; \forall n \geqslant N \; \forall x \in
     \end{proof}
 \end{enumerate}
 
-\underline{Пример:}
+\begin{example}
+    $f_n(x) = x^n$
 
-$f_n(x) = x^n$
+    $\sup_{x \in (0, 1)}{x^n} = 1 \not \to 0$
+\end{example}
 
-$\sup_{x \in (0, 1)}{x^n} = 1 \not \to 0$
 
 \begin{theorem}
 
@@ -200,9 +202,8 @@ $\sup_{x \in (0, 1)}{x^n} = 1 \not \to 0$
 
 \end{theorem}
 
-\underline{Пример:}
-
-$f_n(x) = x^n : [0, 1] \to \R$
+\begin{example}
+    $f_n(x) = x^n : [0, 1] \to \R$
 
 $f(x) = \begin{cases}
     1 \; if \; x = 1 \\
@@ -210,6 +211,8 @@ $f(x) = \begin{cases}
 \end{cases}$
 
 $f_n(x) \to f(x)$, где $f(x)$ не является непрерывной (а хотелось бы :(( )
+
+\end{example}
 
 \begin{theorem}
     $f_n: E \to \R$ непрерына в $(\cdot) a \in E$ и $f_n \doublerightarrow f$ на $E$
