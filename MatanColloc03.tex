@@ -1,6 +1,6 @@
 \ifdefined\niveldos\else
 \documentclass[12pt,letterpaper]{report}
- 
+
 %Russian-specific packages
 %--------------------------------------
 \usepackage[T2A]{fontenc}
@@ -15,7 +15,7 @@
 \usepackage{parskip}
 \usepackage{graphicx}
 \usepackage{mathtools}
-\usepackage[usestackEOL]{stackengine} 
+\usepackage[usestackEOL]{stackengine}
 \usepackage{tocloft}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -31,6 +31,8 @@
 \usepackage{bookmark}
 \usepackage{pgfplots}
 \usepackage{tikzsymbols}
+\usepackage{cancel}
+\usepackage{enumerate}
 
 \graphicspath{ {./images/} }
 %%
@@ -39,7 +41,7 @@
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 
 % Swap the definition of \abs* and \norm*, so that \abs
-% and \norm resizes the size of the brackets, and the 
+% and \norm resizes the size of the brackets, and the
 % starred version does not.
 \makeatletter
 \let\oldabs\abs
@@ -113,7 +115,7 @@
     morekeywords={*,...}          % if you want to add more keywords to the set
 }}
 
-\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1
     \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
 \newcommand*{\double}[2][.1ex]{%
   \mathrel{\vcenter{\offinterlineskip%
@@ -123,10 +125,15 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
 \newcommand{\follow}{\textbf{\textit{Следствие:}}}
 \newcommand{\notice}{\underline{\textit{Замечание:}}}
 \newcommand{\example}{\underline{Пример:}}
+\newcommand{\examples}{\underline{Примеры:}}
 
+\newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
+\newcommand\leftcoleqq{\mathrel{\reflectbox{\ensuremath{\coloneqq}}}}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
@@ -208,10 +215,10 @@
 \nbvspace[1]
 \\
 \Large СОСТАВИТЕЛИ:\\[0.5em]
-\footnotesize 
-Андрей \href{https://github.com/K-dizzled}{K-dizzled} Козырев, 
+\footnotesize
+Андрей \href{https://github.com/K-dizzled}{K-dizzled} Козырев,
 Никита  \href{https://github.com/muldrik}{muldrik} Митцев,
-Максим \href{https://github.com/maxmartynov08}{maxmartynov08} Мартынов,\\ 
+Максим \href{https://github.com/maxmartynov08}{maxmartynov08} Мартынов,\\
 Семён \href{https://github.com/SmnTin}{SmnTin} Паненков,
 Марк \href{https://github.com/markprudnikov}{markprudnikov} Прудников,
 Иван \href{https://github.com/klimoza}{klimoza} Климов
@@ -233,7 +240,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                %
 %                                %
-%        Table of content        % 
+%        Table of content        %
 %                                %
 %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -266,4 +273,4 @@ $ $
 \import{lectures/}{lecture09.tex}
 $ $
 \end{normalsize}
-\end{document} 
+\end{document}

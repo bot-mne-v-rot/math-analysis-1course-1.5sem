@@ -1,1 +1,453 @@
 \section{Лекция номер 4}
+
+\subsection{Длина кривой}
+%
+\begin{conj}
+  Пусть $X$ --- метрическое пространство. Тогда
+  $\gamma\colon [a, b] \to X$ --- путь, если $\gamma$ непрерывна. При этом $\gamma(a)$ называется началом пути, а $\gamma(b)$ концом пути.
+\end{conj}
+
+\begin{conj}
+  Путь называется замкнутым, если $\gamma(a) = \gamma(b)$
+\end{conj}
+
+\begin{conj}
+  Путь называется простым(несамопересекающимся), если  $\gamma(t) \neq \gamma(u),\; \forall t, u \in [a, b]$ за исключением, возможно $\gamma(a) = \gamma(b)$.
+\end{conj}
+
+\begin{conj}
+  Противоположным к $\gamma$ путем называется путь $\gamma^{-1}\colon [a, b] \to X$ такой, что $\gamma^{-1}(t) = \gamma(a + b - t)$. В частности $\gamma^{-1}(a) = b$ и $\gamma^{-1}(b) = a$.
+\end{conj}
+
+\begin{conj}
+  Пути $\gamma\colon[a, b] \to X$ и $\widetilde{\gamma}\colon[c, d] \to X$ называются эквивалентными, если существует $u\colon [a, b] \to [c, d]$ --- непрерывная и строго монотонно возрастающая функция. При этом $u(a) = c,\, u(b) = d$ и $\gamma = \widetilde{\gamma} \circ u$.
+  Такая $u$ называется допустимым преобразованием параметра.
+\end{conj}
+
+\begin{notice}
+  Это отношение эквивалентности.
+\end{notice}
+
+\begin{conj}
+  Кривая --- класс эквивалентных путей. Параметризация кривой --- конкретный представитель класса.
+\end{conj}
+
+\begin{conj}
+  Носитель пути $\gamma$ --- множество $\gamma([a, b])$.
+\end{conj}
+
+\begin{notice}
+  У эквивалентных путей одинаковые носители.
+\end{notice}
+
+\begin{conj}
+  Пусть $\gamma\colon [a, b] \to \R^d$. Тогда $\gamma$ --- r-гладкий путь, если $\gamma_j \in C^r[a, b]$ при $j = 1, 2, \dotsc, d$.
+  Гладкая кривая --- кривая, у которой есть гладкая параметризация.
+\end{conj}
+
+\begin{conj}
+  Пусть $\gamma\colon [a, b] \to X$. Тогда
+  длиной пути называется
+  \begin{equation*}
+    l(\gamma) = \sup \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_k))
+  \end{equation*}
+  где $a = t_0 < t_1 < t_2 < \dotsb < t_n = b$.
+
+\end{conj}
+
+\begin{notice}
+  Длины эквивалентных путей и длины противоположных путей равны.
+\end{notice}
+
+\begin{conj}
+  Длина кривой --- длина пути из класса эквивалентности.
+\end{conj}
+
+\textbf{Свойства}.
+\begin{enumerate}
+  \item Длина кривой $\geq \overbrace{\text{длина хорды, соединяющей ее начало и конец}}^{\mathclap{\text{
+    расстояние между началом и концом пути
+  }}}$.
+  \item Длина кривой $\geq$ длина вписанной в нее ломаной.
+\end{enumerate}
+
+\begin{theorem}[аддитивность длины]
+  Пусть $\gamma\colon [a, b] \to X, \, c \in [a, b]$ и $\widetilde{\gamma} \coloneqq \gamma\smash{\big |_{[a, c]}}, \; \vardbtilde{\gamma} \coloneqq \gamma \smash{\big|_{[c, b]}}$.
+  Тогда
+  \begin{equation*}
+    l(\gamma) = l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item[]
+    \item[,,$\geq$''] Докажем, что $l(\gamma) \geq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$. Пусть $a = t_0, t_1, \dotsc, t_n = c = u_0, u_1, \dots, u_m = b$ --- дробление отрезка~$[a, b]$. Тогда
+    \begin{equation*}
+      \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_{k})) +
+      \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k})) \leq l(\gamma)
+    \end{equation*}
+    Заменим каждую сумму на супремум и получим нужно неравенство $ l(\widetilde{\gamma}) + l(\vardbtilde{\gamma}) \leq l(\gamma)$.
+    \begin{notice}
+      \textit{(от редакторов конспекта)} Мы можем переходить к супремуму просто по определению. Оставим то что мы хотим заменить на супремум в левой части, все остальное перенесем направо. Получим
+      \begin{equation*}
+      \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_{k})) \leq l(\gamma) -
+      \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k}))
+      \end{equation*}
+      Тогда выражение справа это верхняя граница для всех выражений слева такого вида. Поэтому разумеется наименьшая из верхних границ тоже не больше этого выражения. Отсюда получаем
+      \begin{equation*}
+        \begin{gathered}
+            l(\widetilde{\gamma}) = \sup \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_{k})) \leq l(\gamma) -
+            \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k})) \\
+            l(\widetilde{\gamma}) +
+            \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k})) \leq l(\gamma)
+        \end{gathered}
+      \end{equation*}
+      Аналогично заменяем на супремум второе слагаемое и неравенство доказано.
+    \end{notice}
+    \item[,,$\leq$''] Докажем, что $l(\gamma) \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$. Пусть $a = t_0, t_1, \dotsc, t_n = b$ --- дробление отрезка $[a, b]$ и $t_m \leq c < t_{m + 1}$. Тогда
+    \begin{equation*}
+      \begin{gathered}
+        \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_k))
+        \leq \\ \leq
+        \underbrace{\sum\limits_{k = 1}^{m} \rho(\gamma(t_{k - 1}), \gamma(t_k)) + \rho(\gamma(t_m), \gamma(c))}_{\mathclap{\leq l(\widetilde{\gamma})}} +
+        \underbrace{\rho(\gamma(c), \gamma(t_{m + 1})) + \sum\limits_{\mathclap{k = m + 2}}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_k))}_{\mathclap{\leq l(\vardbtilde{\gamma})}} \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})
+      \end{gathered}
+    \end{equation*}
+    Переходим к супремуму и получаем нужно неравенство $l(\gamma) \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$.
+    \end{enumerate}
+    Таким образом $l(\gamma) \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$ и $l(\gamma) \geq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$, а значит $l(\gamma) = l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$. Что и требовалось доказать.
+\end{proof}
+
+\begin{theorem}[о длине гладкого пути в $\R^d$]
+  \begin{equation*}
+    l(y) = \int_{a}^{b} \sqrt{\gamma'_1(t)^2 + \gamma'_2(t)^2 + \dotsb + \gamma'_d(t)^2} \: dt =
+    \int_{a}^{b} \| \gamma'(t) \| \: dt
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  Для начала докажем следующую лемму
+  \begin{lemma}
+    Пусть $\triangle$ --- отрезок, содержащийся в $[a, b], \; \gamma\colon [a, b] \to \R^d$. А также
+    \begin{equation*}
+      \begin{gathered}
+        m_{\triangle}^{(i)} \coloneqq \min\limits_{t \in \triangle} |\gamma_i'(t)|, \quad
+        M_{\triangle}^{(j)} \coloneqq \max\limits_{t \in \triangle} |\gamma_j'(t)|, \\
+        m_{\triangle} \coloneqq \sqrt{\sum\limits_{i = 1}^{d}\left(m_{\triangle}^{(i)}\right)^2}, \quad
+        M_{\triangle} \coloneqq \sqrt{\sum\limits_{i = 1}^{d}\left(M_{\triangle}^{(i)}\right)^2}
+      \end{gathered}
+    \end{equation*}
+    Тогда
+    \begin{equation*}
+      m_{\triangle}l(\triangle) \leq l(\gamma \big|_{\triangle}) \leq M_{\triangle}l(\triangle)
+    \end{equation*}
+  \end{lemma}
+  \begin{proof}
+    Возьмем $t_0 < t_1 < \dotsb < t_n$ --- дробление $\triangle, \, a_k$ --- длина $k$-ого звена(между~$\gamma(t_{k - 1})$ и $\gamma(t_k)$). Тогда
+    \begin{equation*}
+      \underbracket{
+      \gamma_i(t_k) - \gamma_i(t_{k - 1}) =
+      \gamma_i'(\overbrace{\xi_{ik}}^{\mathclap{\xi_{ik} \in [t_{k - 1}, t_k] \subset \triangle}})
+      (t_k - t_{k - 1})}_{\mathclap{\text{
+        по теореме Лагранжа
+      }}}
+      \leq M_{\triangle}^{(i)}(t_k - t_{k - 1})
+    \end{equation*}
+    Теперь возведем обе части неравенства в квадрат и просуммируем по всем $i$:
+    \begin{equation*}
+      \rho(\gamma(t_{k - 1}), \gamma(t_k))^2 = a_k^2 =
+      \sum\limits_{i = 1}^{d}(\gamma_i(t_k) - \gamma_i(t_{k - 1}))^2 \leq
+      (t_k - t_{k - 1})^2 \sum\limits_{i = 1}^{d}\left(M_{\triangle}^{(i)}\right)^2 =
+      (t_k - t_{k -1 })^2M_{\triangle}^2
+    \end{equation*}
+    Таким образом, просуммировав по всем $k$ от 1 до $n$ получаем, что
+    \begin{equation*}
+      \sum\limits_{k = 1}^{n} a_k \leq
+      M_{\triangle} \sum\limits_{k = 1}^{n}(t_k - t_{k - 1}) = M_{\triangle}l(\triangle)
+      \implies
+      \sup \sum\limits_{k = 1}^{n} a_k =
+      l(\gamma \big|_{\triangle}) \leq M_{\triangle}l(\triangle)
+    \end{equation*}
+    Аналогично доказывается ограничение снизу. Лемма доказана.
+  \end{proof}
+  Перейдем к доказательству теоремы. Рассмотрим дробление $a = t_0 < t_1 < \dotsb < t_{n - 1} < t_n = b$. Пусть $m_k \coloneqq m_{[t_{k - 1}, t_k]}$ и $M_k \coloneqq M_{[t_{k - 1}, t_k]}$. По лемме знаем, что
+  \begin{equation*}
+    m_k(t_k - t_{k - 1}) \leq l(\gamma\big|_{[t_{k - 1}, t_k]}) \leq M_k(t_k - t_{k - 1})
+  \end{equation*}
+  Заметим, что
+  \begin{equation*}
+    m_k(t_k - t_{k - 1}) \leq
+    \int_{t_{k - 1}}^{t_k} \|\gamma'(t) \| \: dt
+    \leq M_k(t_k - t_{k - 1})
+  \end{equation*}
+  Сложим наши неравенства для $k$ от 1 до $n$:
+  \begin{equation*}
+    \begin{gathered}
+      \sum\limits_{k = 1}^{n} m_k(t_k - t_{k - 1})
+      \leq l(\gamma) \leq \sum\limits_{k = 1}^{n} M_k(t_k - t_{k - 1}) \\
+      \sum\limits_{k = 1}^{n} m_k(t_k - t_{k - 1})
+      \leq \int_{a}^{b} \|\gamma'(t) \| \: dt \leq \sum\limits_{k = 1}^{n} M_k(t_k - t_{k - 1})
+    \end{gathered}
+  \end{equation*}
+  Заметим, что
+  \begin{equation*}
+    \begin{gathered}
+      M_k - m_k = \sqrt{\sum\limits_{i = 1}^{d}\left(M_{[t_{k - 1}, t_k]}^{(i)}\right)^2} -
+      \sqrt{\sum\limits_{i = 1}^{d}\left(m_{[t_{k - 1}, t_k]}^{(i)}\right)^2}
+      \leq \\ \leq
+      \sqrt{\sum_{i = 1}^{d}\left(M_{[t_{k - 1}, t_k]}^{(i)} - m_{[t_{k - 1}, t_k]}^{(i)}\right)^2} \leq
+      \sum\limits_{i = 1}^{d}\left(M_{[t_{k - 1}, t_k]}^{(i)} - m_{[t_{k - 1}, t_{k}]}^{(i)}\right) = \\
+      = \sum\limits_{i = 1}^{d}(\gamma_i'(\xi_{ik}) - \gamma_i'(\eta_{ik}))\text{, где }
+      \xi_{ik}, \eta_{ik} \in [t_{k - 1}, t_k] \leq \\
+      \leq \sum_{i = 1}^{d} \omega_{\gamma'_{i}}(|\tau|)\text{, где } \tau\text{ --- мелкость разбиения}
+    \end{gathered}
+  \end{equation*}
+  Но модуль непрерывности стремится к нулю, если мелкость стремится к нулю. А так как $d$ --- какое-то конечное число, то и вся сумма стремится нулю, а значит и $M_k - m_k$. Теперь просуммируем по всем $k$ от 1 до $n$:
+  \begin{equation*}
+    \sum\limits_{k = 1}^{n} (M_k - m_k)(t_k - t_{k - 1}) \leq
+    \left(\sum_{i = 1}^{d} \omega_{\gamma'_{i}}(|\tau|)\right)\left(\sum\limits_{k = 1}^{n} (t_k - t_{k - 1})\right) \leq \left(\sum_{i = 1}^{d} \omega_{\gamma'_{i}}(|\tau|)\right)(b - a)
+  \end{equation*}
+  Таким образом $\sum\limits_{k =1}^{n} m_k(t_k - t_{k - 1})$ и $\sum\limits_{k =1}^{n} M_k(t_k - t_{k - 1})$ могут находится сколь угодно близко друг к другу, а значит
+  \begin{equation*}
+    l(\gamma) = \int_{a}^{b} \| \gamma'(t)\| \: dt
+  \end{equation*}
+  Что и требовалось доказать.
+\end{proof}
+
+\textbf{Следствия}.
+\begin{enumerate}
+  \item Длина графика функции $f\colon [a, b] \to \R$ равна $\int_{a}^{b} \sqrt{1 + f'(x)^2} \: dx$.
+  \begin{proof}
+    Пусть
+    $
+    \gamma(t) =
+    \begin{pmatrix}
+      t\\
+      f(t)
+    \end{pmatrix}
+    $. Тогда
+    $
+    \gamma'(t) =
+    \begin{pmatrix}
+      1\\
+      f'(t)
+    \end{pmatrix}
+    $. Подставив $\gamma$ в формулу из теоремы получаем нужное равенство.
+  \end{proof}
+  \item Длина пути в полярных координатах $r\colon [\alpha, \beta] \to \R$ равна $\int_{\alpha}^{\beta} \sqrt{r^2(t) + r'(t)^2} \: dt$.
+  \begin{proof}
+    Пусть
+    $
+    \gamma(t) =
+    \begin{pmatrix}
+      r(t)\cos t \\
+      r(t)\sin t
+    \end{pmatrix}
+    $. Тогда
+    $
+    \gamma'(t) =
+    \begin{pmatrix}
+      r'(t)\cos t - r(t)\sin t \\
+      r'(t)\sin t + r(t)\cos t
+    \end{pmatrix}
+    $. Подставив $\gamma$ в формулу из теоремы получаем нужное равенство.
+  \end{proof}
+  \item $l(\gamma) \leq (b - a)\max\limits_{t \in [a, b]} \| \gamma'(t) \|$
+\end{enumerate}
+
+\begin{examples}
+  \begin{enumerate}
+    \item Длина эллипса $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, \; a \geq b$. Пусть $\overbrace{x(t) = a\cos t}^{\mathclap{\gamma_1(t)}}, \, \overbrace{y(t) = b\sin t}^{\mathclap{\gamma_2(t)}}, \, t \in [0, 2\pi]$. Тогда
+    \begin{equation*}
+      \begin{gathered}
+        \gamma_1' = -a\sin t, \quad \gamma_2' = b \cos t \\
+        l = \int_{0}^{2\pi}\sqrt{a^2\sin^2  t + b^2\cos^2 t} \: dt =
+        4\int_{0}^{\frac{\pi}{2}}\sqrt{a^2 - (a^2 - b^2)\cos^2 t} \: dt
+        = 4a\int_{0}^{\frac{\pi}{2}}\sqrt{1 - \varepsilon^2\sin^2 t} \: dt
+        \text{,} \\ \text{где } \varepsilon = \frac{\sqrt{a^2 - b^2}}{a}\text{ --- эксцентриситет эллипса}
+      \end{gathered}
+    \end{equation*}
+    $ \displaystyle
+        E(k) = \int_{0}^{\frac{\pi}{2}}\sqrt{1 - k^2\sin^2 t} \: dt
+    $ --- эллиптический интеграл \rom{2} рода.
+
+    $ \displaystyle
+        K(k) = \int_{0}^{\frac{\pi}{2}} \frac{dt}{\sqrt{1 - k^2\sin^2 t}}
+    $ --- эллиптический интеграл \rom{1} рода.
+    \item Длина одного периода синусоиды $y = a\sin \frac{x}{b}, \; x \in [0, 2\pi b]$.
+    \begin{equation*}
+      l = \int_{0}^{2\pi b}\sqrt{1 + \left(\frac{a}{b}\cos \frac{x}{b}\right)^2} \: dx
+    \end{equation*}
+    Пусть $\frac{x}{b} = t$. Тогда
+    \begin{equation*}
+      \begin{gathered}
+        l = \int_{0}^{2\pi} \sqrt{1 + \frac{a^2}{b^2}\cos^2 t} \; b \; dt =
+        \int_{0}^{2\pi} \sqrt{b^2 + a^2\cos^2 t} \; dt =
+        4\int_{0}^{\frac{\pi}{2}}\sqrt{(a^2 + b^2) - a^2\sin^2 t} \; \: dt = \\
+        = 4\sqrt{a^2 + b^2}\int_{0}^{\frac{\pi}{2}}\sqrt{1 - \frac{a^2}{a^2 + b^2}\sin^2 t} \; \: dt
+        = 4\sqrt{a^2 + b^2} \; E\left(\frac{a}{\sqrt{a^2 + b^2}}\right)
+      \end{gathered}
+    \end{equation*}
+  \end{enumerate}
+\end{examples}
+
+\begin{conj}
+  $A$ --- линейно связное множество, если $\forall x,\, y \in A$ найдется
+  $\gamma\colon [a, b] \to A$ такой, что $\gamma(a) = x$ и $\gamma(b) = y$.
+\end{conj}
+
+\pagebreak
+\begin{theorem}
+  Линейно свзяное множество связно
+\end{theorem} \nopagebreak[4]
+\begin{proof}
+  От противного. Пусть $A \subset U \cup V$ и $U,\, V$ --- открытые, $U \cap V = \varnothing$ и $A \cap U \neq \varnothing, \, A \cap V \neq \varnothing$.
+
+  Возьмем $x \in A \cap U, \, y \in A \cap V$. Тогда есть $\gamma\colon [a, b] \to A$ --- путь, их соединяющий. Тогда $[a, b] \subset \gamma^{-1}(U) \cap \gamma^{-1}(V)$ и при этом~$\gamma^{-1}(U) \cap \gamma^{-1}(V) = \varnothing, \, a \in \gamma^{-1}(U), \, b \in \gamma^{-1}(V)$. Это противоречит связности отрезка.
+\end{proof}
+
+\begin{conj}
+  Область --- открытое линейное связное множество.
+\end{conj}
+
+\begin{notice}
+  Можно доказать, что для открытых множеств связность = линейная связность.
+\end{notice}
+
+\subsection{Ряды в нормированных пространствах}
+\begin{conj}
+  Пусть $X$ --- нормированное пространство, $\|.\|$ --- норма, $x_n \in X$. Тогда
+  $\smash{\sum\limits_{k = 1}^{\infty} x_n}$ --- ряд. Частичная сумма ряда
+  $S_n = \sum\limits_{k = 1}^{n} x_k$. Если существует $\lim S_n$, то он называется суммой ряда. Ряд сходящийся, если его сумма конечна.
+\end{conj}
+
+\begin{theorem}[необходимое условие сходимости]
+  Если ряд $\sum\limits_{n = 1}^{\infty}$ сходится, то $\lim x_n = 0$.
+\end{theorem}
+\begin{proof}
+  Пусть $S = \lim S_n$. Тогда
+  \begin{equation*}
+    x_n = S_n - S_{n - 1} \implies \lim x_n = \lim S_n - \lim S_{n - 1} = S - S = 0
+  \end{equation*}
+\end{proof}
+
+\textbf{Свойства}.
+\begin{enumerate}
+  \item Линейность суммы. Если ряды $\sum\limits_{n = 1}^{\infty} x_n$ и $\sum\limits_{n = 1}^{\infty} y_n$ сходятся и $\alpha, \, \beta \in \R$, то ряд $\sum\limits_{n = 1}^{\infty}(\alpha x_n + \beta y_n)$ сходится и
+  \begin{equation*}
+    \sum\limits_{n = 1}^{\infty} (\alpha x_n + \beta y_n) = \alpha\sum\limits_{n = 1}^{\infty} x_n + \beta\sum\limits_{n = 1}^{\infty} y_n
+  \end{equation*}
+  \begin{proof}
+    Пусть $X_n \coloneqq \sum\limits_{k = 1}^{n} x_k, \, Y_n \coloneqq \sum\limits_{k = 1}^{n} y_k, \, S_n \coloneqq \sum\limits_{k = 1}^{n}(\alpha x_k + \beta y_k) =
+    \alpha X_n + \beta Y_n$. А значит свойство выполняется просто по линейности перехода к пределу в нормированном пространстве.
+  \end{proof}
+
+  \item Расстановка скобок не меняет суммы.
+
+  \item В $\C$ и $\R^d$ ряды сходятся тогда и только тогда, когда они сходятся покоординатно.
+\end{enumerate}
+
+\begin{theorem}[критерий Коши]
+  Пусть $X$ --- полное нормированное пространство. Тогда
+  \begin{equation*}
+    \text{Ряд }\sum\limits_{n = 1}^{\infty} x_n\text{ сходится }\iff \; \forall \varepsilon > 0, \: \exists N, \: \forall m,\, n \geq N\colon
+    \left \|\sum\limits_{k = n}^{m} x_K \right \| < \varepsilon
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{align*}
+    \text{Ряд сходится } &\iff \\
+    \text{существует }\lim S_n &\iff \\
+    S_n\text{ --- фундаментальная последовательность } &\iff \\
+    \forall \varepsilon > 0, \: \exists N, \: \forall m, \, n \geq N\colon \|S_n - S_m\| \leq \varepsilon &\iff \\
+    \forall \varepsilon > 0, \: \exists N, \: \forall m, \, n \geq N\colon
+    \left\|\sum\limits_{k = n+ 1}^{n} x_k\right\| \leq \varepsilon&
+  \end{align*}
+\end{proof}
+
+\begin{conj}
+  Ряд $\sum\limits_{n = 1}^{\infty} x_n$ --- абсолютно сходится, если
+  $\sum\limits_{n = 1}^{\infty} \|x_n\|$ --- сходится.
+\end{conj}
+
+\begin{theorem}
+  В полном нормированном пространстве если ряд абсолютно сходится, то он сходится и
+  \begin{equation*}
+    \left\|\sum\limits_{n = 1}^{\infty} x_n\right\| \leq
+    \sum\limits_{n = 1}^{\infty}\left\|x_n\right\|
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  $\sum\limits_{n = 1}^{\infty}\|x_n\|$, а значит
+  \begin{equation*}
+    \forall \varepsilon > 0, \: \exists N, \: \forall n, m \geq N\colon \sum\limits_{k = n}^{m} \|x_k\| < \varepsilon
+  \end{equation*}
+  Но
+  \begin{equation*}
+    \sum\limits_{k = n}^{m} \| x_k \| \geq \left\| \sum\limits_{k = n}^{m} x_k \right\| \implies
+  \sum\limits_{n = 1}^{\infty} x_n\text{ --- сходится}
+  \end{equation*}
+  Теперь докажем неравенство, мы знаем, что $\Big \| \sum\limits_{k = 1}^{n} x_k \Big \| \leq \sum\limits_{k = 1}^{n} \| x_k \|$. Применив предельный переход и факт о том, что предел нормы равен норме предела получаем нужное неравенство. Теорема доказана.
+\end{proof}
+
+\begin{notice}
+  Если $\sum x_n$ и $\sum y_n$ абсолютно сходятся, то $\sum(\alpha x_n + \beta y_n)$ сходится.
+\end{notice}
+\begin{proof}
+  По неравенству треугольника $\| \alpha x_n + \beta y_n \| \leq | \alpha | \| x_n \| + | \beta | \| y_n \|$.
+\end{proof}
+\textbf{Достаточные условия сходимости при группировки членов ряда}.
+\begin{enumerate}
+  \item Каждая группа состоит из $\leq M$ слагаемых, $\lim x_n = 0$ и сгрупированный ряд сходится к~$S$. Тогда $\sum\limits_{n = 1}^{\infty} x_n = S$.
+  \begin{proof}
+    Заметим, что частичные суммы сгрупированного ряда это просто какая-то подпоследовательность частичных сумм нашего ряда $S_{n_1}, S_{n_2}, S_{n_3}, \dotsc, \quad \lim S_{n_k} = S$. Мы знаем, что в каждой группе ограниченное число слагаемых:
+    \begin{equation*}
+      \hphantom{, \quad n_k - n_{k - 1} \leq M}
+      n_1, n_2 - n_1, n_3 - n_2, \dotsc
+      , \quad n_k - n_{k - 1} \leq M
+    \end{equation*}
+    Возьмем произвольное $n\colon \; n_k \leq n < n_{k + 1}$.
+    Тогда $S_n = S_{n_k} + \overbrace{x_{n_{k + 1}} + x_{n_{k + 2}} + \dotsc + x_n}^{\mathclap{\text{
+       $\leq M$ слагаемых
+    }}}$. Тогда
+    \begin{equation*}
+      \| S_n - S \| \leq \| S_{n_k} - S \| + \| x_{n_{k + 1}} \| + \| x_{n_{k + 2}} \| + \dotsc + \| x_n \|
+    \end{equation*}
+    Также заметим, что
+    \begin{equation*}
+      \lim x_n = 0 \implies \exists N\colon \forall m \geq N\colon \| x_m \| < \varepsilon
+    \end{equation*}
+    Тогда мы знаем, что при достаточно больших $k\colon \|S_{n_k} - S\| < \varepsilon$, а так же при достаточно больших $k\colon \forall m \geq n_k\colon \| x_m \| < \varepsilon$. Значит при достаточно больших $k\colon$
+    \begin{equation*}
+      \| S_n - S \| \leq (M + 1)\varepsilon
+    \end{equation*}
+    где $(M + 1)$ --- константа, а $\varepsilon$ может быть сколь угодно маленьким. Значит
+    \begin{equation*}
+      \lim \| S_n - S \| = 0 \implies \lim S_n = S
+    \end{equation*}
+  \end{proof}
+
+  \item Для числовых рядов. Члены ряда в каждой группе одного знака и сгрупированный ряд сходится. Тогда и исходный ряд сходится.
+  \begin{proof}
+    Пусть $S_{n_1}, S_{n_2}, \dotsc$ --- частичные суммы для сгрупированного ряда. Берем произвольное $n$. Тогда $n_k \leq n < n_{k + 1}$ и
+    \begin{equation*}
+      S_n = S_{n_k} + x_{n_{k + 1}} + x_{n_{k + 2}} + \dotsc + x_n
+    \end{equation*}
+    Пусть все $x$ не отрицательны. Тогда $S_n \geq S_{n_k}$. Аналогично получаем, что $S_n \leq S_{n_{k + 1}}$. Тогда $S_n$ лежит между $S_{n_k}$ и $S_{n_{k + 1}}$, каждое из которых стремится к $S$. Значит по теореме о двух миллиционерах $S_n$ тоже стремится к $S$.
+  \end{proof}
+\end{enumerate}
+
+\begin{example}
+  Посмотрим на ряд $\sum\limits_{n = 1}^{\infty} \frac{(-1)^{[\sqrt[3]{n}]}}{\sqrt{n}}$. Поделим его на блоки следующего вида:
+  \begin{equation*}
+    (-1)^k \left(
+      \frac{1}{\sqrt{k^3}} + \frac{1}{\sqrt{k^3 + 1}} + \dotsb + \frac{1}{\sqrt{(k + 1)^3 - 1}}
+    \right)
+  \end{equation*}
+  Тогда заметим, что $(k + 1)^3 - k^3 \geq 3k^2$, а значит
+  \begin{equation*}
+    |\text{сумма в блоке}|
+    \geq
+    \frac{3k^2}{\sqrt{(k + 1)^3 - 1}} > 1
+  \end{equation*}
+  Таким образом сгрупированный ряд расходится, потому что не выполняется необходимое условие сходимости. А значит и наш ряд расходится, так как сгрупированный ряд это просто подпоследовательность нашего.
+\end{example}

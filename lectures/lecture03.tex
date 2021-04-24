@@ -1,1 +1,310 @@
 \section{Лекция номер 3}
+
+\textbf{Свойства несобственных интегралов}.
+
+В каждом из последующих свойств будем рассматривать функцию $f \in C[a, b)$.
+
+\begin{enumerate}
+  \item \textbf{Аддитивность}. Пусть $c \in (a, b)$. Если $\int_{a}^{b} f$ сходится, то $\int_{c}^{b} f$ также сходится и $\int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f$. А если $\int_{c}^{b} f$ сходится, то и $\int_{a}^{b} f$ сходится.
+  \begin{proof}
+    \begin{equation*}
+      \int_{a}^{b} f = \lim\limits_{B \to b-} \int_{a}^{B} f
+    \end{equation*}
+    Но у нас есть аддитивность для собственных интегралов. То есть
+    \begin{equation*}
+      \int_{a}^{B} f = \int_{a}^{c} f + \int_{c}^{B} f
+    \end{equation*}
+    Значит
+    \begin{equation*}
+      \int_{a}^{b} f = \lim\limits_{B \to b-} \left( \int_{a}^{c} + \int_{c}^{B} \right) =
+      \int_{a}^{c} + \int_{c}^{b}
+    \end{equation*}
+  \end{proof}
+
+  \item Если $\int_{a}^{b} f$ сходится, то $\lim\limits_{c \to b-} \int_{c}^{b} f = 0$.
+  \begin{proof}
+    По предыдущему свойству знаем, что
+    \begin{equation*}
+      \int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f
+    \end{equation*}
+    Значит
+    \begin{equation*}
+      \begin{gathered}
+        \int_{c}^{b} f = \int_{a}^{b} - \int_{a}^{c} f \\
+        \lim\limits_{c \to b-} \int_{c}^{b} f = \lim\limits_{c \to b-} \int_{a}^{b} - \int_{a}^{c} f = \int_{a}^{b}  -\int_{a}^{b} = 0
+      \end{gathered}
+    \end{equation*}
+  \end{proof}
+
+  \item \textbf{Линейность}. Если $\int_{a}^{b} f$ и $\int_{a}^{b} g$ сходятся, то $\int_{a}^{b}(\alpha f + \beta g)$ сходится и $\alpha\int_{a}^{b} f + \beta\int_{a}^{b} g = \int_{a}^{b}(\alpha f + \beta g)$.
+  \begin{proof}
+    \begin{equation*}
+      \alpha\int_{a}^{B} f + \beta\int_{a}^{B} g = \int_{a}^{B}(\alpha f + \beta g)
+    \end{equation*}
+    Устремляем $B$ к $b-$. Получаем, что
+    \begin{equation*}
+      \begin{gathered}
+        \lim\limits_{B \to b-} \int_{a}^{B}(\alpha f + \beta g) = \lim\limits_{B \to b-}\left(\alpha\int_{a}^{B} f + \beta\int_{a}^{B} g\right) \\
+        \int_{a}^{b} (\alpha f + \beta g) = \alpha \int_{a}^{b} f + \beta \int_{a}^{b} g
+      \end{gathered}
+    \end{equation*}
+  \end{proof}
+  \begin{notice}
+    \begin{enumerate}[1)]
+      \item Если $\int_{a}^{b} f$ сходится, а $\int_{a}^{b} g$ расходится, то $\int_{a}^{b}(f + g)$ расходится.
+
+      \item Сумма расходящихся интегралов может сходится. В качестве примера можно рассмотреть расходящийся интеграл $\int_{a}^{b} f$, тогда и $\int_{a}^{b} -f$ расходится, но $\int_{a}^{b} (f - f)$ сходится.
+    \end{enumerate}
+  \end{notice}
+
+  \item \textbf{Монотонность}. Пусть $\int_{a}^{b} f$ и $\int_{a}^{b} g$ существуют в $\overline{\R}$ и $f \leq g$ на $[a, b)$. Тогда $\int_{a}^{b} f \leq \int_{a}^{b} g$.
+  \begin{proof}
+    Мы знаем, что $\int_{a}^{B} f \leq \int_{a}^{B} g$, поэтому применяя предельный переход получаем нужно неравенство.
+  \end{proof}
+
+  \item \textbf{Интегрирование по частям}. Пусть $f, g \in C^{1}[a, b)$. Тогда
+  \begin{equation*}
+    \int_{a}^{b} fg' = fg \Big|_{a}^{b} - \int_{a}^{b} f'g
+  \end{equation*}
+  \begin{proof}
+    Мы знаем, что $\int_{a}^{B} fg' = fg \Big|_{a}^{B} - \int_{a}^{B} f'g$ для собственных интегралов. А значит применяя предельный переход получаем нужно равенство.
+  \end{proof}
+
+    \item \textbf{Замена переменной}. Пусть $\varphi\colon [\alpha, \beta) \to [a, b),\, \varphi \in C^{1}[\alpha, \beta)$ и $f \in C[a, b)$ и существует $\lim\limits_{\gamma \to \beta-}
+  \varphi(\gamma) \leftcoleqq \varphi(\beta-)$. Тогда
+    \begin{equation*}
+      \int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t) \: dt =
+      \int_{\varphi(\alpha)}^{\varphi(\beta-)} f(x) \: dx
+    \end{equation*}
+  то есть если существует один интеграл, то существует другой и они равны.
+  \begin{proof}
+    Пусть
+    \begin{equation*}
+      \begin{gathered}
+        F(y) \coloneqq \int_{\varphi(\alpha)}^{y} f(x) \: dx, \quad \Phi(\gamma) \coloneqq
+        \int_{\alpha}^{\gamma} f(\varphi(t))\varphi'(t) \: dt \\
+        \Phi(\gamma) = F(\varphi(\gamma))\text{ --- замена в собственном интеграле}
+      \end{gathered}
+    \end{equation*}
+    Рассмотрим два случая:
+    \begin{enumerate}[1)]
+      \item Существует правый интеграл, то есть существует $\lim\limits_{\mathclap{y \to \varphi(\beta-)-}} F(y)$. Возьмем последовательность $\gamma_n$, которая монотонно возрастает и стремится к $\beta$. Тогда $\varphi(\gamma_n) \to \varphi(\beta-)$.
+  А значит $\Phi(\gamma_n) = F(\varphi(\gamma_n)) \to \int_{\varphi(\alpha)}^{\varphi(\beta -)} f(x) \: dx$
+      \item Существует левый интеграл, то есть существует $\lim\limits_{\mathclap{\gamma \to \beta-}}\Phi(x)$. Докажем, что существует $\lim\limits_{\mathclap{y \to \varphi(\beta -)}}F(y)$.
+
+      Если $\varphi(\beta -) < b$, то интеграл справа собственный, значит пользуемся случаем 1.
+
+      Иначе пусть $\varphi(\beta -) = b$. Возьмем последовательность $b_n$, которая монотонно возрастает и стремится к $b$ и обрежем её так, чтобы $b_n \geq \varphi(\alpha)$. Тогда поймем, что существуют $\gamma_n \in [\alpha, \beta)$ такие, что $b_n = \varphi(\gamma_n)$. Действительно, $\varphi$ непрерывная функция, а значит по теореме Больцано-Коши найдется точка для каждого значения функции на отрезке $[\varphi(\alpha), b_n]$.
+
+      Докажем, что $\gamma_n \to \beta$. Пусть это не так, тогда $\exists \gamma_{n_k} \to \widetilde{\beta} < \beta \implies b_{n_k} = \varphi(\gamma_{n_k}) \to \varphi(\widetilde{\beta}) < b$. Но такого быть не может, так как все $b$ у нас стремятся к $\beta$.
+
+      Отсюда получаем, что $F(b_n) = F(\varphi(\gamma_n)) = \Phi(\gamma_n) \to \lim\limits_{\gamma \to \beta-} \Phi(\gamma)$. Получили первый случай.
+    \end{enumerate}
+  \end{proof}
+\end{enumerate}
+
+\begin{notice}
+  $\displaystyle \int_{a}^{b} f$ заменой $x = b - \frac{1}{t} \coloneqq \varphi(t)$ сводится к
+  $\displaystyle \int_{\frac{1}{b - a}}^{\infty} f(b - \frac{1}{t})\frac{dt}{t^2}$
+\end{notice}
+
+\begin{theorem}
+  Пусть $f \in C[a, b)$ и $f \geq 0$. Тогда сходимость $\int_{a}^{b} f$ равносильна ограниченности сверху $F(y) \coloneqq \int_{a}^{y} f$ на $[a, b)$.
+\end{theorem}
+\begin{proof}
+  Заметим, что $F(y)$ монотонна. Тогда
+  \begin{enumerate}
+    \item[]$\boxed{\Leftarrow}$
+    $F$ --- монотонна и ограничена, значит существует конечный $\lim\limits_{\mathclap{y \to b-}}F(y) = \lim\limits_{y \to b-}\int_{a}^{y} f$.
+    \item[]$\boxed{\Rightarrow}$
+    Если $\int_{a}^{b} f$ сходится, то существует конечный $\lim\limits_{\mathclap{y \to b-}} F(y) = \lim\limits_{y \to b-} \int_{a}^{y} f$. Значит $F$ ограничена.
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[признак сравнения]
+Пусть $f,\, g \in C[a, b], \; f,\, g \geq 0$ и $f \leq g$. Тогда
+\begin{enumerate}
+    \item Если $\int_{a}^{b} g$ сходится, то $\int_{a}^{b} f$ сходится
+    \item Если $\int_{a}^{b} f$ расходится, то $\int_{a}^{b} g$ расходится
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item Пусть $F(y) \coloneqq \int_{a}^{y} f, \; G(y) \coloneqq \int_{a}^{y} g \implies F(y) \leq G(y)$ при всех $y$. Если $\int_{a}^{b} g$ сходится, то $G(y)$ ограничена сверху, а значит и $F(y)$ ограничена сверху. Значит $\int_{a}^{b} f$ сходится.
+    \item Если $\int_{a}^{b} g$ сходится, то по первому пукту и $\int_{a}^{b} f$ сходится. Противоречие.
+    \end{enumerate}
+\end{proof}
+
+\begin{notice}
+  \begin{enumerate}
+    \item Неравенство $f \leq g$ нужно лишь в окрестности точки $b$.
+    \item Неравенство $f \leq g$ можно заменить на $f = \mathcal{O}(g)$.
+    \item Если $f = \mathcal{O}(\frac{1}{x^{1 + \varepsilon}})$ при $\varepsilon > 0$ и $f \in C[a, +\infty)$, то $\int_{a}^{+\infty} f$ --- сходится.
+  \end{enumerate}
+\end{notice}
+
+\begin{follow}
+  Пусть $f, \, g \in C[a, b), \; f,\, g \geq 0$ и $f(x) \sim g(x)$ при $x \to b-$. Тогда $\int_{a}^{b} f$ и $\int_{a}^{b} g$ ведут себя одинаково.
+\end{follow}
+\begin{proof}
+  $f(x) = \varphi(x)g(x)$, где $\varphi(x) \underset{\mathclap{x \to b-}}{\longrightarrow} 1
+  \implies \frac{1}{2} \leq \varphi(x) \leq 2$ при $x$ близких к $b$. Значит
+  \begin{equation*}
+    \rlap{$
+    \overbrace{\phantom{\frac{g(x)}{2} \leq f(x)}}^{\mathclap{\text{
+      если $\int_{a}^{b} f$ сходится, то $\int_{a}^{b} g$ сходится
+    }}}$}
+    \frac{g(x)}{2} \leq
+    \underbrace{f(x) \leq 2g(x)}_{\mathclap{\text{
+      если $\int_{a}^{b} g$ сходится, то $\int_{a}^{b} f$ сходится
+    }}}
+  \end{equation*}
+\end{proof}
+
+\begin{notice}
+  Если $\int_{a}^{\infty} f$ сходится и $f \geq 0$, то $f$ необязательно стремится к 0.
+\end{notice}
+
+\begin{conj}
+  Пусть $f \in C[a, b)$. Тогда $\int_{a}^{b} f$ абсолютно сходится, если $\int_{a}^{b} |f|$ сходится.
+\end{conj}
+
+\begin{theorem}
+  Если $\int_{a}^{b} f$ абсолютно сходится, то он сходится.
+\end{theorem}
+\begin{proof}
+  $\int_{a}^{b} f = \int_{a}^{b}(f_+ - f_-) = \int_{a}^{b} f_+ - \int_{a}^{b} f_-$. Если правые интегралы сходятся, то и левый интеграл также сходится. Но мы знаем, что $0 \leq f_+ \leq |f|$ и $0 \leq f_- \leq |f|$. Значит по признаку сравнимости $\int_{a}^{b} f_{\pm}$ сходится. А значит и наш интеграл тоже сходится.
+\end{proof}
+
+\begin{notice}
+  Если $\int_{a}^{b} f$ абсолютно сходится, то $\left | \int_{a}^{b} f \right | \leq \int_{a}^{b} |f|$.
+\end{notice}
+\begin{proof}
+  \begin{equation*}
+    -\int_{a}^{b} |f| \leq \int_{a}^{b} f \leq \int_{a}^{b} |f|
+  \end{equation*}
+\end{proof}
+
+\begin{theorem}[Признак Дирихле]
+  Пусть $f, \, g \in C[a, +\infty)$ и
+  \begin{enumerate}
+    \item $f$ имеет ограниченную первообразную. Иными словами существует $K$ такое, что
+    \begin{equation*}
+      \forall x < a\colon \left| \int_{a}^{x} f(t) \: dt \right| \leq K
+    \end{equation*}
+    \item $g$ монотонна
+    \item $\lim\limits_{\mathclap{x \to +\infty}} g(x) = 0$
+  \end{enumerate}
+  Тогда $\int_{a}^{+\infty} f(x)g(x) \: dx$ сходится.
+\end{theorem}
+\begin{proof}
+  Докажем для случая $g \in C^{1}[a, +\infty)$. Пусть $F(x) \coloneqq \int_{a}^{\infty} f(t) \: dt$. Тогда
+  \begin{equation*}
+    \int_{a}^{x} f(t) g(t) \: dt = \int_{a}^{x} F'(t) g(t) \: dt =
+    \underbrace{F(t) g(t) \Big|_{t = a}^{t = b}}_{\mathclap{F(x)g(x)}} - \int_{a}^{x} F(t) g'(t) \: dt
+  \end{equation*}
+  Устремим $x$ к бесконечности.
+  \begin{equation*}
+    \lim\limits_{x \to \infty} \overbrace{F(x)}^{\mathclap{\text{ограниченная}}} \underbrace{g(x)}_{\mathclap{\text{беск. малая}}} = 0
+  \end{equation*}
+  Осталось доказать, что $\int_{a}^{+\infty} F(t) g'(t) \: dt$ сходится. Проверим, что $\int_{a}^{+\infty} |F(t)||g'(t)| \: dt$ сходится и отсюда будет следовать абсолютная сходимость. Мы знаем, что $|F(t)| \leq K$.
+  Значит достаточно доказать, что $\int_{a}^{+\infty} |g'(t)| \: dt$ сходится.
+  НУО пусть $g$ монотонно возрастает. Тогда $g'(t) \geq 0$. Значит
+  \begin{equation*}
+    \int_{a}^{+\infty} |g'(t)| \: dt = \int_{a}^{+\infty} g'(t) \: dt = g \Big |_{a}^{+\infty} =
+    \lim\limits_{\mathclap{x \to +\infty}} g(x) - g(a) = -g(a)
+  \end{equation*}
+\end{proof}
+
+\begin{theorem}[Признак Абеля]
+  Пусть $f, \, g \in C[a, +\infty)$ и
+  \begin{enumerate}
+    \item $\int_{a}^{+\infty} f$ сходится
+    \item $g$ монотонна
+    \item $g$ ограничена
+  \end{enumerate}
+  Тогда $\int_{a}^{+\infty} f(x) g(x) \: dx$ сходится.
+\end{theorem}
+\begin{proof}
+  Пусть $F(y) \coloneqq \int_{a}^{y} f(t) \: dt$. Тогда $\int_{a}^{+\infty} f(t) \: dt = \lim\limits_{y \to +\infty} F(y)$, то есть предел существует и конечен. Значит $F$ ограничена в некоторой окрестности $+\infty$, то есть ограничена на луче $(b, +\infty)$. Но на $[a, b]\ F$ ограничена, т.к. непрерывна. Следовательно $\forall\, y \geq a\colon |F(y)| \leq K$.
+
+  Теперь заметим, что $g$ монотонна и ограничена, а значит существует конечный предел $\lim\limits_{\mathclap{y \to +\infty}} g(y) \leftcoleqq A$. Пусть $\widetilde{g}(x) \coloneqq~ g(x) - A$. Тогда заметим, что $\widetilde{g}(x)$ удовлетворяет условиям 2 и 3 из признака Дирихле.
+
+  Таким образом по признаку Дирихле $\int_{a}^{+\infty} f(x) \widetilde{g}(x) \: dx$ сходится. Но тогда
+  \begin{equation*}
+    \underbrace{\int_{a}^{+\infty} f(x)(\widetilde{g}(x) + A) \: dx}_{\mathclap{
+      \int_{a}^{+\infty} f(x)g(x) \: dx
+    }} =
+    \underbrace{\int_{a}^{+\infty} f(x)\widetilde{g}(x) \: dx}_{\mathclap{
+      \substack{\text{сходится по} \\ \text{признаку Дирихле}}
+    }} +
+    \underbrace{A \int_{a}^{+\infty} f(x) \: dx}_{\mathclap{
+      \text{сходится по условию}
+    }}
+  \end{equation*}
+  Получилось что нужный нам интеграл сходится как сумма двух сходящихся интегралов. Теорема доказана.
+\end{proof}
+
+\begin{follow}
+  Пусть $f, \, g \in C[a, +\infty)$ и $f$ периодическая с периодом $T$ и $g$ монотонная.
+  Тогда
+  \begin{enumerate}
+    \item Если $\int_{a}^{a + T} f(x) \: dx = 0$ и $\lim\limits_{\mathclap{x \to +\infty}} g(x) = 0$, то
+    $\int_{a}^{+\infty} f(x) g(x) \: dx$ сходится.
+    \item Если $\int_{a}^{a + T} f(x) \: dx \neq 0$ и $\int_{a}^{+\infty} g(x) \: dx$ расходится и $\lim\limits_{x \to +\infty} g(x) = 0$, то
+    $\int_{a}^{+\infty} f(x) g(x) \: dx$ расходится.
+  \end{enumerate}
+\end{follow}
+\begin{proof}
+  \begin{enumerate}
+    \item Применим признак Дирихле. Надо проверить ограниченность $F$. Достаточно проверить, что $F$ периодична с периодом $T$(действительно, этого достаточно так как $F$ непрерывна, и  непрерывная на отрезке функция ограничена).
+    \begin{equation*}
+      \begin{gathered}
+        F(y + T) - F(y) = \int_{a}^{y + T} f(x) \: dx - \int_{a}^{y} f(x) \: dx =
+        \int_{y}^{y + T} f(x) \: dx =\\
+        = \int_{y}^{a + (k + 1)T} f(x) \: dx + \int_{a + (k + 1)T}^{y + T} f(x) \: dx =
+        \int_{y - kT}^{a + T} f(x) \: dx + \int_{a}^{y - kT} f(x) \: dx =
+        \int_{a}^{a + T} f(x) \: dx = 0
+      \end{gathered}
+    \end{equation*}
+    Значит по признаку Дирихле есть сходимость.
+
+    \item Пусть $K \coloneqq \int_{a}^{a + T} f(x) \: dx \neq 0$ и $\widetilde{f}(x)
+    \coloneqq f(x) - \frac{K}{T}$. Тогда $\int_{a}^{a + T} \widetilde{f}(x) \: dx =
+    \int_{a}^{a + T} f(x) \: dx - K = 0$. Тогда $\widetilde{f}$ и $g$ удовлетворяют условиям первого пункта, значит $\int_{a}^{+\infty} \widetilde{f}(x)g(x) \: dx$ сходится. Тогда
+    \begin{equation*}
+      \int_{a}^{+\infty} f(x)g(x) \: dx =
+      \underbrace{\int_{a}^{+\infty} \widetilde{f}(x)g(x) \: dx}_{\mathclap{
+        \text{сходится}
+      }} +
+      \frac{K}{T}
+      \underbrace{\int_{a}^{+\infty} g(x) \: dx}_{\mathclap{
+        \text{расходится}
+      }}
+    \end{equation*}
+    Справа сумма сходящегося и расходящегося интегралов, значит интеграл слева расходится, что и требовалось доказать.
+  \end{enumerate}
+\end{proof}
+\begin{example}
+  Возьмем $\displaystyle \int_{1}^{+\infty} \frac{\sin x}{x^p} \: dx$.
+
+  Проверим сходимость. Заметим, что $\int_{0}^{2\pi} \sin x \: dx = 0$. Тогда пусть $f(x) \coloneqq \sin x$ и $g(x) \coloneqq \frac{1}{x^p}$ --- монотонная функция.
+  Заметим, что если $g(x) \underset{\mathclap{x \to +\infty}}{\longrightarrow} 0$, то
+  $\int_{1}^{+\infty} \frac{\sin x}{x^p} \: dx$ сходится. Таким образом мы поняли, что у нас есть сходимость в случае $p > 0$.
+
+  Проверим абсолютную сходимость. Заметим, что $\int_{0}^{2\pi} | \sin x | \: dx \neq 0$. При этом легко видеть, что при $1 \geq p > 0\colon g(x) \underset{\mathclap{x \to +\infty}}{\longrightarrow} 0$ и $\int_{1}^{+\infty} g(x) \: dx = \int_{1}^{+\infty} \frac{dx}{x^p}$ расходится. Таким образом при $1 \geq p > 0$ наш интеграл не имеет абсолютной сходимости(зато имеет обычную сходимость).
+
+  Если $p > 1$ то можно заметить, что $\left | \frac{\sin x}{x^p} \right | \leq \frac{1}{x^p}$, а значит по признаку сравнения у нас есть абсолютная сходимость(а значит есть и просто сходимость).
+
+  Если $p < 0$ возьмем отрезок $[2\pi k + \frac{\pi}{6}, 2\pi k + \frac{5\pi}{6}]$. На таком отрезке $\sin x \geq \frac{1}{2}$. То есть:
+  \begin{equation*}
+    \int_{2\pi k + \frac{\pi}{6}}^{2 \pi k + \frac{5 \pi}{6}}
+    \frac{\sin x}{x^p} \: dx
+    \geq
+    \frac{1}{2} \int_{2\pi k + \frac{\pi}{6}}^{2\pi k + \frac{5 \pi}{6}}
+    \frac{dx}{x^p}
+    \geq
+    \frac{1}{2}(\frac{5 \pi}{6} - \frac{\pi}{6}) = \frac{\pi}{3} > 1
+  \end{equation*}
+  То есть на любом суффиксе числовой прямой найдется отрезок, интеграл на котором больше единицы. Это противоречит критерию Коши, значит наш интеграл расходится при $p < 0$.
+\end{example}

@@ -73,8 +73,10 @@ tlmgr install   \
   datetime2-russian \
   bookmark \
   pgfplots \
-  tikzsymbols
-  
+  tikzsymbols \
+  cancel \
+  enumerate
+
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0

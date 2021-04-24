@@ -1,1 +1,568 @@
 \section{Лекция номер 1}
+
+\subsection{Площади и определенный интеграл}
+
+\begin{conj}
+    Отображение $\sigma\colon \overbrace{\mathcal{F}}^{\mathclap{\text{все огр. подмн-ва плоскости}}} \to [0, +\infty]$ --- квазиплощадь, если выполняются следующие свойства:
+  \begin{enumerate}
+     \item $\sigma([a, b] \times [c, d]) = (b - a) (d - c)$
+     \item $E \subset \widetilde{E} \implies \sigma(E) \leq \sigma(\widetilde{E})$
+     \item $E = E_{-} \cup E_{+} \implies \sigma(E) = \sigma(E_{-}) + \sigma(E_{+})$
+  \end{enumerate}
+\end{conj}
+
+\textbf{Обозначение.}
+$f_{+}(x) = \max\{f(x), 0\}, \qquad f_{-} = \max\{-f(x), 0\}$
+
+\textbf{Свойства:}
+\begin{enumerate}
+  \item $f_{\pm} \geq 0$
+  \item $f = f_{+} - f_{-}, \quad |f| = f_{+} + f_{-}$
+  \item $f_{+} = \frac{f + |f|}{2}, \quad f_{-} = \frac{|f| - f}{2}$
+  \item Если $f$ непрерывна, то $f_{\pm}$ непрерывна
+\end{enumerate}
+\begin{conj}
+  Подграфиком функции $f\colon E \to \R, f \geq 0$ называется
+  \begin{equation*}
+    P_f = \{ (x, y)\colon x \in E, \, 0 \leq y \leq f(x) \}
+  \end{equation*}
+\end{conj}
+
+\begin{notice}
+    Подграфик непрерывной на отрезке функции --- ограниченное множество.
+\end{notice}
+
+\begin{conj}
+  Пусть $f \in C[a, b]$. Тогда интегралом от $a$ до $b$ функции $f$ называют
+    \begin{equation*}
+      \int_{a}^{b} f =
+      \int_{a}^{b} f(x) \: dx \coloneqq \sigma(P_{f_{+}}) - \sigma(P_{f_{-}})
+    \end{equation*}
+    где $\sigma$ --- некоторая заранее зафиксированная квазиплощадь.
+\end{conj}
+
+\newpage
+\textbf{Свойства:}
+\begin{enumerate}
+\item $\displaystyle \int_{a}^{a} f = 0$
+\item $\displaystyle \int_{a}^{b} 0 = 0$
+\item Если $f \geq 0$, то $\displaystyle \int_{a}^{b} f = \sigma(P_f)$
+\item $\displaystyle \int_{a}^{b}(-f) = -\int_{a}^{b} f$
+\begin{proof}
+    \begin{equation*}
+        \begin{gathered}
+            (-f)_{+} = f_{-} \\
+            (-f)_{-} = f_{+}
+        \end{gathered}
+        \implies
+        \int_{{a}}^{{b}} {-f} \: d{x} =
+        \sigma(P_{f_{-}}) - \sigma(P_{f_{+}}) =
+        - \int_{{a}}^{{b}} {f} \: d{x}
+    \end{equation*}
+\end{proof}
+\item $\displaystyle \int_{a}^{b} c = c(b - a)$, где $c$ --- константа
+\item Если $a < b,\, f \geq 0, \, f \not \equiv 0$, то $\displaystyle \int_{a}^{b} f > 0$
+\begin{proof}
+    Пусть $f(x_0) > 0$. Тогда на $[x_0 - \delta, x_0 + \delta]$:
+    \begin{equation*}
+    f(x) \geq \frac{f(x_0)}{2}
+    \implies
+    P_f \supset [x_0 - \delta, x_0 + \delta] \times [0, \frac{f(x_0)}{2}] \implies
+    \int_{a}^{b} f = \sigma(P_f) \geq 2\delta \cdot \frac{f(x_0)}{2} = f(x_0)\delta > 0
+    \end{equation*}
+\end{proof}
+\end{enumerate}
+
+\subsection{Свойства интеграла}
+
+\textbf{Обозначение.}
+$P_{g}(E)$ --- подграфик функции $g|_{E}$.
+
+\begin{theorem}[аддитивность интеграла]
+    Пусть $f \in C[a, b]$ и $c \in [a, b]$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    \begin{equation*}
+        \begin{gathered}
+             \int_{a}^{b} f = \sigma(P_{f_{+}}) - \sigma(P_{f_{-}})
+             = \\ =
+             \underbrace{(\sigma(P_{f_{+}}([a, c])) +
+             \sigma(P_{f_{+}}([c, b])))}_{\mathclap{\sigma(P_{f_{+}})}} -
+             \underbrace{(\sigma(P_{f_{-}}([a, c])) +
+             \sigma(P_{f_{-}}([c, b])))}_{\mathclap{\sigma(P_{f_{-}})}}
+             = \\ =
+             (\sigma(P_{f_{+}}([a, c])) -
+             \sigma(P_{f_{-}}([a, c])) +
+             (\sigma(P_{f_{+}}([c, b])) -
+             \sigma(P_{f_{-}}([c, b])))
+             = \\ =
+             \int_{a}^{c} f + \int_{c}^{b} f
+         \end{gathered}
+    \end{equation*}
+\end{proof}
+
+\begin{follow}
+    Пусть $f \in C[a, b]$ и $a \leq c_1 \leq c_2 \leq \dotsb \leq c_n \leq b$. Тогда
+    \begin{equation*}
+    \int_{a}^{b} f =
+    \int_{a}^{c_1} f +
+    \int_{c_1}^{c_2} f +
+    \dotsb +
+    \int_{c_{n - 1}}^{c_n} f +
+    \int_{c_n}^{b} f
+    \end{equation*}
+\end{follow}
+
+\begin{theorem}[монотонность интеграла]
+    Пусть $f, g \in C[a, b]$ и $f \leq g$ на $[a, b]$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f \leq \int_{a}^{b} g
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    \begin{equation*}
+        \begin{gathered}
+            \begin{gathered}
+                f_{+} = \max\{f, 0\} \leq \max\{g, 0\} = g_{+} \\
+                f_{-} = \max\{-f, 0\} \geq \max\{-g, 0\} = g_{-}
+            \end{gathered}
+            \implies
+            \begin{gathered}
+              P_{f_{+}} \subset P_{g_{+}} \\
+              P_{f_{-}} \supset P_{g_{-}}
+            \end{gathered}
+            \implies \\ \implies
+            \begin{gathered}
+                \sigma(P_{f_{+}}) \leq \sigma(P_{g_{+}}) \\
+                \sigma(P_{f_{-}}) \geq \sigma(P_{g_{-}})
+            \end{gathered}
+            \implies
+            \int_{a}^{b} f = \sigma(P_{f_{+}}) - \sigma(P_{f_{-}}) \leq \sigma(P_{g_{+}}) - \sigma(P_{g_{-}}) = \int_{a}^{b} g
+        \end{gathered}
+    \end{equation*}
+\end{proof}
+
+\begin{follow}
+  \begin{enumerate}
+    \item Пусть $f \in C[a, b]$. Тогда
+      \label{int_mon:1}
+      \begin{equation*}
+        (b - a)\min f \leq \int_{a}^{b} f \leq (b - a)\max f
+      \end{equation*}
+      \begin{proof}
+          $g_1(x) = \min f \leq f(x) \leq \max f = g_2(x)$
+      \end{proof}
+    \item Пусть $f \in C[a, b]$. Тогда
+    \begin{equation*}
+      \left|\int_{a}^{b} f \right| \leq \int_{a}^{b} |f|
+    \end{equation*}
+      \begin{proof}
+        \begin{equation*}
+          \begin{gathered}
+            -|f| \leq f \leq |f|
+            \implies \\ \implies
+            -\int_{a}^{b} |f| = \int_{a}^{b} -|f| \leq \int_{a}^{b} f \leq \int_{a}^{b}|f|
+            \implies \\ \implies
+            \left| \int_{a}^{b} f \right| \leq \int_{a}^{b} |f|
+          \end{gathered}
+        \end{equation*}
+      \end{proof}
+  \end{enumerate}
+\end{follow}
+
+\begin{theorem}[о среднем]
+    Пусть $f \in C[a, b]$. Тогда $\exists\, c \in [a,b]$, для которой
+    \begin{equation*}
+        \int_{a}^{b} f = f(c)(b - a)
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Пусть
+    \begin{equation*}
+      \hphantom{\text{среднее значение функции $f$ на $[a, b]$}}
+      I_f \coloneqq \frac{1}{b - a} \int_{a}^{b} f
+      \text{ --- среднее значение функции $f$ на $[a, b]$}
+    \end{equation*}
+    По следствию \hyperref[int_mon:1]{1} из монотонности интеграла: $f(u) = \min f \leq I_f \leq \max f = f(v)$ для некоторых $u, v \in [a, b]$ из т. Вейерштрасса. Тогда по т. Больцано-Коши $\exists \, c \in [u, v]$ такая, что $I_f = f(c)$
+\end{proof}
+
+\begin{conj}
+    Интегралом с переменным верхним пределом называют
+    \begin{equation*}
+      \hphantom{, \quad x \in [a, b]}
+      \Phi(x) = \int_{a}^{x} f
+      , \quad x \in [a, b]
+    \end{equation*}
+\end{conj}
+
+\begin{conj}
+    Интегралом с переменным нижним пределом называют
+    \begin{equation*}
+      \hphantom{, \quad x \in [a, b]}
+      \Psi(x) = \int_{x}^{b} f
+      , \quad x \in [a, b]
+    \end{equation*}
+\end{conj}
+
+\begin{notice}
+    \begin{equation*}
+      \Phi(x) + \Psi(x) = \int_{a}^{b} f
+    \end{equation*}
+\end{notice}
+
+\begin{theorem}[Барроу]
+    Если $f \in C[a, b]$, то $\Phi(x)$ --- первообразная $f$.
+\end{theorem}
+\begin{proof}
+    Пусть $y > x$ и
+    \begin{equation*}
+      R(y) = \frac{\Phi(y) - \Phi(x)}{y - x} = \frac{1}{y - x}\left(\int_{a}^{y} f - \int_{a}^{x} f\right) = \frac{1}{y - x}\int_{x}^{y} f
+    \end{equation*}
+    Тогда по теореме о среднем $R(y) = f(c)$ для некоторой точки $c \in [x, y]$. Докажем, что $\lim_{y \to x+} R(y) = f(x)$. Проверим на последовательностях. Возьмем $y_n$, которая монотонно убывает и стремится к $x$. Пусть $c_n$ --- соответствующая точка для $y_n$,\; $x \leq c_n \leq y_n$ такая, что $R(y_n) = f(c_n)$. Тогда $\lim c_n = x \implies \lim R(y_n) = \lim f(c_n) = f(x) \implies \Phi'(x) = f(x)$. Что и требовалось доказать.
+\end{proof}
+
+\begin{follow}
+  \begin{enumerate}
+    \item $\Psi'(x) = -f(x)$
+      \begin{proof}
+          $\displaystyle\Psi(x) = \int_{a}^{b}f - \Phi(x) \implies \Psi'(x) = (C - \Phi(x))' = -\Phi'(x) = -f(x)$
+      \end{proof}
+    \item Если $f \in C\langle a, b \rangle$, то у $f$ есть первообразная
+      \begin{proof}
+          Пусть $c \in (a, b)$.
+
+          \begin{equation*}
+              F(x) \coloneqq
+              \begin{cases}
+                  \displaystyle
+                  \int_{c}^{x} f & \text{ при $x \geq c$}, \quad x \in [c, b\rangle, \quad (F(x))' = f(x)\\
+                  \displaystyle
+                  -\int_{x}^{c} f & \text{ при $x \leq c$}, \quad x \in \langle a, c], \quad (F(x))' = -(-(f(x)))
+              \end{cases}
+          \end{equation*}
+      \end{proof}
+  \end{enumerate}
+\end{follow}
+
+\textbf{Обозначение.}
+$F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
+
+\begin{theorem}[формула Ньютона-Лейбница]
+    Пусть $f \in C[a, b]$ и $F$ --- первообразная $f$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f = F(b) - F(a)
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    По теореме Барроу $\Phi(x)$ --- первообразная $f$. Тогда
+    \begin{equation*}
+      \Phi(x) = F(x) + C \implies
+      \begin{cases}
+        &0 = \Phi(a) = F(a) + C \implies C = -F(a) \\
+        &\Phi(b) = F(b) + C
+      \end{cases}
+    \end{equation*}
+    При этом
+    \begin{equation*}
+      \Phi(b) = \int_{a}^{b} f
+      \text{ по определению}
+    \end{equation*}
+    Тогда
+    \begin{equation*}
+      \int_{a}^{b} f = \Phi(b) = F(b) + C = F(b) - F(a)
+    \end{equation*}
+    Что и требовалось доказать.
+\end{proof}
+
+\begin{theorem}[линейность интеграла]
+    Пусть $f, g \in C[a, b]$ и $\alpha, \beta \in \R$. Тогда
+    \begin{equation*}
+    \int_{a}^{b}(\alpha f + \beta g) = \alpha \int_{a}^{b} f + \beta \int_{a}^{b} g
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Пусть $F, G$ --- первообразные $f$ и $g$. Тогда $\alpha F + \beta G$ --- первообразная для $\alpha f + \beta g$.
+    \begin{equation*}
+        \begin{gathered}
+          \int_{a}^{b}(\alpha f + \beta g) =
+          (\alpha F + \beta G) \big|_{a}^{b} =
+          \alpha F(b) + \beta G(b) - \alpha F(a) - \beta G(a)\\
+          \alpha \int_{a}^{b} f + \beta \int_{a}^{b} g =
+          \alpha F \big|_a^{b} + \beta G \big|_{a}^{b} =
+          \alpha F(b) - \alpha F(a) + \beta G(b) - \beta G(a)
+        \end{gathered}
+    \end{equation*}
+    Получили одно и то же.
+\end{proof}
+
+\begin{theorem}[формула интегрирования по частям]
+    Пусть $u, v \in C^{1}[a, b]$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} uv' = uv \big|_{a}^{b} - \int_{a}^{b} u'v
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  Пусть $H$ --- первообразная для $u'v$. Тогда $(uv - H)$ --- первообразная для $uv'$. А значит
+  \begin{equation*}
+    \int_{a}^{b} uv' = (uv - H) \big|_{a}^{b} = uv \big|_{a}^{b} - H \big|_{a}^{b} = uv|_{a}^{b} - \int_{a}^{b} u'v
+  \end{equation*}
+\end{proof}
+
+\textbf{Соглашение.} Если $a > b$, то $\displaystyle \int_{a}^{b} f \coloneqq -\int_{b}^{a} f$
+
+\begin{theorem}[замена переменной в интеграле]
+    Пусть $f \in C\langle a, b \rangle;\; \varphi \in C^{1}\langle c, d\rangle;\; \varphi\colon \langle c, d\rangle \to \langle a, b \rangle$ и $p, q \in \langle c, d \rangle$. Тогда
+    \begin{equation*}
+    \int_{p}^{q} f(\varphi(t))\varphi'(t) \: dt = \int_{\varphi(p)}^{\varphi(q)} f(x) \: dx
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Если $F$ --- первообразная $f$, то $F \circ \varphi$ --- первообразная $f(\varphi(t))\varphi'(t)$. А значит
+    \begin{equation*}
+      \int_{p}^{q} f(\varphi(t))\varphi'(t) \: dt =
+      F \circ \varphi \big|_{p}^{q} =
+      F(\varphi(q)) - F(\varphi(p)) =
+      F \big|_{\varphi(p)}^{\varphi(q)} =
+      \int_{\varphi(p)}^{\varphi(q)} f(x) \: dx
+    \end{equation*}
+\end{proof}
+
+\begin{examples}
+  \begin{enumerate}
+    \item
+      Посчитаем $\displaystyle \int_{1}^{n} \ln x \: dx$. Пусть $u = \ln x,\, v = x$. Тогда
+      \begin{equation*}
+        \int_{1}^{n} \ln x \: dx = \int_{1}^{n} u(x)v'(x) \: dx = uv \big|_{1}^{n} - \int_{1}^{n} u'v = x\ln x \big|_{1}^{n} - \int_{1}^{n} \: dx = n \ln n - (n - 1)
+      \end{equation*}
+    \item
+      Посчитаем $\displaystyle \frac{t}{1 + t^4} \: dt$. Пусть $\varphi(t) = t^2,\, f(x) = \frac{1}{1 + x^2}$. Тогда
+      \begin{equation*}
+        \begin{gathered}
+          \int_{a}^{b} \frac{t}{1 + t^4} \: dt =
+          \frac{1}{2}\int_{a}^{b} f(\varphi(t))\varphi'(t) \: dt =
+          \frac{1}{2} \int_{a^2}^{b^2} f(x) \: dx =
+          \frac{1}{2} \int_{a^2}^{b^2} \frac{dx}{1 + x^2}
+          = \\ =
+          \frac{1}{2} \arctan x \big|_{a^2}^{b^2} =
+          \frac{1}{2} \arctan b^2 - \frac{1}{2} \arctan a^2
+        \end{gathered}
+      \end{equation*}
+  \end{enumerate}
+\end{examples}
+
+\subsection{Приложение формулы интегрирования по частям}
+
+\textbf{Утверждение.}
+\begin{equation*}
+  \int_{0}^{\frac{\pi}{2}} \sin^n x \: dx =
+  \int_{0}^{\frac{\pi}{2}} \cos^n x \: dx
+\end{equation*}
+\begin{proof}
+    Пусть $x = \frac{\pi}{2} - t = \varphi(t), \, \varphi'(t) = -1$. Тогда
+    \begin{equation*}
+      \int_{0}^{\frac{\pi}{2}} \cos^n \: dx = -\int_{0}^{\frac{\pi}{2}} \sin^n(\varphi(t))\varphi'(t) \: dt = -\int_{\varphi(0)}^{\varphi(\frac{\pi}{2})} \sin^n x\: dx =\int_{0}^{\frac{\pi}{2}} \sin^n x \: dx
+    \end{equation*}
+\end{proof}
+
+Теперь посчитаем этот предел. Пусть
+\begin{equation*}
+  W_n \coloneqq \int_{0}^{\frac{\pi}{2}} \sin^n x \: dx, \qquad W_0 = \frac{\pi}{2},\, W_1 = 1
+\end{equation*}
+Тогда
+\begin{equation*}
+  \begin{gathered}
+    W_n = \int_{0}^{\frac{\pi}{2}} \sin^n x \: dx =
+    -\int_{0}^{\frac{\pi}{2}} \sin^{n - 1}x (\cos x)' \: dx
+    \overset{\mathclap{n \geq 2}}{=}
+    \underbrace{-\sin^{n - 1}x \cos x \big|_{0}^{\frac{\pi}{2}}}_{\mathclap{0}} +
+    \int_{0}^{\frac{\pi}{2}}(n - 1)\sin^{n - 2}x \cos^2 x \: dx
+    = \\ =
+    (n - 1)\int_{0}^{\frac{\pi}{2}} \sin^{n - 2} x (1 - \sin^2 x) \: dx =
+    (n -1 )(W_{n - 2} - W_n)
+    \end{gathered}
+\end{equation*}
+Отсюда
+\begin{equation*}
+    \begin{gathered}
+        W_n = (n - 1)(W_{n - 2} - W_n) \\
+        nW_n  = (n - 1)W_{n - 2} \\
+        W_n = \frac{n - 1}{n} W_{n - 2}
+    \end{gathered}
+\end{equation*}
+Таким образом мы можем отдельно написать ответ для четных, отдельно для нечетных $n$.
+\begin{equation*}
+  \begin{gathered}
+    W_{2n} =
+    \frac{2n - 1}{2n}W_{2n - 2} =
+    \frac{2n - 1}{2n}\cdot\frac{2n - 3}{2n - 2}W_{2n - 4}
+    = \dotsb =
+    \frac{(2n - 1)(2n - 3) \dotsm 1}{2n \cdot (2n - 2) \dotsm 2} \cdot \frac{\pi}{2} =
+    \frac{(2n - 1)!!}{(2n)!!} \cdot \frac{\pi}{2}
+    \\
+    W_{2n + 1} =
+    \frac{2n}{2n + 1} W_{2n - 1} =
+    \frac{2n}{2n + 1}\frac{2n - 2}{2n - 1}W_{2n - 3}
+    = \dotsb =
+    \frac{2n(2n - 2)\dotsm 2}{(2n + 1)(2n - 1)\dotsm 3}\cdot 1 =
+    \frac{(2n)!!}{(2n + 1)!!}
+  \end{gathered}
+\end{equation*}
+Заметим, что
+\begin{equation*}
+    \sin^{0} x \geq \sin^{1} x \geq \sin^2 x \geq \dotsb \geq \sin^n x, \quad x \in [0, \frac{\pi}{2}]
+\end{equation*}
+Теперь применив монотонность интеграла к полученному равенству можно получить, что:
+\begin{equation*}
+    W_0 \geq W_1 \geq W_2 \geq \dotsb \geq W_n
+\end{equation*}
+Это поможет нам в доказательстве следующей теоремы.
+
+\begin{theorem}[формула Валлиса]
+    \begin{equation*}
+        \lim \frac{(2n)!!}{(2n - 1)!!}\frac{1}{\sqrt{2n + 1}} = \sqrt{\frac{\pi}{2}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{equation*}
+    \begin{gathered}
+      W_{2n + 2} \leq W_{2n + 1} \leq W_{2n} \\
+      \frac{\pi}{2} \frac{(2n + 1)!!}{(2n + 2)!!} \leq \frac{(2n)!!}{(2n + 1)!!} \leq \frac{\pi}{2} \frac{(2n - 1)!!}{(2n)!!} \\
+      \frac{\pi}{2} \leftarrow \frac{\pi}{2} \cdot \frac{2n + 1}{2n + 2} \leq \frac{((2n)!!)^2}{(2n + 1)!!\cdot(2n - 1)!!} \leq \frac{\pi}{2} \\
+      \lim \frac{(2n!!)^2}{(2n + 1)!!\cdot(2n - 1)!!} = \frac{\pi}{2} \\
+      \lim \frac{(2n!!)^2}{(2n + 1)\cdot((2n - 1)!!)^2} = \frac{\pi}{2} \\
+      \lim \frac{(2n)!!}{\sqrt{2n + 1} \cdot (2n - 1)!!} = \sqrt{\frac{\pi}{2}}
+    \end{gathered}
+  \end{equation*}
+\end{proof}
+
+\begin{follow}
+  \begin{equation*}
+    C_{2n}^{n} = \frac{(2n - 1)!!}{(2n)!!} \cdot 4^n \sim \frac{4^n}{\sqrt{\pi n}}
+  \end{equation*}
+\end{follow}
+\begin{proof}
+  \begin{equation*}
+    \begin{gathered}
+      C_{2n}^{n} =
+      \frac{(2n)!}{(n!)^2} =
+      \frac{(2n)!! \cdot (2n - 1)!!}{(n!)^2} =
+      \frac{4^n \cdot (2n)!! \cdot (2n - 1)!!}{(2n!!)^2} =
+      \frac{4^n \cdot (2n - 1)!!}{(2n)!!}
+    \end{gathered}
+  \end{equation*}
+  Теперь применим формулу Валлиса:
+  \begin{equation*}
+    \begin{gathered}
+        \frac{(2n)!!}{(2n - 1)!! \cdot \sqrt{2n + 1}} \sim \sqrt{\frac{\pi}{2}}
+        \implies
+        \frac{(2n)!!}{(2n - 1)!! \cdot \sqrt{2n}} \sim \sqrt{\frac{\pi}{2}}
+        \implies
+        \frac{(2n)!!}{(2n - 1)!!} \sim \sqrt{n\pi}
+        \implies \\
+        \implies
+        \frac{(2n - 1)!!}{(2n)!!} \sim \frac{1}{\sqrt{n\pi}}
+        \implies
+        \frac{(2n - 1)!!}{(2n)!!} \cdot 4^n \sim \frac{4^n}{\sqrt{n\pi}}
+    \end{gathered}
+  \end{equation*}
+\end{proof}
+
+\begin{theorem}[формула Тейлора с остатком в интегральной форме]
+    Пусть $f \in C^{n + 1}\langle a, b \rangle$. Тогда
+    \begin{equation*}
+    f(x) =
+    \sum_{k = 1}^{n} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k +
+    \underbrace{\frac{1}{n!}\int_{x_0}^{x} (x - t)^n f^{(n + 1)}(t) \: dt}_{\mathclap{R_n}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Индукция. По формуле Ньютона-Лейбница:
+    \begin{equation*}
+      f(x) = f(x_0) + \int_{x_0}^{x} f'(t) \: dt
+    \end{equation*}
+    Это наше выражение при $n = 0$. Теперь докажем переход $n - 1 \to n$:
+    \begin{equation*}
+      f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^{k} + R_{n - 1}
+    \end{equation*}
+
+    Надо доказать, что
+    \begin{equation*}
+      R_{n - 1} = \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + R_n
+    \end{equation*}
+    \begin{equation*}
+      (n - 1)!R_{n - 1} =
+      \int_{{x_0}}^{{x}} {\underbrace{(x - t)^{n - 1}}_{\mathclap{v'}}\cdot \underbrace{f^{(n)}}_{\mathclap{u}}} \: d{t} =
+      \overbrace{\left.-\frac{1}{n}f^{(n)}(t)(x - t)^n\right|_{t = x_0}^{t = x}}^{\mathclap{\frac{1}{n}f^{(n)}(x_0)(x - x_0)^n}}
+      + \frac{1}{n} \int_{{x_0}}^{{x}} {(x - t)^n f^{(n + 1)}(t)} \: d{t}
+    \end{equation*}
+    Теперь поделим на $(n - 1)!$ и получим нужное выражение:
+    \begin{equation*}
+      R_{n - 1} =
+      \frac{1}{n!}f^{(n)}(x_0)(x - x_0)^{n} +
+      \frac{1}{n!} \int_{{x_0}}^{{x}} {(x - t)^n f^{(n + 1)}(t)} \: d{t}
+      =
+      \frac{1}{n!}f^{(n)}(x_0)(x - x_0)^{n} +
+      R_n
+    \end{equation*}
+\end{proof}
+
+\begin{example}
+  \begin{equation*}
+    H_j \coloneqq \frac{1}{j!}\int_{0}^{\frac{\pi}{2}}\left((\frac{\pi}{2})^2 - x^2\right)^j \cos x \: dx
+  \end{equation*}
+\end{example}
+
+\textbf{Свойства.}
+\begin{enumerate}
+  \item
+    \begin{equation*}
+      0 < H_j \leq \frac{1}{j!}\int_{0}^{\frac{\pi}{2}} \left(\frac{\pi}{2}\right)^{2j} \cos x \: dx = \left(\frac{\pi}{2}\right)^{2j} \cdot \frac{1}{j!}
+    \end{equation*}
+  \item Если $c > 0$, то $\smash{c^j H_j \underset{\mathclap{j \to \infty}}{\longrightarrow} 0}$
+  \begin{proof}
+      $0 < c^j H_j \leq \left(\frac{c\pi^2}{4}\right)^j \cdot \frac{1}{j!} \longrightarrow 0$
+  \end{proof}
+  \item $H_0 = 1,\, H_1 = 2$
+  \item $H_j = (4j - 2)H_{j - 1} - \pi^2 H_{j - 2}$
+  \begin{proof}
+    \begin{equation*}
+      \begin{gathered}
+        j!\cdot H_j
+        = \\ =
+        \int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2} - x^2\right)^2\right)^j (\sin x)'} \: d{x} =
+        \overbrace{\left.\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j \sin x\right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}} +
+        2j \int_{0}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \sin x} \: d{x} \; =
+      \end{gathered}
+    \end{equation*}
+    Теперь заметим, что
+    \begin{equation*}
+      \begin{gathered}
+        \left(\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j\right)' =
+        j\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}(-2x)         \\
+        \left(x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}\right)' =
+        \left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} + x(j - 1)\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 2}(-2x)
+      \end{gathered}
+    \end{equation*}
+    Теперь можем расписать второй интеграл по формуле интегрирования по частям, используя полученные выражения.
+    \begin{equation*}
+      \begin{gathered}
+        = 2j \int_{{0}}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}(\cos x)'} \: d{x}
+        = \\ =
+        \overbrace{\left.-2jx \left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x \right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}}
+        + \overbrace{2j \int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x} \: d{x}}^{\mathclap{(j - 1)! \cdot H_{j - 1}}} -\\
+        - \underbrace{2j \cdot 2 (j - 1) \int_{{0}}^{{\frac{\pi}{2}}} {x^2\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 2} \cos x} \: d{x}}_{\mathclap{\left(\frac{\pi}{2}\right)^2(j - 2)!\cdot H_{j - 2} - (j - 1)!\cdot H_{j - 1}}}
+      \end{gathered}
+    \end{equation*}
+    Таким образом:
+    \begin{equation*}
+      \begin{gathered}
+        j! \cdot H_j = 2j!\cdot H_{j - 1} - \pi^2 j! \cdot H_{j - 2} + 4(j - 1)j! \cdot H_{j - 1}\\
+        H_j = 2\cdot H_{j - 1} - \pi^2 \cdot H_{j - 2} + 4(j - 1) \cdot H_{j - 1} = (4j - 2)H_{j - 1} - \pi^2 H_{j - 2}
+      \end{gathered}
+    \end{equation*}
+  \end{proof}
+\end{enumerate}
