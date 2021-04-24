@@ -1,1 +1,567 @@
 \section{Лекция номер 2}
+
+\begin{enumerate}
+\setcounter{enumi}{4}
+  \item Существует многочлен $P_j$ с целыми коэффициентами, $\deg P_j \leq j$,
+для которого $H_j = P_j(\pi^2)$.
+  \begin{proof}
+    По индукции. База $P_0 \equiv 1, P_1 \equiv 2$. Переход $j - 2, j - 1 \to j$:
+
+    \begin{equation*}
+      \begin{gathered}
+        H_j = (4j - 2)H_{j - 1} - \pi^2H_{j - 2} = (4j - 2)P_{j - 1}(\pi^2) -
+        \pi^2P_{j - 2}(\pi^2) = P_j(\pi^2)\\
+        P_j(x) = (4j - 2)P_{j - 1}(x) - xP_{j - 2}(x)
+      \end{gathered}
+    \end{equation*}
+  \end{proof}
+\end{enumerate}
+
+\begin{theorem}[Ламберта]
+    $\pi$ и $\pi^2$ иррациональны.
+\end{theorem}
+\begin{proof}[Доказательство(Эрмит)]
+    От противного. Пусть $\pi^2 = \frac{m}{n}$. Тогда
+    \begin{equation*}
+        0 < H_j = P_j(\frac{m}{n}) = \frac{\text{целое}}{n^{j}} \implies
+        H_j \geq \frac{1}{n^j} \implies n^{j}H_{j} \geq 1
+    \end{equation*}
+    Но мы знаем, что $n^jH_j \underset{j \to \infty}{\longrightarrow} 0$. Противоречие.
+\end{proof}
+
+\begin{conj}
+    Пусть $f\colon E \to \R$. Тогда модулем непрерывности $\omega_f$ от $\delta \geq 0$ называют
+    \begin{equation*}
+      \omega_f(\delta) \coloneqq
+      \sup\{|f(x) - f(y)| : x, y \in E
+      \text{ и }\rho(x, y) \leq
+      \delta\}
+    \end{equation*}
+\end{conj}
+
+\textbf{Свойства.}
+\begin{enumerate}
+  \item $\omega_f(\delta) \geq 0$ и $\omega_f(0) = 0$
+  \item $\omega_f$ нестрого возрастает
+  \item $|f(x) - f(y)| \leq \omega_f(\rho(x, y))$
+  \item Если $f$ --- липшицева с константой $M$, то $\omega_f(\delta) \leq M\delta$
+  \item $f$ равномерно непрерывна на $E \iff \omega_f$ непрерывна в нуле.
+  \begin{proof}
+    \begin{enumerate}
+      \item[]
+      \item[] $\boxed{\Rightarrow}$
+      Из равномерной непрерывности:
+      \begin{equation*}
+        \forall \varepsilon > 0 \; \exists \gamma > 0
+        \colon \forall x, y \in E\text{ и }\rho(x, y) < \gamma \implies |f(x) - f(y)| < \varepsilon
+      \end{equation*}
+
+      Тогда если взять $\delta < \gamma$(можем так сделать, потому что на интересуют только маленькие $\delta$), то
+      \begin{equation*}
+        \rho(x, y) \leq \delta < \gamma \implies
+        |f(x) - f(y)| < \varepsilon \implies \omega_f(\delta) \leq \varepsilon
+        \implies \lim\limits_{\delta \to 0+} \omega_f(\delta) = 0 = \omega_f(0)
+      \end{equation*}
+
+      \item[] $\boxed{\Leftarrow}$
+      Пусть $\lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$. Тогда
+      \begin{equation*}
+        \hphantom{\text{, если $\rho(x, y) \leq \delta$}}
+        \forall \varepsilon > 0 \; \exists \delta > 0 \colon
+        \varepsilon > \omega_f(\delta) \geq |f(x) - f(y)|
+        \text{, если $\rho(x, y) \leq \delta$}
+      \end{equation*}
+      То есть мы поняли, что для любого $\varepsilon$ найдется такое $\delta$, что как только аргументы отличаются не больше чем на $\delta$, значения отличаются меньше чем на $\varepsilon$. Это равномерная непрерывность по определению.
+    \end{enumerate}
+  \end{proof}
+  \item Пусть $K$ --- компакт. Тогда $f \in C(K) \iff \lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$.
+
+  В частности $f \in C[a, b] \iff \lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$.
+\end{enumerate}
+
+\begin{conj}
+    Дроблением(разбиением, пунктиром) для отрезка $[a, b]$ называется набор точек $x_i$ такой, что
+    \begin{equation*}
+        \begin{gathered}
+            a = x_0 < x_1 < x_2 < \dotsb < x_n = b\\
+            \tau = \{x_0, x_1, \dotsc, x_n\}\text{ --- дробление}
+        \end{gathered}
+    \end{equation*}
+
+    Рангом дробления называется самый длинный из отрезков в дроблении:
+    \begin{equation*}
+        |\tau| = \max\{x_1 - x_0, x_2 - x_1, \dotsc, x_n - x_{n - 1}\}
+    \end{equation*}
+
+    Оснащением дробления называется набор точек для каждого из отрезков в дроблении:
+    \begin{equation*}
+        \{\xi_k\}\colon \quad \xi_k \in [x_{k - 1}, x_k]
+    \end{equation*}
+
+    Пусть $f\colon [a, b] \to \R$. Тогда интегральной суммой(суммой Римана) называется:
+    \begin{equation*}
+        S(f, \tau, \xi) \coloneqq \sum\limits_{k = 1}^{n} f(\xi_k)(x_k - x_{k - 1})
+    \end{equation*}
+\end{conj}
+
+\begin{theorem}[об интегральных суммах]
+    Пусть $f \in C[a, b]$. Тогда
+    \begin{equation*}
+    \smash{\Big{|} \underbrace{\int_{a}^{b} f - S(f, \tau, \xi)}_
+    {=: \triangle}\Big{|}}
+    \leq (b - a)\, \omega_f (|\tau|)
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{equation*}
+    \begin{gathered}
+      \triangle = \int_{a}^{b} f - \sum_{k = 1}^{n} f (\xi_k)
+      (x_k - x_{k - 1}) = \int_{a}^{b} f - \sum_{k = 1}^{n}
+      \int_{x_{k - 1}}^{x_k} f(\xi_k) \: dx
+      = \\ =
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f -
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f_{\xi_k} \: dx =
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} (f(x) - f(\xi_k)) \: dx
+    \end{gathered}
+  \end{equation*}
+  Теперь оценим модуль полученного выражения:
+  \begin{equation*}
+    \begin{gathered}
+      |\triangle| \leq \sum_{k = 1}^{n} \Big| \dotso \Big| \leq
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} |f(x) - f(\xi_k)| \: dx \leq
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} \omega_f(|\tau|) \: dx
+      = \\ =
+      \sum_{k = 1}^{n} (x_k - x_{k - 1})\, \omega_f(|\tau|) = (b - a)\, \omega_f(|\tau|)
+    \end{gathered}
+  \end{equation*}
+\end{proof}
+
+\begin{follow}
+  \begin{enumerate}
+    \item $\forall \varepsilon > 0 \; \exists \, \delta > 0$ такое, что для любого дробления такого, что $|\tau| < \delta$, для любого его оснащения выполняется
+    \begin{equation*}
+        \Big| \int_{a}^{b} f -
+        S(f, \tau, \xi)\Big| < \varepsilon
+    \end{equation*}
+    \begin{proof}
+        Знаем, что $\lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$, а значит по $\varepsilon > 0$ можем выбрать $\delta$, для которого $\omega_f(\delta) < \frac{\varepsilon}{b - a}$:
+        \begin{equation*}
+            \Big| \int_{a}^{b} f - S(f, \tau, \xi)\Big| \leq
+            (b - a)\, \omega_f(|\tau|) \leq (b - a)\, \omega_f(\delta) < \varepsilon
+        \end{equation*}
+    \end{proof}
+
+    \item Если $r_n$ последовательность дроблений, ранг которых стремится к $0$, то
+    \begin{equation*}
+        S(f, \tau_n, \xi_n) \longrightarrow \int_{a}^{b} f
+    \end{equation*}
+    \begin{proof}
+        Следует из следствия 1.
+    \end{proof}
+  \end{enumerate}
+\end{follow}
+
+\begin{example}
+  Пусть $S_p(n) \coloneqq 1^p + 2^p + 3^p + \dotsb + n^p$. Заметим, что
+  \begin{equation*}
+    \frac{n}{2} \cdot \left(\frac{n}{2} \right)^p < S_p(n) < n \cdot n^p
+  \end{equation*}
+  Докажем, что $S_p(n) \sim \frac{n^{p + 1}}{p + 1}$:
+  \begin{equation*}
+      \lim\limits_{n \to \infty} \frac{S_p(n)}{n^{p + 1}} =
+      \lim\limits_{n \to \infty} \frac{1}{n^{p + 1}}\sum_{k = 1}^{n} k^p =
+      \lim\limits_{n \to \infty} \frac{1}{n}\sum_{k = 1}^{n} \left(\frac{k}{n}\right)^p =
+  \end{equation*}
+  Полученное выражение это просто интегральная сумма для функции $f(x) = x^p$, дробления $x_k = \frac{k}{n}$ и оснащения $\xi_k = \frac{k}{n}$ на отрезке $[0, 1]$. Тогда воспользуемся следствием 2:
+  \begin{equation*}
+      = \int_{0}^{1} x^p \: dx = \left. \frac{x^{p + 1}}{p + 1} \right|_{0}^{1} = \frac{1}{p + 1}
+  \end{equation*}
+  Более того, используя исходную теорему можно найти оценку на погрешность. Пусть $p \geq 1$. Тогда:
+  \begin{equation*}
+    \begin{gathered}
+      f(x) - f(y) = f'(c)(x - y) = pc^{p - 1}(x - y) \\
+      | f(x) - f(y) | \leq p \cdot |x - y|
+    \end{gathered}
+  \end{equation*}
+  А значит:
+  \begin{equation*}
+    \left |
+      \frac{S_p(n)}{n^{p + 1}} - \frac{1}{p + 1}
+    \right |
+    \leq \omega_f\left(\frac{1}{n}\right) \leq \frac{p}{n}
+  \end{equation*}
+  Отсюда:
+  \begin{equation*}
+    \left |
+      S_p(n) -
+      \frac{n^{p + 1}}{p + 1}
+    \right |
+    \leq p \cdot n^p
+  \end{equation*}
+\end{example}
+
+\begin{conj}
+    Пусть $f\colon [a, b] \to \R$ --- ограниченная функция.
+    Тогда $f$ называется интегрируемой по Риману, если $\forall \varepsilon > 0 \; \exists \delta > 0$ такое, что $\forall$дробления ранга $< \delta,\; \forall$его оснащения выполняется
+    \begin{equation*}
+        | S(f, \tau, \xi) - I| < \varepsilon\text{, то } \int_{a}^{b} f \coloneqq I
+    \end{equation*}
+\end{conj}
+
+\begin{lemma}
+    Пусть $f \in C^{2}[\alpha, \beta]$. Тогда
+    \begin{equation*}
+        \underbrace{\int_{\alpha}^{\beta} f(t) \: dt - \frac{f(\alpha) + f(\beta)}{2}(\beta - \alpha)}_{=: \triangle} =
+        -\frac{1}{2} \int_{\alpha}^{\beta} f''(t)(t - \alpha)(\beta - t) \: dt
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Пусть $\gamma \coloneqq \frac{\alpha + \beta}{2}$. Тогда
+    \begin{equation*}
+            \int_{\alpha}^{\beta} f(t) \: dt = \int_{\alpha}^{\beta} f(t)(t - \gamma)'
+            \: dt = \overbracket{f(t)(t - \gamma) \Big|_{t = \alpha}^{t = \beta}}^
+            {\mathclap{f(\beta)\frac{\beta - \alpha}{2} - f(\alpha)\frac{\alpha - \beta}{2}
+            = \frac{f(\alpha) + f(\beta)}{2}(\beta - \alpha)}}
+            -\int_{\alpha}^{\beta} f'(t)(t - \gamma) \: dt
+    \end{equation*}
+    Подставив полученное выражение в $\triangle$ получаем:
+    \begin{equation*}
+            \triangle = - \int_{a}^{b} f'(t)(t - \gamma) \: dt = \frac{1}{2}
+            \int_{{\alpha}}^{{\beta}} {f'(t)((t - \alpha)(\beta - t))'} \: d{t}
+            =
+    \end{equation*}
+    Отдельное посчитаем производную:
+    \begin{equation*}
+            ((t - \alpha)(\beta - t))' = (-t^2 + (\alpha + \beta)t - \alpha\beta)' =
+            -2t + \alpha + \beta = -2(t - \gamma)
+    \end{equation*}
+    Подставляем полученное выражение обратно в $\triangle$:
+    \begin{equation*}
+            =
+            \smash{\underbrace{\frac{1}{2} f'(t)(t - \alpha)(\beta - t) \Big|_{t = \alpha}^{t = \beta}}_{0}}
+            - \frac{1}{2} \int_{{\alpha}}^{{\beta}} {f''(t)(t - \alpha)(\beta - t)} \: d{t}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}[оценка погрешности в формуле трапеций]
+    Пусть $f \in C^2[a, b]$. Тогда
+    \begin{equation*}
+        \Big| \underbrace{\int_{a}^{b} f - \sum_{k = 1}^{n}
+        \frac{f(x_{k - 1}) + f(x_k)}{2}(x_k - x_{k - 1})}_{\mathclap{=: \triangle}} \Big| \leq
+        \frac{|\tau|^2}{8}\int_{a}^{b} |f''|
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    \begin{equation*}
+            \triangle = \sum_{k = 1}^{n} \int_{{x_{k - 1}}}^{{x_k}} {f} -
+            \sum_{k = 1}^{n} \frac{f(x_{k - 1}) + f(x_k)}{2}(x_k - x_{k - 1}) =
+            \sum_{k = 1}^{n} - \frac{1}{2} \int_{{x_{k - 1}}}^{{x_k}} {f''(t)
+            (t - x_{k - 1})(x_k - t)} \: d{t}
+    \end{equation*}
+    Отсюда:
+    \begin{equation*}
+            |\triangle| \leq \frac{1}{2} \sum_{k = 1}^{n}
+            \int_{{x_{k - 1}}}^{{x_k}} {|f''(t)| \cdot |(t - x_{k - 1})(x_k - t)|} \: d{t}
+    \end{equation*}
+    При этом
+    \begin{equation*}
+            (t - x_{k - 1})(x_k - t) \leq \left(\frac{(x_k - t) + (t - x_{k - 1})}{2}\right)^2 =
+            \left(\frac{x_k - x_{k - 1}}{2}\right)^2 \leq \frac{|\tau|^2}{4} \\
+    \end{equation*}
+    А значит
+    \begin{equation*}
+            |\triangle| \leq
+            \frac{|\tau|^2}{8} \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k}|f''(t)| \: dt =
+            \frac{|\tau|^2}{8} \int_{a}^{b} |f''|
+    \end{equation*}
+    Что и требовалось доказать.
+\end{proof}
+
+% Дописать случай
+
+\begin{theorem}[формула Эйлера-Маклорена]
+    Пусть $f \in C^2[m, n], \: m,n \in \Z$. Тогда
+    \begin{equation*}
+        \sum\limits_{k = m}^{n} f(k) = \frac{f(m) + f(n)}{2} +
+        \int_{{m}}^{{n}} {f(t)} \: d{t} + \frac{1}{2}
+        \int_{{m}}^{{n}} {f''(t)\{t\}(1 - \{t\})} \: d{t}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  По лемме при $\alpha = k,\, \beta = k + 1$:
+  \begin{equation*}
+    \int_{{k}}^{{k + 1}} {f(t)} \: d{t} = \frac{f(k) + f(k + 1)}{2} -
+    \frac{1}{2} \int_{{k}}^{{k + 1}} {f''(t)
+    \smash{\overbrace{(t - k)(k + 1 - t)}^{\mathclap{\{t\}(1 - \{t\})}}}} \: d{t} {}
+  \end{equation*}
+  Тогда:
+  \begin{equation*}
+    \sum_{k = m}^{n - 1} \int_{{k}}^{{k + 1}} {f(t)} \: d{t} =
+    \sum_{k = m}^{n - 1} \frac{f(k) + f(k + 1)}{2} -
+    \frac{1}{2} \sum_{k = m}^{n - 1} \int_{{k}}^{{k + 1}}
+    {f''(t)\{t\}(1 - \{t\})} \: d{t}
+  \end{equation*}
+  Отсюда:
+  \begin{equation*}
+    \int_{{n}}^{{m}} {f(t)} \: d{t} = \frac{f(m) + f(n)}{2} +
+    \sum_{k = {m + 1}}^{n - 1} f(k) -
+    \frac{1}{2} \int_{{m}}^{{n}} {f''(t)\{t\}(1 - \{t\})} \: d{t}
+  \end{equation*}
+  Теперь заметим, что
+  \begin{equation*}
+    \sum\limits_{k = m + 1}^{n - 1} f(k)
+    = \sum\limits_{k = m}^{n} f(k) - f(m) - f(n)
+  \end{equation*}
+  Подставив это выражение получаем нужную формулу:
+  \begin{equation*}
+    \sum\limits_{k = m}^{n} f(k) = \frac{f(m) + f(n)}{2} +
+    \int_{{m}}^{{n}} {f(t)} \: d{t} + \frac{1}{2}
+    \int_{{m}}^{{n}} {f''(t)\{t\}(1 - \{t\})} \: d{t}
+  \end{equation*}
+\end{proof}
+
+\begin{examples}
+  \begin{enumerate}
+    \item $S_p = 1^p + 2^p + \dotsb + n^p$. Пусть $f(x) = x^p,\, f'(x) = px^{p - 1},\, f''(x) = p(p - 1)x^{p - 2},\, m = 1$. Тогда по формуле Эйлера-Маклорена:
+    \begin{equation*}
+      \begin{gathered}
+        S_p(n) = \frac{1 + n^p}{2} + \int_{1}^{n} x^p \: dx + \frac{1}{2} p(p - 1) \int_{{1}}^{{n}} t^{p - 2}\underbrace{\{t\}(1 - \{t\})}_{\mathclap{\leq \frac{1}{4}}} \: d{t} \leq \\
+        \leq \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{1}{8}p(p - 1)
+        \frac{n^{p - 1} - 1}{p - 1} \: dt =
+        \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{1}{8}p(n^{p - 1} - 1)
+      \end{gathered}
+    \end{equation*}
+    \begin{enumerate}
+        \item[] При $p \in (-1, 1)$ выражение $n^{p - 1} - 1$ не превосходит единицы по модулю, а значит все последнее слагаемое не превосходит $p$ по модулю. Тогда верно следующее:
+        \begin{equation*}
+            S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + \mathcal{O}(1)
+        \end{equation*}
+        \item[] При $p > 1, \, |\text{последнее слагаемое}| \leq \frac{p}{4} n^{p - 1}$. Значит верно следующее:
+        \begin{equation*}
+            S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + \mathcal{O}(n^{p - 1})
+        \end{equation*}
+    \end{enumerate}
+    \item Гармонические числа $H_n = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dotsb + \frac{1}{n}$. Пусть $f(x) = \frac{1}{x}, \, f''(x) = \frac{2}{x^3}, \, m = 1$. Тогда по формуле Эйлера-Маклорена:
+    \begin{equation*}
+        H_n = \frac{1 + \frac{1}{n}}{2} + \underbracket{\int_{1}^{n} \frac{dt}{t}}_{\mathclap{\ln t \big|_{1}^{n} = \ln n}} +
+        \frac{1}{2}\underbrace{\int_{1}^{n} \frac{2\{t\}(1 - \{t\})}{t^3} \: dt}_{\mathclap{=: a_n}}
+    \end{equation*}
+    Заметим, что $a_n$ монотонно растут, просто потому что $a_{n + 1} = a_n + $ что-то неотрицательное. Тогда попробуем оценить $a_n$ сверху:
+    \begin{equation*}
+        a_n = \int_{1}^{n} \frac{2\{t\}(1 - \{t\})}{t^3} \: dt \leq
+        \int_{1}^{n} \frac{dt}{t^3} = \left.\frac{1}{2}\left(-\frac{1}{2t^2}\right)\right|_{1}^{n} = \frac{1}{2}\left(\frac{1}{2} - \frac{1}{2n^2}\right) < \frac{1}{4}
+    \end{equation*}
+    То есть $a_n$ возрастают и ограничены сверху. Значит у $a_n$ есть предел. Тогда $a_n = a + o(1)$, где $a$ --- константа. Таким образом верно следующее равенство:
+    \begin{equation*}
+        \begin{gathered}
+        H_n = \frac{1}{2} + \frac{1}{2n} + \ln n + a + o(1) = \ln n + \underbrace{(a + \frac{1}{2})}_{\mathclap{\gamma\text{ --- постоянная Эйлера}}} + o(1) \\
+        H_n = \ln n + \gamma + o(1)
+        \end{gathered}
+    \end{equation*}
+    \item Формула Стирлинга.  Распишем $\ln n! = \ln 1 + \ln 2 + \dotsb + \ln n$ по формуле Эйлера-Маклорена при $f(x) = \ln x, \, f'(x) = \frac{1}{x}, \, f''(x) = -\frac{1}{x^2}, \, m = 1$.
+    \begin{equation*}
+        \ln n! = \underbracket{\frac{\ln 1 + \ln n}{2}}_{\mathclap{\frac{\ln n}{2}}} +
+        \int_{1}^{n} \ln t \: dt -
+        \frac{1}{2}\underbrace{\int_{1}^{n} \frac{\{t\}(1 - \{t\})}{t^2}}_{\mathclap{=: b_n}} \: dt
+    \end{equation*}
+    Заметим, что
+    \begin{equation*}
+        \int_{1}^{n} \ln t \: dt = t\ln t \Big|_{1}^{n} - \int_{1}^{n} \frac{1}{t} \cdot t \: dt = n \ln n - (n - 1)
+    \end{equation*}
+    Подставим полученное выражение обратно в формулу:
+    \begin{equation*}
+        \ln n! = \frac{\ln n}{2} + n\ln n - n + 1 - \frac{b_n}{2}
+    \end{equation*}
+    Теперь воспользуемся тем же приемом, что и в прошлом примере. Заметим, что $b_n$ растут, оценим их сверху:
+    \begin{equation*}
+        b_n = \int_{1}^{n} = \frac{\{t\}(1 - \{t\})}{t^2} \: dt \leq
+        \frac{1}{4} \int_{1}^{n} \frac{dt}{t^2} = \frac{1}{4}\left(-\frac{1}{t}\right)\Big|_{1}^{n} = \frac{1}{4}\left(1 - \frac{1}{n}\right) < \frac{1}{4}
+    \end{equation*}
+    Поэтому $b_n = b + o(1)$. Подставим полученное тождество в формулу для $\ln n!$
+    \begin{equation*}
+        \ln n! = n\ln n + \frac{\ln n}{2} - n + C + o(1)
+    \end{equation*}
+    Возьмем экспоненты от обеих частей равенства:
+    \begin{equation*}
+        n! = n^{n}\sqrt{n}e^{-n}e^{C}e^{o(1)}
+    \end{equation*}
+    Расписав $e^{o(1)} = 1 + o(1)$ по формуле Тейлора получаем, что
+    \begin{equation*}
+        n! \sim e^Cn^ne^{-n}\sqrt{n}
+    \end{equation*}
+    Попробуем вычислить константу $C$. Для этого воспользуемся приближением для $C_{2n}^{n}$:
+    \begin{equation*}
+        C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi n}}
+    \end{equation*}
+    С другой стороны мы можем расписать $C_{2n}^{n}$ по определению и каждый из факториалов заменить на полученное нами ранее выражение.
+    \begin{equation*}
+        C_{2n}^{n} = \frac{(2n)!}{(n!)^2} \sim \frac{e^C(2n)^{2n}e^{-2n}\sqrt{2n}}{(e^Cn^ne^{-n}\sqrt{n})^2} =
+        \frac{\cancel{e^C}2^{2n}\cancel{n^{2n}}\cancel{e^{-2n}}\sqrt{2\cancel{n}}}{e^{\cancel{2}C}\cancel{n^{2n}}\cancel{e^{-2n}}\sqrt{n}\sqrt{\cancel{n}}} =
+        \frac{4^n\sqrt{2}}{e^C\sqrt{n}}
+    \end{equation*}
+    Значит
+    \begin{equation*}
+        \frac{4^n}{\sqrt{\pi n}} \sim \frac{4^n \sqrt{2}}{e^C \sqrt{n}}
+    \end{equation*}
+    Значит предел отношения этих величин равен единице, то есть:
+    \begin{equation*}
+        \lim\limits_{n \to +\infty} \frac{4^n e^C\sqrt{n}}{4^n \sqrt{\pi n} \sqrt{2}} = 1
+        \implies
+        \lim\limits_{n \to +\infty} \frac{e^C}{\sqrt{2\pi}} = 1
+    \end{equation*}
+    Но предел константы это всегда сама константа, значит
+    \begin{equation*}
+        \frac{e^C}{\sqrt{2\pi}} = 1 \implies e^C = \sqrt{2\pi}
+    \end{equation*}
+    Подставив $e^C$ получаем формулу Стирлинга:
+    \begin{equation*}
+        \boxed{n! \sim n^ne^{-n}\sqrt{2\pi n}}
+    \end{equation*}
+    \begin{notice}
+        Можно доказать, что
+        \begin{equation*}
+            n^ne^{-n}\sqrt{2\pi n} \: e^{\frac{1}{12n + 1}} < n! <
+            n^ne^{-n}\sqrt{2\pi n} \: e^{\frac{1}{12n}}
+        \end{equation*}
+    \end{notice}
+  \end{enumerate}
+\end{examples}
+
+\subsection{Несобственные интегралы}
+
+\begin{conj}
+  Пусть $-\infty < a < b \leq +\infty$ и $f \in C[a, b)$. Тогда
+  \begin{equation*}
+    \hphantom{\text{, если такой предел существует}}
+    \int_{a}^{\to b} \coloneqq \lim\limits_{B \to b-} \int_{a}^{B} f
+    \text{, если такой предел существует}
+  \end{equation*}
+
+  Аналогично пусть $-\infty \leq a < b < +\infty$ и $f \in C(a, b]$. Тогда
+  \begin{equation*}
+    \hphantom{\text{, если такой предел существует}}
+    \int_{\to a}^{b} f \coloneqq \lim\limits_{A \to a+} \int_{A}^{b} f
+    \text{, если такой предел существует}
+  \end{equation*}
+\end{conj}
+
+\begin{conj}
+    Интеграл сходится, если такой предел существует и конечен.
+\end{conj}
+
+\begin{notice}
+    Если $-\infty < a < b < +\infty$ и $f \in C[a, b]$, то наше определение равносильно старому.
+\end{notice}
+\begin{proof}
+  \begin{equation*}
+    \Big| \int_{a}^{b} f - \int_{a}^{B} f\Big| = \Big| \int_{B}^{b}\Big| \leq
+    \max\limits_{[a, b)} f \cdot (b - B) \underset{B \to b}{\longrightarrow} 0
+  \end{equation*}
+
+  Значит
+  \begin{equation*}
+    \int_{a}^{B} f \underset{B \to b-}{\longrightarrow} \int_{a}^{b} f
+  \end{equation*}
+
+  Что и требовалось доказать.
+\end{proof}
+
+\begin{theorem}[критерий Коши]
+  Пусть $-\infty < a < b \leq +\infty$ и $f \in C[a, b)$.
+  Тогда интеграл $\smash[b]{\displaystyle \int_{a}^{b} f}$ сходится тогда и только тогда, когда
+  \begin{equation*}
+    \forall \varepsilon > 0 \; \exists c \in (a, b)\colon \forall
+    A, B \in (c, b) \Rightarrow \Big|\int_{A}^{B} f \Big| < \varepsilon
+  \end{equation*}
+
+  \begin{notice}
+    При $b = +\infty$ условие равносильному следующему:
+    \begin{equation*}
+      \forall \varepsilon > 0 \; \exists c > a \colon
+      \forall A, B > c \Rightarrow \Big| \int_{A}^{B} f \Big| < \varepsilon
+    \end{equation*}
+
+    При $b < +\infty$ условие равносильно следующему:
+    \begin{equation*}
+      \forall \varepsilon > 0 \; \exists \delta > 0 \colon
+      b - \delta < A, B < b \Rightarrow \Big| \int_{A}^{B} f \Big| < \varepsilon
+    \end{equation*}
+  \end{notice}
+\end{theorem}
+\begin{proof}
+    Пусть $F(x) \coloneqq \int\limits_{a}^{x} f$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f\text{ --- сходится } \iff
+        \overset{\mathclap{\text{конечный}}}{\exists}
+        \lim\limits_{B \to b-} \int_{a}^{B} f =
+        \lim\limits_{B \to b-} F(B)
+        \underbracket[1px][6px]{\overset{b = +\infty}{\iff}}_{\mathclap{\text{для $b < +\infty$ проверяется аналогично}}}
+        \overbrace{\forall \varepsilon > 0,\, \exists \, c > a,\, \forall A, B > c \Rightarrow |\underbracket{F(B) - F(A)}_{\mathclap{\int\limits_a^{B} f - \int\limits_a^{A} f = \int\limits_{A}^{B} f}}| < \varepsilon}^{\mathclap{\text{критерий Коши для функций}}}
+    \end{equation*}
+\end{proof}
+
+\begin{notice}
+  Если $F$ --- первообразная, то
+  \begin{equation*}
+    \int_{a}^{\to b} f = \lim\limits_{B \to b-} F(B) - F(a)
+  \end{equation*}
+\end{notice}
+
+\begin{notice}
+  Если существуют $A_n, B_n \in [a, b)$ и $A_n, B_n \to b$, т.ч.
+  $\int\limits_{A_n}^{B_n} f \cancel{\to} 0$, то $\int\limits_{a}^{b} f$ расходится.
+\end{notice}
+\begin{proof}
+  Можем выбрать подпоследовательность $n_k$ такую, что $\Big| \int\limits_{A_n}^{B_n}\Big| \geq \varepsilon$. Это противоречит критерию Коши.
+\end{proof}
+
+\begin{examples}
+  \begin{enumerate}
+    \item Посчитаем следующий интеграл:
+    \begin{equation*}
+      \int_{1}^{+\infty} \frac{dx}{x^p} = \lim\limits_{B \to +\infty} \int_{1}^{B} \frac{dx}{x^p} =
+    \end{equation*}
+    Рассмотрим два случая:
+    \begin{align*}
+        &\underset{p \ne 1}{=} \lim_{B \to +\infty} -\frac{1}{p - 1} \frac{1}{x^{p - 1}}\Big|_{1}^{B} = \frac{1}{p - 1} - \lim\limits_{B \to +\infty} \frac{1}{p - 1}\frac{1}{B^{p - 1}} =
+        \begin{cases}
+            \frac{1}{p - 1}\text{, при $p > 1$}\\
+            +\infty\text{, при $p < 1$}
+        \end{cases} \\
+        &\underset{p = 1}{=} \lim_{B \to +\infty} \ln x \Big|_{1}^{B} =
+        \lim_{B \to +\infty} \ln B = +\infty
+    \end{align*}
+    Таким образом
+    \begin{equation*}
+        \int_{1}^{+\infty} \frac{dx}{x^p}\text{ сходится } \iff p > 1
+    \end{equation*}
+
+    \item Теперь посчитаем тот же интеграл, но уже на отрезке $[0, 1]$.
+    \begin{equation*}
+        \int_{0}^{1} \frac{dx}{x^p} = \lim_{A \to 0+} \int_{A}^{1} \frac{dx}{x^p} =
+    \end{equation*}
+    Рассмотрим два случая:
+    \begin{align*}
+      &\underset{p \ne 1}{=} \lim\limits_{A \to 0+} \left(-\frac{1}{p - 1}\frac{1}{x^{p - 1}}\Big |_{A}^{1}\right) =
+      \lim\limits_{A \to 0+}\left(\frac{1}{1 - p} - \frac{1}{1 - p}\frac{1}{A^{p - 1}}\right) =
+      \begin{cases}
+        \frac{1}{1 - p}\text{, при $p < 1$}\\
+        +\infty\text{, при $p > 1$}
+      \end{cases} \\
+      &\underset{p = 1}{=} \lim\limits_{A \to 0+} \ln x \Big |_{A}^{1} =
+      1 - \lim\limits_{A \to 0+} \ln A = +\infty
+    \end{align*}
+    Таким образом
+    \begin{equation*}
+        \int_{0}^{1} \frac{dx}{x^p}\text{ сходится } \iff p < 1
+    \end{equation*}
+  \end{enumerate}
+\end{examples}
+\begin{notice}
+    Если функция не непрерывна в многих точках на $[a, b]$, тогда можно разрезать отрезки на кусочки и посчитать интегралы от каждого кусочка по отдельности. НУО $a < c_1 < d_1 < c_2 < b$, где функция не непрерывна в $c_1$ и $c_2$. Тогда посчитаем такую сумму:
+    \begin{equation*}
+        \int_{a}^{\to c_1} + \int_{\to c_1}^{d_1} + \int_{d_1}^{\to c_2} + \int_{\to c_2}^{b}
+    \end{equation*}
+
+    Тогда $\int_{a}^{b}$ --- сходится, если сходятся все слагаемые. Разумеется такое определение обобщается на любое конечное количество <<плохих>> точек.
+\end{notice}
