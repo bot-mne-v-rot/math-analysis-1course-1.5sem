@@ -1,0 +1,637 @@
+\section{Лекция номер 10}
+
+\notice $ $ В $\R^n$ мы подразумеваем обычную евклидову норму,
+если не оговорено иное.
+
+\begin{theorem}
+    Пусть $A : \R^n \to \R^m$ -- линейный оператор. \\
+    Тогда $\norm{A}^2 \leqslant \sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2$,
+    где $a_{ik}$ -- коэффициенты соотв. матрицы линейного оператора
+    в стандартных базисах. \\
+    В частности, $A$ -- ограниченный оператор.
+\end{theorem}
+\begin{proof} $ $
+    
+    Вспомним:
+    $$ 
+    A = \begin{pmatrix*}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{pmatrix*}
+    \quad
+    x = \begin{pmatrix*}
+        x_1 \\ \vdots \\ x_n
+    \end{pmatrix*}
+    $$
+    Тогда:
+    $$
+    \norm{Ax} = 
+    \norm{\begin{pmatrix*}
+        \sum_{k=1}^n a_{1k} x_k \\ 
+        \vdots \\ 
+        \sum_{k=1}^n a_{mk} x_k \\
+    \end{pmatrix*}}^2 =
+    \sum_{i = 1}^m \underbrace{\left(\sum_{k = 1}^n a_{ik} x_k \right)^2}
+    _{\stackrel{\text{КБШ}}{\leqslant} 
+    \sum \limits_{k = 1}^n a_{ik}^2 \cdot
+    \sum \limits_{k = 1}^n x_{k}^2 }
+    \leqslant \sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2 \cdot
+    \sum_{k = 1}^n x_{k}^2
+    = \sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2 \cdot \norm{x}
+    $$
+    По определению: 
+    $$\norm{A} = \sup_{\norm{x} \leqslant 1}
+    \norm{Ax} \leqslant \sqrt{\sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2}$$
+\end{proof}
+
+\notice $ $ в бесконечномерных пространствах бывают 
+неограниченные операторы.
+
+\subsection{Дифференцируемые отображения}
+
+\begin{conj} $ $\\
+    Пусть $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$. \\
+    $f$ \textbf{дифференцируемо} в точке $a$, если существует
+    линейное отображение \\ $T : \R^n \to \R^m$, т.ч.
+    $f(a + h) = f(a) + Th + o(\norm{h})$ при $h \to 0$.
+\end{conj}
+
+\begin{conj}
+    $T$ -- \textbf{дифференциал} $f$ в точке $a$. Обозначается $d_a f$.
+\end{conj}
+
+$ $
+
+\begin{theorem-non}
+    Если $T$ существует, то оно единственно.
+\end{theorem-non}
+\begin{proof} $ $ \\
+    Пусть $h \in \R^n$.
+    Возьмём из головы формулу и поймём, что она верная:
+    $$\lim_{t \to 0} \frac{f(a + th) - f(a)}{t} =
+    \lim_{t \to 0} \frac{f(a) + T(th) + o(\norm{th}) - f(a)}{t} =
+    \lim_{t \to 0} \frac{tTh + o(\norm{th})}{t} = Th$$
+    Таким образом, если $T$ существует, то для любого $h$
+    можно однозначно вычислить $Th$.
+\end{proof}
+
+\begin{conj}
+    Матрица оператора $T$ -- \textbf{матрица Якоби} функции 
+    $f$ в точке $a$. \\
+    Обозначается $f'(a)$.
+\end{conj}
+
+\begin{theorem-non}
+    Если $f$ дифференцируема в точке $a$, то $f$ непрерывна в точке $a$.
+\end{theorem-non}
+\begin{proof}
+    $$\lim_{h \to 0} f(a + h) = \lim_{h \to 0}(f(a) + Th + o(h))
+    = f(a) + \lim_{h \to 0} Th = f(a)$$
+    Так как $\norm{Th} \leqslant \norm{T} \norm{h}$.
+\end{proof}
+
+\textbf{Примеры:}
+\begin{enumerate}
+    \item $f = \operatorname{const}$. Тогда $f(a + h) = f(a)$.
+    А значит, $T \equiv 0$, откуда, $\nabla f = 0$.
+    \item $f$ -- линейное отображение. Тогда $f(a + h) = f(a) + f(h)$
+    $\Rightarrow Th = f(h)$. Таким образом, дифференциал $f$ во всех
+    точках -- это само $f$. 
+    А матрица Якоби -- это матрица отображения $f$.
+\end{enumerate}
+
+$ $
+
+\textbf{Важный частный случай:} $m = 1$. \\
+Тогда $T : \R^n \to \R$. И матрица $T$ =
+$\begin{pmatrix*}
+    t_1 & \dots & t_n
+\end{pmatrix*}$.
+Пусть $h = \begin{pmatrix*}
+    h_1 \\ \vdots \\ h_n
+\end{pmatrix*}$. \\
+Тогда $Th = \sum_{k = 1}^n t_k h_k$. 
+Это по сути скалярное произведение.
+
+$ $
+
+\begin{conj}
+    Пусть $f : \R^n \to \R$. $f$ дифференцируема в точке $a$. \\
+    Тогда найдётся $v \in \R^n$, т.ч. $f(a + h) = f(a) + 
+    \langle v, h \rangle + o(\norm{h})$ при $h \to 0$. \\
+    $v$ --- \textbf{градиент} функции $f$ в точке $a$.
+    Обозначается $\operatorname{grad} f$ или $\nabla f$ (``набла'' $f$).
+\end{conj}
+
+\begin{theorem}
+    Пусть $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$;
+    $f = \begin{pmatrix*}
+        f_1 \\ \vdots \\ f_m
+    \end{pmatrix*}$, где $f_j : \R^n \to \R$ -- коорд. функция.
+    Тогда $f$ дифференцируема в точке $a$ $\Longleftrightarrow$
+    $\forall j \;\; f_j$ дифференцируема в точке $a$.
+\end{theorem}
+\begin{proof} Два доказательства:
+    \begin{itemize}
+        \item[``$\Longrightarrow$'':]
+
+        Запишем определение дифференцируемости $f$:
+        $$f(a + h) = f(a) + Th + \alpha(h) \norm{h}$$ 
+        где $\alpha(h) \to 0$ при $h \to 0$ 
+        (это просто по определению $o(\dots)$).
+
+        Запишем равенство покоординатно: 
+        $$f_j(a + h) = f_j(a) + T_j h +
+        \alpha_j(h) \norm{h}$$ 
+        $\Rightarrow f_j$ дифф. в точке $a$.
+
+        \item[``$\Longleftarrow$'':]
+
+        $f_j(a + h) = f_j(a) + T_j h + \alpha_j(h) \norm{h}$
+        $$
+            f = \begin{pmatrix*}
+                f_1(a + h) \\
+                \vdots \\
+                f_m(a + h)
+            \end{pmatrix*}
+            = \begin{pmatrix*}
+                f_1(a) \\
+                \vdots \\
+                f_m(a)
+            \end{pmatrix*}
+            + \begin{pmatrix*}
+                T_1 h \\
+                \vdots \\
+                T_m h
+            \end{pmatrix*}
+            + \begin{pmatrix*}
+                \alpha_1(h) \\
+                \vdots \\
+                \alpha_m(h)
+            \end{pmatrix*} \norm{h}
+        $$
+
+        Надо доказать, что $\alpha(h) \to 0$ при $h \to 0$. \\
+        Док-во:
+        $$ \lim_{h \to 0} \norm{\alpha(h)}
+        = \lim_{h \to 0} \norm{\begin{pmatrix*}
+            \alpha_1(h) \\
+            \vdots \\
+            \alpha_m(h)
+        \end{pmatrix*}}
+        = \lim_{h \to 0} \sqrt{\alpha_1(h)^2 + \dots + \alpha_m(h)^2)}
+        = \sqrt{\sum_{i = 1}^m \lim_{h \to 0} \alpha_i(h)^2} = 0
+        $$
+
+    \end{itemize}
+\end{proof}
+
+\follow $ $ транспонированные строки матрицы Якоби -- 
+градиенты координатных функций.
+
+\begin{conj}
+    Пусть $\norm{h} = 1$, $f : E \to \R$, где $E \subset \R^n$.
+    Тогда \textbf{производная по направлению}
+    $$\frac{df}{dh}(a) := \lim_{t \to 0} \frac{f(a + th) - f(a)}{t}$$
+\end{conj}
+
+\textbf{Замечания:}
+\begin{enumerate}
+    \item Если $f$ дифференцируема в точке $a$, то 
+    $\frac{df}{dh}(a) = d_a f (h)$.
+
+    \item Пусть $g(t) := f(a + th)$, где $t \in \R$ -- 
+    маленькое число настолько, что $(a + th) \in E$.
+
+    Поясняющая картинка:
+
+    \begin{tikzpicture}
+        \draw[red, thick, ->] (1, 2) -- (1.5, 3);
+        \node[red, text width=3cm] at (2.9,2.3) {h};
+        \draw[thick, -, rounded corners=2mm] (0,0) \irregularcircle{2cm}{2mm};
+        \node[text width=3cm] at (0.5,1) {E};
+        \draw[thick, dashed] (0,-1) circle(0.7);
+        \fill[thick, black] (0,-1) circle(0.07) node[below right]{a};
+        \draw[thick, red] (0,-1) node[above left]{th};
+        \draw[red, thick, <->] (-0.3, -1.6) -- (0.3, -0.4) ;
+    \end{tikzpicture}
+
+    Пояснение к картинке: 
+    $a \in \Int E \Rightarrow \exists r > 0 : B_r(a) \subset E$.
+    $\norm{th} = \abs{t} < r$. \\
+    \textit{Мы берём вектор направления $h$ и сдвигаемся на небольшие
+    числа $t$ так, чтобы оставаться в окрестности $a$}.
+
+    Получаем в итоге:
+    $$\frac{df}{dh}(a) = g'(0) = \lim_{t \to 0} \frac{g(t) - g(0)}{t}$$
+    \textit{Получается, что $g' : (-r, r) \to \R$ -- обычная числовая
+    функция, значение и свойства её производной мы знаем.}
+
+    \item 
+    $f$ дифф. в точке $a$ $\Rightarrow$ $\exists \frac{df}{dh}(a)$,
+    \textbf{но}
+    $\exists \frac{df}{dh}(a)$ $\not\Rightarrow$ $f$ дифф. в точке $a$.
+
+    Пример:
+
+    Рассмотрим $f : \R^2 \to \R$. Пусть $C$ -- точки некоторой 
+    окружности, проходящей через ноль. Пусть:
+    $$ f(x) = 
+    \begin{cases}
+        1 & \text{если } x \in C \setminus \{0\} \\
+        0 & \text{иначе}
+    \end{cases}
+    $$
+    Тогда для любого $h \in \R^2$, $\norm{h} = 1$ и $t \in \R$,
+    так что $(a + th) \in U(a)$,  
+    прямая проходящая
+    через $0$ и $th$ имеет с $C \setminus \{0\}$ не более одной точки
+    пересечения, причём эта точка $\neq 0$. Значит, на некоторой 
+    окрестности вдоль этой прямой $f(x) = 0$. 
+    А значит $\frac{df}{dh}(0) = 0$.
+
+    С другой стороны, $f$ не непрерывна в нуле, т.к. на сколько угодно
+    маленьком расстоянии найдётся точка $x$, в которой $f(x) = 1$.
+    А $f(0) = 0$, значит, $f$ не дифференцируема в $0$.
+    
+\end{enumerate}
+
+\begin{theorem}
+    Пусть $f : E \to \R$, $E \subset \R^n$, $a \in \Int E$, 
+    $f$ -- дифф. в точке $a$.
+    Тогда
+    $$ \frac{df}{dh} (a) = d_a f(h) = \langle \nabla f(a), h \rangle $$
+\end{theorem}
+\begin{proof}
+    Доказано ранее по отдельности.
+\end{proof}
+
+\textbf{Следствие 1:}
+\begin{enumerate}
+    \item[] \textbf{Экстремальное свойство градиента}.
+    
+    $f : E \to \R$, $a \in \Int E$, $f$ дифф. в точке $a$ и 
+    $\nabla f(a) \neq 0$. Тогда 
+    $$\forall h : \norm{h} = 1 \quad
+    -\norm{\nabla f(a)} \leqslant \frac{df}{dh}(a) 
+    \leqslant \norm{\nabla f(a)}$$
+    И неравенство обращается в равенство лишь при 
+    $h = \frac{\pm \nabla f(a)}{\norm{\nabla f(a)}}$.
+
+    \textit{По смыслу получается, что производная по направлению --
+    это скорость изменения функции в данном направлении, а 
+    градиент -- это направление, в котором функция меняется 
+    быстрее всего. На этом важном факте много что построено,
+    в частности некоторые алгоритмы оптимизации функций основываются
+    на этой идее: мы считаем градиент в точке и движемся по градиенту,
+    т.е. по направлению,
+    в котором функция быстрее всего убывает. Не факт, что мы получим
+    глобальный минимум, но мы получим какой-то локальный минимум.}
+
+    \begin{proof}
+        $$\abs{\frac{df}{dh}(a)} = \abs{\langle \nabla f(a), h \rangle}
+        \stackrel{\text{КБШ}}{\leqslant} \norm{\nabla f(a)} 
+        \cdot \norm{h} = \norm{\nabla f(a)}$$
+
+        Вспомним, что в неравенстве Коши-Буняковского достигается
+        равенство тогда и только тогда, когда вектора сонаправлены.
+        Получаем, что для достижения равенства надо взять единичный 
+        вектор в направлении $\nabla f(a)$, значит, вектор $\nabla f(a)$
+        нужно просто нормировать.
+    \end{proof}
+\end{enumerate}
+
+\begin{conj}
+    Пусть $f : E \to \R$. $a \in \Int E$. Тогда 
+    \textbf{частная производная} -- производная по направлению
+    $k$-го базисного вектора (по напр. $k$-й координаты):
+    $$\frac{df}{dx_k}(a) := \lim_{t \to 0} 
+    \frac{f(a + te_k) - f(a)}{t}$$
+    где $e_k$ -- $k$-й базисный вектор (нулевой вектор, 
+    кроме 1 на $k$-й позиции).
+    $$ 
+    e_k = \begin{pmatrix*}
+        0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0
+    \end{pmatrix*}
+    \begin{matrix*}
+        $ $ \\ $ $ \\ $ $ \\
+        \longleftarrow \text{$k$-е место}
+        \\ $ $ \\ $ $ \\ $ $
+    \end{matrix*}
+    $$
+    Обозначений много: $f'_k$, $D_k f$, $d_k f$, $\frac{df}{dx_k}$. 
+\end{conj}
+ 
+\textbf{Следствие 2:}
+\begin{enumerate}
+    \item[] \textbf{Каноническое определение градиента}.
+    $$\frac{df}{dx_k} = \langle \nabla f(a), e_k \rangle =
+    \text{$k$-я координата } \nabla f(a)$$
+    Другими словами:
+    $$ \nabla f(a) =
+    \begin{pmatrix*}
+        \frac{df}{dx_1}(a) \\
+        \frac{df}{dx_2}(a) \\
+        \vdots \\
+        \frac{df}{dx_n}(a) \\
+    \end{pmatrix*}$$
+    \textit{На лекции Храбров записал вектор-строку, но мы в $\R^n$ 
+    используем векторы-столбцы}.
+\end{enumerate}
+
+\textbf{Следствие 3:}
+\begin{enumerate}
+    \item[] 
+    Если $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$,
+    $f$ дифф. в точке $a$, то матрица Якоби в точке $a$
+    выглядит следующим образом:
+    $$ f'(a) =
+    \begin{pmatrix*}
+        \frac{df_1}{dx_1}(a) & \frac{df_1}{dx_2}(a) &
+        \dots & \frac{df_1}{dx_n}(a) \\
+        \frac{df_2}{dx_1}(a) & \frac{df_2}{dx_2}(a) &
+        \dots & \frac{df_2}{dx_n}(a) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \frac{df_m}{dx_1}(a) & \frac{df_m}{dx_2}(a) &
+        \dots & \frac{df_m}{dx_n}(a) \\
+    \end{pmatrix*}$$
+    где $f_k$ -- $k$-я координатная функция $f$.
+\end{enumerate}
+
+\textbf{Пример:}
+
+Пусть $f(x, y) = x^y$. Тогда
+$$
+\frac{df}{dx}(a, b) = 
+\lim_{t \to 0} \frac{f((a, b) + t(1, 0)) - f(a, b)}{t} =
+\lim_{t \to 0} \frac{f(a + t, b) - f(a, b)}{t} =
+(x^b)' \mid_{x = a} = b a^{b-1}
+$$
+\textit{У нас меняется только первая координата,
+т.е. по сути это определение производной в точке $x = a$ при
+фиксированном $y = b$. Т.е. мы просто воспринимаем $y$ как параметр
+и дифференцируем по одной переменной.}
+
+$$
+\frac{df}{dy}(a, b) = 
+\lim_{t \to 0} \frac{f((a, b) + t(0, 1)) - f(a, b)}{t} =
+\lim_{t \to 0} \frac{f(a, b + t) - f(a, b)}{t} =
+(a^y)' \mid_{y = b} = a^b \cdot \ln a
+$$
+
+\textit{Получается, что, когда мы считаем частную производную по $x_k$,
+мы фиксируем все остальные переменные, отличные от $x_k$ ---
+считаем, что они константы ---
+и просто получаем функцию от одной переменной.}
+
+\begin{theorem}[линейность дифференциала] $ $
+
+    Пусть 
+    \begin{itemize}
+        \item $f, g : E \to \R^m$, $E \subset \R^n$;
+        \item $a \in \Int E$, $\lambda \in \R$;
+        \item $f$ и $g$ дифф. в точке $a$.
+    \end{itemize}
+    Тогда
+    \begin{itemize}
+        \item $f + g$ дифф. в точке $a$ и $d_a(f + g) = d_a f + d_a g$;
+        \item $\lambda f$ дифф. в точке $a$ и $d_a(\lambda f) = 
+        \lambda d_a f$.
+    \end{itemize}
+\end{theorem}
+\begin{proof} $ $
+    
+    По определению дифференцирумости:
+
+    $f(a + h) = f(a) + d_a f(h) + \alpha(h) \norm{h}$, где
+    $\alpha(h) \to 0$ при $h \to 0$. \\
+    $g(a + h) = g(a) + d_a g(h) + \beta(h) \norm{h}$, где
+    $\beta(h) \to 0$ при $h \to 0$.
+
+    Тогда $f(a + h) + g(a + h) = f(a) + g(a) + 
+    \underbrace{d_a f(h) + d_a g(h)}_{\text{лин. оператор}} +
+    \overbrace{\underbrace{(\alpha(h) + \beta(h))}_{\to 0} \norm{h}}
+    ^{= o(\norm{h})}$.
+
+    Равенство по определению выполняется, значит, 
+    $f + g$ дифф. в точке $a$ и $d_a(f+g) = d_a f + d_a g$.
+
+    $\lambda f(a + h) = \lambda f(a) + 
+    \underbrace{\lambda d_a f(h)}_{\text{лин. оп-р}} + 
+    \overbrace{\lambda \alpha(h) \norm{h}}^{=o(\norm{h})}$.
+
+    Равенство по определению выполняется, значит, 
+    $\lambda f$ дифф. в точке $a$ и $d_a(\lambda f) = \lambda d_a f$.
+\end{proof}
+\textit{В понимании дифференциала как матриц сложение дифференциалов
+и умножение дифференциала на скаляр просто соответствуют сложению
+матриц и умножению матрицы на скаляр. Хотя искушённому жуковским линалом
+читателю, это очевидно.}
+
+\begin{theorem}[дифференцируемость композиции]
+    Пусть
+    \begin{itemize}
+        \item $D \subset \R^n$, $f : D \to \R^m$;
+        \item $E \subset \R^m$, $g : E \to \R^l$;
+        \item $a \in \Int D$, $f(D) \subset E$, $f(a) \in \Int E$;
+        \item $f$ дифф. в точке $a$; $g$ дифф. в точке $f(a)$.
+    \end{itemize}
+    Тогда $g \circ f$ дифф. в точке $a$ и 
+    $d_a (g \circ f) = d_{f(a)} g \circ d_a f$.
+\end{theorem}
+\begin{proof} $ $
+
+    По определению дифференцирумости:
+    \begin{align*}
+        f(a + h) &= \overbrace{f(a)}^{=: b} + 
+        \overbrace{d_a f(h) + \alpha(h) \norm{h}}^{=: k}, &&
+        \text{ где $\alpha(h) \to 0$ при $h \to 0$} \\
+        g(b + k) &= g(b) + d_b g(k) + \beta(k) \norm{k}, &&
+        \text{ где $\beta(k) \to 0$ при $k \to 0$}
+    \end{align*}
+    
+    Тогда: $$g(f(a + h)) = g(b + k) = 
+    g(b) + d_b g(k) + \beta(k) \norm{k}$$
+
+    По линейности линейного отображения:
+    $$d_b g(k) = d_b g(d_a f(h) + \alpha(h) \norm{h}) = 
+    d_b g (d_a f(h)) + d_b g(\alpha(h)) \norm{h}$$
+
+    Теперь нужно понять, что $d_b g(\alpha(h)) \norm{h} = o(\norm{h})$,
+    т.е. $d_b g(\alpha(h)) \to 0$ при $h \to 0$:
+    $$
+    \norm{d_b g(\alpha(h))} \leqslant 
+    \underbrace{\norm{d_b g}}_{\text{const}} \cdot 
+    \underbrace{\norm{\alpha(h)}}_{\to 0 \text{ по опр.}} \to 0
+    $$
+
+    Теперь нужно доказать, что $\beta(k) \norm{k} = o(\norm{h})$,
+    т.е. $\beta(k) \frac{\norm{k}}{\norm{h}} \to 0$ при $h \to 0$:
+    $$\norm{k} = \norm{d_a f(h) + \alpha(h) \norm{h}}
+    \leqslant
+    \norm{d_a f(h)} + \norm{\alpha(h)} \cdot \norm{h}
+    \leqslant \norm{d_a f} \cdot \norm{h} + 
+    \norm{\alpha(h)} \cdot \norm{h}$$
+
+    По опр. $\alpha(h) \to 0$ при $h \to 0$, значит,
+    $\alpha(h)$ ограничена в окрестности 0, при этом 
+    $\norm{d_a f} = \text{const}$, поэтому 
+    $\norm{k} \leqslant M \norm{h}$ в окрестности 0. Поэтому 
+    $\norm{k} \to 0$ при $h \to 0$. Из этого следует, что
+    $\beta(k) \to 0$ при $h \to 0$, т.к. $k \to 0$. Получаем:
+    $$\beta(k) \frac{\norm{k}}{\norm{h}} \leqslant M \cdot 
+    \underbrace{\beta(k)}_{\to 0} \to 0$$
+
+    В исходном равенстве получаем:
+    $$g(f(a + h)) = g(b) + d_b g (d_a f(h)) + (d_b g(\alpha(h)) \norm{h}
+    + \beta(k) \norm{k}) = g(b) + d_b g (d_a f(h)) + o(\norm{h})$$
+    Отсюда по опр. дифф. получаем, что $g \circ f$ дифф. в точке $a$ и
+    $(d_a (g \circ f)) (h) = d_b g (d_a f(h))$, а значит,
+    $d_a (g \circ f) = d_{f(a)} g \circ d_a f$.
+
+\end{proof}
+
+\textbf{Следствие.} $(g \circ f)'(a) = g'(f(a)) \cdot f'(a)$
+
+\textit{Очень знакомая формула, только теперь не с числами, 
+а с матрицами}.
+\begin{proof}
+    $d_a(g \circ f) = d_{f(a)} g \circ d_a f$. 
+    Матрица композиции линейных отображений -- произведение 
+    матриц линейных отображении в том же порядке.
+\end{proof}
+
+\begin{theorem}[дифф. произведения скалярной и векторной функции] $ $
+
+    Пусть 
+    \begin{itemize}
+        \item $E \subset \R^n$, $\lambda : E \to \R$, $f : E \to \R^m$;
+        \item $a \in \Int E$, $f$ и $\lambda$ дифф. в точке $a$
+    \end{itemize}
+    Тогда $\lambda f$ дифф. в точке $a$ и $d_a (\lambda f)(h)
+    = d_a \lambda (h) \cdot f(a) + \lambda(a) \cdot d_a f(h)$.
+\end{theorem}
+\begin{proof} $ $
+
+    По определению дифференцирумости:
+    \begin{align*}
+        f(a + h) &= f(a) + d_a f(h) + \alpha(h) \norm{h}, &&
+        \text{ где $\alpha(h) \to 0$ при $h \to 0$} \\
+        \lambda(a + h) &= \lambda(a) + d_a \lambda(h) + \beta(h) \norm{h}, &&
+        \text{ где $\beta(h) \to 0$ при $h \to 0$}
+    \end{align*}
+
+    Получаем:
+    \begin{gather*}
+        f(a + h) \cdot \lambda(a + h) - f(a) \cdot \lambda(a) = 
+        \underbrace{d_a \lambda(h) \cdot f(a) + 
+        \lambda(a) \cdot d_a f(h)}_{\text{то что нужно}} + \\ +
+        \underbrace{\lambda(a) \cdot \alpha(h) \norm{h}}
+        _{\text{очев. $=o(\norm{h})$}} + 
+        \underbrace{f(a) \cdot \beta(h) \norm{h}}
+        _{\text{очев. $=o(\norm{h})$}} +
+        \underbrace{d_a \lambda(h) \cdot d_a f(h)}_{\text{1.}} + \\ +
+        \underbrace{d_a \lambda(h) \cdot \alpha(h) \norm{h}}_{\text{2.}} + 
+        \underbrace{d_a f(h) \cdot \beta(h) \norm{h}}_{\text{2.}} +
+        \underbrace{\alpha(h) \beta(h) \norm{h}^2}_{\text{3.}}
+    \end{gather*}
+    \begin{enumerate}
+        \item Поймём, что $d_a \lambda(h) \cdot d_a f(h) = o(\norm{h})$:
+        $$\norm{\underbrace{d_a \lambda(h)}_{\text{число}} \cdot d_a f(h)}
+        = \abs{d_a \lambda(h)} \cdot \norm{d_a f(h)} \leqslant
+        \norm{d_a \lambda} \cdot \norm{h} \cdot \norm{d_a f(h)}
+        \leqslant \underbrace{\norm{d_a \lambda} \cdot \norm{d_a f}}
+        _{\text{= const}} \cdot \norm{h}^2 = o(\norm{h})$$
+
+        \item $d_a \lambda(h) \cdot \alpha(h) \norm{h} = o(\norm{h})$,
+        т.к. $\alpha(h) \to 0$ при $h \to 0$ по опр., $\norm{d_a \lambda(h)}
+        \leqslant \norm{d_a \lambda} \cdot \norm{h}$ $\Rightarrow$
+        $d_a \lambda(h)$ ограничена в окрестности 0. Аналогично с 
+        $d_a f(h) \cdot \beta(h) \norm{h}$.
+
+        \item $\alpha(h) \beta(h) \norm{h}^2 = o(\norm{h})$, т.к.
+        $\alpha(h) \to 0$, $\beta(h) \to 0$, $\norm{h} \to 0$ при $h \to 0$.
+    \end{enumerate} 
+\end{proof}
+
+\begin{theorem}[дифф. скалярного произведения]
+    Пусть $f, g : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$,
+    $f$ и $g$ дифф. в точке $a$. Тогда $\langle f, g \rangle$
+    дифф. в точке $a$ и $d_a \langle f, g \rangle (h) =
+    \langle d_a f(h), g(a) \rangle + \langle f(a), d_a g(h) \rangle$
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+        \langle f, g \rangle = \sum_{k = 1}^m f_k g_k
+        \Rightarrow 
+        \underbrace{d_a \langle f, g \rangle = 
+        \sum_{k = 1}^m d_a (f_k g_k)}
+        _\text{линейность дифф.}; \\
+        d_a \langle f, g \rangle (h) = 
+        \sum_{k = 1}^m d_a (f_k g_k)(h) =
+        \sum_{k = 1}^m 
+        \underbrace{(d_a f_k (h) \cdot g_k(a) + 
+        f_k (a) \cdot d_a g_k(h))}_{\text{пред. теорема}} = \\
+        = \sum_{k = 1}^m 
+        \underbrace{(d_a f(h))_k}_{\text{$k$-я коорд.}}
+        \cdot g_k(a) + 
+        \sum_{k = 1}^m f_k (a) \cdot (d_a g(h))_k =
+        \langle d_a f(h), g(a) \rangle + \langle f(a), d_a g(h) \rangle
+    \end{gather*}
+
+    \textit{Необходимо пояснение, почему $d_a f_k (h) = (d_a f(h))_k$}
+\end{proof}
+\textbf{Замечание.} Если $n = 1$, то $\langle f(x), g(x) \rangle' =
+\langle f'(x), g(x) \rangle + \langle f(x), g'(x) \rangle$
+
+\begin{theorem}[теорема Лагранжа для векторнозначных функций] $ $\\
+    Пусть $f : [a, b] \to \R^m$, $f$ непрерывна и
+    дифф. на $[a, b]$. \\ Тогда $\exists c \in (a, b)$,
+    т. ч. $\norm{f(b) - f(a)} \leqslant \norm{f'(c)}(b - a)$.
+\end{theorem}
+\begin{proof}
+    Пусть $\varphi : [a, b] \to \R^m$,
+    $\varphi(x) := \langle f(x), f(b) - f(a) \rangle$. Она непрерывна
+    и дифф. на $(a, b)$, т.к. просто является произведением константы
+    на непр. и дифф. на $(a, b)$ функцию.
+
+    По замечанию к пред. теореме:
+    $$\varphi'(x) = \langle f(x), f(b) - f(a) \rangle' =
+    \langle f'(x), f(b) - f(a) \rangle +
+    \langle f(x), \underbrace{(f(b) - f(a))'}_{= 0} \rangle =
+    \langle f'(x), f(b) - f(a) \rangle$$
+
+    Применим одномерную теорему Лагранжа:
+    $$\exists c \in (a, b) : \varphi(b) - \varphi(a) =
+    \varphi'(c)(b - a) = 
+    (b - a) \langle \varphi'(c), f(b) - f(a) \rangle$$
+
+    С другой стороны:
+    $$\varphi(b) - \varphi(a) = \langle f(b), f(b) - f(a) \rangle
+    - \langle f(a), f(b) - f(a) \rangle = \norm{f(b) - f(a)}^2$$
+
+    Собираем вместе:
+    $$\norm{f(b) - f(a)}^2 = 
+    (b - a) \langle \varphi'(c), f(b) - f(a) \rangle
+    \stackrel{\text{КБШ}}{\leqslant} (b - a) \norm{\varphi'(c)}
+    \cdot \norm{f(b) - f(a)}$$
+
+    Если $f(b) - f(a)$, то неравенство в условии очевидно выполняется,
+    иначе можно сократить на $\norm{f(b) - f(a)}$.
+\end{proof}
+\textbf{Замечание.} Равенство $\norm{f(b) - f(a)} = \norm{f'(c)}(b - a)$
+может не достигаться ни в одной точке.
+
+\textbf{Пример:}
+
+Пусть $f(x) = (\cos x, \sin x)$, $x \in [a, b] = [0, 2\pi]$.
+Эта функция дифф., т.к. дифф. эквивалентна дифф. коорд. функций.
+\begin{gather*}
+    f(b) - f(a) = f(2\pi) - f(0) = (0, 0) \Rightarrow
+    \norm{f(b) - f(a)} = 0, \\
+    f'(x) = (-\sin x, \cos x) \Rightarrow \norm{f'(x)}^2 =
+    (-\sin x)^2 + \cos^2 x = 1 \Rightarrow \norm{f'(x)} \equiv 1 \\
+    \norm{f(b) - f(a)} = 0 < \norm{f'(x)}(b - a) = 2\pi
+\end{gather*}
