@@ -125,11 +125,38 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\A}{\mathcal{A}}
 \renewcommand{\C}{\mathbb{C}}
+
 \newcommand{\follow}{\textbf{\textit{Следствие:}}}
 \newcommand{\notice}{\underline{\textit{Замечание:}}}
 \newcommand{\example}{\underline{Пример:}}
 \newcommand{\examples}{\underline{Примеры:}}
+
+% algebra defs
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\Lin}{\operatorname{Lin}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Imm}{\operatorname{Im}}
+\newcommand{\Ree}{\operatorname{Re}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\rk}{\operatorname{rk}}
+
+% matan defs
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\Cl}{\operatorname{Cl}}
+
+% tikz
+\newcommand\irregularcircle[2]{% radius, irregularity
+  \pgfextra {\pgfmathsetmacro\len{(#1)+rand*(#2)}}
+  +(0:\len pt)
+  \foreach \a in {10,20,...,350}{
+    \pgfextra {\pgfmathsetmacro\len{(#1)+rand*(#2)}}
+    -- +(\a:\len pt)
+  } -- cycle
+}
 
 \newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
@@ -271,6 +298,8 @@ $ $
 \import{lectures/}{lecture08.tex}
 $ $
 \import{lectures/}{lecture09.tex}
+$ $
+\import{lectures/}{lecture10.tex}
 $ $
 \end{normalsize}
 \end{document}
