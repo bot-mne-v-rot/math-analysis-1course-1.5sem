@@ -1,0 +1,367 @@
+\section{Лекция номер 11}
+
+\subsection{Непрерывная дифференцируемость}
+
+\begin{theorem}
+    Пусть $f : E \to \R$, $E \subset \R^n$, $a \in \Int f$,
+    все частные производные $f$ существуют в окрестности точки $a$
+    и непрерывны в точке $a$. Тогда $f$ дифф. в точке $a$.
+\end{theorem}
+\begin{proof} $ $
+
+    Пусть:
+    $$R(h) = f(a + h) - f(a) - 
+    \underbrace{\sum_{k = 1}^n \frac{df}{dx_k}(a) \cdot h_k}
+    _{= \langle \nabla f(a), h \rangle = d_a f(h)} $$
+
+    где традиционно $h \in \R^n$. Надо док-ть, что $R(h) = o(\norm{h})$.
+
+    Введём вспомогательные точки:
+    
+    \noindent
+    \begin{minipage}[t]{.5\textwidth}
+        $$ b_k = \begin{pmatrix*}
+            a_1 + h_1 \\
+            a_2 + h_2 \\
+            \vdots \\
+            a_k + h_k \\
+            a_{k + 1} \\
+            \vdots \\
+            a_n
+        \end{pmatrix*}
+        = a + \begin{pmatrix*}
+            h_1 \\
+            h_2 \\
+            \vdots \\
+            h_k \\
+            0 \\
+            \vdots \\
+            0
+        \end{pmatrix*} $$
+    \end{minipage}% <---------------- Note the use of "%"
+    \begin{minipage}[t]{.5\textwidth}
+    Пример на
+    двумерном случае:
+    $$\begin{tikzpicture}
+        \draw[thick,->] (0,0) -- (3,0) node[anchor=north west] {x};
+        \draw[thick,->] (0,0) -- (0,3) node[anchor=south east] {y};
+        \fill[thick, black] (0.5, 1) circle(0.07) 
+        node[below right]{$a = b_0$};
+        \fill[thick, black] (2.5, 1) circle(0.07) 
+        node[below right]{$b_1$};
+        \fill[thick, black] (2.5, 2.5) circle(0.07) 
+        node[below right]{$h = b_2$};
+    \end{tikzpicture}$$
+    \end{minipage}
+
+    Т.е. мы к первым $k$ координатам $a$ прибавляем первые $k$
+    координат $h$, а остальные $n - k$ координат $a$ оставляем не
+    тронутыми. По сути, эти точки -- способ за $n$ шагов прошагать от точки
+    $a$ до точки $h$, прибавляя по одной координате. 
+
+    Зададим ещё одну функцию:
+    $$ F_K(t) = f(b_{k-1} + t h_k e_k) $$
+    где традиционно $t \in \R$, $e_k$ -- $k$-й базисный вектор. Т.е.
+    мы сдвинулись по $k-1$ координате в сторону $h$ и теперь двигаемся
+    по $k$-й координате в направлении $h_k$. Более того, 
+    $F_k(1) = f(b_k)$.
+
+    Это одномерная функция, поэтому можем применить одномерную
+    теорему Лагранжа:
+    $$ F_k(1) - F_k(0) = F_k'(\Theta_k) \quad\quad \Theta_k \in (0, 1) $$
+
+    Давайте внимательно посмотрим на $F_k(t)$:
+    $$ F_K(t) = f(b_{k-1} + t h_k e_k) =
+    f\begin{pmatrix*}
+        a_1 + h_1 \\
+        \vdots \\
+        a_{k-1} + h_{k-1} \\
+        a_k + t h_k \\
+        a_{k + 1} \\
+        \vdots \\
+        a_n
+    \end{pmatrix*}$$
+    Т.е. меняется только $k$-я координата, а значит по сути:
+    $$ F_k'(t) = 
+    \underbrace{
+        \overbrace{\frac{df}{dx_k}(b_{k-1} + t h_k e_k)}
+        ^{\text{сущ. по условию теор.}}
+    \cdot \frac{d(b_{k-1} + t h_k e_k)}{dx_k}(t)}
+    _{\text{произв. композиции}} = \frac{df}{dx_k}(b_{k-1} + t h_k e_k)
+    \cdot h_k $$
+    Подставляем $\Theta_k$:
+    $$ F_k'(\Theta_k) = 
+    \frac{df}{dx_k}(b_{k-1} + \Theta_k h_k e_k) \cdot h_k $$
+    Собираем вместе:
+    $$f(a + h) - f(a) = F_n(1) - F_1(0)
+    \underbrace{= \sum_{k = 1}^n (F_k(1) - F_k(0))}
+    _{\text{т.к. $F_{k-1}(1) = F_k(0)$}} =
+    \sum_{k = 1}^n \frac{df}{dx_k}
+    (\overbrace{b_{k-1} + \Theta_k h_k e_k}^{=: c_k}) \cdot h_k
+    = \sum_{k = 1}^n \frac{df}{dx_k} (c_k) \cdot h_k $$
+    Вспомним про $R(h)$:
+    $$R(h) = f(a + h) - f(a) - \sum_{k = 1}^n \frac{df}{dx_k}(a) 
+    \cdot h_k = \sum_{k = 1}^n \left(\frac{df}{dx_k} (c_k) -
+    \frac{df}{dx_k}(a) \right) \cdot h_k$$
+    Применим неравенство Коши-Буняковского:
+    $$\abs{R(h)} = \abs{\sum_{k = 1}^n \left(\frac{df}{dx_k} (c_k) -
+    \frac{df}{dx_k}(a) \right) \cdot h_k}
+    \stackrel{\text{КБШ}}{\leqslant} \sqrt{\sum_{k=1}^n 
+    \left(\frac{df}{dx_k} (c_k) - \frac{df}{dx_k}(a) \right)^2}
+    \cdot \underbrace{\sqrt{\sum_{k=1}^n h_k^2}}_{= \norm{h}}
+    $$
+    Получаем, что:
+    $$ \left(\frac{R(h)}{\norm{h}} \right)^2 \leqslant  \sum_{k=1}^n 
+    \left(\frac{df}{dx_k} (c_k) - \frac{df}{dx_k}(a) \right)^2 $$
+    Нужно доказать, что эта сумма стремится к 0 при $h \to 0$.
+    Вспомним, что сходимость эквивалентна покоординатной сходимости:
+    \begin{gather*}
+        h \to 0 \Rightarrow h_k \to 0 \Rightarrow a_k + h_k \to a_k
+        \Rightarrow b_k \to a \\
+        c_k = \underbrace{b_{k-1}}_{\to a} + 
+        \underbrace{\Theta_k}_{\in (0, 1)} \cdot
+        \underbrace{h_k}_{\to 0} \cdot
+        \underbrace{e_k}_{\text{const}} \to a
+    \end{gather*}
+    $\frac{df}{dx_k}$ непрерывна в точке $a$, а значит:
+    $$\lim_{h \to 0} \frac{df}{dx_k}(c_k) = 
+    \lim_{c_k \to a} \frac{df}{dx_k}(c_k) = 
+    \frac{df}{dx_k}(a)$$
+    Собираем вместе:
+    $$\left(\frac{R(h)}{\norm{h}} \right)^2 \leqslant  \sum_{k=1}^n 
+    \underbrace{\left(\frac{df}{dx_k} (c_k) - 
+    \frac{df}{dx_k}(a) \right)^2}_{\to 0} \to 0 \Longrightarrow
+    R(h) = o(\norm{h})$$
+    По определению дифференцируемости получаем, что $f$ дифф. 
+    в точке $a$.
+\end{proof}
+
+\textit{Теперь у нас есть более удобный способ проверять дифференц.
+функции в точке, чем просто по определению, т.к. если функция
+состоит из элементарных функции, то нам легко понять, какие у неё
+частные производные, и легко понять, непрерывны ли они в точке.}
+
+\textbf{Замечания:}
+\begin{enumerate}
+    \item Непрерывность частной производной по первой координате
+    не используется:
+    $$ F_1(1) - F_1(0) = f(a + h_1 e_1) - f(a) = 
+    \underbrace{\frac{df}{dx_1}(a) \cdot h_1 + o(h_1)}_
+    {\text{опр. дифф. в точке $a$}} = 
+    \frac{df}{dx_1}(a) \cdot h_1 + o(\norm{h})$$
+    По второй координате мы уже так сделать не можем:
+    $$ F_2(1) - F_2(0) = 
+    \underbrace{f(a + h_1 e_1 + h_2 e_2) - f(a + h_1 e_1)}
+    _{\text{точка $(a + h_1 e_1) \neq a$}} $$
+
+    \item Дифф. в точке не даёт существования частных производных
+    в окр-ти и уж тем более их дифф. 
+
+    \textbf{Пример:}
+    $$ f(x, y) = \begin{cases}
+        x^2 + y^2, & \text{если ровно одно из них $\in \Q$,} \\
+        0, &\text{иначе.}
+    \end{cases} $$
+
+    $f$ дифф. в точке $(0, 0)$:
+    $$ \underbrace{f(x, y)}_{\leqslant x^2 + y^2} = 
+    \underbrace{f(0, 0)}_{=0} + o(\norm{(x, y)}) = 
+    f(0, 0) + o(\sqrt{x^2 + y^2}) $$
+
+    При этом, в любой окрестности $(0, 0)$ найдётся точка, 
+    отличная от $(0, 0)$, в которой нет даже непрерывности.
+    Пусть $x_0, y_0 \in \R \setminus \Q$. $f(x_0, y_0) = 0$.
+    Зафиксируем вторую координату и будем двигаться по первой
+    координате. Тогда в любой окрестности $x_0$ найдётся рациональное
+    число $x$, а значит, там будет $f(x, y_0) \neq 0$. 
+    При этом если брать рациональные точки слева от $x_0$, то при 
+    приближении к $x_0$, значение $f(x, y_0)$ будет только расти,
+    а значит, ни о какой сходимости к 0 говорить нельзя.
+\end{enumerate}
+
+\begin{conj}
+    Пусть $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$.
+    Тогда $f$ \textbf{непрерывно дифф.} в точке $a$, 
+    если $f$ дифф. в точке 
+    $a$ и $d_x f$ непрерывен в точке $a$, т.е. $\norm{d_x f - d_a f}
+    \to 0$ при $x \to a$.
+\end{conj}
+
+\begin{theorem}
+    $f$ непрерывно дифф. $\Longleftrightarrow$ $f$ дифф. в окрестности
+    точки $a$ и все её частные производные непрерывны в точке $a$.
+\end{theorem}
+\begin{proof} $ $
+
+    \begin{itemize}
+        \item[``$\Longleftarrow$'':]
+        $$ d_x f =
+        \begin{pmatrix*}
+            \frac{df_1}{dx_1}(x) & \frac{df_1}{dx_2}(x) &
+            \dots & \frac{df_1}{dx_n}(x) \\
+            \frac{df_2}{dx_1}(x) & \frac{df_2}{dx_2}(x) &
+            \dots & \frac{df_2}{dx_n}(x) \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \frac{df_m}{dx_1}(x) & \frac{df_m}{dx_2}(x) &
+            \dots & \frac{df_m}{dx_n}(x) \\
+        \end{pmatrix*}$$
+
+        Нужно доказать, что $\norm{d_x f - d_a f} \to 0$ при $x \to a$.
+        Оценим квадрат нормы этого линейного оператора:
+        $$ \norm{d_x f - d_a f}^2 \leqslant 
+        \sum_{j, k} \left( \frac{df_k}{dx_j}(x) -
+        \frac{df_k}{dx_j}(a) \right)^2 $$
+
+        $\frac{df_k}{dx_j}(x)$ непрерывна в точке $a$, поэтому:
+        $$ \frac{df_k}{dx_j}(x) - \frac{df_k}{dx_j}(a) \to 0
+        \text{ при } x \to a $$
+
+        \item[``$\Longrightarrow$'':]
+    
+        $$ \underbrace{\begin{pmatrix*}
+            \frac{df_1}{dx_j}(x) \\
+            \frac{df_2}{dx_j}(x) \\
+            \vdots \\
+            \frac{df_m}{dx_j}(x)
+        \end{pmatrix*}}_{\text{$j$-й столбец $d_x f$}} =
+        \begin{pmatrix*}
+            \frac{df_1}{dx_1}(x) & \frac{df_1}{dx_2}(x) &
+            \dots & \frac{df_1}{dx_n}(x) \\
+            \frac{df_2}{dx_1}(x) & \frac{df_2}{dx_2}(x) &
+            \dots & \frac{df_2}{dx_n}(x) \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \frac{df_m}{dx_1}(x) & \frac{df_m}{dx_2}(x) &
+            \dots & \frac{df_m}{dx_n}(x) \\
+        \end{pmatrix*} \cdot
+        \begin{pmatrix*}
+            0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0
+        \end{pmatrix*}
+        \begin{matrix*}
+            $ $ \\ $ $ \\ $ $ \\
+            \longleftarrow \text{$j$-е место}
+            \\ $ $ \\ $ $ \\ $ $
+        \end{matrix*} = d_x f (e_j)$$
+
+        Таким образом:
+        \begin{gather*}
+            \abs{\frac{d f_k}{d x_j}(x) - \frac{d f_k}{d x_j}(a)}
+            = \norm{\begin{pmatrix*}
+                0 \\ \vdots \\ 0 \\ 
+                \frac{d f_k}{d x_j}(x) - \frac{d f_k}{d x_j}(a) 
+                \\ 0 \\ \vdots \\ 0
+            \end{pmatrix*}}
+            \leqslant
+            \norm{\begin{pmatrix*}
+                \frac{df_1}{dx_j}(x) - \frac{df_1}{dx_j}(a) \\
+                \frac{df_2}{dx_j}(x) - \frac{df_2}{dx_j}(a) \\
+                \vdots \\
+                \frac{df_m}{dx_j}(x) - \frac{df_m}{dx_j}(a)
+            \end{pmatrix*}} = \\
+            = \norm{d_x f(e_j) - d_a f(e_j)} =
+            \norm{(d_x f - d_a f)(e_j)} \leqslant
+            \norm{d_x f - d_a f} \cdot \underbrace{\norm{e_j}}_{= 1}
+            = \norm{d_x f - d_a f} \xrightarrow[x \to a]{} 0
+        \end{gather*}
+    \end{itemize}
+    \textit{Возможно, это доказательство записано излишне подробно.
+    Всякие рассуждения с матрицами на экзамене можно проговаривать
+    устно.}
+\end{proof}
+
+\begin{theorem}
+    Непрерывная дифф. сохраняется при взятии лин. комбинации,
+    композиции, скал. произведения.
+\end{theorem}
+\begin{proof}
+    Предыдущая теорема говорила о том, что непрерывная 
+    дифференцируемость в точке эквивалентна непрерывности всех
+    коэффициентов матрицы дифференциала в этой точке.
+
+    Вспомним, что матрицы дифференциалов при взятии лин. комбинации,
+    композиции, скал. произведения -- это какие-то линейные комбинации
+    или произведения матриц дифференциалов исходных функций. Если
+    все коэфф. исходных матриц были непрерывны, то после перемножения
+    или сложения все коэфф. итоговой матрицы тоже будут непрерывны.
+\end{proof}
+
+\subsection{Производные высших порядков}
+
+\begin{conj}
+    Пусть $f : E \to \R$, $E \subset \R^n$, $a \in \Int E$.
+    Если существует $\frac{df}{d x_i}$ в окрестности $a$
+    и у неё есть частная производная $\frac{d}{d x_j}$,
+    то она называется \textbf{частной производной второго порядка}.
+    \textit{Т.е. это частная производная по частной производной}
+
+    Обозначение (длинное):
+    $$\frac{d^2 f}{d x_j d x_i} = \frac{d \frac{d f}{d x_i}}{d x_j}$$
+    \textit{Храбров считает, что такую запись надо читать так:
+    сначала дифф. по $i$-й координате, потом по $j$-й. В некоторых
+    книжках считают иначе.}
+
+    Альтернативное обозначение:
+    $$f''_{x_i x_j} = (f'_{x_i})_{x_j}$$
+\end{conj}
+
+\begin{conj}
+    Если существует в окр. точки $a$ частная производная порядка $r$:
+    $$ \frac{d^r f}{d x_{i_r} d x_{i_{r-1}} \dots d x_{i_1}} $$
+    и у этой производной есть частная производная $\frac{d}{d x_{r+1}}$,
+    то результат:
+    $$ \frac{d^{r+1} f}{d x_{i_{r+1}} d x_{i_{r}} \dots d x_{i_1}} $$
+    называют \textbf{частной производной порядка $r+1$}.
+\end{conj}
+
+\textbf{Пример:}
+$$f(x, y) = x^y \quad\quad \frac{df}{dx} = y x^{y - 1} 
+\quad\quad \frac{df}{dy} = x^y \cdot \ln x$$
+\begin{align*}
+    \frac{d^2 f}{d x^2} &= \frac{d}{dx} \left( \frac{df}{dx} \right)
+    = \frac{d}{dx} \left( y x^{y - 1} \right) = y(y-1) x^{y-2} \\
+    \frac{d^2 f}{d y^2} &= \frac{d}{dy} \left( \frac{df}{dy} \right)
+    = \frac{d}{dy} \left( x^y \cdot \ln x \right) = x^y \cdot \ln^2 x \\
+    \frac{d^2 f}{d y d x} &= \frac{d}{dy} \left( \frac{df}{dx} \right)
+    = \frac{d}{dy} \left( y \cdot x^{y - 1} \right) = x^{y-1} + 
+    y \cdot x^{y-1} \cdot \ln x \\
+    \frac{d^2 f}{d x d y} &= \frac{d}{dx} \left( \frac{df}{dy} \right)
+    = \frac{d}{dx} \left( x^y \cdot \ln x \right) =
+    y \cdot x^{y - 1} \cdot \ln x + x^y \cdot \frac{1}{x} =
+    \frac{d^2 f}{d y d x}
+\end{align*}
+\textit{Но частные производные по $x,y$ и по $y,x$ совпадают не всегда.}
+
+\textbf{Пример:}
+$$
+f(x, y) = \begin{cases}
+    xy \cdot \frac{x^2 - y^2}{x^2 + y^2} \text{ при } x^2 + y^2 \neq 0,\\
+    0, \text{ иначе.}
+\end{cases}
+$$
+Воспользуемся тем, что:
+$$\frac{x^2 - y^2}{x^2 + y^2} = 1 - \frac{2y^2}{x^2 + y^2}$$
+
+Пусть $x^2 + y^2 \neq 0$. Тогда:
+$$\frac{df}{dx} = y \cdot \frac{x^2 - y^2}{x^2 + y^2} + 
+xy(-2y^2) \frac{-2x}{(x^2 + y^2)^2} =
+y\frac{x^4 - y^4 + 4x^2y^2}{x^2 + y^2}$$
+
+$$\frac{df}{dx}(0, 0) = \lim_{h \to 0} \frac{f(h, 0) - f(0, 0)}{h} = 0$$
+$$\frac{d^2f}{dy dx} (0, 0) = \lim_{h \to 0} 
+\frac{\frac{df}{dx}(0, h) - \frac{df}{dx}(0, 0)}{h} =
+\lim_{h \to 0} \frac{1}{h} \cdot h \cdot (-1) = -1
+$$
+Легко заметить, взглянув на формулу, что производная по $x, y$ ---
+это производная по $y, x$, но с другим знаком, поэтому:
+$$\frac{d^2f}{dx dy} (0, 0) = 1 \neq \frac{d^2f}{dy dx} (0, 0)$$
+
+\begin{theorem}
+    Пусть $f : E \to \R$, $E \subset \R^2$, $(x_0, y_0) \in \Int E$,
+    частные производные $f'_x$, $f'_y$, $f''_{xy}$ существуют в
+    окрестности точки $(x_0, y_0)$ и $f''_{xy}$ непрерывна в 
+    $(x_0, y_0)$. Тогда существует $f''_{yx}(x_0, y_0)$ и 
+    $f''_{xy}(x_0, y_0) = f''_{yx}(x_0, y_0)$.
+\end{theorem}
+\begin{proof}
+    Введём:
+    
+\end{proof}
