@@ -22,7 +22,6 @@
 \usepackage{tikz}
 \usepackage{thmtools}
 \usepackage{amsthm}
-\usepackage{mathtools}
 \usepackage{pdfcomment}
 \usepackage{blindtext}
 \usepackage{todonotes}
@@ -158,6 +157,8 @@
   } -- cycle
 }
 
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackabove#1#2{\overset{\displaystyle\underset{\displaystyle\shortparallel}{#2}}{#1}}
 \newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
 \newcommand\leftcoleqq{\mathrel{\reflectbox{\ensuremath{\coloneqq}}}}

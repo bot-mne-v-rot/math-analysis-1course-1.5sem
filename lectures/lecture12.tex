@@ -1,5 +1,38 @@
 \section{Лекция номер 12}
-\subsection{До перерыва}
-gg
-\subsection{После перерыва}
-wp
+\begin{theorem} (Многомерная формула Тейлора)
+    
+    $D \subset \R^n$ -- открытое, $f \in C^{r+1}(D)$ и $[a, x] \subset D$.
+    Тогда существует такое $\Theta \in (0, 1)$, что:
+    \begin{gather*}
+        f(x) = \sum\limits_{\abs{k} \leqslant r} \frac{f^{(k)}(a)}{k!}(x-a)^k + \sum\limits_{\abs{k} = r+1} \frac{f^{(k)}(a + \Theta(x-a))}{k!}(x-a)^k
+    \end{gather*}
+    \underline{Мини-замечание}: Все действия производятся с мультииндексами
+\end{theorem}
+\begin{proof}
+    Доказательство не слишком мудрёное, в основном мы пользуемся леммой, которую мы только-только доказали. 
+    Введем $F(t) := f(a + th)$ и $h = x - a$. Напишем адекватного Тейлора для $F$ в единице, с остатком в форме Лагранжа: 
+    \begin{gather*}
+        F(1) = \sum\limits_{j=0}^r \frac{F^{(j)}(0)}{j!} + \frac{F^{(r+1)}(\Theta)}{(r+1)!} 
+    \end{gather*}
+    Теперь воспользуемся леммой, чтобы разложить производные $F$ разных порядков и выразим $f(x)$:
+    \begin{gather*}
+        f(x) = F(1) = \sum\limits_{j=0}^r \left[ \frac{1}{\cancel{j!}} \cdot \sum\limits_{\abs{k} = j} \stackabove{\binom{j}{k_1, k_2, \dots, k_n}}{\cancel{j!}/k!} f^{(k)}(a)(x-a)^k\right] + \\
+        \frac{1}{\cancel{(r+1)!}} \cdot \sum\limits_{\abs{k} = r+1} \stackbelow{\binom{r+1}{k_1, k_2, \dots, k_n}}{\cancel{(r+1)!}/k!} f^{(k)}(a + \Theta(x-a))(x-a)^k
+    \end{gather*}
+    Сокращаем и получаем в точности ту формулу, которую хотели.
+\end{proof}
+\notice
+
+\begin{enumerate}
+    \item Первая сумма в формуле -- многочлен Тейлора степени $r$:
+    \begin{gather*}
+        \sum\limits_{\abs{k} \leqslant r} \frac{f^{(k)}(a)}{k!}(x-a)^k
+    \end{gather*}
+    \item При $r = 0$, получаем, что:
+    \begin{gather*}
+        f(x) = f(a) + \sum\limits_{i=1}^n f_{x_i}' (a + \Theta(x-a))(x_i - a_i) = \\
+        f(a) + \langle \nabla f(a + \Theta(x-a)), x-a \rangle
+    \end{gather*}
+    Это есть многомерная версия формулы Лагранжа.
+    \item При $n = 2$
+\end{enumerate}
