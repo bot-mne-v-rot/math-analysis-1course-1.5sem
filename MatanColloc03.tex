@@ -21,7 +21,6 @@
 \usepackage{tikz}
 \usepackage{thmtools}
 \usepackage{amsthm}
-\usepackage{mathtools}
 \usepackage{pdfcomment}
 \usepackage{blindtext}
 \usepackage{todonotes}
@@ -32,9 +31,14 @@
 \usepackage{tikzsymbols}
 \usepackage{cancel}
 \usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{extarrows}
 \usetikzlibrary{decorations.pathreplacing,
                 positioning, 
-                quotes}
+                quotes,
+                intersections,
+                calc}
 
 \graphicspath{ {./images/} }
 %%
@@ -128,6 +132,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \renewcommand{\C}{\mathbb{C}}
 
 \newcommand{\follow}{\textbf{\textit{Следствие:}}}
@@ -160,6 +165,11 @@
   } -- cycle
 }
 
+\def\inbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\in$}}{#2}}{#1}}
+\def\lessbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\leqslant$}}{#2}}{#1}}
+\def\lessabove#1#2{\overset{\displaystyle\underset{\displaystyle\rotatebox{90}{$\leqslant$}}{#2}}{#1}}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackabove#1#2{\overset{\displaystyle\underset{\displaystyle\shortparallel}{#2}}{#1}}
 \newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
 \newcommand\leftcoleqq{\mathrel{\reflectbox{\ensuremath{\coloneqq}}}}
@@ -302,6 +312,10 @@ $ $
 \import{lectures/}{lecture09.tex}
 $ $
 \import{lectures/}{lecture10.tex}
+$ $
+\import{lectures/}{lecture11.tex}
+$ $
+\import{lectures/}{lecture12.tex}
 $ $
 \end{normalsize}
 \end{document}
