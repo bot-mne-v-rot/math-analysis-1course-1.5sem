@@ -76,6 +76,7 @@ tlmgr install   \
   tikzsymbols \
   cancel \
   enumerate \
+  wrapfig \
   graphicx \
   extarrows
 
