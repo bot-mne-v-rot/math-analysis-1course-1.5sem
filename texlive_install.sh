@@ -75,7 +75,9 @@ tlmgr install   \
   pgfplots \
   tikzsymbols \
   cancel \
-  enumerate
+  enumerate \
+  graphicx \
+  extarrows
 
 
 # Keep no backups (not required, simply makes cache bigger)

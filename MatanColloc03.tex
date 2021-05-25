@@ -22,7 +22,6 @@
 \usepackage{tikz}
 \usepackage{thmtools}
 \usepackage{amsthm}
-\usepackage{mathtools}
 \usepackage{pdfcomment}
 \usepackage{blindtext}
 \usepackage{todonotes}
@@ -34,6 +33,9 @@
 \usepackage{cancel}
 \usepackage{enumerate}
 \usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{extarrows}
+\usetikzlibrary{intersections,calc}
 
 \graphicspath{ {./images/} }
 %%
@@ -160,6 +162,11 @@
   } -- cycle
 }
 
+\def\inbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\in$}}{#2}}{#1}}
+\def\lessbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\leqslant$}}{#2}}{#1}}
+\def\lessabove#1#2{\overset{\displaystyle\underset{\displaystyle\rotatebox{90}{$\leqslant$}}{#2}}{#1}}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackabove#1#2{\overset{\displaystyle\underset{\displaystyle\shortparallel}{#2}}{#1}}
 \newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
 \newcommand\leftcoleqq{\mathrel{\reflectbox{\ensuremath{\coloneqq}}}}
