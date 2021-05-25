@@ -1,4 +1,5 @@
 \section{Лекция номер 12}
+\subsection{Многомерный Тейлор}
 \begin{theorem} (Многомерная формула Тейлора)
     
     $D \subset \R^n$ -- открытое, $f \in C^{r+1}(D)$ и $[a, x] \subset D$.
@@ -17,7 +18,7 @@
     Теперь воспользуемся леммой, чтобы разложить производные $F$ разных порядков и выразим $f(x)$:
     \begin{gather*}
         f(x) = F(1) = \sum\limits_{j=0}^r \left[ \frac{1}{\cancel{j!}} \cdot \sum\limits_{\abs{k} = j} \stackabove{\binom{j}{k_1, k_2, \dots, k_n}}{\cancel{j!}/k!} f^{(k)}(a)(x-a)^k\right] + \\
-        \frac{1}{\cancel{(r+1)!}} \cdot \sum\limits_{\abs{k} = r+1} \stackbelow{\binom{r+1}{k_1, k_2, \dots, k_n}}{\cancel{(r+1)!}/k!} f^{(k)}(a + \Theta(x-a))(x-a)^k
+        + \frac{1}{\cancel{(r+1)!}} \cdot \sum\limits_{\abs{k} = r+1} \stackbelow{\binom{r+1}{k_1, k_2, \dots, k_n}}{\cancel{(r+1)!}/k!} f^{(k)}(a + \Theta(x-a))(x-a)^k
     \end{gather*}
     Сокращаем и получаем в точности ту формулу, которую хотели.
 \end{proof}
@@ -34,5 +35,318 @@
         f(a) + \langle \nabla f(a + \Theta(x-a)), x-a \rangle
     \end{gather*}
     Это есть многомерная версия формулы Лагранжа.
-    \item При $n = 2$
+    \item При $n = 2$:
+    \begin{gather*}
+        f(x, y) = f(a, b) + f_x'(a, b)(x - a) + f'(a, b)(y - b) + \\
+        + \frac{f_{xx}''(a, b)(x-a)^2}{2} + \frac{f_{yy}''(a, b)(y-b)^2}{2} + f_{xy}''(a, b)(x-a)(y-b) + \\
+        + \frac{f_{xxx}'''(a, b)(x-a)^3}{6} + \frac{f_{yyy}'''(a, b)(y-b)^3}{6} + \frac{f_{xxy}'''(a, b)(x-a)^2(y-b)}{2} + 
+        \frac{f_{xyy}'''(a, b)(x-a)(y-b)^2}{2} \\ 
+        + \dots 
+    \end{gather*}
 \end{enumerate}
+\follow \; (Многомерный Тейлор с остатком в форме Пеано) 
+
+Пусть $f \in C^r(D), D$ -- открыто, $a \in D$. Тогда при $x \longrightarrow a$: 
+\begin{gather*}
+    f(x) = \sum_{\abs{k} \leqslant r} \frac{f^{(k)}(a)}{k!} (x-a)^k + o(\norm{x-a}^r)
+\end{gather*}
+\notice \; На самом деле для формулы достаточно $r$-ой дифференцируемости в точке $a$
+\begin{proof}
+    \begin{gather*}
+        f(x) = \sum_{\abs{k} \leqslant r} \frac{f^{(k)}(a)}{k!} (x-a)^k + \underbrace{\sum_{\abs{k} = r} \left[ \frac{f^{(k)}(a+\Theta(x-a))}{k!}(x-a)^k - \frac{f^{(k)}(a)}{k!}(x-a)^k\right]}_{\heartsuit}
+    \end{gather*}
+Хотим понять, что $\heartsuit = o(\norm{x-a}^r)$. Для удобства пусть $h = x - a$. 
+\begin{gather*}
+    \heartsuit = \sum\limits_{\abs{k} = r} \frac{h^k}{k!} \left( f^{(k)} (a + \Theta(x - a)) - f^{(k)}(a) \right)
+\end{gather*} 
+Мысль первая: 
+\begin{gather*}
+    \abs{h^k} \leqslant \norm{h}^r
+\end{gather*}
+Давайте осознаем, почему это правда. Что такое $h^k$? 
+Это вектор в степени мультииндекса. То есть это мы берем 
+первую координату вектора, возводим в степень $k_1$, потом 
+берем другую координату вектора, возводим в степень $k_2$ и так далее. 
+Потом мы все это перемножаем. Координат всего $r$ штук, так как $r$ -- высота мультииндекса. 
+Модуль каждой координаты не больше, чем длина вектора. 
+Поэтому мы перемножили что то меньшее, чем длина вектора в степени $r$. 
+Иными словами, $\abs{h^k}$ однозначно не больше $\norm{h}^r$.
+
+Тогда теперь навесим модули на наше равенство, вынесем $\abs{h^k}$ и оценим его сверху как $\norm{h}^r$. Получим следующее неравенство: 
+\begin{gather*}
+    \abs{\heartsuit} \leqslant \norm{h}^r \sum\limits_{\abs{k} = r} \frac{1}{k!} \abs{ f^{(k)} (a + \Theta(x - a)) - f^{(k)}(a) }
+\end{gather*}
+Вспомним, что мы хотим доказать, что эта штука -- это $o(\norm{h}^r)$. То есть осталось проверить, что: 
+\begin{gather*}
+    \sum\limits_{\abs{k} = r} \frac{1}{k!} \abs{ f^{(k)} (a + \Theta(x - a)) - f^{(k)}(a) } \overset{x \rightarrow a}{\longrightarrow} 0
+\end{gather*}
+Ну а чего тут собственно проверять. Написано конечное количество слагаемых, значит нужно проверить, что каждое из них стремится к 0. 
+А это, в свою очередь, легко видеть, так как функция нужное количество раз непрерывно дифференцируема, 
+из чего следует, что соответствующая производная, которая тут написана -- непрерывна, ну а значит если аргумент стремится к $a$, 
+то и производная стремится к производной в точке $a$. Следовательно при $x \longrightarrow a$, $f^{(k)} (a + \Theta(x - a)) \longrightarrow f^{(k)}(a)$. 
+\end{proof}
+\follow \; (Полиномиальная формула)
+\begin{gather*}
+    (x_1 + x_2 + \dots + x_n)^r = \sum\limits_{\abs{k} = r} \binom{r}{k_1, k_2, \dots, k_n} x_1^{k_1} x_2^{k_2} \dots x_n^{k_n}
+\end{gather*}
+\begin{proof} \quad 
+
+    Пусть $g(x) = g(x_1, x_2, \dots, x_n) = x_1 + x_2 + \dots + x_n$. Тогда: 
+    \begin{gather*}
+        f(x_1, x_2, \dots, x_n) = (x_1 + x_2 + \dots + x_n)^r = (g(x))^r
+    \end{gather*}
+    Хотим воспользоваться формулой Тейлора для $f$, значит давайте для начала научимся ее дифференцировать. Поймем, как устроены у нее частные производные. 
+    Например следующие: $\frac{df}{dx_j}$. Это производная композиции, так что она будет равна:
+    \begin{gather*}
+        \frac{df}{dx_j} = r(g(x))^{r-1} \cdot \frac{dg}{dx_j} = r(g(x))^{r-1} \cdot 1 = r(g(x))^{r-1}
+    \end{gather*}
+    То есть частные производные по всем иксам одинаковые и равны вот такой штуке. 
+    Отсюда мы можем сказать, что если у нас высота мультииндекса меньше $r$, 
+    то в нуле все эти производные будут равны нулю. $f^{(k)}(0, \dots, 0) = 0$.
+    Если же $\abs{k} > r$, то $f^{k} \equiv 0$, а если $\abs{k} = r$, то $f^{k} \equiv r!$.
+    Теперь мы можем написать для $f$ формулу Тейлора с остатком в форме Лагранжа так, 
+    чтобы остаток был высоты $r+1$. Тогда он занулится, все слагаемые меньшего порядка 
+    тоже занулятся, а нам останется только следующее: 
+    \begin{align*}
+        f(x) &= \sum\limits_{\abs{k} = r} \frac{f^{(k)(0)}}{k!}x^k \\
+        &= \sum\limits_{\abs{k} = r} \frac{r!}{k!} x^k \\
+        &= \sum\limits_{\abs{k} = r} \binom{r}{k_1, k_2, \dots, k_n} x_1^{k_1} x_2^{k_2} \dots x_n^{k_n}
+    \end{align*}
+\end{proof}
+
+\subsection{Обратная и неявная функции}
+\begin{theorem} (Теорема Банаха о сжатии)
+
+    Пусть $X$ -- полное метрическое пространство. Есть $f: X \longrightarrow X$ и $0 < \lambda < 1$, такие, что:
+    \begin{gather*}
+        \rho(f(x), f(y)) \leqslant \lambda \rho(x, y) \quad \forall x, y \in X
+    \end{gather*}
+    Тогда существует единственное $x^* \in X$, такое, что $f(x^*) = x^*$. 
+    То есть если в полном метрическом пространстве у нас есть сжатие, то есть ровно одна неподвижная точка. 
+\end{theorem}
+\begin{proof}
+    Зафиксируем точку $x_0$. Последующие точки посчитаем как $x_{n+1} = f(x_n)$. 
+    Покажем, что последовательность точек фундаментальна. Посмотрим на расстояние между точками $x_{n+k}$ и $x_{n}$:
+    \begin{gather*}
+        \rho(x_{n+k}, x_n) = \rho(f(x_{n+k-1}), f(x_{n-1})) \leqslant \lambda \rho(x_{n+k-1}, x_{n-1})
+    \end{gather*}
+    Теперь проделаем такое телодвижение $n$ раз и упремся в расстояние между $x_k$ и $x_0$:
+    \begin{gather*}
+        \lambda \rho(x_{n+k-1}, x_{n-1}) \leqslant \dots \leqslant \lambda^n \rho(x_k, x_0)
+    \end{gather*}
+    Теперь максимально тупо оценим $\rho(x_k, x_0)$: 
+    \begin{align*}
+        \rho(x_0, x_k) &\leqslant \rho(x_0, x_1), \lessbelow{\rho(x_1, x_2)}{\lambda \rho(x_0, x_1)}, \dots, \lessbelow{\rho(x_{k-1}, x_k)}{\lambda^{k-1} \rho(x_0, x_1)} \\
+        &\leqslant \rho(x_0, x_1) (1 + \lambda + \lambda^2 + \dots + \lambda^{k-1}) \\
+        &= \rho(x_0, x_1) \cdot \frac{1 \cdot (1 - \lambda^{k-1})}{1 - \lambda} < \frac{\rho(x_0, x_1)}{1 - \lambda}
+    \end{align*}
+    То есть мы поняли, что:
+    \begin{gather*}
+        \rho(x_{n+k}, x_n) < \frac{\lambda^n \rho(x_0, x_1)}{1 - \lambda} = \operatorname{const} \cdot \lambda^n
+    \end{gather*}
+    Из этого следует фундаментальность. Почему? Потому что фундаментальность означает, что между точками с большими номерами расстоение 
+    меньше $\varepsilon$. А в нашем случае для любого $\varepsilon$ мы можем подобрать $n$ настолько большим, 
+    что $\operatorname{const} \cdot \lambda^n$ будет меньше $\epsilon$ вне зависимости от $k$.
+
+    Раз пространство полное, то фундаментальность гарантирует нам наличие предела $x^* = \lim{x_n}$.
+    Наша функция непрерывна, так как мы можем взять $\delta = \varepsilon$. Если у нас расстояние 
+    между точками меньше, чем $\delta$, то расстояние между образами будет меньше, чем $\lambda \cdot \delta$. 
+    Пользуясь непрерывность функции проверим неподвижность точки $x^*$:
+    \begin{gather*}
+        f(x^*) = f(\lim{x_n}) = \lim{f(x_n)} = \lim{x_{n+1}} = x^*
+    \end{gather*}
+    Осталось проверить единственность $x^*$. Она очевидна. Предположим, что существуют $a$ и $b$ -- неподвижные точки. Тогда:
+    \begin{gather*}
+        \rho(\stackbelow{f(a)}{a}, \stackbelow{f(b)}{b}) \leqslant \inbelow{\lambda}{(0, 1)} \rho(a, b)
+    \end{gather*}
+    Противоречие. Это завершает доказательство.
+\end{proof}
+\notice
+\begin{gather*}
+    1. \; \rho(x_n, x^*) \leqslant \frac{\lambda^n}{1 - \lambda} \cdot \rho(x_0, x_1) \qquad \qquad 
+    2. \; \rho(x_n, x^*) \leqslant \lambda^n \cdot \text{ макс. расст. между точками в } X
+\end{gather*} 
+Этот факт позволяет нам понять, что $x_n$ довольно быстро сходится. То есть мы с хорошей точность и достаточно быстро можем посчитать $x^*$. 
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item Мы знаем, что:
+        \begin{gather*}
+            \rho(x_n, x_{n+k}) \leqslant \frac{\lambda^n}{1 - \lambda} \cdot \rho(x_0, x_1)
+        \end{gather*}
+        Нужно просто устремить $k$ к бесконечности, тогда $x_{n+k}$ будет стремиться к $x^*$, а расстояние по левую сторону неравенства к $\rho(x_n, x^*)$.
+        \item \begin{gather*}
+            \rho(x_n, x_n+k) \leqslant \lambda^n \rho(x_0, x_k) \leqslant \lambda^n \cdot \text{ диаметр } X
+        \end{gather*}
+        Далее аналогично предыдущему пункту.
+    \end{enumerate}
+\end{proof}
+\follow \; (Безумное)
+
+Пусть $X$ -- полное метрическое пространство. Есть два сжатия $f$ и $g$ с одинаковым коэффициентом сжатия $\lambda \in (0, 1)$.
+И $x = f(x), y = g(y)$ -- их неподвижные точки. Тогда можно странным образом оценить расстояние между этими точками сверху: 
+\begin{gather*}
+    \rho(x, y) \leqslant \frac{\rho(f(x), g(x))}{1 - \lambda}
+\end{gather*}
+\begin{proof}
+    \begin{gather*}
+        \rho(x, y) = \rho(f(x), g(y)) \leqslant \rho(f(x), g(x)) + \lessabove{\rho(g(x), g(y))}{\lambda \rho(x, y)} \\
+        \rho(x, y) - \lambda \rho(x, y) \leqslant \rho(f(x), g(x)) \\
+        (1 - \lambda) \rho(x, y) \leqslant \rho(f(x), g(x))
+    \end{gather*}
+\end{proof}
+\underline{\textit{Наглядный пример использования теоремы Банаха о сжатии:}}
+
+\textbf{Метод касательных (метод Ньютона).}
+
+Пусть $f \in C^2[a, x_0]$. Хотим предъявить хороший способ искать решения уравнения $f(x) = 0$.
+От функции требуем выполнения следующих условий: $f(a) = 0$, $f$ строго монотонна и строго выпукла. А также: $f'(a) = \mu > 0$.
+Хотим найти значение $a$.
+
+Сам метод заключается в том, что мы стартуем из точки $x_0$ и итерируемся следующим образом, пока не выполнится необходимое условие:
+\begin{gather*}
+    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+\end{gather*}
+В качестве необходимого условия можно взять $\abs{x_{n+1} - x_n} < \varepsilon$ или $\abs{f(x_{n+1})} < \varepsilon$. 
+\begin{proof}
+    Зададим отображение: 
+    \begin{gather*}
+        g(x) = x - \frac{f(x)}{f'(x)}
+    \end{gather*}
+    Мы зафиксировали, что значение первой производной $f$ в нуле положительно, также мы знаем, что $f$ строго выпукла, значит первая производная 
+    растет, а значит в ноль она не обратится. Значит отображение $g$ задано корректно. 
+
+    Чтобы найти корень $f$, давайте найдем неподвижную точку $g$. Это нам поможет так как $g(x) = x \Longleftrightarrow f(x) = 0$. Чтобы понять, что мы можем быстро это сделать, 
+    нужно проверить, что $g: [a, x_0] \longrightarrow [a, x_0]$ и является сжатием.
+
+    Сначала поймем, что у $g$ нужная область значений. 
+    Очевидно, что $g(x) \leqslant x$. А $x \leqslant x_0$ при $x \in [a, x_0]$. 
+    То есть за правую границу функция не перескочит. Осталось проверить левую границу. То есть хотим проверить, что при $x \in [a, x_0]$ выполняется:
+    \begin{gather*}
+        x - \frac{f(x)}{f'(x)} \geqslant a
+    \end{gather*}
+    Про $f(x)$ мы по теореме Лагранжа знаем, что:
+    \begin{gather*}
+        f(x) - \stackbelow{f(a)}{0} = f'(\xi)\cdot(x - a)
+    \end{gather*}
+    Теперь мы хотим как то оценить это сверху. 
+    Мы могли бы оценить это как $f'(x_0)(x - a)$, но так как мы можем рассматривать 
+    нашу функцию только на отрезке $[a, x]$, то можно сказать, что максимальное значение для $\xi$ -- это $x$, и тогда: 
+    \begin{gather*}
+        f(x) = f'(\xi)\cdot(x - a) \leqslant f'(x)(x-a)
+    \end{gather*}
+    Вспомним, что мы хотели проверить, что функция не выскакивает налево за границу $a$. 
+    Минимизируем ее значение, подставив то, что мы сейчас получили:
+    \begin{gather*}
+        x - \frac{f(x)}{f'(x)} \geqslant x - \frac{\cancel{f'(x)}(x - a)}{\cancel{f'(x)}} = a
+    \end{gather*}
+    Получили верное равенство, значит $g$ переводит отрезок в отрезок. 
+    Теперь мы хотим, чтобы $g$ была сжатием. А как нам проверить, что это сжатие? 
+    Для сжатия мы хотим как-то сверху оценить расстояние между образами функции. 
+    Это как раз умеет теорема Лагранжа. Но она нам дает какую-то промежуточную производную, 
+    а мы хотим $\lambda$ из интервала $(0, 1)$. Ну так давайте проверим, что производная во 
+    всех точках будет сверху ограничена какой-то константой < 1. 
+    \begin{align*}
+        g'(x) &= 1 - \frac{f'(x) \cdot f'(x) - f''(x)f(x)}{(f'(x))^2} \\
+        &= \cancel{1} - \cancel{\frac{(f'(x))^2}{(f'(x))^2}} + \frac{f''(x)f(x)}{(f'(x))^2} = \frac{f''(x)f(x)}{(f'(x))^2}
+    \end{align*}
+    Пусть $M:= \max\limits_{t \in [a, x_0]} f''(t)$. Оценим $f(x)$ с помощью Лагранжа и произведем несколько несложных оценОчек:
+    \begin{gather*}
+        \frac{f''(x)f(x)}{(f'(x))^2} \leqslant \frac{M \cancel{f'(x)}(x-a)}{(f'(x))^{\cancel{2}}} \leqslant \frac{M}{\mu} (x_0 - a) =: \lambda 
+    \end{gather*}
+    Это какая-то константа и мы хотим, чтобы она была меньше единицы. Тут мы уже ничего толком сделать не можем и 
+    остается сказать, что при выполнении данного условия $g$ -- сжатие и все хорошо, иначе -- сходимость к корню есть лишь в некоторой его окрестности. Заметим, что 
+    $M$ и $\mu$ -- константы, а $(x_0 - a)$ может быть сколь угодно малым, то есть мы можем ручками сделать так, чтобы $\lambda$ была меньше 1. Нужно лишь правильно выбрать 
+    стартовое положение, то есть $x_0$. Можно сделать это методом деления пополам, а потом продолжить методом Ньютона искать корень уже с гораздо более большой скоростью 
+    (почему она будет большой мы пока не понимаем, понимаем только что она будет не хуже).
+    
+    Не хуже она будет потому, что, когда $\lambda < 1$, то $x_n \longrightarrow a$, причем $\abs{x_n - a} \leqslant \lambda^n (x_0 - a)$, что значит, что у нас есть 
+    степенная скорость приближения к нужной точке. 
+\end{proof} 
+Приведем иллюстрацию к методу, чтобы понять, что происходит с геометрической точки зрения: 
+\begin{center}
+    \begin{tikzpicture}[thick,yscale=0.8]
+        % Axes
+        \draw[-latex,name path=xaxis] (-1,0) -- (10,0) node[above]{\large $x$};
+        \draw[-latex] (0,-2) -- (0,8)node[right]{\large $y$};;
+        
+        % Function plot
+        \draw[ultra thick, orange,name path=function]  plot[smooth,domain=-1:7] (\x, {-2-10/(\x-8)}) node[left]{$y = f(x)$};
+        
+        % plot tangent line
+        \node[violet,right=0.2cm] at (6.55,4.9) {$(x_0, f(x_0))$};
+        \draw[gray,thin,dotted] (6.55,0) -- (6.55,4.9) node[circle,fill,inner sep=2pt]{};
+        \draw[dashed, violet,name path=Tfunction]  plot[smooth,domain=5.38:7.25] (\x, {5*\x-28});
+
+        \node[violet,left=0.2cm] at (5.6,2.24) {$(x_1, f(x_1))$};
+        \draw[dashed, violet,name path=Rfunction]  plot[smooth,domain=3.5:6] (\x, {1.6*\x-6.83});
+        \draw [name intersections={of=Tfunction and xaxis}, gray,thin,dotted] ($(intersection-1)-(0,0.1)$) -- ++(0,2.3) node[circle,fill,inner sep=2pt]{};
+
+        \node[violet,left=0.2cm] at (4.2,1) {$(x_2, f(x_2))$};
+        \draw[dashed, violet,name path=Kfunction]  plot[smooth,domain=2.8:4.8] (\x, {0.7*\x-2.35});
+        \draw [name intersections={of=Rfunction and xaxis}, gray,thin,dotted] ($(intersection-1)-(0,0.1)$) -- ++(0,0.76) node[circle,fill,inner sep=2pt]{};
+
+        % x-axis labels
+        \draw (6.55,0.1) -- (6.55,-0.1) node[below] {$x_0$};
+        \draw [name intersections={of=Tfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x_1$} ;
+        \draw [name intersections={of=Rfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x_2$} ;
+        \draw [name intersections={of=Kfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below] {$x_3$} ;
+
+        %draw "a"
+        \node [name intersections={of=function and xaxis}] at ($(intersection-1)+(0,0.35)$) {$a$} ;
+
+        \node[violet] at (6, -1.5) {$y = f(x_0) + f'(x_0)(x-x_0)$} ;
+    \end{tikzpicture}
+\end{center}
+Уравнение самой правой касательной -- это $y = f(x_0) + f'(x_0)(x-x_0)$. Точка $x_1$ задается уравнением:
+\begin{gather*}
+    f(x_0) + f'(x_0)(x-x_0) = 0 \\
+    x_1 = x_0 - \frac{f(x_0)}{f'(x_0)} = g(x_0) 
+\end{gather*}
+То есть находится рекурсивным соотношением, которое мы ввели, описывая метод. Таким образом, геометрический смысл наших действий следующий: 
+проводим касательную в точке, смотрим на точку пересечения касательной и оси $OX$, берем ее за новую точку и повторяем действия. 
+Нетрудно убедиться, что:
+\begin{gather*}
+    x_{n+1} - a \leqslant \underbrace{\frac{M}{2\mu}}_{=:\alpha} (x_n - a)^2
+\end{gather*}
+Тогда получаем, что: 
+\begin{gather*}
+    \alpha(x_{n+1} - a) \leqslant \alpha^2 (x_n - a)^2 = (\alpha(x_n - a))^2 \\
+    \alpha(x_n - a) \leqslant (\alpha (x_0 - a))^{2^n} \\
+    x_n - a \leqslant \frac{1}{\alpha} (\alpha(x_0 - a))^{2^n}
+\end{gather*}
+Отсюда видно, что, итерируясь методом Ньютона, мы будем крайне быстро приближаться к $a$, 
+что как раз и доказывает утверждение, что этот метод быстрее метода деление пополам, которое звучало выше.
+\begin{center}
+    \underline{Лирическое отступление на тему ``Как компьютер корни считает'':}
+\end{center}
+\vspace*{0.25cm}
+Мы хотим найти решение уравнения $f(x) = x^k - b$. Воспользуемся методом Ньютона: 
+\begin{gather*}
+    x_{n+1} = x_n - \frac{x_n^k - b}{k x_n^{k-1}} = x_n(1 - \frac{1}{k}) + \frac{b}{k x_n^{k-1}}
+\end{gather*}
+Получаем итеративный и быстрый способ посчитать корень $k$-ой степени из числа. При $k=2$ всё вообще песня сказка и получаем: 
+\begin{gather*}
+    x_{n+1} = \frac{1}{2}(x_n + \frac{b}{x_n})
+\end{gather*}
+\begin{theorem}
+    Если есть линейный оператор $\A: \R^n \longrightarrow \R^n$, такой, что $\norm{\A x} \geqslant m \norm{x} \quad \forall x \in X$, при 
+    некотором $m > 0$, то $\A$ обратим и $\norm{\A^{-1}} \leqslant \frac{1}{m}$.
+\end{theorem}
+\begin{proof}
+    Для обратимости нужна биективность. Сюръективность очевидна, так как размерность сохраняется, так что осталось проверить инъективность:
+    \begin{align*}
+        \A x = \A y 
+        &\Longrightarrow \A(x - y) = 0 \\
+        &\Longrightarrow \stackbelow{\norm{\A(x-y)}}{0} \geqslant m \norm{x-y} \\
+        &\Longrightarrow \norm{x - y} = 0 \\
+        &\Longrightarrow x = y
+    \end{align*}
+    Значит $\A$ -- обратим. Тогда:
+    \begin{gather*}
+        \norm{A^{-1}} = \sup\limits_{y \neq 0} \frac{\norm{\A^{-1}y}}{\norm{y}} \xlongequal{y = \A x} 
+        \sup\limits_{x \neq 0} \frac{\norm{\A^{-1}(\A x)}}{\norm{\A x}} = 
+        \sup\limits_{x \neq 0} \frac{\norm{x}}{\norm{\A x}} \leqslant 
+        \sup\limits_{x \neq 0} \frac{\cancel{\norm{x}}}{m \cancel{\norm{x}}} = \frac{1}{m}
+    \end{gather*}
+\end{proof}
