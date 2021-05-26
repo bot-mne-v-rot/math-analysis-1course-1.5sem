@@ -133,7 +133,43 @@
     Пусть $f$ монотонно убывает и $f \geqslant 0$.
     Посмотрим на 2 суммы: \[ \sum\limits_{k = a}^{b-1} f(k) \geqslant \int_a^b f(x)dx \geqslant \sum\limits_{k = a + 1}^b f(k) \]
     \begin{center}
-        \includegraphics[scale=0.5]{images/lec5_pic1.png}
+        %\includegraphics[scale=0.5]{images/lec5_pic1.png}
+        \begin{tikzpicture}[thick,yscale=0.8]
+            % Axes
+            \draw[-latex,name path=xaxis] (-1,0) -- (10,0) node[above]{};
+            \draw[-latex] (0,-2) -- (0,8) node[right]{};
+            
+            % Function plot
+            \draw[ultra thick, orange,name path=function]  plot[smooth,domain=1.2:8] (\x, {1/(0.2*\x-0.1) + 0.6}) node{};
+
+            % Draw columns
+            \draw[ultra thick, violet, name path=0function] (1.5, 0) -- (1.5, 5.5) node[circle,fill,inner sep=1pt]{};
+            \draw[ultra thick, violet, name path=1function] (2.5, 0) -- (2.5, 5.5);
+            \draw[ultra thick, violet] (1.5, 5.5) -- (2.528, 5.5);
+
+            \draw [ultra thick, pink, name intersections={of=function and 1function}] ($(intersection-1)+(0.028,0)$) -- ++(-1,0);
+            \draw [ultra thick, violet, name intersections={of=function and 1function}] ($(intersection-1)-(0.028,0)$) -- ++(1.056,0);
+            \draw [ultra thick, violet, name intersections={of=function and 1function}, name path=2function] ($(intersection-1)+(1,0)$) -- ++(0,-3.1);
+
+            \draw [ultra thick, pink, name intersections={of=function and 2function}] ($(intersection-1)+(0.028,0)$) -- ++(-1,0);
+            \draw [ultra thick, violet, name intersections={of=function and 2function}] ($(intersection-1)-(0.028,0)$) -- ++(1.056,0);
+            \draw [ultra thick, violet, name intersections={of=function and 2function}, name path=3function] ($(intersection-1)+(1,0)$) -- ++(0,-2.26);
+
+            \draw [ultra thick, pink, name intersections={of=function and 3function}] ($(intersection-1)-(0.028,0)$) -- ++(-0.944,0);
+
+            \draw[ultra thick, violet, name path=5function] (7, 0) -- (7, 1.4);
+            \draw[ultra thick, violet, name path=4function] (8, 0) -- (8, 1.4);
+            \draw[ultra thick, violet] (6.972, 1.4) -- (8.028, 1.4);
+            \draw[ultra thick, pink] (7.028, 1.25) -- (7.972, 1.25);
+            
+            % % x-axis labels
+            \draw [name intersections={of=0function and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below] {\small $a$} ;
+            \draw [name intersections={of=1function and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below] {\small $a+1$} ;
+            \draw [name intersections={of=2function and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below] {\small $a+2$} ;
+            \draw [name intersections={of=3function and xaxis}] ($(intersection-1)+(1,0.1)$) -- ++(0,-0.2) node[below] {\small $a+3$} ;
+            \draw [name intersections={of=5function and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below] {\small $b-1$} ;
+            \draw [name intersections={of=4function and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below] {\small $b$} ;
+        \end{tikzpicture}
     \end{center}
     \quad Случай, когда $f$ не обязательно неотрицательна, сводится к этому прибавлением константы.
     Действительно, сделаем функцию неотрицательной прибавлением константы $c$, тогда как суммы, так и интеграл изменятся на $+c(b - a)$, то есть неравенство сохранится.

@@ -1,1 +1,493 @@
 \section{Лекция номер 6}
+
+\subsection{Перестановка членов ряда}
+
+\newcommand{\sumn}{\sum \limits_{n=1}^\infty}
+\newcommand{\sumk}{\sum \limits_{k=1}^n}
+\newcommand{\prodn}{\prod \limits_{n=1}^\infty}
+\newcommand{\prodk}{\prod \limits_{k=1}^n}
+
+\begin{conj}
+
+    $\varphi: \N \to \N$ биекция - перестановка членов ряда
+
+    $\sum \limits_{n=1}^\infty a_{\varphi(n)}$
+     - ряд с переставленными членами
+\end{conj}
+
+\begin{theorem}
+    $a_n \in \C$ и $\sumn a_n$ абсолютно сходится, $S = \sumn a_n$
+    Тогда:
+    \begin{gather*}
+        \sumn a_{\varphi(n)} = S
+    \end{gather*}
+    Другими словами, если ряд абсолютно сходится, то не важно, в каком порядке мы берем слагамые
+\end{theorem}
+
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item[Шаг 1.] 
+        \[a_n \geq 0,\ S_n = \sum \limits_{k=1}^n a_k, \quad \widetilde{S_n} = \sum \limits_{k=1}^n a_\varphi(n) \]
+        Ряд $\sumn a_n$ сходится $\Rightarrow S_n \leq S$
+        \[\widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n}\]
+        Если докинуть к этой сумме еще какие-то $a$-шки, то сумма может только увеличиться, потому что они неотрицательны.
+
+        \[ \widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n} \leq S_{\max\{\varphi(1), \varphi(2), \ldots, \varphi(n)\}} \leq S\]
+
+        $\widetilde{S_n}$ монотонно возрастает и ограничена сверху $\Rightarrow$ имеет предел $\widetilde{S} \leq S$
+
+        Следовательно, никакая перестановка членов ряда не увеличивает сумму. Но значит она не меняет сумму.
+        Действительно, посмотрим на обратную перестановку (это будет просто $S$) - она тоже не увеличивает сумму. Значит сумма сохранялась.
+        \item[Шаг 2.]
+        При $a_n \in \R$
+
+        Обозначим за $(a_n)_{+} := \max\{a_n, 0\},\ (a_n)_- := \max(-a_n, 0)$. Тогда:
+        \begin{gather*}
+            a_n = (a_n)_+ - (a_n)_-, \qquad \abs{a_n} = (a_n)_+ + (a_n)_-
+        \end{gather*}
+    
+        Из того, что $0 \leq (a_n)_\pm \leq |a_n|$, следует, что ряд $\sum_{n=1}^\infty (a_n)_\pm$, сходятся по признаку сравнения, а из этого, благодаря первому шагу, следует, что:
+        \begin{gather*}
+            \sumn(a_{\varphi(n)})_\pm = \sumn(a_n)_{\pm}
+        \end{gather*}
+        Ну а теперь, пользуясь тем, что $a_n = (a_n)_+ - (a_n)_-$, получаем, что сумма переставленного ряда -- то же самое, что и сумма исходного ряда: 
+        \begin{align*}
+            \sumn a_{\varphi(n)} &= \sumn ((a_{\varphi(n)})_+ - (a_{\varphi(n)})_-) \\
+            &= \sumn (a_{\varphi(n)})_+ - \sumn (a_{\varphi(n)})_- \\
+            &= \sumn (a_n)_+ - \sumn (a_n)_- = \sumn a_n 
+        \end{align*}
+        \item[Шаг 3.]
+        При $a_n \in C$
+        \begin{gather*}
+            \abs{\operatorname{Re} a_n},\ \abs{\operatorname{Im}  a_n} \leqslant \abs{a_n} \Longrightarrow \sum \operatorname{Re} a_n,\ \sum \operatorname{Im}  a_n \text{ абсолютно сходятся}  
+        \end{gather*}
+        В них можем переставлять члены как хотим, потом соберем их обратно и напишем сумму (мнимую часть надо домножить на $i$).
+    \end{enumerate}
+\end{proof}
+
+\textbf{Замечания}
+\begin{enumerate}
+    \item[1.] Теорема верна в любом нормированном пространстве, в частности в $\R^d$.
+    Для $\R^d$ можно расписать покоординатно и повторить рассуждение, общий случай оставим без доказательства
+    \item[2.] В $\R^d$ верно и обратное - если у ряда любая перестановка сходится (даже не важно, что к той же сумме), то он абсолютно сходится,
+    и, значит, все суммы равны. В $\R^d$ мы это не докажем, поймем только для $\R$
+    \item[3.] Перестановка расходящегося ряда с $a_n \geq 0$ - расходящийся ряд.
+    \begin{proof}
+        Если некоторая перестановка сходится, то к ней можно применить предыдущую теорему и получится, что изначальный ряд тоже сходится - противоречие.
+    \end{proof} 
+    \item[4.] Если $\sum a_n$ сходится, но не абсолютно, то ряды $\sum (a_n)_+$ и $\sum (a_n)_-$ расходятся (имеют бесконечную сумму).  
+    \begin{proof}
+        Предположим, что $\sum(a_n)_+$ сходится. 
+        \begin{gather*}
+            (a_n)_- = (a_n) - a_n \Longrightarrow \\
+            \sum (a_n)_- = \underbrace{\sum (a_n)_+}_{\text{сх-ся}} - \underbrace{\sum a_n}_{\text{сх-ся}} \Longrightarrow \\
+            \sum(a_n)_- \text{ тоже сходится}
+        \end{gather*}
+        Также:
+        \begin{gather*}
+            |a_n| = (a_n)_+ + (a_n)_- \Longrightarrow \\ 
+            \sum |a_n| = \underbrace{\sum (a_n)_+}_{\text{сх-ся}} + \underbrace{\sum (a_n)_-}_{\text{сх-ся}} \Longrightarrow \\
+            \sum |a_n| - \text{ сходится}
+        \end{gather*}
+        Противоречие.
+    \end{proof}
+\end{enumerate}
+
+\begin{conj}
+    Если $\sum a_n$ сходится, но не абсолютно, то $\sum a_n$ условно сходящийся.
+\end{conj}
+
+\begin{theorem}
+    (Теорема Римана о рядах)
+
+    $\sum a_n$ условно сходится. Тогда $\forall s \in \overline \R$ существует перестановка $\varphi$,
+     такая что $\sum a_{\varphi(n)} = s$. Также существует перестановка, для которой ряд не имеет суммы.
+\end{theorem}
+\begin{proof}
+    Возьмем $\sum(a_n)_+$ и выкинем из него все нули. $\sum b_n$ - ряд, который остался (равносильно тому, что из $\sum a_n$ выкинуть все отрицательные и все нули).
+
+    Возьмем $\sum(a_n)_-$ и выкинем из него все нули, за исключением тех, которые соответствуют нулям в $\sum a_n$, то есть выкидываем положительные слагаемые из $a_n$. Назовем это $\sum c_n$
+
+    Тогда каждое $a$ попало либо в $\sum b_n$ с плюсом, либо в $\sum c_n$ с минусом.
+    Что мы понимаем? $\sum a_n$ сходится, значит его члены стремятся к нулю: $a_n \to 0$. А тогда $b_n \to 0$ и $ c_n \to 0$, так как это всё какие-то подпоследовательности. 
+    Кроме того, мы знаем, что $\sum b_n = \sum c_n = +\infty$, так как расходились ряды $\sum(a_n)_+$ и $\sum(a_n)_-$.
+
+    Будем брать $b$-шки до тех пор, пока их сумма не станет больше $s$. Это когда-нибудь случится, так как их сумма бесконечность. То есть:
+    \begin{gather*}
+        b_1 + \ldots + b_{n_1 - 1} \leqslant s < b_1 + \ldots + b_{n_1} =: S_1
+    \end{gather*}
+    Теперь будем вычитать $c$-шки, пока сумма не станет снова меньше $s$:
+    \begin{gather*}
+        b_1 + \ldots + b_{n_1} - c_1 - \ldots - c_{m_1 - 1} \geqslant s > b_1 + \ldots + b_{n_1} - c_1 - \ldots - c_{m_1} =: S_2
+    \end{gather*}
+    Будем повторять процесс.
+    \begin{gather*}
+        b_1 + \ldots + b_{n_1} - c_1 - \ldots -  c_{m_1} + b_{n_1 + 1} + \ldots + b_{n_2-1} \leqslant s < \\
+        < b_1 + \ldots + b_{n_1} - c_1 - \ldots -  c_{m_1} + b_{n_1 + 1} + \ldots + b_{n_2-1} =: S_3
+    \end{gather*}
+    \begin{gather*}
+        b_1 + \ldots + b_{n_1} - c_1 - \ldots -  c_{m_1} + b_{n_1 + 1} + \ldots + b_{n_2} - c_{m_1+1} - \ldots - c_{m_2-1} \geqslant s > \\
+         > b_1 + \ldots + b_{n_1} - c_1 - \ldots -  c_{m_1} + b_{n_1 + 1} + \ldots + b_{n_2} - c_{m_1+1} - \ldots - c_{m_2} =: S_4
+    \end{gather*}
+    И так далее.
+
+    При этом мы можем делать любое количество шагов, так как $\sum b$ и $\sum c$ расходятся, поэтому мы можем
+    выкинуть какое-то количество из начала и остаток будет все равно расходящимся, тогда его частичная сумма тоже будет сколь угодно большой,
+    значит мы точно сможем перевалить через $s$ в любую из сторон.
+
+    На каждом таком шаге мы берем хотя бы одну $b$-шку и одну $c$-шку, значит до каждой $a$-шки мы когда-нибудь доберемся, потому
+    например $100$-ю положительную $a$-шку мы точно возьмем на 200-м шаге.
+    При этом каждую $a$-шку мы берем ровно один раз, значит получаем перестановку.
+    
+    При этом надо проверить, что это правильная перестановка, то есть, что у нее сумма $s$.
+
+    Знаем, что можем группировать рядом стоящие члены ряда с одним знаком. Это мы и будем делать. 
+    Преобразуем уже написанные неравенства:
+    \begin{align*}
+        S_1 - b_{n_1} \leqslant s \leqslant S_1 &\Longrightarrow |s - S_1| \leqslant b_{n_1} \\
+        S_2 < s \leqslant S_2 + c{m_1} &\Longrightarrow |s - S_2| \leqslant c_{m_1}
+    \end{align*}
+    Тогда в общем виде:
+    \begin{gather*}
+        |s - S_{2k-1}| \leq b_{n_k} \to 0, \quad |s - S_{2k}| \leq c_{m_k} \to 0
+    \end{gather*}
+    То есть наша последовательность частичных сумм стремится к $s$. То есть такая группировка допустима, так как имеет ту же сумму, что и исходный ряд. 
+    Значит исходный ряд сходится и имеет сумму $s$. С конечным $s$ разобрались
+
+    Для случая $s = +\infty$ модифицируем идею так: сначала сделаем сумму больше 1, потом возьмем одну $c$-шку. Потом сделаем
+    сумму больше 2, потом возьмем еще одну $c$-шку, и так далее. 
+    
+    Чтобы предела не было вообще - берем $b$-шки чтобы стало больше $1$,
+    потом $c$-шки, чтобы стало меньше $-1$, бесконечно повторяем.
+\end{proof}
+
+\textbf{Замечание} В $\C$ можно получить не любую сумму (без доказательства).
+
+\begin{theorem}
+    (Теорема Коши (про произведение рядов)) 
+    
+    Если $\sum a_n = A$ и $\sum b_n = B$ абсолютно сходятся, то
+    ряд, составленный из $a_kb_n$ в произвольном порядке будет абсолютно сходиться, и его сумма будет равна $AB$.
+\end{theorem}
+\begin{proof}
+    Пусть $\sum |a_n| = A^*,\ \sum|b_n| = B^*$. Частичная сумма $\sum |a_i b_j| \leq A^*_{\max\{i\}}B^*_{\max\{j\}}$. Проверим данное утверждение:
+    \begin{gather*}
+        (|a_1| + |a_2| + \ldots + |a_n|)(|b_1| + |b_2|+\ldots + |b_m|) = \sum \limits_{i=1}^n \sum \limits_{j=1}^m (a_i, b_j) \geq \sum|a_i b_j|
+    \end{gather*}
+    При этом $A^*_{\max\{i\}} B^*_{\max\{j\}} \leqslant A^* B^*$. То есть все частичные суммы 
+    меньше либо равны $A^*B^*$, значит ряд абсолютно сходится (так как рассматриваем неотрицательные слагамые).
+
+    Ряд абсолютно сходится, значит можно переставлять слагаемые в произвольном порядке.
+    Из сходимости также следует, что мы можем смотреть на подпоследовательность частичных сумм, то есть группировать
+    члены ряда и смотреть на сгруппированные части. Тогда мы хотим найти хотя бы одну сумму.
+
+    Будем выбирать частичные суммы так: запишем все $a_ib_j$ в табличку,
+    с соответствующей нумерацией столбцов и строк. На $k$-м шаге
+    будем в частичную сумму брать $k^2$ слагаемых из верхнего
+    левого квадрата $k\times k$ таблицы. То есть:
+      
+    $S_1$ На первом шаге:
+    \begin{center}
+        $\begin{matrix}
+            a_1b_1
+        \end{matrix}$
+    \end{center}
+    $S_2$ На втором шаге плюс 3 слагамых:
+    \begin{center}
+        $\begin{matrix}
+            a_1b_1 & a_1b_2 \\
+            a_2b_1 & a_2b_2
+        \end{matrix}$
+    \end{center}
+    $S_3$ На третьем шаге плюс 5 слагаемых:
+    \begin{center}
+        $\begin{matrix}
+            a_1b_1 & a_1b_2 & a_1b_3 \\
+            a_2b_1 & a_2b_2 & a_2b_3 \\
+            a_3b_1 & a_3b_2 & a_3b_3
+        \end{matrix}$
+    \end{center}
+    Формально:
+    \begin{equation*}
+        S_n = \sum_{i,j \leq n} a_ib_j = \sum_{i=1}^n a_i \sum_{j=1}^n b_j
+        = A_nB_n \longrightarrow AB
+    \end{equation*}
+
+\end{proof}
+
+\begin{conj}
+    Произведением рядов $\sumn a_n, \sumn b_n$ называется $\sumn c_n$, где 
+    \begin{gather*} 
+        c_n = a_1b_n + a_2b_{n-1}+a_3b_{n-2} + \ldots + a_nb_1
+    \end{gather*}
+\end{conj}
+
+\textbf{Мотивация группировать именно так}: рассмотрим степенные ряды $\sumn a_nt^n$ и $\sumn b_nt^n$
+\begin{gather*}
+    a_kt^k b_nt^n = a_kb_n t^{k+n}
+\end{gather*}
+Тогда логично сгруппировать всё с одинаковой степенью $t$. Тогда получаем:
+\begin{gather*}
+   \sum\limits_{k+n = m}a_kb_n t^m
+\end{gather*}
+А это и есть произведение рядов, потому что сумма индексов у $a$ и $b$ фиксированная. 
+
+\begin{theorem}
+    Теорема Мертенса (без доказательства). 
+    
+    Если $\sum a_n = A$ и $\sum b_n = B$ сходятся, 
+    причем один из них абсолютно сходится, то $\sum c_n$ сходится и $\sum c_n = AB$
+\end{theorem}
+
+\underline{\textit{Замечания:}}
+\begin{enumerate}
+    \item[1.] Здесь важен порядок суммирования
+    \item[2.] Просто сходимости не хватает 
+\end{enumerate}
+
+\textbf{Пример}
+\begin{equation*}
+    \sumn \frac{(-1)^{n-1}}{\sqrt{n}}
+\end{equation*}
+Знаем, что сходится по признаку Лейбница.
+
+Умножим его на себя. 
+\begin{align*}
+    c_n &= a_1b_n + a_2b_{n-1} + \ldots + a_nb_1 \\
+    &= \frac{(-1)^0}{\sqrt{1}} \frac{(-1)^{n-1}}{\sqrt{n}} + 
+    \frac{(-1)^1}{\sqrt{2}}\frac{(-1)^{n-2}}{\sqrt{n-1}} + \ldots +
+    \frac{(-1)^{n-1}}{\sqrt{n}}\frac{(-1)^0}{\sqrt{1}} \\
+    &= (-1)^{n-1} (\frac{1}{\sqrt{1}\sqrt{n}} + 
+    \frac{1}{\sqrt{2}\sqrt{n-1}} + \ldots + \frac{1}{\sqrt{n}\sqrt{1}})
+\end{align*}
+Поймем, что $|c_n|$ будет большим. $\sqrt{k}\sqrt{n+1-k} = \sqrt{k(n+1)-k^2} \leq \frac{n+1}{2}$, 
+так как произведение максимально при фиксированной сумме, когда сомножители равны.
+Тогда:
+\begin{gather*}
+    \frac{1}{\sqrt{k}\sqrt{n+1-k}} \geq \frac{2}{n+1} \\
+    \Longrightarrow |c_n| \geq n \cdot \frac{2}{n+1} \geq 1 \\
+    \Longrightarrow \text{ ряд расходится}
+\end{gather*}
+
+Докажем вспомогательную лемму, которая нам понадобится в следующей теореме.
+\begin{lemma}
+    Пусть $\lim x_n = x,\ \lim y_n = y$. Тогда:
+    \begin{gather*}
+        \frac{x_1 y_n + x_2y_{n-1} + \ldots + x_ny_1}{n} \to xy
+    \end{gather*}
+\end{lemma}
+\begin{proof} \quad 
+
+    \underline{Случай $y = 0$:}
+
+    Пусть $|x_n| \leq M,\ |y_n| \leq M$. Еще мы знаем, что $y_n \to 0$. Значит $|y_n| < \varepsilon$ при $n \geq N$.
+    Тогда ограничим иксы сверху $M$, $y_n$ ограничим $M$ для $n < N$ и $\varepsilon$ для $n \geqslant N$:
+    \begin{align*}
+        |x_1y_n + x_2y_{n-1} + \ldots + x_ny_1| &\leqslant |x_1y_n| + |x_2y_{n-1}| + \ldots + |x_ny_1| \\
+        &\leqslant M(|y_1|+|y_2|+\ldots + y_n) \\
+        &\leqslant M(NM + (n-N)\varepsilon)
+    \end{align*}
+    Поделим на $n$ и посмотрим, что получится при больших $n$:
+    \begin{gather*}
+        \left|\frac{x_1y_n+\ldots x_ny_1}{n}\right|
+        \leqslant \overbrace{\frac{NM^2}{n}}^{\to 0} +  \overbrace{\frac{(n-N)}{n}\varepsilon M}^{\leq 1} 
+        < \varepsilon M + \frac{NM^2}{n}
+        < \varepsilon M + \varepsilon
+    \end{gather*}
+    \underline{Случай $y_n = y$:} 
+    
+    То есть $y_n$ - стационарная последовательность.
+    \begin{gather*}
+        \frac{x_1y_n + \ldots + x_ny_1}{n} = y \cdot \frac{x_1+x_2+\ldots+x_n}{n} \longrightarrow yx \; \text{ по т. Штольца}
+    \end{gather*}
+
+    \underline{Общий случай:} 
+    
+    $y_n = y+z_n$, где $z_n \longrightarrow 0$
+    \begin{gather*}
+        \frac{x_1y_n + \ldots + x_ny_1}{n} = \frac{x_1(y+z_n) + x_2(y+z_{n-1}) + \ldots + x_n(y+z)1}{n} \longrightarrow xy + x\cdot 0 
+    \end{gather*}
+\end{proof}
+\begin{theorem}
+    (Теорема Абеля) 
+    
+    Если $\sumn a_n = A,\ \sumn b_n = B,\ \sumn c_n = C$ сходятся, то $AB = C$.
+\end{theorem}
+\begin{proof}
+     
+    По лемме:
+    \begin{gather*}
+     \frac{A_1B_n + A_2B_{n-1} + \ldots + A_nB_1}{n} \longrightarrow AB
+    \end{gather*}
+    Посчитаем, сколько раз $a_ib_j$ встречается в числителе и заметим, что 
+    \begin{gather*}
+        \frac{A_1B_n + A_2B_{n-1} + \ldots + A_nB_1}{n} = \\
+        = \frac{1}{n} ( n\overbrace{a_1b_1}^{c_1} 
+        + (n-1)\overbrace{(a_1b_2 + a_2b_1)}^{c_2} 
+        + (n-2)\overbrace{(a_1b_3+a_2b_2+a_3b_1)}^{c_3} + \ldots + 
+         \overbrace{(a_1b_n + a_2b_{n-1} + \ldots + a_nb_1)}^{c_n} ) \\
+        = \frac{C_1 + C_2 + \ldots + C_n}{n} \to C
+    \end{gather*}
+
+    Получили, что выражение стремится одновременно к $AB$ и к $C$, тогда $AB = C$. 
+
+    Пояснение последнего перехода: Почему длинная сумма равна сумме $C$-шек? 
+    $c_1$ встречается в $C_1 + C_2 + \ldots + C_n$ ровно $n$ раз, так как $C_n$ - это просто 
+    частичные суммы, то есть $c_1 + \ldots + c_n$. Тогда $c_2$ встречается $n-1$ раз, и так далее, $c_n$ встречается ровно один раз.
+     Это и написано в длинной сумме.
+
+
+\end{proof}
+
+\subsection{Бесконечные произведения}
+
+\begin{conj}
+    $\prodn p_n$
+
+    $P_n = p_1p_2 \ldots p_n$ - частичные произведения.
+
+    Если существует $\lim P_n$, то его называют значением бесконечного произведения (по аналогии с суммой ряда).
+    Если он конечен и \textbf{отличен от нуля}, то говорят, что произведение сходится.
+\end{conj}
+
+\textbf{Пример}
+\begin{enumerate}
+    \item $\prod \limits_{n=2}^\infty (1 - \frac{1}{n^2})$:
+    \begin{align*}
+        P_n &= (1 - \frac{1}{2^2})(1-\frac{}{3^2})\ldots (1-\frac{1}{n^2}) \\
+        &= \frac{(2-1)(2+1)}{2^2}
+        \cdot \frac{(3-1)(3+1)}{3^2} 
+        \cdot \ldots \cdot \frac{(n-1)(n+1)}{n^2} \\
+        &= \frac{n+1}{2n} \longrightarrow \frac{1}{2}
+    \end{align*}
+    \item $\prodn (1 - \frac{1}{4n^2})$:
+    \begin{align*}
+        P_n &= \prod \limits_{k=1}^n (1 - \frac{1}{(2k)^2}) \\
+        &= \prod \limits_{k=1}^n \frac{(2k-1)(2k+1)}{2k^2} \\
+        &= \frac{((2n-1)!!)^2(2n+1)}{((2n)!!)^2} \longrightarrow \frac{2}{\pi} \text{ по Формуле Валлиса}
+    \end{align*}
+\end{enumerate}
+\textbf{Упражнения}
+\begin{enumerate}
+    \item $\prodn (1 - \frac{1}{(2n+1)^2}) = \frac{\pi}{4}$
+    \item $\prodn (1+x^{2^{n-1}}) = \frac{1}{1-x}$ при $|x| < 1$
+\end{enumerate}
+
+\textbf{Свойства}
+\begin{enumerate}
+    \item Конечное число начальных множителей не влияет на сходимость.
+    \item Если $\prodn p_n$ сходятся, то $\lim p_n = 1$
+    \begin{proof}
+        $p_n = \frac{P_n}{P_{n-1}} \to \frac{P}{P} = 1$, если $P \neq 0, \pm \infty$
+    \end{proof}
+    \item У сходящегося произведения все сомножители положительны, начиная с некоторого места (так как стремятся к 1). Тогда можем считать, что все сомножители положительны.
+    \item Для сходимости $\prodn p_n$ при $p > 0$ необходима и достаточна сходимость ряда $\sumn \ln p_n$.
+    И если $L = \sumn \ln p_n$, то $P = e^L$
+    \begin{proof}
+        \begin{align*}
+            P_n = \prodk p_k \Longrightarrow \ln P_n &= \sumk \ln p_k \\
+            &= S_n \to L \longrightarrow e^{\ln P_n} \\
+            &= P_n \longrightarrow e^L
+        \end{align*}
+        $P_n$ сходится $\Longleftrightarrow \lim P_n \neq 0, +\infty \Longleftrightarrow \lim S_n \neq \pm \infty \Longleftrightarrow S_n$ сходится.
+    \end{proof}
+\end{enumerate}
+\textbf{Пример:}
+
+Пусть $p_n$ -- $p$-e простое число. Тогда $\prodn \frac{p_n}{p_n - 1}$ расходится.
+Более того, $\prodk \frac{p_k}{p_k - 1} \geq H_n$.
+
+\begin{proof}
+    Посчитав сумму геометрической прогрессии получаем:
+    \begin{gather*}
+        \frac{p}{p-1} = \frac{1}{1-\frac{1}{p}} = \sum \limits_{j=0}^\infty \frac{1}{p^j}
+    \end{gather*}
+    То есть искомое произвдение - это:
+    \begin{gather*}
+        \prodn \sum \limits_{j=0}^\infty \frac{1}{p^j}
+    \end{gather*}
+    Предположим, что мы умеем раскрывать скобки, тогда после раскрытия скобок получится сумма обратных ко всем числам:
+    \begin{gather*}
+        \prodn \sum \limits_{j=0}^\infty \frac{1}{p^j} = \sum \frac{1}{n}
+    \end{gather*}
+    Действительно, каждое число единственным образом раскладывается на простые множители, и каждый набор простых множителей дает какое-то уникальное число.
+
+    Это было интуитивное рассуждение. Теперь формализуем его для конечных сумм:
+
+    \[\sum \limits_{j=0}^\infty \frac{1}{p^j} \geq \sum \limits_{j=0}^n \frac{1}{p^j}\]
+    \[P_n = \prodk \frac{p_k}{p_k - 1} \geq \prodk \sum \limits_{j=0}^n \frac{1}{p^j} = 
+    \sum_{0 \leq \alpha_j \leq n} \frac{1}{p_1^{\alpha_1}p_2^{\alpha_2}\ldots p_n^{\alpha_n}} \geq \sumk \frac{1}{k} \]
+
+    Тогда в знаменателе встретятся все числа от $1$ до $n$. Действительно, любое число до $n$ раскладвыается на простые,
+    не большие $n$ со степенями не больше $n$ (даже $2^n$ уже больше $n$). Видно, что это очень грубая оценка, например можно
+    показать, что встретятся также и все числа до $p_n$.
+\end{proof}
+
+\begin{theorem}
+    Ряд $\sumn \frac{1}{p_n}$ расходится. $p_n$ -- $n$-е простое число.
+\end{theorem}
+
+\begin{proof}
+    $\prodn \frac{p_n}{p_n - 1}$ расходится $\Longrightarrow \sumn \ln(\frac{p_n}{p_n-1})$ расходится
+    \begin{gather*}
+        \ln(\frac{p}{p-1}) = \ln(\frac{1}{1-\frac{1}{p}}) = -\ln(1 - \frac{1}{p}) = \frac{1}{p} + O(\frac{1}{p^2})
+    \end{gather*}
+    То есть $\sumn \frac{1}{p_n} + O(\frac{1}{p_n^2})$ -- расходится. При этом знаем, что $\sumn O(\frac{1}{p^2})$ -- сходится.
+    Значит их разность расходится, а значит $\sumn \frac{1}{p_n}$ -- расходится
+\end{proof}
+
+\textbf{Замечания.} 
+\begin{enumerate}
+    \item \begin{gather*}
+        \sumk \frac{1}{p_k} \geq \ln H_n + O(1) \geq \ln \ln n + C
+    \end{gather*}
+    \begin{proof}
+        \begin{align*}
+            \sumk \frac{1}{p_k} &= \sumk (-\ln(1-\frac{1}{p^k}) + O(\frac{1}{p_k^2})) \\ 
+            &= \sumk (-\ln(1-\frac{1}{p^k})) + O(1) = \\
+            &= \ln \prodk \frac{p_k}{p_k-1} + O(1) \geqslant \ln H_n + O(1) \geqslant \ln \ln n + C
+        \end{align*}
+    \end{proof}
+    \item На самом деле $\sumn \frac{1}{p_k} = \ln \ln n + O(1)$
+    \item Докажем чуть менее точную оценку сверху:
+    \begin{gather*}
+        \sumk \frac{1}{p_k} \leq 2\ln \ln n
+    \end{gather*}
+    \begin{proof}
+        Покажем, что:
+        \begin{gather*}
+            \sum \limits_{a \leq p \leq a^2} \frac{1}{p} < \frac{4}{3}
+        \end{gather*}
+        Для этого выпишем числа $1, 2, 3, \ldots, a^2$. Зачеркнём делящиеся на $p$ для $a \leq p \leq a^2$.
+        Заметим, что каждое число мы вычеркнем не более одного раза, так как произведение любых двух простых
+        такого вида больше $a^2$. При этом для каждого $p$ мы зачеркиваем $\lfloor \frac{a^2}{p} \rfloor$ чисел, делящихся на $p$.
+        Но мы зачеркнули чисел всего не больше, чем у нас есть. Оценивая снизу округление вниз, получаем
+
+        \begin{gather*}
+            \sum_{a \leq p \leq a^2}(\frac{a^2}{p} - 1) \leqslant \sum_{a \leq p \leq a^2} \lfloor \frac{a^2}{p} \rfloor < a^2
+            \Longrightarrow \sum_{a \leq p \leq a^2} \frac{a^2}{p} < a^2 + \text{кол-во простых} < \frac{4}{3}a^2 \
+        \end{gather*}
+
+        Делим на $a^2$, получаем искомое неравенство. Использовали, что количество простых не больше чем $\frac{1}{3}a^2$ потому например
+        все простые кроме 2, 3 нечетны и не делятся на $3$, а таких уже треть.
+
+        Рассмотрим
+        \begin{gather*}
+            \sum_{p \leq 2^{2^n}} \frac{1}{p} = \sumk \sum_{2^{2^{k-1}} \leq p \leq 2^{2^k}} \frac{1}{p}
+            \leq \sumk \frac{4}{3} = \frac{4}{3}n
+        \end{gather*}
+        Тогда считая сумму обратных простых до некоторого $n$, возьмем $m = \lceil \log_2 \log_2 n \rceil$. Тогда
+
+        \begin{align*}
+            \sum_{j=1}^n \frac{1}{p_j} \leqslant \sum_{p \leqslant 2^{2^m}} \frac{1}{p} < \frac{4}{3}\lceil \log_2 \log_2 n \rceil
+            &\leqslant \frac{4}{3} (\log_2 \log_2 n + 1) \\
+            &= \frac{4}{3}(\log_2 \ln n + C) \\
+            &= \frac{4}{3} \cdot \frac{\ln \ln n}{\ln 2} + C \leq 2 \ln \ln n + C
+        \end{align*}
+
+        Легко видеть, что константа контролируется: она не больше $\frac{4}{3} (1 - \log_2 \ln 2) \approx 2.03$
+    \end{proof}   
+
+
+\end{enumerate}

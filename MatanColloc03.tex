@@ -8,7 +8,6 @@
 \usepackage[russian]{babel}
 \usepackage[mathscr]{euscript}
 \usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
-\usepackage{pythonhighlight}
 \usepackage{lipsum}
 \usepackage{soul}
 \usepackage{amsmath,amssymb}
@@ -22,7 +21,6 @@
 \usepackage{tikz}
 \usepackage{thmtools}
 \usepackage{amsthm}
-\usepackage{mathtools}
 \usepackage{pdfcomment}
 \usepackage{blindtext}
 \usepackage{todonotes}
@@ -36,6 +34,12 @@
 \usepackage{wrapfig}
 \usepackage{graphicx}
 \usepackage{extarrows}
+
+\usetikzlibrary{decorations.pathreplacing,
+                positioning, 
+                quotes,
+                intersections,
+                calc}
 
 \graphicspath{ {./images/} }
 %%
@@ -129,6 +133,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \renewcommand{\C}{\mathbb{C}}
 
 \newcommand{\follow}{\textbf{\textit{Следствие:}}}
@@ -311,6 +316,8 @@ $ $
 \import{lectures/}{lecture10.tex}
 $ $
 \import{lectures/}{lecture11.tex}
+$ $
+\import{lectures/}{lecture12.tex}
 $ $
 \end{normalsize}
 \end{document}

@@ -43,6 +43,48 @@
 $\forall \varepsilon > 0 \; \exists N: \; \forall n \geqslant N \; \forall x \in (0, 1): \; x^n < \varepsilon \Longrightarrow 1 = \lim_{x \to 1^{-}} x^n \leqslant \varepsilon$ (т.е. для $\varepsilon < 1$ это неверно)
 \end{example}
 
+\vspace*{7mm}
+
+\textbf{Поясняющая картинка к равномерной сходимости}.
+
+Пусть $f_n \rightrightarrows f$. 
+Тогда условие \[ \forall \; \varepsilon > 0 \; \exists N: \; \forall n \geqslant N \; \forall x \in E \; \abs{f_n(x) - f(x)} < \varepsilon \] 
+означает, что для любого $\varepsilon > 0$ найдется такой достаточно большой номер $N$, что, начиная с него, графики всех функций $f_n(x)$ будут лежать в полоске шириной $2\varepsilon$ относительно графика $f(x)$:
+\begin{center}
+    %\includegraphics[scale=0.5]{Uniform_convergence.png} 
+    \begin{tikzpicture}[auto,
+        B/.style = {decorate,
+                    decoration={brace, amplitude=3pt,
+                    pre=moveto,pre length=1pt,post=moveto,post length=1pt,
+                    raise=1mm}},
+           domain = -30:30, samples=12, smooth,
+             font = \footnotesize
+                                ]
+        % coordinates
+        \draw[->] (-0.2,0) -- (6,0) node[right]{$x$};
+        \draw[->] (0,-0.4) -- (0,4) node[above]{$y$};
+        % curve
+        \draw[very thick, blue] 
+            plot ({(45+\x)/15},{1+rand/5+2*cos(\x)})
+            node[coordinate,pin=0:$f_n$] {};
+        % convergence borders
+        \draw[red]  plot ({(45+\x)/15},{1.5+2*cos(\x)}) 
+                    node[coordinate,pin=0:$f(x)+\varepsilon$] {};
+        \draw[black] plot ({(45+\x)/15},{1.0+2*cos(\x)}) coordinate (e2);
+        \draw[red]  plot ({(45+\x)/15},{0.5+2*cos(\x)}) 
+                    node[coordinate,pin=0:$f(x)-\varepsilon$] {};
+    
+        % labels on the left side
+        \draw (1,{1.75+cos(-10)}) node[left=0.5mm]   {$f(x)$} ++ (0,1);
+        \draw[dashed]   (1,{0.5+2*cos(30)}) -- (1,0)
+                        (5,{0.5+2*cos(30)}) -- (5,0);
+    
+        \draw[very thick]    (1,0) -- node[above] {$K$} (5,0);
+        
+    \end{tikzpicture}   
+\end{center}
+
+\vspace*{7mm}
 
 \begin{conj}
     Равномерно ограниченная последовательность.
