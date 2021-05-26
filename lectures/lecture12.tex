@@ -394,7 +394,13 @@
         \| \B x \| \geqslant  \frac{\| x \|}{\| \A^{-1} \|} - \| \A - \B \| \| x \| = \underbrace{\left(\frac{1}{\| \A^{-1} \|} - \| \A - \B \| \right)}_{=: m} \| x \|
     \end{gather*}
     \quad Тогда по предпредыдущей тоереме $\B$ обратим и $\| \B^{-1} \| \leqslant \frac{1}{m} = \frac{1}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$. 
-    Осталось только неравенство на норму разности: \[ \| \B^{-1} - \A^{-1} \| = \| \B^{-1}(\A - \B)\A^{-1} \| \leqslant \| \B^{-1}\| \| \A - \B \| \| \A^{-1} \| \leqslant \frac{1}{m}\| \A - \B \| \| \A^{-1} \| = \frac{\| \A^{-1} \| * \| \B - \A \|}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}  \] 
+    Осталось только неравенство на норму разности: 
+    \begin{align*} 
+        \| \B^{-1} - \A^{-1} \| &= \| \B^{-1}(\A - \B)\A^{-1} \| \\
+        &\leqslant \| \B^{-1}\| \| \A - \B \| \| \A^{-1} \| \\
+        &\leqslant \frac{1}{m}\| \A - \B \| \| \A^{-1} \| \\
+        &= \frac{\| \A^{-1} \| * \| \B - \A \|}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|} 
+    \end{align*}
 \end{proof}
 
 Теперь мы готовы сформулировать и доказать главную теорему данного параграфа -- теорему об обратной функции.
@@ -425,10 +431,10 @@
     Получаем, что $f'(x)$ обратимо для $x \in B_r(x_0)$ (честно говоря, я так и не понял, где мы это дальше использовали; если вы это поняли, отредактируйте / напишите кому-то из составителей).
 
     \quad Теперь мы хотим, чтобы $G_y(x)$ было сжатием. 
-    Для этого нам надо понять, что норма ее производной небольшая: \[ \| G_y'(x) \| = \| \underbrace{\mathcal{E}}_{\text{ед. оп.}} + \underbrace{(\A^{-1}(y))'}_{= c' = 0} - \underbrace{(d_{f(x)}\A^{-1} \circ d_xf)}_{\text{опр. диф. комп.}} \| = \| \mathcal{E} - \A^{-1}(f'(x)) \| =\circledast \]
+    Для этого нам надо понять, что норма ее производной небольшая: \[ \| G_y'(x) \| = \| \underbrace{\mathcal{E}}_{\text{ед. оп.}} + \underbrace{(\A^{-1}(y))'}_{= c' = 0} - \underbrace{(d_{f(x)}\A^{-1} \circ d_xf)}_{\text{опр. диф. комп.}} \| = \| \mathcal{E} - \A^{-1}(f'(x)) \| =\oast \]
     \quad Мы воспользовались тем, что $d_{f(x)}\A^{-1} = \A^{-1}$. 
     Это так, потому что $\A^{-1}$ -- линейное отображение, следовательно, дифференциал, посчитанный в любой точке, равен ему самому.
-    Продолжим оценивать норму производной: \[ \circledast = \| \A^{-1}(\A - f'(x)) \| \leqslant \| \A^{-1} \| * \|(\A - f'(x)) \| \leqslant \frac{1}{2}  \]
+    Продолжим оценивать норму производной: \[ \oast = \| \A^{-1}(\A - f'(x)) \| \leqslant \| \A^{-1} \| * \|(\A - f'(x)) \| \leqslant \frac{1}{2}  \]
     \quad Значит, $G_y$ -- сжатие с коэффициентом $\frac{1}{2}$. 
     
     \quad Заметим, что для того, чтобы эти рассуждения работали, нам необходимо, чтобы $G_y(B_r(x_0)) \subset B_r(x_0)$.
@@ -485,10 +491,10 @@
     \quad Если $k \to 0$, то $\| h \| \left(\frac{1}{\| \A^{-1} \|} + \| \alpha(h) \| \right) \to 0$, но скобка не будет стремиться к 0, так как $\frac{1}{\| \A^{-1} \|}$ это какая-то константа, поэтому $h \to 0 \text{ т.к. $\alpha(h) \to 0$ }$.
     Вспомним, что $k = f(a+h) - f(a)$, а $g = f^{-1}$. 
     \quad Тогда: \begin{gather*}
-        g(\underbrace{b + k}_{f(a+h)}) - g(\underbrace{b}_{f(a)}) = a + h - a = h = \circledast 
+        g(\underbrace{b + k}_{f(a+h)}) - g(\underbrace{b}_{f(a)}) = a + h - a = h = \oast 
     \end{gather*}
     \quad Чтобы выразить $h$ через $k$, применим $\A^{-1}$ к равентсву $k = \A h + \alpha(h)\| h \|$ : \begin{gather*}
-        \circledast = \A^{-1}k - \A^{-1}(\alpha(h) \| h \|) \\
+        \oast = \A^{-1}k - \A^{-1}(\alpha(h) \| h \|) \\
         \Rightarrow g(b + k) = g(b) + \A^{-1}k - \A^{-1}(\alpha(h) \| h \|)
     \end{gather*}
     \quad Осталось понять, что $\| \A^{-1}(\alpha(h) \| h \| \| = o(\|k\|)$:
@@ -584,33 +590,29 @@
 \vspace*{5mm}
 
 \textbf{Пример:}
+Рассмотрим уравнение $x^2 + y^2 = 1$:
+\begin{center}
+    \begin{tikzpicture}[scale=2.5,cap=round,>=latex]
+        % draw the coordinates
+        \draw[->] (-1.25cm,0cm) -- (1.25cm,0cm) node[right,fill=white] {$x$};
+        \draw[->] (0cm,-1.15cm) -- (0cm,1.25cm) node[above,fill=white] {$y$};
 
-    \begin{wrapfigure}{r}{6cm} 
-        \begin{tikzpicture}[scale=2.5,cap=round,>=latex]
-            % draw the coordinates
-            \draw[->] (-1.25cm,0cm) -- (1.25cm,0cm) node[right,fill=white] {$x$};
-            \draw[->] (0cm,-1.15cm) -- (0cm,1.25cm) node[above,fill=white] {$y$};
-    
-            % draw the unit circle
-            \draw[thick] (0cm,0cm) circle(1cm);
-    
-            \filldraw[black] (45:1cm) circle(0.4pt)
-                            (45:-1cm) circle(0.4pt)
-                            (0:1cm) circle(0.4pt);
-    
-            \draw (1.32cm,-0.15cm) node(b) {$(x_2, y_2)$}
-                            (1.0cm,0.8cm) node(a) {$(x_0, y_0)$}
-                            (45:-1.3cm) node(c) {$(x_1, y_1)$};
-                            
-            \draw [red,ultra thick,domain=30:60] plot ({cos(\x)}, {sin(\x)});
-            \draw [blue,ultra thick,domain=-15:15] plot ({cos(\x)}, {sin(\x)});
-            \draw [orange,ultra thick,domain=210:240] plot ({cos(\x)}, {sin(\x)});
-    
-        \end{tikzpicture}
-    \end{wrapfigure}
+        % draw the unit circle
+        \draw[thick] (0cm,0cm) circle(1cm);
 
-Рассмотрим уравнение $x^2 + y^2 = 1$.
+        \filldraw[black] (45:1cm) circle(0.4pt)
+                        (45:-1cm) circle(0.4pt)
+                        (0:1cm) circle(0.4pt);
 
+        \draw (1.32cm,-0.15cm) node(b) {$(x_2, y_2)$}
+                        (1.0cm,0.8cm) node(a) {$(x_0, y_0)$}
+                        (45:-1.3cm) node(c) {$(x_1, y_1)$};
+                        
+        \draw [red,ultra thick,domain=30:60] plot ({cos(\x)}, {sin(\x)});
+        \draw [blue,ultra thick,domain=-15:15] plot ({cos(\x)}, {sin(\x)});
+        \draw [orange,ultra thick,domain=210:240] plot ({cos(\x)}, {sin(\x)});
+    \end{tikzpicture}
+\end{center}
 Если мы изобразим решения этого уравнения, то получится единичная окружность.
 Зафиксируем на ней точку $(x_0, y_0)$. 
 Если мы будем сдвигаться от нее немного влево и вправо, то у нас получится график функции.
