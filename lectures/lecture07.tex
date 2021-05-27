@@ -103,9 +103,6 @@
 \begin{theorem}
     $f_n \doublerightarrow f$ на $E \Longleftrightarrow \sup\limits_{x \in E}{\abs{f_n(x) - f(x)}} \to 0$
 \end{theorem}
-
-\newpage
-
 \begin{proof} \quad
 
     "$\Longrightarrow$":
@@ -208,9 +205,6 @@
 Равномерная сходимость $=$ сходимость по норме $\norm{\cdot}_{l^{\infty}(E)}$:
 \[ f_n \doublerightarrow f \text{ на } E \Longleftrightarrow \norm{f_n - f}_{l^{\infty}(E)} \to 0 \]
 Это действительно так, ведь просто по определению $\norm{f_n - f}_{l^{\infty}(E)} = \sup_{x \in E}{\abs{f_n(x) - f(x)}}$)
-
-\newpage
-
 \begin{theorem}
     $l^{\infty}(E)$~--- полное пространство.
 \end{theorem}
@@ -256,7 +250,7 @@
 
 \vspace*{4mm}
 
-\follow (т. Стокса-Зайделя)
+\follow \; (т. Стокса-Зайделя)
 
 Если $f_n \in C(E)$ -- непрерывны на $E$ и $f_n \doublerightarrow f$ на $E$, то $f \in C(E)$.
 Действительно, в каждой точке непрерывность сохраняется, поэтому сохраняется и общая непрерывность.
@@ -286,7 +280,8 @@ $f_n(x) \ C[0, 1]$, а вот предельная функция непреры
 
 \vspace*{5mm}
 
-\textbf{\textit{Следствие}} (из т. Стокса-Зайделя):
+\follow \; (из т. Стокса-Зайделя)
+
 $C(K)$~--- замкнутое подпространство $l^{\infty}(K)$.
 
 \begin{proof}
@@ -344,7 +339,10 @@ $C(K)$~--- замкнутое подпространство $l^{\infty}(K)$.
 \vspace*{5mm}
 
 \textbf{Необходимое условие равномерной сходимости.} Если ряд $\sum\limits_{n = 1}^\infty u_n(x)$ сходится равномерно, то $u_n \doublerightarrow 0$.
-Доказательство аналогично числовым рядам: $S_n \doublerightarrow S \Rightarrow u_n = S_n - S_{n-1} \doublerightarrow S - S = 0$.
+Доказательство аналогично числовым рядам: 
+\begin{gather*}
+    S_n \doublerightarrow S \Rightarrow u_n = S_n - S_{n-1} \doublerightarrow S - S = 0
+\end{gather*}
 Если взять отрицание этого условия, то получится, что если найдется такая последовательность $x_n$, что $u_n(x_n) \nrightarrow 0$, то $\sum\limits_{n = 1}^\infty u_n(x)$ не является равномерно сходящимся.
     
 \notice \, Из расходимости ряда $\sum\limits_{n = 1}^\infty u_n(x_n)$ ничего не следует.
@@ -352,13 +350,18 @@ $C(K)$~--- замкнутое подпространство $l^{\infty}(K)$.
 Это иллюстрирует следующий пример.
 
 \begin{example}
-    $u_n(x) = \begin{cases}
-        \frac{1}{n}, & \text{при }x \in [\frac{1}{n + 1}, \frac{1}{n}) \\
-        0, & \text{иначе}
-    \end{cases}$
+    \begin{gather*}
+        u_n(x) = \begin{cases}
+            \frac{1}{n}, & \text{при }x \in [\frac{1}{n + 1}, \frac{1}{n}) \\
+            0, & \text{иначе}
+        \end{cases}
+    \end{gather*}
     \quad Если мы подставим $x_n = \frac{1}{n+1}$, то получившийся ряд будет гармоническим, а значит будет расходиться.
     Однако, мы можем доказать равномерную сходимость. 
-    Рассмотрим остатки $r_n(x) = \sum\limits_{k = n + 1}^\infty u_k(x)$.
+    Рассмотрим остатки: 
+    \begin{gather*}
+        r_n(x) = \sum\limits_{k = n + 1}^\infty u_k(x)
+    \end{gather*}
     Заметим, что при фиксированном $x$ в каждой такой сумме ненулевым будет максимум одно слагаемое, так как полуинтервалы $[\frac{1}{n+1}, \frac{1}{n})$ не пересекаются.
     Таким образом, $r_n(x) \leqslant \frac{1}{n+1} \Rightarrow r_n \doublerightarrow 0$ и ряд равномерно сходится.
 \end{example}
@@ -436,10 +439,19 @@ $C(K)$~--- замкнутое подпространство $l^{\infty}(K)$.
 
     \quad Последовательность $A_n(x)b_n(x) \doublerightarrow 0$, так как просто по условию $A_n(x)$ равномерно ограничены и $b_n \doublerightarrow 0$ (такая теорема была в параграфе про функциональные пос-ти).
 
-    \quad Осталось доказать равномерную сходимость ряда $\sum\limits_{n = 1}^\infty A_n(x)(b_n(x) - b_{n+1}(x))$.
+    \quad Осталось доказать равномерную сходимость ряда 
+    \begin{gather*}
+        \sum\limits_{n = 1}^\infty A_n(x)(b_n(x) - b_{n+1}(x))
+    \end{gather*}
     Докажем, что он будет абсолютно равномерно сходится.
-    Вследствие равномерной ограниченности $A_n(x)$ можем написать такое неравенство: $\sum\limits_{n = 1}^\infty \left|A_n(x)(b_n(x) - b_{n+1}(x))\right| \leqslant K\sum\limits_{n = 1}^\infty \left|b_n(x) - b_{n+1}(x)\right|$.
-    Посмотрим на частичные суммы ряда $\sum\limits_{n = 1}^\infty \left|b_n(x) - b_{n+1}(x)\right|$.
+    Вследствие равномерной ограниченности $A_n(x)$ можем написать такое неравенство: 
+    \begin{gather*}
+        \sum\limits_{n = 1}^\infty \left|A_n(x)(b_n(x) - b_{n+1}(x))\right| \leqslant K\sum\limits_{n = 1}^\infty \left|b_n(x) - b_{n+1}(x)\right|
+    \end{gather*}
+    Посмотрим на частичные суммы следующего ряда:
+    \begin{gather*}
+        \sum\limits_{n = 1}^\infty \left|b_n(x) - b_{n+1}(x)\right|
+    \end{gather*}
     Надо доказать, что они равномерно сходятся.
     Воспользуемся монотонностью $b_n(x)$: \[ \sum\limits_{k = 1}^n \left|b_k(x) - b_{k+1}(x)\right| = \left|\sum\limits_{k = 1}^n b_k(x) - b_{k+1}(x)\right| = |b_1(x) - b_{n+1}(x)| \doublerightarrow |b_1(x)| \]
     \quad Таким образом, ряд $K\sum\limits_{n = 1}^\infty \left|b_n(x) - b_{n+1}(x)\right|$ равномерно сходится, и по признаку сравнения сходится ряд $\sum\limits_{n = 1}^\infty \left|A_n(x)(b_n(x) - b_{n+1}(x))\right|$.
@@ -465,11 +477,14 @@ $C(K)$~--- замкнутое подпространство $l^{\infty}(K)$.
         \item Но ряд $\sum\limits_{n = 1}^\infty \left|\frac{(-1)^nx^n}{n}\right| = \sum\limits_{n = 1}^\infty \frac{x^n}{n}$ сходится не равномерно.
         Это доказывается по критерию Коши. 
         Рассмотрим отрезок ряда $\sum\limits_{k = N}^{2N} \frac{x^k}{k}$.
-        Тогда при $x \to 1$ получаем $\sum\limits_{k = N}^{2N} \frac{x^k}{k} \to \sum\limits_{k = N}^{2N} \frac{1}{k} > \frac{1}{2}$.
+        Тогда при $x \to 1$ получаем:
+        \begin{gather*}
+            \sum\limits_{k = N}^{2N} \frac{x^k}{k} \to \sum\limits_{k = N}^{2N} \frac{1}{k} > \frac{1}{2}
+        \end{gather*}
     \end{itemize}
 \end{example}
 
-\vspace*{7mm}
+\vspace*{3mm}
 
 \textbf{Признак Абеля.} Пусть \begin{enumerate}
     \item $\sum\limits_{n = 1}^\infty a_n(x)$ равномерно сходится.
@@ -482,17 +497,21 @@ $C(K)$~--- замкнутое подпространство $l^{\infty}(K)$.
     К сожалению, мы не можем вывести признак Абеля из признака Дирихле, как мы это делали в числовых рядах.
     Поэтому будет пользоваться критерием Коши. 
     Мы хотим показать, что при достаточно больших $n$ и $m$ и любом $x$ данная сумма $\left| \sum\limits_{k = n + 1}^m a_k(x)b_k(x) \right|$ будет сколь угодно мала.
-    Перепишем ее как $\left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right|$ и применим преобразование Абеля: 
-    \[ \left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right| = (A_m(x) - A_n(x))b_m(x) + \sum_{k = 1}^{m - n - 1} (A_{n+k}(x) - A_n(x))(b_{n+k}(x) - b_{n+k+1}(x)) \leqslant \circledast \]
+    Перепишем ее следующим образом:
+    \begin{gather*}
+        \left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right|
+    \end{gather*} 
+    Теперь применим преобразование Абеля: 
+    \[ \left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right| = (A_m(x) - A_n(x))b_m(x) + \sum_{k = 1}^{m - n - 1} (A_{n+k}(x) - A_n(x))(b_{n+k}(x) - b_{n+k+1}(x)) \leqslant \oast \]
     \quad Частичные суммы тут действительно считаются правильно, ведь $a_{n+1}(x) + \dots + a_{n+k}(x) = A_{n+k}(x) - A_n(x)$.
-    Оценим все по модулю: \[ \circledast \leqslant |A_m(x) - A_n(x)||b_m(x)| + \sum_{k = 1}^{m - n - 1} |A_{n+k}(x) - A_n(x)||(b_{n+k}(x) - b_{n+k+1}(x)| < \circledast \]
+    Оценим все по модулю: \[ \oast \leqslant |A_m(x) - A_n(x)||b_m(x)| + \sum_{k = 1}^{m - n - 1} |A_{n+k}(x) - A_n(x)||(b_{n+k}(x) - b_{n+k+1}(x)| < \oast \]
     \quad Мы знаем, что $\sum\limits_{n = 1}^\infty a_n(x)$ равномерно сходится, поэтому мы можем применить к ниму критерий Коши: $\forall \varepsilon > 0$ найдется такой номер $N$, что начиная с него, $\forall x \in E$ все отрезки ряда будет иметь сумму $<\varepsilon$.
     Следовательно, если $n$ будет $\geqslant N$, то $|A_m(x) - A_n(x)| < \varepsilon$ и $|A_{n+k}(x) - A_n(x)| < \varepsilon$.
     Также стоит вспомнить, что $b_n$ были равномерно ограничены $\Leftrightarrow \forall n \in \N \; \forall x \in E \;\; |b_n(x)| \leqslant K$.
-    Отразим все это в нашем неравенстве: \[ \circledast < K\varepsilon + \varepsilon \sum_{k = 1}^{m - n - 1} |(b_{n+k}(x) - b_{n+k+1}(x)| \leqslant \circledast \]
+    Отразим все это в нашем неравенстве: \[ \oast < K\varepsilon + \varepsilon \sum_{k = 1}^{m - n - 1} |(b_{n+k}(x) - b_{n+k+1}(x)| \leqslant \oast \]
     \quad Как и в доказательстве признака Дирихле воспользуемся монотонностью $b_n(x)$:
     \[ \sum_{k = 1}^{m - n - 1} |(b_{n+k}(x) - b_{n+k+1}(x)| = \left|\sum_{k = 1}^{m - n - 1} b_{n+k}(x) - b_{n+k+1}(x) \right| = |b_{n+1}(x) - b_m(x)| \]
     \quad Из того, что $|b_n(x)| \leqslant K$ очевидным образом следует, что $|b_{n+1}(x) - b_m(x)| \leqslant 2K$. 
-    Подставляем это в наше неравенство: \[ \circledast \leqslant 3K\varepsilon  \]
+    Подставляем это в наше неравенство: \[ \oast \leqslant 3K\varepsilon  \]
     \quad Таким образом, мы доказали, что при достаточно больших $n$ и $m$ и любом $x$ отрезки ряда $\sum\limits_{n = 1}^\infty a_n(x)b_n(x)$ будут сколь угодно малы, а значит этот ряд равномерно сходится по критерию Коши.
 \end{proof}
