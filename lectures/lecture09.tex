@@ -1,1 +1,28 @@
+\newcommand{\sumi}{\sum\limits_{n=0}^\infty}
+
 \section{Лекция номер 9}
+\begin{conj}
+    Есть функция $f: E \subset \C \longrightarrow \C$, а также точка $z_0 \in \Int E$. Функция $f$ дифференцируема в точке $z_0$, если $\exists k \in \C$, такое, что: 
+    \begin{gather*}
+        f(z) = f(z_0) + k(z - z_0) + o(z - z_0) \text{ при } z \longrightarrow z_0
+    \end{gather*}
+    $k$ -- производная $f$ в точке $z_0$
+\end{conj}
+\notice
+\begin{enumerate}
+    \item $k$ считается как:
+    \begin{gather*}
+        k = \lim\limits_{z \longrightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0}
+    \end{gather*}
+    \item Существование производной равносильно дифференцируемости.
+\end{enumerate}
+\begin{theorem}
+    Пусть $R$ -- радиус сходимости ряда $\sumi a_n(z - z_0)^n$, тогда $f(z) = \sumi a_n(z-z_0)$
+    бесконечно дифференцируема в круге $\abs{z - z_0} < R$ и ее производную мы можем посчитать следующим образом:
+    \begin{gather*}
+        f^{(m)} = \sum\limits_{n=m}^\infty n(n-1)\dots (n-m+1)a_n(z-z_0)^{n-m} 
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Для простоты формул зафиксируем $z_0 = 0$. Возьмем некое $r \in (0, R)$ и две точки, лежащие в маленьком круге: $\abs{z}, \abs{w} < r$. Тогда 
+\end{proof}
