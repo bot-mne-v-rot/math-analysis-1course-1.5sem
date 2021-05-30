@@ -323,3 +323,255 @@
         \item Аксиомы группы тривиально проверяются. 
     \end{enumerate}
 \end{proof}
+
+\vspace*{5mm}
+
+\textbf{Матричная запись оператора}. Пусть $X = \R^n, Y = \R^m$. Также $e_1, \dots, e_n$ -- стандартный базис в $\R^n$, то есть:
+\begin{gather*}
+    \begin{pmatrix*}
+        0 \\ 
+        \vdots \\
+        0 \\
+        1 \\
+        0 \\
+        \vdots \\
+        0
+    \end{pmatrix*} \longleftarrow i\text{-ое место}
+\end{gather*}
+Тогда $x \in X$ можно представить как сумму $i$-ой координаты, умноженной на $i$-ый базисный вектор. 
+Также введем обозначение $\A_i$, для применения $\A$ к базисному вектору. 
+\begin{align*}
+    x &= \sum\limits_{i=1}^n x_i e_i = \begin{pmatrix*}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{pmatrix*} & \A_i &= \A e_i = \begin{pmatrix*}
+        a_{i1} \\
+        a_{i2} \\
+        \vdots \\
+        a_{im}
+    \end{pmatrix*}
+\end{align*}
+Тогда линейный оператор $\A$, примененный к иксу -- это:
+\begin{gather*}
+    \A x = \A \left( \sum\limits_{i=1}^n x_i e_i \right) = \sum\limits_{i=1}^n x_i \A e_i = \sum\limits_{i=1}^n x_i \A_i = \sum\limits_{i=1}^n x_i \cdot \begin{pmatrix*} 
+        a_{i1} \\
+        a_{i2} \\
+        \vdots \\
+        a_{in}
+    \end{pmatrix*} =
+    \begin{pmatrix*} 
+        a_{11} & a_{21} & \cdots & a_{n1} \\
+        a_{i2} & a_{22} & \cdots & a_{n2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{1m} & a_{2m} & \cdots & a_{nm} 
+    \end{pmatrix*} \cdot \begin{pmatrix*}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{pmatrix*}
+\end{gather*}
+\begin{conj}
+    $X, Y$ -- нормированные пространства, $\A : X \longrightarrow Y$ -- линейный оператор.
+    \textbf{Норма оператора}:
+    \begin{gather*}
+        \norm{\A} := \sup\limits_{\norm{x}_X \leqslant 1} \norm{\A x}_Y
+    \end{gather*}
+    Если $\norm{\A} < +\infty$, то оператор ограниченный.
+\end{conj}
+\notice \; Ограниченный оператор и ограниченное отображение -- это не одно и то же. Более того, линейность + ограниченное отображение = тождественный 0, так как:
+\begin{gather*}
+    \norm{\A (\lambda x)} = \abs{\lambda} \underbrace{\norm{\A x}}_{\neq 0} \overset{\lambda \rightarrow 0}{\longrightarrow} 0 
+\end{gather*}
+\textit{\textbf{Свойства: }}
+\begin{enumerate}
+    \item $\norm{\A + \B} \leqslant \norm{\A} + \norm{\B}$
+    \begin{proof}
+        \begin{align*}
+            \norm{\A + \B} &= \sup\limits_{\norm{x}_X \leqslant 1} \norm{(\A + \B)x}_Y \\
+            &\leqslant \sup\limits_{\norm{x}_X \leqslant 1} (\norm{\A x}_Y + \norm{\B x}_Y) \\
+            &\leqslant \sup \norm{\A x}_Y + \sup \norm{\B x}_Y = \norm{\A} + \norm{\B}
+        \end{align*}
+    \end{proof}
+    \item $\norm{\alpha \A} = \abs{\lambda} \cdot \norm{\A}$
+    \begin{proof}
+        \begin{gather*}
+            \norm{\lambda \A} = \sup\limits_{\norm{x}_X \leqslant 1} \norm{\lambda \A x}_Y = \abs{\lambda} \cdot \sup \norm{\A x}_Y = \abs{\lambda} \cdot \norm{\A}
+        \end{gather*}
+    \end{proof}
+    \item $\norm{\A} = 0 \Longleftrightarrow \A = 0$
+    \begin{proof} \quad 
+
+        \begin{itemize}
+            \item[``$\Longleftarrow$'':] Очевидно
+            \item[``$\Longrightarrow$'':] Пусть $\norm{\A} = 0$, тогда:
+            \begin{align*}
+                \norm{\A} = 0 &\Longrightarrow \sup\limits_{\norm{x}_X \leqslant 1} \norm{\A x}_Y = 0 \\
+                &\Longrightarrow \norm{\A x}_Y = 0 \quad \forall x: \norm{x}_X \leqslant 1 \\
+                &\Longrightarrow \A x = 0_Y \quad \forall x: \norm{x}_X \leqslant 1 \\
+                &\Longrightarrow \A y = \A \left( \frac{y}{\norm{y}} \cdot \norm{y} \right) = \norm{y} \cdot \A \left( \frac{y}{\norm{y}} \right) = \norm{y} \cdot 0_Y = 0_Y
+            \end{align*} 
+        \end{itemize}
+    \end{proof}
+    \item $\norm{\cdot}$ -- норма в векторном пространстве линейных операторов из $X$ в $Y$.
+    \begin{proof}
+        Следует из предыдущих трех свойств и логических соображений.
+    \end{proof}
+\end{enumerate}
+\textbf{Поясняющая картинка к понятию нормы оператора:}
+
+У нас есть пространство $X$, мы берем в нем единичный шар:
+\begin{gather*}
+    \{\norm{x}_X \leqslant 1\} \text{ -- единичный шар в } X
+\end{gather*}
+Этот шар перешел во что-то в $Y$-ке. После этого мы интересуемся супремумом нормы. А что это такое? 
+Ноль у нас перешел в ноль, значит мы на самом деле интересуемся наибольшим расстоянием от нуля. Самой дальней точкой. 
+
+Мы ищем минимальный радиус шара в $Y$, в который мы можем запихать образ нашего единичного шара. Этот радиус и будет являться нормой. 
+Норма -- это коэффициент раздутия шара.  
+
+\vspace*{5mm}
+
+\begin{center}
+    \begin{tikzpicture}
+    \draw (0,0) rectangle (8,6);\node at (4,0.5) {$X$};
+    \node[label=$0$]  (p) at (3,4) {};
+    \draw[fill =blue,fill opacity=0.1] (p)  circle (1.5cm);
+    \draw [orange] plot [only marks, mark size=2.5, mark=*] coordinates {(3,4)};
+
+    \draw (10,0) rectangle (18,6);\node at (14,0.5) {$Y$};
+    \node[label=below:$0$]  (p') at (13.5,3.0) {};
+    
+    \draw[thick,->] (p) edge[bend right] (p');
+    \draw[fill =blue,fill opacity=0.1,rotate=310] (p') ellipse (0.8cm and 2cm);
+
+    \draw[ultra thick, orange] (13.5,3.0) -- (15.0,4.3);
+    \draw [orange] plot [only marks, mark size=2.5, mark=*] coordinates {(13.5,3.0)};
+    \draw [orange] plot [only marks, mark size=2.5, mark=*] coordinates {(15.0,4.3)};
+
+    \draw[orange, dashed, opacity=0.5, thick] (p') circle (2cm);
+\end{tikzpicture}
+\end{center}
+
+\vspace*{7mm}
+
+Заведем еще парОчку (пять) способов посчитать норму. 
+\begin{theorem}
+    \begin{align}
+        \sup\limits_{\norm{x}_X \leqslant 1} \norm{\A x}_Y &= \\
+        &= \sup\limits_{\norm{x}_X < 1} \norm{\A x}_Y \\
+        &= \sup\limits_{\norm{x}_X = 1} \norm{\A x}_Y \\
+        &= \sup\limits_{x \neq 0} \frac{\norm{\A x}_Y}{\norm{x}_X} \\
+        &= \inf{\{ C \in \R : \forall x \in X \quad \norm{\A x}_Y \leqslant C \norm{x}_X \}}
+    \end{align}
+\end{theorem}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawBox}[1]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[->,shorten >=5pt,shorten <=5pt,out=50,in=100,distance=0.7cm,#1, thick] ($(MarkA.north)+(.4em,.4em)$) to (MarkB.north);
+    \draw[overlay,red,thick,dashed] ($(MarkA)!.5!(MarkABot)+(.4em,.2em)$) ellipse (0.6cm and 0.8cm);
+  \end{tikzpicture}
+}
+\begin{proof} \quad 
+
+    Очевидно, что $(1) \geqslant (2)$ и $(1) \geqslant (3)$ так как в $N_1$ множество больше.
+
+    $(3) = (4)$:
+    \begin{gather*}
+        \frac{\norm{\A x}_Y}{\norm{x}_X} = \frac{1\tikzmark{MarkA}}{\tikzmark{MarkABot}\norm{x}_X} \cdot \norm{\A \tikzmark{MarkB} x}_Y\DrawBox{red} =
+        \norm{\A \bigg( \underbrace{\colorboxed{red}{\frac{x}{\norm{x}_X}}}_{\text{единичн. век.}}\bigg)} \leqslant (3)
+    \end{gather*}
+    Дробь под оператор занесли по линейности. Так как под операторов получили единичный вектор, то это подмножество $(3)$. 
+    Рассматривая в $(4)$ только иксы подходящие в третьем получаем обратное неравенство. Значит выполняется равенство.
+
+    $(4) = (5)$:
+
+    $(4) = $ наименьшая верхняя граница для $\frac{\norm{\A x}_Y}{\norm{x}_X}$. Переформулируем и распишем:
+    \begin{gather*}
+        (4) = \min \{ C : \frac{\norm{\A x}_Y}{\norm{x}_X} \leqslant C \} = \min \{ C : \norm{\A x}_Y \leqslant C \norm{x}_X\}
+    \end{gather*}
+    Получили $(5)$, но по $x \neq 0$, так как это было сказано в $(4)$, но, для $x = 0$ неравенство в принципе всегда выполняется, так что все хорошо.
+
+    $(3) \geqslant (1)$:
+
+    \begin{align*}
+        \norm{\A x}_Y &= \norm{\A \left( \frac{x}{\norm{x}_X} \cdot \norm{x}_X \right)} \\
+        &= \norm{x}_X \cdot \norm{\A \left( \frac{x}{\norm{x}_X} \right)} \text{ по линейности} \\
+        &\leqslant \oast
+    \end{align*}
+    $\oast \leqslant \norm{x}_X \cdot (3)$, так как в $(3)$ тоже единичный вектор, но там стоит значек супремума. А это в свою очередь 
+    не превосходит $(3)$, так как норма $x$ не превосходит единицы.
+
+    $(2) \geqslant (1)$:
+
+    Берем $x$ по норме не превосходящие 1. Тогда:
+    \begin{gather*}
+        \norm{(1 - \varepsilon)x}_X \leqslant 1 - \varepsilon < 1 \Longrightarrow \stackbelow{\underbrace{\sup\limits_{\norm{x}_X \leqslant 1} \norm{\A ((1-\varepsilon)x)}_Y}}{\oast} \leqslant (2)
+    \end{gather*}
+    Вынесем $(1 - \varepsilon)$ совсем наружу, потому что это вообще положительная константа и мы так можем. Тогда получим:
+    \begin{gather*}
+        \oast = (1 - \varepsilon) \sup\limits_{\norm{x}_X \leqslant 1} \norm{\A x}_Y = (1 - \varepsilon) \cdot (1) \\
+        \Longrightarrow (1 - \varepsilon) \cdot (1) \leqslant (2) \quad \forall \varepsilon > 0
+    \end{gather*}
+    Тогда устремляем $\varepsilon$ к нулю и получим нужное неравенство.
+\end{proof}
+\textbf{Следствия: }
+\begin{enumerate}
+    \item $\norm{\A x}_Y \leqslant \norm{\A} \cdot \norm{x}_X$
+    \item $\norm{\A \B} \leqslant \norm{\A} \cdot \norm{\B}$
+\end{enumerate}
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item \begin{gather*}
+            \norm{\A} = \sup\limits_{x \neq 0} \frac{\norm{\A x}_Y}{\norm{x}_X} \Longrightarrow \norm{\A x}_Y \leqslant \norm{\A} \cdot \norm{x}_X \text{ при } x \neq 0
+        \end{gather*}
+        \item Распишем норму $\A \B$:
+        \begin{gather*}
+            \norm{\A \B} = \sup\limits_{x \neq 0} \frac{\norm{\A \B x}_Z}{\norm{x}_X} \leqslant \oast
+        \end{gather*}
+        По определению: $\B : X \longrightarrow Y, \A : Y \longrightarrow Z$. Тогда:
+        \begin{gather*}
+            \norm{\A \B x}_Z = \norm{\A} \cdot \norm{\B x}_Y \leqslant \norm{\A} \cdot \norm{\B} \cdot \norm{x}_X
+        \end{gather*}
+        Подставим оценОчку:
+        \begin{gather*}
+            \oast \leqslant \sup\limits_{x \neq 0} \frac{\norm{\A} \cdot \norm{\B} \cdot \cancel{\norm{x}_X}}{\cancel{\norm{x}_X}} = \norm{\A} \cdot \norm{\B}
+        \end{gather*}
+    \end{enumerate}
+\end{proof}
+\begin{theorem}
+    $\A : X \longrightarrow Y$ линейный оператор. Тогда равносильны:
+    \begin{enumerate}
+        \item $\A$ -- ограниченный оператор 
+        \item $\A$ непрерывен в нуле 
+        \item $\A$ непрерывен везде
+        \item $\A$ равномерно непрерывен 
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    $4. \Longrightarrow 3. \Longrightarrow 2.$ очевидно 
+
+    $1. \Longrightarrow 4$:
+    
+    \begin{gather*}
+        \norm{\A x - \A y} = \norm{\A (x-y)} \leqslant \norm{\A} \cdot \norm{x - y} < \varepsilon \text{ если } \norm{x - y} < \delta
+    \end{gather*}
+    Тогда понятно, какую дельту нужно взять. Просто возьмем $\delta := \frac{\varepsilon}{\norm{\A}}$. Тогда если у нас $x$ от $y$ 
+    отличается меньше, чем на $\delta$, то $\A x$ будет отличаться от $\A y$ меньше чем на $\varepsilon$. Вот и равномерная непрерывность.
+
+    $2. \longrightarrow 1.$:
+
+    Берем $\varepsilon = 1$ и $\delta > 0$ по нему. Тогда:
+    \begin{gather*}
+        \forall x \in X : \norm{x} < \delta \Longrightarrow \norm{\A x} < 1
+    \end{gather*}
+    Если $\norm{y} < 1$, то:
+  \begin{gather*}
+    \norm{\delta y} < \delta \Longrightarrow \stackbelow{\norm{\underbrace{\A (\delta y)}}}{\delta \norm{\A y}} < 1 \\
+    \Longrightarrow \norm{\A y} < \frac{1}{\delta} \Longrightarrow \norm{\A} = \sup\limits_{\norm{y} < 1} \norm{\A y} \leqslant \frac{1}{\delta}
+  \end{gather*}
+  А значит оператор $\A$ ограничен.
+\end{proof}
