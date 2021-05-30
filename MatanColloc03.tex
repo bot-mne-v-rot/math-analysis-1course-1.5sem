@@ -73,6 +73,13 @@
 % Configurando layout para mostrar codigos Java
 \usepackage{listings}
 
+\newcommand\butthole[1]{%
+  \mathpalette\assircled{#1}%
+}
+\newcommand\asscircled[2]{%
+  \tikz[baseline=(math.base)] \node[red, draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
+
 \newcommand{\estiloJava}{
 \lstset{
     language=Java,
@@ -164,6 +171,24 @@
     \pgfextra {\pgfmathsetmacro\len{(#1)+rand*(#2)}}
     -- +(\a:\len pt)
   } -- cycle
+}
+
+\newcommand*{\colorboxed}{}
+\def\colorboxed#1#{%
+  \colorboxedAux{#1}%
+}
+\newcommand*{\colorboxedAux}[3]{%
+  % #1: optional argument for color model
+  % #2: color specification
+  % #3: formula
+  \begingroup
+    \colorlet{cb@saved}{.}%
+    \color#1{#2}%
+    \boxed{%
+      \color{cb@saved}%
+      #3%
+    }%
+  \endgroup
 }
 
 \def\inbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\in$}}{#2}}{#1}}
