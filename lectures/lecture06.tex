@@ -173,7 +173,7 @@
 \begin{proof}
     Пусть $\sum |a_n| = A^*,\ \sum|b_n| = B^*$. Частичная сумма $\sum |a_i b_j| \leq A^*_{\max\{i\}}B^*_{\max\{j\}}$. Проверим данное утверждение:
     \begin{gather*}
-        (|a_1| + |a_2| + \ldots + |a_n|)(|b_1| + |b_2|+\ldots + |b_m|) = \sum \limits_{i=1}^n \sum \limits_{j=1}^m (a_i, b_j) \geq \sum|a_i b_j|
+        (|a_1| + |a_2| + \ldots + |a_n|)(|b_1| + |b_2|+\ldots + |b_m|) = \sum \limits_{i=1}^n \sum \limits_{j=1}^m |a_i, b_j| \geq \sum|a_i b_j|
     \end{gather*}
     При этом $A^*_{\max\{i\}} B^*_{\max\{j\}} \leqslant A^* B^*$. То есть все частичные суммы 
     меньше либо равны $A^*B^*$, значит ряд абсолютно сходится (так как рассматриваем неотрицательные слагамые).
