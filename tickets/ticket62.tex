@@ -1,1 +1,82 @@
 \section{Свойства, эквивалентные ограниченности линейного оператора. Ограниченность линейных операторов из $\R^n$ в $\R^m$. Оценка нормы через сумму квадратов}
+\begin{theorem}
+    $\A : X \longrightarrow Y$ линейный оператор. Тогда равносильны:
+    \begin{enumerate}
+        \item $\A$ -- ограниченный оператор 
+        \item $\A$ непрерывен в нуле 
+        \item $\A$ непрерывен везде
+        \item $\A$ равномерно непрерывен 
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    $4. \Longrightarrow 3. \Longrightarrow 2.$ очевидно 
+
+    $1. \Longrightarrow 4$:
+    
+    \begin{gather*}
+        \norm{\A x - \A y} = \norm{\A (x-y)} \leqslant \norm{\A} \cdot \norm{x - y} < \varepsilon \text{ если } \norm{x - y} < \delta
+    \end{gather*}
+    Тогда понятно, какую дельту нужно взять. Просто возьмем $\delta := \frac{\varepsilon}{\norm{\A}}$. Тогда если у нас $x$ от $y$ 
+    отличается меньше, чем на $\delta$, то $\A x$ будет отличаться от $\A y$ меньше чем на $\varepsilon$. Вот и равномерная непрерывность.
+
+    $2. \longrightarrow 1.$:
+
+    Берем $\varepsilon = 1$ и $\delta > 0$ по нему. Тогда:
+    \begin{gather*}
+        \forall x \in X : \norm{x} < \delta \Longrightarrow \norm{\A x} < 1
+    \end{gather*}
+    Если $\norm{y} < 1$, то:
+  \begin{gather*}
+    \norm{\delta y} < \delta \Longrightarrow \stackbelow{\norm{\underbrace{\A (\delta y)}}}{\delta \norm{\A y}} < 1 \\
+    \Longrightarrow \norm{\A y} < \frac{1}{\delta} \Longrightarrow \norm{\A} = \sup\limits_{\norm{y} < 1} \norm{\A y} \leqslant \frac{1}{\delta}
+  \end{gather*}
+  А значит оператор $\A$ ограничен.
+\end{proof}
+\notice $ $ В $\R^n$ мы подразумеваем обычную евклидову норму,
+если не оговорено иное.
+
+\begin{theorem}
+    Пусть $A : \R^n \to \R^m$ -- линейный оператор. \\
+    Тогда $\norm{A}^2 \leqslant \sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2$,
+    где $a_{ik}$ -- коэффициенты соотв. матрицы линейного оператора
+    в стандартных базисах. \\
+    В частности, $A$ -- ограниченный оператор.
+\end{theorem}
+\begin{proof} $ $
+    
+    Вспомним:
+    $$ 
+    A = \begin{pmatrix*}
+        a_{11} & a_{12} & \dots & a_{1n} \\
+        a_{21} & a_{22} & \dots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \dots & a_{mn} \\
+    \end{pmatrix*}
+    \quad
+    x = \begin{pmatrix*}
+        x_1 \\ \vdots \\ x_n
+    \end{pmatrix*}
+    $$
+    Тогда:
+    $$
+    \norm{Ax} = 
+    \norm{\begin{pmatrix*}
+        \sum_{k=1}^n a_{1k} x_k \\ 
+        \vdots \\ 
+        \sum_{k=1}^n a_{mk} x_k \\
+    \end{pmatrix*}}^2 =
+    \sum_{i = 1}^m \underbrace{\left(\sum_{k = 1}^n a_{ik} x_k \right)^2}
+    _{\stackrel{\text{КБШ}}{\leqslant} 
+    \sum \limits_{k = 1}^n a_{ik}^2 \cdot
+    \sum \limits_{k = 1}^n x_{k}^2 }
+    \leqslant \sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2 \cdot
+    \sum_{k = 1}^n x_{k}^2
+    = \sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2 \cdot \norm{x}
+    $$
+    По определению: 
+    $$\norm{A} = \sup_{\norm{x} \leqslant 1}
+    \norm{Ax} \leqslant \sqrt{\sum_{i = 1}^m \sum_{k = 1}^n a_{ik}^2}$$
+\end{proof}
+
+\notice $ $ в бесконечномерных пространствах бывают 
+неограниченные операторы.

@@ -1,1 +1,96 @@
 \section{Перестановка членов абсолютно сходящегося ряда}
+\newcommand{\sumn}{\sum \limits_{n=1}^\infty}
+\newcommand{\sumk}{\sum \limits_{k=1}^n}
+\newcommand{\prodn}{\prod \limits_{n=1}^\infty}
+\newcommand{\prodk}{\prod \limits_{k=1}^n}
+
+\begin{conj}
+
+    $\varphi: \N \to \N$ биекция - перестановка членов ряда
+
+    $\sum \limits_{n=1}^\infty a_{\varphi(n)}$
+     - ряд с переставленными членами
+\end{conj}
+
+\begin{theorem}
+    $a_n \in \C$ и $\sumn a_n$ абсолютно сходится, $S = \sumn a_n$
+    Тогда:
+    \begin{gather*}
+        \sumn a_{\varphi(n)} = S
+    \end{gather*}
+    Другими словами, если ряд абсолютно сходится, то не важно, в каком порядке мы берем слагамые
+\end{theorem}
+
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item[Шаг 1.] 
+        \[a_n \geq 0,\ S_n = \sum \limits_{k=1}^n a_k, \quad \widetilde{S_n} = \sum \limits_{k=1}^n a_\varphi(n) \]
+        Ряд $\sumn a_n$ сходится $\Rightarrow S_n \leq S$
+        \[\widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n}\]
+        Если докинуть к этой сумме еще какие-то $a$-шки, то сумма может только увеличиться, потому что они неотрицательны.
+
+        \[ \widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n} \leq S_{\max\{\varphi(1), \varphi(2), \ldots, \varphi(n)\}} \leq S\]
+
+        $\widetilde{S_n}$ монотонно возрастает и ограничена сверху $\Rightarrow$ имеет предел $\widetilde{S} \leq S$
+
+        Следовательно, никакая перестановка членов ряда не увеличивает сумму. Но значит она не меняет сумму.
+        Действительно, посмотрим на обратную перестановку (это будет просто $S$) - она тоже не увеличивает сумму. Значит сумма сохранялась.
+        \item[Шаг 2.]
+        При $a_n \in \R$
+
+        Обозначим за $(a_n)_{+} := \max\{a_n, 0\},\ (a_n)_- := \max(-a_n, 0)$. Тогда:
+        \begin{gather*}
+            a_n = (a_n)_+ - (a_n)_-, \qquad \abs{a_n} = (a_n)_+ + (a_n)_-
+        \end{gather*}
+    
+        Из того, что $0 \leq (a_n)_\pm \leq |a_n|$, следует, что ряд $\sum_{n=1}^\infty (a_n)_\pm$, сходятся по признаку сравнения, а из этого, благодаря первому шагу, следует, что:
+        \begin{gather*}
+            \sumn(a_{\varphi(n)})_\pm = \sumn(a_n)_{\pm}
+        \end{gather*}
+        Ну а теперь, пользуясь тем, что $a_n = (a_n)_+ - (a_n)_-$, получаем, что сумма переставленного ряда -- то же самое, что и сумма исходного ряда: 
+        \begin{align*}
+            \sumn a_{\varphi(n)} &= \sumn ((a_{\varphi(n)})_+ - (a_{\varphi(n)})_-) \\
+            &= \sumn (a_{\varphi(n)})_+ - \sumn (a_{\varphi(n)})_- \\
+            &= \sumn (a_n)_+ - \sumn (a_n)_- = \sumn a_n 
+        \end{align*}
+        \item[Шаг 3.]
+        При $a_n \in C$
+        \begin{gather*}
+            \abs{\operatorname{Re} a_n},\ \abs{\operatorname{Im}  a_n} \leqslant \abs{a_n} \Longrightarrow \sum \operatorname{Re} a_n,\ \sum \operatorname{Im}  a_n \text{ абсолютно сходятся}  
+        \end{gather*}
+        В них можем переставлять члены как хотим, потом соберем их обратно и напишем сумму (мнимую часть надо домножить на $i$).
+    \end{enumerate}
+\end{proof}
+
+\textbf{Замечания}
+\begin{enumerate}
+    \item[1.] Теорема верна в любом нормированном пространстве, в частности в $\R^d$.
+    Для $\R^d$ можно расписать покоординатно и повторить рассуждение, общий случай оставим без доказательства
+    \item[2.] В $\R^d$ верно и обратное - если у ряда любая перестановка сходится (даже не важно, что к той же сумме), то он абсолютно сходится,
+    и, значит, все суммы равны. В $\R^d$ мы это не докажем, поймем только для $\R$
+    \item[3.] Перестановка расходящегося ряда с $a_n \geq 0$ - расходящийся ряд.
+    \begin{proof}
+        Если некоторая перестановка сходится, то к ней можно применить предыдущую теорему и получится, что изначальный ряд тоже сходится - противоречие.
+    \end{proof} 
+    \item[4.] Если $\sum a_n$ сходится, но не абсолютно, то ряды $\sum (a_n)_+$ и $\sum (a_n)_-$ расходятся (имеют бесконечную сумму).  
+    \begin{proof}
+        Предположим, что $\sum(a_n)_+$ сходится. 
+        \begin{gather*}
+            (a_n)_- = (a_n) - a_n \Longrightarrow \\
+            \sum (a_n)_- = \underbrace{\sum (a_n)_+}_{\text{сх-ся}} - \underbrace{\sum a_n}_{\text{сх-ся}} \Longrightarrow \\
+            \sum(a_n)_- \text{ тоже сходится}
+        \end{gather*}
+        Также:
+        \begin{gather*}
+            |a_n| = (a_n)_+ + (a_n)_- \Longrightarrow \\ 
+            \sum |a_n| = \underbrace{\sum (a_n)_+}_{\text{сх-ся}} + \underbrace{\sum (a_n)_-}_{\text{сх-ся}} \Longrightarrow \\
+            \sum |a_n| - \text{ сходится}
+        \end{gather*}
+        Противоречие.
+    \end{proof}
+\end{enumerate}
+
+\begin{conj}
+    Если $\sum a_n$ сходится, но не абсолютно, то $\sum a_n$ условно сходящийся.
+\end{conj}

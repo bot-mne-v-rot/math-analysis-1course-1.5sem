@@ -1,1 +1,86 @@
 \section{Эквивалентные определения нормы оператора}
+Заведем еще парОчку (пять) способов посчитать норму. 
+\begin{theorem}
+    \begin{align}
+        \sup\limits_{\norm{x}_X \leqslant 1} \norm{\A x}_Y &= \\
+        &= \sup\limits_{\norm{x}_X < 1} \norm{\A x}_Y \\
+        &= \sup\limits_{\norm{x}_X = 1} \norm{\A x}_Y \\
+        &= \sup\limits_{x \neq 0} \frac{\norm{\A x}_Y}{\norm{x}_X} \\
+        &= \inf{\{ C \in \R : \forall x \in X \quad \norm{\A x}_Y \leqslant C \norm{x}_X \}}
+    \end{align}
+\end{theorem}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawBox}[1]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[->,shorten >=5pt,shorten <=5pt,out=50,in=100,distance=0.7cm,#1, thick] ($(MarkA.north)+(.4em,.4em)$) to (MarkB.north);
+    \draw[overlay,red,thick,dashed] ($(MarkA)!.5!(MarkABot)+(.4em,.2em)$) ellipse (0.6cm and 0.8cm);
+  \end{tikzpicture}
+}
+\begin{proof} \quad 
+
+    Очевидно, что $(1) \geqslant (2)$ и $(1) \geqslant (3)$ так как в $N_1$ множество больше.
+
+    $(3) = (4)$:
+    \begin{gather*}
+        \frac{\norm{\A x}_Y}{\norm{x}_X} = \frac{1\tikzmark{MarkA}}{\tikzmark{MarkABot}\norm{x}_X} \cdot \norm{\A \tikzmark{MarkB} x}_Y\DrawBox{red} =
+        \norm{\A \bigg( \underbrace{\colorboxed{red}{\frac{x}{\norm{x}_X}}}_{\text{единичн. век.}}\bigg)} \leqslant (3)
+    \end{gather*}
+    Дробь под оператор занесли по линейности. Так как под операторов получили единичный вектор, то это подмножество $(3)$. 
+    Рассматривая в $(4)$ только иксы подходящие в третьем получаем обратное неравенство. Значит выполняется равенство.
+
+    $(4) = (5)$:
+
+    $(4) = $ наименьшая верхняя граница для $\frac{\norm{\A x}_Y}{\norm{x}_X}$. Переформулируем и распишем:
+    \begin{gather*}
+        (4) = \min \{ C : \frac{\norm{\A x}_Y}{\norm{x}_X} \leqslant C \} = \min \{ C : \norm{\A x}_Y \leqslant C \norm{x}_X\}
+    \end{gather*}
+    Получили $(5)$, но по $x \neq 0$, так как это было сказано в $(4)$, но, для $x = 0$ неравенство в принципе всегда выполняется, так что все хорошо.
+
+    $(3) \geqslant (1)$:
+
+    \begin{align*}
+        \norm{\A x}_Y &= \norm{\A \left( \frac{x}{\norm{x}_X} \cdot \norm{x}_X \right)} \\
+        &= \norm{x}_X \cdot \norm{\A \left( \frac{x}{\norm{x}_X} \right)} \text{ по линейности} \\
+        &\leqslant \oast
+    \end{align*}
+    $\oast \leqslant \norm{x}_X \cdot (3)$, так как в $(3)$ тоже единичный вектор, но там стоит значек супремума. А это в свою очередь 
+    не превосходит $(3)$, так как норма $x$ не превосходит единицы.
+
+    $(2) \geqslant (1)$:
+
+    Берем $x$ по норме не превосходящие 1. Тогда:
+    \begin{gather*}
+        \norm{(1 - \varepsilon)x}_X \leqslant 1 - \varepsilon < 1 \Longrightarrow \stackbelow{\underbrace{\sup\limits_{\norm{x}_X \leqslant 1} \norm{\A ((1-\varepsilon)x)}_Y}}{\oast} \leqslant (2)
+    \end{gather*}
+    Вынесем $(1 - \varepsilon)$ совсем наружу, потому что это вообще положительная константа и мы так можем. Тогда получим:
+    \begin{gather*}
+        \oast = (1 - \varepsilon) \sup\limits_{\norm{x}_X \leqslant 1} \norm{\A x}_Y = (1 - \varepsilon) \cdot (1) \\
+        \Longrightarrow (1 - \varepsilon) \cdot (1) \leqslant (2) \quad \forall \varepsilon > 0
+    \end{gather*}
+    Тогда устремляем $\varepsilon$ к нулю и получим нужное неравенство.
+\end{proof}
+\textbf{Следствия: }
+\begin{enumerate}
+    \item $\norm{\A x}_Y \leqslant \norm{\A} \cdot \norm{x}_X$
+    \item $\norm{\A \B} \leqslant \norm{\A} \cdot \norm{\B}$
+\end{enumerate}
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item \begin{gather*}
+            \norm{\A} = \sup\limits_{x \neq 0} \frac{\norm{\A x}_Y}{\norm{x}_X} \Longrightarrow \norm{\A x}_Y \leqslant \norm{\A} \cdot \norm{x}_X \text{ при } x \neq 0
+        \end{gather*}
+        \item Распишем норму $\A \B$:
+        \begin{gather*}
+            \norm{\A \B} = \sup\limits_{x \neq 0} \frac{\norm{\A \B x}_Z}{\norm{x}_X} \leqslant \oast
+        \end{gather*}
+        По определению: $\B : X \longrightarrow Y, \A : Y \longrightarrow Z$. Тогда:
+        \begin{gather*}
+            \norm{\A \B x}_Z = \norm{\A} \cdot \norm{\B x}_Y \leqslant \norm{\A} \cdot \norm{\B} \cdot \norm{x}_X
+        \end{gather*}
+        Подставим оценОчку:
+        \begin{gather*}
+            \oast \leqslant \sup\limits_{x \neq 0} \frac{\norm{\A} \cdot \norm{\B} \cdot \cancel{\norm{x}_X}}{\cancel{\norm{x}_X}} = \norm{\A} \cdot \norm{\B}
+        \end{gather*}
+    \end{enumerate}
+\end{proof}

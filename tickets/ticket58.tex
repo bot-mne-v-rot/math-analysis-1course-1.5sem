@@ -1,1 +1,58 @@
 \section{Ряды Тейлора для $(1 + x)p$ и $\arcsin x$}
+И снова на те же грабли:
+\begin{gather*}
+    6. \; (1+x)^p = 1 + \sum\limits_{n=1}^\infty \frac{p(p-1)\dots(p-n+1)}{n!}x^n \text{ при } x \in (-1, 1)
+\end{gather*}
+\begin{proof}
+    Хотим доказать, что остаток стремится к нулю. Запишем его в интегральной форме:
+    \begin{gather*}
+        R_n(x) = \frac{1}{n!} \int\limits_0^x (x - t)^n (1+t)^{p-n+1} p(p-1)\dots(p-n+1)dt
+    \end{gather*}
+    Чтобы доказать, что он стремится к нулю, посмотрим на отношение соседних членов:
+    \begin{gather*}
+        \abs{\frac{R_{n+1}(x)}{R_n(x)}} = \frac{\abs{p-n}}{n+1} \cdot \frac{\abs{\int\limits_0^x (x - t)^{n+1}(1+t)^{p-n} dt}}{\abs{\int\limits_0^x (x - t)^{n}(1+t)^{p-n+1} dt}} = 
+        \frac{\abs{p-n}}{n+1} \cdot \frac{\abs{\int\limits_0^x f(t) \frac{x-t}{1+t} dt}}{\abs{\int\limits_0^x f(t) dt}} = \oast 
+    \end{gather*}
+    Хочется доказать, что $\abs{\frac{x - t}{1 + t}} \le |x|$.
+    При $t >= 0$ это очевидно.
+    Ну а для отрицательных $t$ возьмем $x =: -y, t =: -u$, тогда:
+    \begin{gather*}
+        \abs{\frac{-y + u}{1 - u}} = \frac{y - u}{1 - u} \leqslant y
+    \end{gather*}
+    (Неравенство проверяется домножением на знаменатель)
+    Если приглядеться, то оба интеграла знакопостоянны, так что мы можем занести модуль под интеграл:
+    \begin{gather*}
+        \oast = \frac{\abs{p-n}}{n+1} \cdot \frac{\int\limits_0^x \abs{f(t)} \lessabove{\abs{\frac{x-t}{1+t}}}{\abs{x}} dt}{\int\limits_0^x \abs{f(t)} dt} \leqslant \bigstar  
+    \end{gather*}
+    Ну выходит эти интегралы у нас различаются не больше чем на $\abs{x}$, а $\frac{|p-n|}{n+1}\to 1$, значит:
+    \begin{gather*}
+        \bigstar \leqslant \frac{\abs{p - n}}{n + 1} \cdot \abs{x} \leqslant (1+\varepsilon)\abs{x} \text{ при больших } n 
+    \end{gather*}
+    Знаем $|x|<1$ $\Rightarrow$ мы можем подобрать такое $\varepsilon$, что эта штука с какого то номера станет $\le c < 1$ для некоторого $c$.
+    Отсюда сразу видно, что $R_n \to 0$.
+\end{proof}
+\underline{(Нес)Частный случай:} $p = -\frac{1}{2}$
+\begin{gather*}
+    \frac{1}{\sqrt{1+x}} = 1 + \sum\limits_{n=1}^\infty \frac{(-\frac{1}{2})(-\frac{3}{2})\dots(-n + \frac{1}{2})}{n!} x^n = 1 + \sum\limits_{n=1}^\infty \frac{(-1)^n(2n-1)!!}{(2n)!!}x^n
+\end{gather*}
+
+\vspace*{5mm}
+
+Не снова, а опять:
+\begin{gather*}
+    7. \; \arcsin{x} = \sumi \frac{(2n)!}{4^n (n!)^2} \cdot \frac{x^{2n+1}}{2n+1} = \sumi \frac{\binom{2n}{n}}{4^n} \cdot \frac{x^{2n+1}}{2n+1}
+\end{gather*} 
+\begin{proof}
+    Все как всегда, дифференцируем арксинус, смотрим на разложение производной, потом интегрируем. 
+
+    Подставим $x = -t^2$ в предыдущую формулу:
+    \begin{gather*}
+        \frac{1}{\sqrt{1 - t^2}} = \sumi (-1)^n \frac{(2n-1)!!}{(2n)!!} (-t^2)^n = 
+        \sumi \frac{(2n-1)!!}{(2n)!!} t^{2n} = \sumi \frac{\binom{2n}{n}}{4^n} t^{2n}
+    \end{gather*}
+    Проинтегрируем:
+    \begin{gather*}
+        \arcsin{x} = \int\limits_0^x \frac{dt}{\sqrt{1 - t^2}} = \sumi \int\limits_0^x \frac{\binom{2n}{n}}{4^n} t^{2n} dt = \sumi \frac{\binom{2n}{n}}{4^n} \cdot \frac{x^{2n+1}}{2n+1}
+    \end{gather*}
+\end{proof}
+\notice \; Господь не хотел, чтобы Тейлор добрался и до тангенса. $\tg{x} = \sumi a_n x^n$ сходится при $\abs{x} < \frac{\pi}{2}$, но явной формулы для $a_n$ нет, и слава Богу.

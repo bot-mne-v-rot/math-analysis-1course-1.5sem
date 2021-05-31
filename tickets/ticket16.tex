@@ -1,1 +1,138 @@
 \section{Определение несобственного интеграла. Критерий Коши. Примеры}
+\begin{conj}
+    Пусть $-\infty < a < b \leq +\infty$ и $f \in C[a, b)$. Тогда
+    \begin{equation*}
+      \hphantom{\text{, если такой предел существует}}
+      \int_{a}^{\to b} \coloneqq \lim\limits_{B \to b-} \int_{a}^{B} f
+      \text{, если такой предел существует}
+    \end{equation*}
+  
+    Аналогично пусть $-\infty \leq a < b < +\infty$ и $f \in C(a, b]$. Тогда
+    \begin{equation*}
+      \hphantom{\text{, если такой предел существует}}
+      \int_{\to a}^{b} f \coloneqq \lim\limits_{A \to a+} \int_{A}^{b} f
+      \text{, если такой предел существует}
+    \end{equation*}
+  \end{conj}
+  
+  \begin{conj}
+      Интеграл сходится, если такой предел существует и конечен.
+  \end{conj}
+  
+  \begin{notice}
+      Если $-\infty < a < b < +\infty$ и $f \in C[a, b]$, то наше определение равносильно старому.
+  \end{notice}
+  \begin{proof}
+    \begin{equation*}
+      \Big| \int_{a}^{b} f - \int_{a}^{B} f\Big| = \Big| \int_{B}^{b}\Big| \leq
+      \max\limits_{[a, b)} f \cdot (b - B) \underset{B \to b}{\longrightarrow} 0
+    \end{equation*}
+  
+    Значит
+    \begin{equation*}
+      \int_{a}^{B} f \underset{B \to b-}{\longrightarrow} \int_{a}^{b} f
+    \end{equation*}
+  
+    Что и требовалось доказать.
+  \end{proof}
+  
+  \begin{theorem}[критерий Коши]
+    Пусть $-\infty < a < b \leq +\infty$ и $f \in C[a, b)$.
+    Тогда интеграл $\smash[b]{\displaystyle \int_{a}^{b} f}$ сходится тогда и только тогда, когда
+    \begin{equation*}
+      \forall \varepsilon > 0 \; \exists c \in (a, b)\colon \forall
+      A, B \in (c, b) \Rightarrow \Big|\int_{A}^{B} f \Big| < \varepsilon
+    \end{equation*}
+  
+    \begin{notice}
+      При $b = +\infty$ условие равносильному следующему:
+      \begin{equation*}
+        \forall \varepsilon > 0 \; \exists c > a \colon
+        \forall A, B > c \Rightarrow \Big| \int_{A}^{B} f \Big| < \varepsilon
+      \end{equation*}
+  
+      При $b < +\infty$ условие равносильно следующему:
+      \begin{equation*}
+        \forall \varepsilon > 0 \; \exists \delta > 0 \colon
+        b - \delta < A, B < b \Rightarrow \Big| \int_{A}^{B} f \Big| < \varepsilon
+      \end{equation*}
+    \end{notice}
+  \end{theorem}
+  \begin{proof}
+      Пусть $F(x) \coloneqq \int\limits_{a}^{x} f$. Тогда
+      \begin{align*}
+          \int_{a}^{b} f\text{ --- сходится } &\iff
+          \overset{\mathclap{\text{конечный}}}{\exists}
+          \lim\limits_{B \to b-} \int_{a}^{B} f =
+          \lim\limits_{B \to b-} F(B) \\
+          &\underbracket[1px][6px]{\overset{b = +\infty}{\iff}}_{\mathclap{\text{для $b < +\infty$ проверяется аналогично}}}
+          \overbrace{\forall \varepsilon > 0,\, \exists \, c > a,\, \forall A, B > c \Rightarrow |\underbracket{F(B) - F(A)}_{\mathclap{\int\limits_a^{B} f - \int\limits_a^{A} f = \int\limits_{A}^{B} f}}| < \varepsilon}^{\mathclap{\text{критерий Коши для функций}}}
+      \end{align*}
+  \end{proof}
+  
+  \begin{notice}
+    Если $F$ --- первообразная, то
+    \begin{equation*}
+      \int_{a}^{\to b} f = \lim\limits_{B \to b-} F(B) - F(a)
+    \end{equation*}
+  \end{notice}
+  
+  \begin{notice}
+    Если существуют $A_n, B_n \in [a, b)$ и $A_n, B_n \to b$, т.ч.
+    $\int\limits_{A_n}^{B_n} f \cancel{\to} 0$, то $\int\limits_{a}^{b} f$ расходится.
+  \end{notice}
+  \begin{proof}
+    Можем выбрать подпоследовательность $n_k$ такую, что $\Big| \int\limits_{A_n}^{B_n}\Big| \geq \varepsilon$. Это противоречит критерию Коши.
+  \end{proof}
+  
+  \begin{examples}
+    \begin{enumerate}
+      \item Посчитаем следующий интеграл:
+      \begin{equation*}
+        \int_{1}^{+\infty} \frac{dx}{x^p} = \lim\limits_{B \to +\infty} \int_{1}^{B} \frac{dx}{x^p} =
+      \end{equation*}
+      Рассмотрим два случая:
+      \begin{align*}
+          &\underset{p \ne 1}{=} \lim_{B \to +\infty} -\frac{1}{p - 1} \frac{1}{x^{p - 1}}\Big|_{1}^{B} = \frac{1}{p - 1} - \lim\limits_{B \to +\infty} \frac{1}{p - 1}\frac{1}{B^{p - 1}} =
+          \begin{cases}
+              \frac{1}{p - 1}\text{, при $p > 1$}\\
+              +\infty\text{, при $p < 1$}
+          \end{cases} \\
+          &\underset{p = 1}{=} \lim_{B \to +\infty} \ln x \Big|_{1}^{B} =
+          \lim_{B \to +\infty} \ln B = +\infty
+      \end{align*}
+      Таким образом
+      \begin{equation*}
+          \int_{1}^{+\infty} \frac{dx}{x^p}\text{ сходится } \iff p > 1
+      \end{equation*}
+  
+      \item Теперь посчитаем тот же интеграл, но уже на отрезке $[0, 1]$.
+      \begin{equation*}
+          \int_{0}^{1} \frac{dx}{x^p} = \lim_{A \to 0+} \int_{A}^{1} \frac{dx}{x^p} =
+      \end{equation*}
+      Рассмотрим два случая:
+      \begin{align*}
+        &\underset{p \ne 1}{=} \lim\limits_{A \to 0+} \left(-\frac{1}{p - 1}\frac{1}{x^{p - 1}}\Big |_{A}^{1}\right) =
+        \lim\limits_{A \to 0+}\left(\frac{1}{1 - p} - \frac{1}{1 - p}\frac{1}{A^{p - 1}}\right) =
+        \begin{cases}
+          \frac{1}{1 - p}\text{, при $p < 1$}\\
+          +\infty\text{, при $p > 1$}
+        \end{cases} \\
+        &\underset{p = 1}{=} \lim\limits_{A \to 0+} \ln x \Big |_{A}^{1} =
+        1 - \lim\limits_{A \to 0+} \ln A = +\infty
+      \end{align*}
+      Таким образом
+      \begin{equation*}
+          \int_{0}^{1} \frac{dx}{x^p}\text{ сходится } \iff p < 1
+      \end{equation*}
+    \end{enumerate}
+  \end{examples}
+  \begin{notice}
+      Если функция не непрерывна в многих точках на $[a, b]$, тогда можно разрезать отрезки на кусочки и посчитать интегралы от каждого кусочка по отдельности. НУО $a < c_1 < d_1 < c_2 < b$, где функция не непрерывна в $c_1$ и $c_2$. Тогда посчитаем такую сумму:
+      \begin{equation*}
+          \int_{a}^{\to c_1} + \int_{\to c_1}^{d_1} + \int_{d_1}^{\to c_2} + \int_{\to c_2}^{b}
+      \end{equation*}
+  
+      Тогда $\int_{a}^{b}$ --- сходится, если сходятся все слагаемые. Разумеется такое определение обобщается на любое конечное количество <<плохих>> точек.
+  \end{notice}
+  
