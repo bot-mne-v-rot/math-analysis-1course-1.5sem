@@ -1,1 +1,48 @@
+\newcommand{\sumi}{\sum\limits_{n=0}^\infty}
+
 \section{Комплексная дифференцируемость. Дифференцирование степенного ряда}
+\begin{conj}
+    Есть функция $f: E \subset \C \longrightarrow \C$, а также точка $z_0 \in \Int E$. Функция $f$ дифференцируема в точке $z_0$, если $\exists k \in \C$, такое, что: 
+    \begin{gather*}
+        f(z) = f(z_0) + k(z - z_0) + o(z - z_0) \text{ при } z \longrightarrow z_0
+    \end{gather*}
+    $k$ -- производная $f$ в точке $z_0$
+\end{conj}
+\notice
+\begin{enumerate}
+    \item $k$ считается как:
+    \begin{gather*}
+        k = \lim\limits_{z \longrightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0}
+    \end{gather*}
+    \item Существование производной равносильно дифференцируемости.
+\end{enumerate}
+\begin{theorem}
+    Пусть $R$ -- радиус сходимости ряда $\sumi a_n(z - z_0)^n$, тогда $f(z) = \sumi a_n(z-z_0)^n$
+    бесконечно дифференцируема в круге $\abs{z - z_0} < R$ и ее производную мы можем посчитать следующим образом:
+    \begin{gather*}
+        f^{(m)} = \sum\limits_{n=m}^\infty n(n-1)\dots (n-m+1)a_n(z-z_0)^{n-m} 
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Для простоты формул зафиксируем $z_0 = 0$. Возьмем некое $r \in (0, R)$ и две точки, лежащие в маленьком круге: $\abs{z}, \abs{w} < r$. Тогда:
+    \begin{gather*}
+        \frac{f(w) - f(z)}{w - z} = \sum\limits_{n=0}^\infty a_n \cdot \frac{w^n - z^n}{w - z} = \sum\limits_{n=1}^\infty a_n (w^{n-1} + w^{n-2} z + \dots + z^{n-1}) 
+    \end{gather*} 
+    Пририсуем предел с обеих сторон:
+    \begin{gather*}
+        f'(z) = \lim\limits_{w \rightarrow z} \frac{f(w) - f(z)}{w - z} = \lim\limits_{w \rightarrow z} \sum\limits_{n=1}^\infty a_n (w^{n-1} + w^{n-2} z + \dots + z^{n-1}) = \oast 
+    \end{gather*}
+    Хотим переставить местами сумму с пределом, мы можем это сделать, когда ряд равномерно сходится. $z$ фиксировано, значит хотим проверить равномерную сходимость по $w$. Чтобы 
+    проверить равномерную сходимость промажорируем ряд и применим Вейерштрасса:
+    \begin{gather*}
+        \abs{a_n (w^{n-1} + w^{n-2} z + \dots + z^{n-1})}  \leqslant \abs{a_n} (\abs{w}^{n-1} + \abs{w}^{n-2} \abs{z} + \dots + \abs{z}^{n-1}) \leqslant \abs{a_n} \cdot n r^{n-1}
+    \end{gather*}
+    Мы выясняли, что радиус сходимости у $\sum a_n z^n$ равен радиусу сходимости $\sum n a_n z^{n-1}$.
+    Значит радиус сходимости $\sum n a_n z^{n-1}$ равен $R$. Значит в любой точке $z$, т.ч. $|z|<R$ он абсолютно сходится.
+    Подставим $z=r$, тогда $|z|=r<R$ и значит $\sum \abs{a_n} \cdot n r^{n-1}$ будет сходиться. Значит мы промажорировали наш ряд чем-то, что не зависит от $w$ и сходится.
+    Получаем необходимую равномерную сходимость и меняем местами сумму с пределом:
+    \begin{gather*}
+        \oast = \sum\limits_{n=1}^\infty \lim\limits_{w \rightarrow z} a_n (w^{n-1} + w^{n-2} z + \dots + z^{n-1}) = \sum\limits_{n=0}^\infty n a_n z^{n-1}
+    \end{gather*}
+    Нучились дифференцировать один раз, дальше доказываем формулу по индукции. Радиус сходимости не изменился, значит все хорошо. 
+\end{proof}

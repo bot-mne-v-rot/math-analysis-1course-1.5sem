@@ -1,1 +1,116 @@
 \section{Линейные операторы. Свойства. Операции с линейными операторами. Матричное задание линейных операторов из $\R^n$ в $\R^m$}
+\begin{conj}
+    $X$ и $Y$ -- векторные пространства, $\A: X \longrightarrow Y$ -- \textbf{линейный оператор}, если: 
+    \begin{gather*}
+        \A(\lambda x + \mu y) = \lambda \A (x) + \mu \A (y) \qquad \forall x, y \in X \qquad \forall \lambda, \mu \in \R \text{, ну или } \C
+    \end{gather*}
+\end{conj}
+\textit{\textbf{Свойства: }}
+\begin{enumerate}
+    \item $\A(0_X) = 0_Y$
+    \item $\A(\sum\limits_{k=1}^n \lambda_k x_k) = \sum\limits_{k=1}^n \lambda_k \A(x_k)$
+\end{enumerate}
+\begin{proof} \quad
+
+    \begin{enumerate}
+        \item $\lambda = \mu = 0 \qquad \A(0_x) = 0 + \dots + 0 = 0_Y$
+        \item Индукция
+    \end{enumerate}
+\end{proof}
+\begin{conj}
+    $\A, \B$ -- линейные операторы, $\lambda \in \R$. 
+    Тогда введем для них сумму и умножение на скаляр, которые кстати тоже линейные операторы:
+    \begin{align*}
+        \A + \B &: X \longrightarrow Y \quad (\A + \B)x := \A x + \B x \\
+        \lambda \A&: X \longrightarrow Y \quad (\lambda \A)(x) := \lambda \cdot \A x
+    \end{align*}
+\end{conj}
+\notice \; Пространство линейных операторов из $X$ в $Y$ -- векторное пространство над тем же полем.
+\begin{conj}
+    Пусть есть $\A: X \longrightarrow Y$ и $\B: Y \longrightarrow Z$ -- линейные операторы. 
+    Тогда мы можем ввести композицию, которая тоже будет линейным оператором:
+    \begin{gather*}
+        \A \circ \B : X \longrightarrow Z \quad (\B \circ \A)(x) := \B(\A x) 
+    \end{gather*}
+\end{conj}
+\begin{conj}
+    Для $\A : X \longrightarrow Y$, оператор $\A^{-1} : Y \longrightarrow X$ -- обратный оператор, если выполняются два уловия:
+    \begin{enumerate}
+        \item $\A \circ \A^{-1} = \operatorname{Id}_{Y}$
+        \item $\A^{-1} \circ \A = \operatorname{Id}_{X}$
+    \end{enumerate}
+\end{conj}
+\textit{\textbf{Свойства: }}
+\begin{enumerate}
+    \item Если обратимый оператор существует, то он единственнен. 
+    \item $(\lambda \A)^{-1} = \frac{1}{\lambda} \cdot \A^{-1}$
+    \item Если $X = Y$, то множество обратимых операторов -- группа по отношению композиции. 
+\end{enumerate}
+\begin{proof} \quad
+
+    \begin{enumerate}
+        \item От обратного. Пусть $\B_1 \circ \A = \operatorname{Id}_X$ и $\B_2 \circ \A = \operatorname{Id}_X$. Возьмем $x \in X$. Тогда:
+        \begin{gather*}
+            \B_1(\A x) = \B_2(\A x) = x
+        \end{gather*}
+        Значит на любом векторе $y$, который является образом какого-либо вектора $\B_1 y = \B_2 y$. Значит осталось понять, что каждый $y$ -- чей-то образ. А это легко:
+        \begin{gather*}
+            \A \circ \B_1 = \operatorname{Id}_Y \Longrightarrow \A(\B_1 y) = y
+        \end{gather*}
+        \item \begin{gather*}
+            \left( \frac{1}{\lambda} \A^{-1}\right) \circ (\lambda \A)(x) = \frac{1}{\lambda} \A^{-1} (\lambda \A(x)) = \A^{-1} (\A x) = x
+        \end{gather*}
+        Аналогично проверяется в другом порядке. 
+        \item Аксиомы группы тривиально проверяются. 
+    \end{enumerate}
+\end{proof}
+
+\vspace*{5mm}
+
+\textbf{Матричная запись оператора}. Пусть $X = \R^n, Y = \R^m$. Также $e_1, \dots, e_n$ -- стандартный базис в $\R^n$, то есть:
+\begin{gather*}
+    \begin{pmatrix*}
+        0 \\ 
+        \vdots \\
+        0 \\
+        1 \\
+        0 \\
+        \vdots \\
+        0
+    \end{pmatrix*} \longleftarrow i\text{-ое место}
+\end{gather*}
+Тогда $x \in X$ можно представить как сумму $i$-ой координаты, умноженной на $i$-ый базисный вектор. 
+Также введем обозначение $\A_i$, для применения $\A$ к базисному вектору. 
+\begin{align*}
+    x &= \sum\limits_{i=1}^n x_i e_i = \begin{pmatrix*}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{pmatrix*} & \A_i &= \A e_i = \begin{pmatrix*}
+        a_{i1} \\
+        a_{i2} \\
+        \vdots \\
+        a_{im}
+    \end{pmatrix*}
+\end{align*}
+Тогда линейный оператор $\A$, примененный к иксу -- это:
+\begin{gather*}
+    \A x = \A \left( \sum\limits_{i=1}^n x_i e_i \right) = \sum\limits_{i=1}^n x_i \A e_i = \sum\limits_{i=1}^n x_i \A_i = \sum\limits_{i=1}^n x_i \cdot \begin{pmatrix*} 
+        a_{i1} \\
+        a_{i2} \\
+        \vdots \\
+        a_{in}
+    \end{pmatrix*} =
+    \begin{pmatrix*} 
+        a_{11} & a_{21} & \cdots & a_{n1} \\
+        a_{i2} & a_{22} & \cdots & a_{n2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{1m} & a_{2m} & \cdots & a_{nm} 
+    \end{pmatrix*} \cdot \begin{pmatrix*}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+    \end{pmatrix*}
+\end{gather*}

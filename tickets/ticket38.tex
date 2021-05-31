@@ -1,1 +1,52 @@
 \section{Бесконечные произведения. Определение. Примеры. Свойства }
+\begin{conj}
+    $\prodn p_n$
+
+    $P_n = p_1p_2 \ldots p_n$ - частичные произведения.
+
+    Если существует $\lim P_n$, то его называют значением бесконечного произведения (по аналогии с суммой ряда).
+    Если он конечен и \textbf{отличен от нуля}, то говорят, что произведение сходится.
+\end{conj}
+
+\textbf{Пример}
+\begin{enumerate}
+    \item $\prod \limits_{n=2}^\infty (1 - \frac{1}{n^2})$:
+    \begin{align*}
+        P_n &= (1 - \frac{1}{2^2})(1-\frac{}{3^2})\ldots (1-\frac{1}{n^2}) \\
+        &= \frac{(2-1)(2+1)}{2^2}
+        \cdot \frac{(3-1)(3+1)}{3^2} 
+        \cdot \ldots \cdot \frac{(n-1)(n+1)}{n^2} \\
+        &= \frac{n+1}{2n} \longrightarrow \frac{1}{2}
+    \end{align*}
+    \item $\prodn (1 - \frac{1}{4n^2})$:
+    \begin{align*}
+        P_n &= \prod \limits_{k=1}^n (1 - \frac{1}{(2k)^2}) \\
+        &= \prod \limits_{k=1}^n \frac{(2k-1)(2k+1)}{2k^2} \\
+        &= \frac{((2n-1)!!)^2(2n+1)}{((2n)!!)^2} \longrightarrow \frac{2}{\pi} \text{ по Формуле Валлиса}
+    \end{align*}
+\end{enumerate}
+\textbf{Упражнения}
+\begin{enumerate}
+    \item $\prodn (1 - \frac{1}{(2n+1)^2}) = \frac{\pi}{4}$
+    \item $\prodn (1+x^{2^{n-1}}) = \frac{1}{1-x}$ при $|x| < 1$
+\end{enumerate}
+
+\textbf{Свойства}
+\begin{enumerate}
+    \item Конечное число начальных множителей не влияет на сходимость.
+    \item Если $\prodn p_n$ сходятся, то $\lim p_n = 1$
+    \begin{proof}
+        $p_n = \frac{P_n}{P_{n-1}} \to \frac{P}{P} = 1$, если $P \neq 0, \pm \infty$
+    \end{proof}
+    \item У сходящегося произведения все сомножители положительны, начиная с некоторого места (так как стремятся к 1). Тогда можем считать, что все сомножители положительны.
+    \item Для сходимости $\prodn p_n$ при $p > 0$ необходима и достаточна сходимость ряда $\sumn \ln p_n$.
+    И если $L = \sumn \ln p_n$, то $P = e^L$
+    \begin{proof}
+        \begin{align*}
+            P_n = \prodk p_k \Longrightarrow \ln P_n &= \sumk \ln p_k \\
+            &= S_n \to L \longrightarrow e^{\ln P_n} \\
+            &= P_n \longrightarrow e^L
+        \end{align*}
+        $P_n$ сходится $\Longleftrightarrow \lim P_n \neq 0, +\infty \Longleftrightarrow \lim S_n \neq \pm \infty \Longleftrightarrow S_n$ сходится.
+    \end{proof}
+\end{enumerate}
