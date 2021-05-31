@@ -488,8 +488,8 @@
     Распишем дифференцируемость в точке $a$: $f(a + h) = f(a) + \A h + \alpha(h)\| h \|$, где $\alpha(h) \to 0$ при $h \to 0$.
     Введем $k := f(a + h) - f(a) = \A h + \alpha(h)\| h \|$. 
     Заведем следующее неравенство: \[ \| h \| = \| \A^{-1}(\A h) \| \leqslant \| \A^{-1} \| \| \A h \| \Rightarrow \| \A h \| \geqslant \frac{\| h \|}{\| \A^{-1} \|} \]
-    \quad Используем его при оценке нормы $k$: \[ \| k \| = \| \A h + \alpha(h)\| h \| \| \geqslant \frac{\| h \|}{\| \A^{-1} \|} + \| h \|\|\alpha(h) \| = \| h \| \underbrace{\left(\frac{1}{\| \A^{-1} \|} + \| \alpha(h) \| \right)}_{=:\, C \, > \, 0} \]
-    \quad Если $k \to 0$, то $\| h \| \left(\frac{1}{\| \A^{-1} \|} + \| \alpha(h) \| \right) \to 0$, но скобка не будет стремиться к 0, так как $\frac{1}{\| \A^{-1} \|}$ это какая-то константа, поэтому $h \to 0 \text{ т.к. $\alpha(h) \to 0$ }$.
+    \quad Используем его при оценке нормы $k$: \[ \| k \| = \| \A h + \alpha(h)\| h \| \| \geqslant \frac{\| h \|}{\| \A^{-1} \|} - \| h \|\|\alpha(h) \| = \| h \| \underbrace{\left(\frac{1}{\| \A^{-1} \|} - \| \alpha(h) \| \right)}_{=:\, C \, > \, 0} \]
+    \quad Если $k \to 0$, то $\| h \| \left(\frac{1}{\| \A^{-1} \|} - \| \alpha(h) \| \right) \to 0$, но скобка не будет стремиться к 0, так как $\frac{1}{\| \A^{-1} \|}$ это какая-то константа, поэтому $h \to 0 \text{ т.к. $\alpha(h) \to 0$ }$.
     Вспомним, что $k = f(a+h) - f(a)$, а $g = f^{-1}$. 
     \quad Тогда: \begin{gather*}
         g(\underbrace{b + k}_{f(a+h)}) - g(\underbrace{b}_{f(a)}) = a + h - a = h = \oast 
