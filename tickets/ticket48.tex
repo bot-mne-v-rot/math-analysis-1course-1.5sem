@@ -1,1 +1,23 @@
 \section{Признак Дини}
+\textbf{Признак Дини.} 
+Пусть у нас есть:
+\begin{itemize}
+    \item $K$ -- компакт
+    \item $u_n \in C(K)$ и $u(n) \geqslant 0$ -- непрерывные неотрицательные функции на нем
+    \item $S(x) := \sum\limits_{n = 1}^\infty u_n(x) \in C(K)$ -- сумма ряда тоже непрервная функция
+\end{itemize}
+Тогда ряд сходится равномерно.
+\begin{proof}
+    Введем $S_n = \sum\limits_{k = 1}^n u_k(x)$ -- частичная сумма, $r_n(x) = S(x) - S_n(x) = \sum\limits_{k = n+1}^\infty u_k(x)$ -- все остальное.
+    Знаем, что $r_n(x) \in C(K)$ как разность непрерывных, и $r_n(x)$ монотонно убывают, так как $S_n(x)$ монотонно возрастают.
+    Надо доказать, что $r_n \rightrightarrows 0$, то есть \[ \forall \varepsilon > 0  \;\; \exists n \;\; \forall m \geqslant n \quad |r_m(x)| < \varepsilon \;\; \forall x \in K \]
+    Заметим, что модуль нам не нужен, так как $r_n(x) > 0$, а также достаточно расмматривать только $n$-тый член ряда, ведь $r_n(x)$ убывают:
+    \[ \forall \varepsilon > 0  \;\; \exists n \quad r_n(x) < \varepsilon \;\; \forall x \in K \]
+    Предположим противное и зафиксируем тот $\varepsilon$, для которого все портится.
+    Тогда $\forall n \; \exists x_n \in K : r_n(x_n) \geqslant \varepsilon$. 
+    Так как $x_n \in K$, мы можем выбрать подпоследовательность, сходящуюся к точке из компакта: $x_{n_k} \to x_0 \in K$.
+    Тогда $\forall m \;\; r_m(x_{n_k}) \to r_m(x_0)$. 
+    При фиксированном $m$ мы можем найти такое достаточно большое $n_k$, что $r_m(x_{n_k}) \geqslant r_{n_k}(x_{n_k})$, ведь $r_n(x)$ убывают.
+    Мы знаем, что $r_{n_k}(x_{n_k}) \geqslant \varepsilon$, поэтому $r_m(x_{n_k}) \geqslant \varepsilon$ и по предельному переходу $r_m(x_0) \geqslant \varepsilon$.
+    Это уже что-то непонятное, так как тогда в точке $x_0$ остаток не стремится к 0, и $S_n(x_0) \nrightarrow S(x_0)$. Противоречие. 
+\end{proof}

@@ -1,1 +1,56 @@
 \section{Почленное интегрирование суммы степенного ряда (с леммой)}
+Докажем простую техническую лемму.
+
+\begin{lemma}
+    Пусть $x_n, y_n \in \R$ и $\lim x_n \in (0, +\infty)$. 
+    Тогда:
+    \begin{gather*}
+        \overline{\lim} \, x_ny_n = \lim x_n * \overline{\lim} \, y_n
+    \end{gather*}
+\end{lemma}
+\begin{proof}
+    Введем $A := \lim x_n, B := \overline{\lim} \, y_n, C := \overline{\lim} \, x_ny_n$.
+
+    \quad Выберем подпоследовательность $y_{n_k} \to B$. 
+    Тогда $x_{n_k} \to A$ по свойству предела $x_n$.
+    Итого, $x_{n_k}y_{n_k} \to AB$. 
+    Это какой-то частичный предел последовательности $x_ny_n$, он очевидно не превосходит наибольшего $\Rightarrow AB \leqslant C$.
+
+    \quad Теперь выберем подпоследовательность $x_{n_k}y_{n_k} \to C$. 
+    Тогда $x_{n_k} \to A$ по свойству предела $x_n$.
+    Итого, $y_{n_k} \to \frac{C}{A}$.
+    Это какой-то частичный предел последовательности $y_n$, он очевидно не превосходит наибольшего $\Rightarrow \frac{C}{A} \leqslant B \Rightarrow C \leqslant AB$.
+
+    \quad Таким образом, $AB = C$.
+\end{proof}
+
+\begin{follow}
+    Радиусы сходимости рядов $\sum\limits_{n=0}^\infty a_n z^n, \sum\limits_{n=0}^\infty a_n \frac{z^{n+1}}{n+1}$ и $\sum\limits_{n=0}^\infty n a_n z^{n-1}$ равны.
+\end{follow}
+\begin{proof}
+    Будем рассматривать ряды $\sum\limits_{n=0}^\infty a_n z^n, \sum\limits_{n=0}^\infty a_n \frac{z^n}{n+1}$ и $\sum\limits_{n=0}^\infty n a_n z^{n}$. 
+    Второй и третий ряд мы домножили на константу, понятно, что радиус сходимости от этого не изменился.
+    Для этих рядов уже все очевидно (пользуемся нашей леммой): \[ R_1 = \frac{1}{\overline{\lim} \sqrt[n]{|a_n|}} \quad R_2 = \frac{1}{\overline{\lim} \sqrt[n]{\frac{|a_n|}{n+1}}} = R_1 \quad R_3 = \frac{1}{\overline{\lim} \sqrt[n]{n|a_n|}} = R_1   \]
+\end{proof}
+
+\vspace*{5mm}
+
+Также внутри круга сходимости мы можем почленно интегрировать.
+
+\begin{theorem}
+    Пусть $R$ -- радиус сходимости ряда $f(x) = \sum\limits_{n = 0}^\infty a_n(x - x_0)^n$.
+    
+    Тогда при $|x - x_0| < R:$
+    \begin{gather*}
+        \int_{x_0}^x f(t)dt = \sum\limits_{n = 0}^\infty a_n \frac{(x - x_0)^{n+1}}{n+1}
+    \end{gather*}
+    И этот ряд имеет тот же радиус сходимости.
+\end{theorem}
+\begin{proof}
+    На $[x_0, x]$ ряд для $f$ сходится равномерно, так как этот отрезок полностью попал в круг сходимости $\Rightarrow$ можем интегрировать почленно:
+    \begin{gather*}
+        \int_{x_0}^x f(t)dt = \int_{x_0}^x \sum_{n=0}^\infty a_n(t - x_0)^n dt = \sum_{n=0}^\infty \int_{x_0}^x a_n(t - x_0)^n dt =  \\
+        = \sum_{n = 0}^\infty a_n \frac{(t - x_0)^{n+1}}{n+1}\Big|_{x_0}^x = \sum_{n=0}^\infty a_n \frac{(x - x_0)^{n+1}}{n+1} 
+    \end{gather*}
+    Этот ряд имеем тот же радиус сходимости по предыдущему следствию.
+\end{proof}

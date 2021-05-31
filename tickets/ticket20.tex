@@ -1,1 +1,65 @@
-\section{Интеграл от произведения монотонной и периодической функций. Интеграл}
+\section{Интеграл от произведения монотонной и периодической функций. Интеграл $\int\limits_1^\infty \frac{\sin x}{x^p}dx$.}
+\begin{follow}
+    Пусть $f, \, g \in C[a, +\infty)$ и $f$ периодическая с периодом $T$ и $g$ монотонная.
+    Тогда
+    \begin{enumerate}
+      \item Если $\int_{a}^{a + T} f(x) \: dx = 0$ и $\lim\limits_{\mathclap{x \to +\infty}} g(x) = 0$, то
+      $\int_{a}^{+\infty} f(x) g(x) \: dx$ сходится.
+      \item Если $\int_{a}^{a + T} f(x) \: dx \neq 0$ и $\int_{a}^{+\infty} g(x) \: dx$ расходится и $\lim\limits_{x \to +\infty} g(x) = 0$, то
+      $\int_{a}^{+\infty} f(x) g(x) \: dx$ расходится.
+    \end{enumerate}
+  \end{follow}
+  \begin{proof}
+    \begin{enumerate}
+      \item Применим признак Дирихле. Надо проверить ограниченность $F$. Достаточно проверить, что $F$ периодична с периодом $T$(действительно, этого достаточно так как $F$ непрерывна, и  непрерывная на отрезке функция ограничена).
+      \begin{equation*}
+        \begin{gathered}
+          F(y + T) - F(y) = \int_{a}^{y + T} f(x) \: dx - \int_{a}^{y} f(x) \: dx =
+          \int_{y}^{y + T} f(x) \: dx =\\
+          = \int_{y}^{a + (k + 1)T} f(x) \: dx + \int_{a + (k + 1)T}^{y + T} f(x) \: dx =
+          \int_{y - kT}^{a + T} f(x) \: dx + \int_{a}^{y - kT} f(x) \: dx =
+          \int_{a}^{a + T} f(x) \: dx = 0
+        \end{gathered}
+      \end{equation*}
+      Значит по признаку Дирихле есть сходимость.
+  
+      \item Пусть $K \coloneqq \int_{a}^{a + T} f(x) \: dx \neq 0$ и $\widetilde{f}(x)
+      \coloneqq f(x) - \frac{K}{T}$. Тогда $\int_{a}^{a + T} \widetilde{f}(x) \: dx =
+      \int_{a}^{a + T} f(x) \: dx - K = 0$. Тогда $\widetilde{f}$ и $g$ удовлетворяют условиям первого пункта, значит $\int_{a}^{+\infty} \widetilde{f}(x)g(x) \: dx$ сходится. Тогда
+      \begin{equation*}
+        \int_{a}^{+\infty} f(x)g(x) \: dx =
+        \underbrace{\int_{a}^{+\infty} \widetilde{f}(x)g(x) \: dx}_{\mathclap{
+          \text{сходится}
+        }} +
+        \frac{K}{T}
+        \underbrace{\int_{a}^{+\infty} g(x) \: dx}_{\mathclap{
+          \text{расходится}
+        }}
+      \end{equation*}
+      Справа сумма сходящегося и расходящегося интегралов, значит интеграл слева расходится, что и требовалось доказать.
+    \end{enumerate}
+  \end{proof}
+  \begin{example}
+    Возьмем $\displaystyle \int_{1}^{+\infty} \frac{\sin x}{x^p} \: dx$.
+  
+    Проверим сходимость. Заметим, что $\int_{0}^{2\pi} \sin x \: dx = 0$. Тогда пусть $f(x) \coloneqq \sin x$ и $g(x) \coloneqq \frac{1}{x^p}$ --- монотонная функция.
+    Заметим, что если $g(x) \underset{\mathclap{x \to +\infty}}{\longrightarrow} 0$, то
+    $\int_{1}^{+\infty} \frac{\sin x}{x^p} \: dx$ сходится. Таким образом мы поняли, что у нас есть сходимость в случае $p > 0$.
+  
+    Проверим абсолютную сходимость. Заметим, что $\int_{0}^{2\pi} | \sin x | \: dx \neq 0$. При этом легко видеть, что при $1 \geq p > 0\colon g(x) \underset{\mathclap{x \to +\infty}}{\longrightarrow} 0$ и $\int_{1}^{+\infty} g(x) \: dx = \int_{1}^{+\infty} \frac{dx}{x^p}$ расходится. Таким образом при $1 \geq p > 0$ наш интеграл не имеет абсолютной сходимости(зато имеет обычную сходимость).
+  
+    Если $p > 1$ то можно заметить, что $\left | \frac{\sin x}{x^p} \right | \leq \frac{1}{x^p}$, а значит по признаку сравнения у нас есть абсолютная сходимость(а значит есть и просто сходимость).
+  
+    Если $p < 0$ возьмем отрезок $[2\pi k + \frac{\pi}{6}, 2\pi k + \frac{5\pi}{6}]$. На таком отрезке $\sin x \geq \frac{1}{2}$. То есть:
+    \begin{equation*}
+      \int_{2\pi k + \frac{\pi}{6}}^{2 \pi k + \frac{5 \pi}{6}}
+      \frac{\sin x}{x^p} \: dx
+      \geq
+      \frac{1}{2} \int_{2\pi k + \frac{\pi}{6}}^{2\pi k + \frac{5 \pi}{6}}
+      \frac{dx}{x^p}
+      \geq
+      \frac{1}{2}(\frac{5 \pi}{6} - \frac{\pi}{6}) = \frac{\pi}{3} > 1
+    \end{equation*}
+    То есть на любом суффиксе числовой прямой найдется отрезок, интеграл на котором больше единицы. Это противоречит критерию Коши, значит наш интеграл расходится при $p < 0$.
+  \end{example}
+  

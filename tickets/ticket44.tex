@@ -1,1 +1,69 @@
 \section{Поточечная и равномерная сходимость рядов. Остаток ряда. Необходимое условие равномерной сходимости ряда. Критерий Коши}
+\begin{conj}
+    $\sum\limits_{n = 1}^\infty u_n(x)$, где $u_n: E \to \R$ -- функциональный ряд.    
+\end{conj} 
+Аналогично обычным рядам можно ввести частичную сумму: $S_n(x) := \sum\limits_{k = 1}^n u_k(x)$.
+То есть мы берем и честно суммируем первые $n$ функций и в итоге получаем функцию $S_n(x)$.
+\begin{conj}
+    Ряд сходится поточечно, если последовательность $S_n(x)$ сходятся поточечно.
+    Можно переформулировать это так: ряд сходится поточечно, если для любого $x \in E$ соотвествующий числовой ряд будет сходящимся.
+
+    Поточечно сходящийся ряд определяет новую функцию $S(x): E \to \R \;\; S(x) = \sum\limits_{n = 1}^\infty u_n(x)$.
+    Тогда можно определить остаток ряда $r_n(x) := \sum\limits_{k = n + 1}^\infty u_k(x) = S(x) - S_n(x)$.
+\end{conj}
+
+\vspace*{5mm}
+
+\begin{conj}
+    Ряд сходится равномерно, если $S_n$ сходятся равномерно на $E$.
+\end{conj}
+
+\begin{theorem}
+    Ряд $\sum\limits_{n = 1}^\infty u_n(x)$ равномерно сходится $\Longleftrightarrow r_n \doublerightarrow 0$. 
+\end{theorem}
+\begin{proof}
+    Если ряд равномерно сходится, то по определению $S_n \doublerightarrow S$.
+    Вычтем из обоих частей $S$ и получим, что $S_n - S \doublerightarrow 0$.
+    Таким образом, $-r_n \doublerightarrow 0$, что эквивалентно $r_n \doublerightarrow 0$.
+\end{proof}
+
+\vspace*{5mm}
+
+\textbf{Необходимое условие равномерной сходимости.} Если ряд $\sum\limits_{n = 1}^\infty u_n(x)$ сходится равномерно, то $u_n \doublerightarrow 0$.
+Доказательство аналогично числовым рядам: 
+\begin{gather*}
+    S_n \doublerightarrow S \Rightarrow u_n = S_n - S_{n-1} \doublerightarrow S - S = 0
+\end{gather*}
+Если взять отрицание этого условия, то получится, что если найдется такая последовательность $x_n$, что $u_n(x_n) \nrightarrow 0$, то $\sum\limits_{n = 1}^\infty u_n(x)$ не является равномерно сходящимся.
+    
+\notice \, Из расходимости ряда $\sum\limits_{n = 1}^\infty u_n(x_n)$ ничего не следует.
+То есть мы не можем подставить в каждую функцию свой плохой аргумент, получить расходящийся ряд и сказать, что равномерной сходимости нет.
+Это иллюстрирует следующий пример.
+
+\begin{example}
+    \begin{gather*}
+        u_n(x) = \begin{cases}
+            \frac{1}{n}, & \text{при }x \in [\frac{1}{n + 1}, \frac{1}{n}) \\
+            0, & \text{иначе}
+        \end{cases}
+    \end{gather*}
+    \quad Если мы подставим $x_n = \frac{1}{n+1}$, то получившийся ряд будет гармоническим, а значит будет расходиться.
+    Однако, мы можем доказать равномерную сходимость. 
+    Рассмотрим остатки: 
+    \begin{gather*}
+        r_n(x) = \sum\limits_{k = n + 1}^\infty u_k(x)
+    \end{gather*}
+    Заметим, что при фиксированном $x$ в каждой такой сумме ненулевым будет максимум одно слагаемое, так как полуинтервалы $[\frac{1}{n+1}, \frac{1}{n})$ не пересекаются.
+    Таким образом, $r_n(x) \leqslant \frac{1}{n+1} \Rightarrow r_n \doublerightarrow 0$ и ряд равномерно сходится.
+\end{example}
+
+\vspace*{7mm}
+
+\begin{theorem} [Критерий Коши]
+    \[ \sum_{n=1}^\infty u_n(x) \text{ равномерно сходится } \Longleftrightarrow \forall \varepsilon > 0 \; \exists N : \forall n,m \geqslant N \; \forall x \in E \;\; \left|\sum_{k=n+1}^m u_k(x)\right| < \varepsilon \]
+\end{theorem}
+\begin{proof}
+    Знаем, что $ \sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится $\Leftrightarrow S_n$ равномерно сходятся.
+    Осталось воспользоваться критерием Коши для функциональных последовательностей:
+    \[ \forall \varepsilon > 0 \; \exists N : \forall n,m \geqslant N \; \forall x \in E \;\; \underbrace{|S_m(x) - S_n(x)|}_{= \left|\sum\limits_{k=n+1}^m u_k(x)\right|} < \varepsilon  \] 
+\end{proof}

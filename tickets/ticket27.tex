@@ -1,1 +1,48 @@
 \section{Критерий сходимости ряда с неотрицательными членами. Признак сравнения. Следствие}
+\begin{theorem}
+    Если $a_n \geqslant 0$, то ряд сходится, если и только если его частичные суммы ограничены сверху.
+\end{theorem}
+\begin{proof}
+    Обозначим за $S_n := \sum\limits_{k=1}^n a_k$. 
+    Тогда по определению ряд сходится $\Leftrightarrow$ $S_n$ имеют конечный предел.
+    Заметим, что $S_n$ момнотонно возрастает, так как члены ряда неотрицательны, значит по т. Вейерштрасса $S_n$ имеет предел $\Leftrightarrow$ она ограничена сверху.
+\end{proof}
+
+\vspace{4mm}
+
+\textbf{Признак сравнения.} 
+Пусть $0 \leqslant a_n \leqslant b_n$. 
+Тогда \begin{enumerate}
+    \item Если $\sum b_n$ сходится, то $\sum a_n$ тоже сходится.
+    \item Если $\sum a_n$ расходится, то $\sum b_n$ тоже расходится.
+\end{enumerate}
+Можно считать, что неравенство выполняется лишь с некоторого момента, так как отбрасывание конечного префикса на сходимость не влияет.
+\begin{proof}
+    Заведем частичные суммы $A_n := \sum\limits_{k=1}^n a_k, B_n = \sum\limits_{k=1}^n b_k$.
+    Очевидно, что $A_n \leqslant B_n$.
+    Теперь просто воспользуемся предыдущей теоремой для доказательства каждого пункта:
+    \begin{enumerate}
+        \item $\sum b_n$ сходится $\Rightarrow B_n$ ограниены сверху $\Rightarrow A_n$ ограничены сверху $\Rightarrow \sum a_n$ сходится. 
+        \item От противного: $\sum b_n$ сходится $\Rightarrow \sum a_n$ сходится по первому пункту. Противоречие. 
+    \end{enumerate}
+\end{proof}
+
+\begin{follow}
+    \begin{enumerate}
+        \item Если $a_n, b_n \geqslant 0, a_n = O(b_n)$ и $\sum b_n$ сходится, то $\sum a_n$ сходится. 
+        \item Если $a_n \thicksim b_n$, то $\sum a_n$ и $\sum b_n$ ведут себя одинаково.
+    \end{enumerate}
+    Понятно, что все это при $n \to +\infty$.
+\end{follow}
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item По условию $0 \leqslant a_n \leqslant cb_n$, а мы знаем, что $\sum cb_n$ сходится, так как константу мы можем заносить, тогда по признаку сравнения $\sum a_n$ сходится.
+        \item $a_n \thicksim b_n \Rightarrow \lim \frac{a_n}{b_n} = 1 \Rightarrow \frac{1}{2} \leqslant \frac{a_n}{b_n} \leqslant 2$ при больших $n$.
+    
+        Отсюда следуют 2 неравенства: $\begin{cases}
+            a_n \leqslant 2b_n \\
+            b_n \leqslant 2a_n
+        \end{cases}$ при больших $n$. Тогда по признаку сравнения они ведут себя одинаково.
+    \end{enumerate}
+\end{proof}

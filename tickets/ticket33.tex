@@ -1,1 +1,42 @@
 \section{Признак Лейбница. Оценка суммы знакочередующегося ряда. Примеры}
+\begin{conj}
+    Знакочередующийся ряд -- это ряд вида $\sum\limits_{n=1}^\infty (-1)^{(n-1)}a_n$, где $a_n \geqslant 0$.
+\end{conj}
+
+\textbf{Признак Лейбница.} Если $a_n$ монотонны и $\lim a_n = 0$, то $\sum\limits_{n=1}^\infty (-1)^{(n-1)}a_n$ сходится.
+Более того, его сумма зажата между четными и нечетными частичными суммами: $S_{2n} \leqslant S \leqslant S_{2n + 1}$.
+
+\begin{proof}
+    Посмотрим на четные и нечетные частичные суммы: \begin{itemize}
+        \item $S_{2n + 2} = S_{2n} + a_{2n + 1} - a_{2n + 2} \geqslant  S_{2n}$, так как $a_n$ монотонно убывает.
+        \item $S_{2n + 1} = S_{2n - 1} - a_{2n} + a_{2n + 1} \leqslant S_{2n - 1}$, так как $a_n$ монотонно убывает.
+    \end{itemize}
+    \quad Получили последовательность вложенных отрезков: \[ [0, S_1] \supset [S_2, S_3] \supset [S_4, S_5] \supset \dots \]
+    \quad На самом деле, это даже стягивающиеся отрезки, так как $\lim (S_{2n+1} - S_{2n}) = \lim a_{2n+1} = 0$.
+    Тогда есть единственная общая точка $S$ такая, что $\lim S_{2n} = S = \lim S_{2n+1} \Rightarrow \lim S_n = S$ и $S \in [S_{2n}, S_{2n+1}] \Rightarrow S_{2n} \leqslant S \leqslant S_{2n+1}$.
+\end{proof}
+
+\begin{example}
+    Исследуем на сходимость $\sum\limits_{n=1}^\infty \frac{(-1)^{n-1}}{n^p}$:
+    \begin{itemize}
+        \item При $p > 0$ ряд сходится по признаку Лейбница, так как $a_n = \frac{1}{n^p}$ монотонно $\to 0$.
+        \item При $p \leqslant 0$ получаем, что $\frac{(-1)^{n-1}}{n^p} \nrightarrow 0$, и ряд расходится.
+        \item При $p = 1$ получаем так называемый ряд Лейбница -- $\sum\limits_{n = 1}^\infty \frac{(-1)^{n-1}}{n}$. Найдем его сумму:
+        \begin{gather*}
+            \begin{split}
+                S_{2n} &= 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \dots - \frac{1}{2n} \\
+                &= 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{2n} - 2(\frac{1}{2} + \frac{1}{4} + \dots + \frac{1}{2n}) \\
+                &= H_{2n} - H_n = \ln 2n + \gamma + o(1) - (\ln n + \gamma + o(1)) = \ln 2 + o(1)
+            \end{split}
+        \end{gather*}
+        Отсюда делаем вывод, что $\sum\limits_{n = 1}^\infty \frac{(-1)^{n-1}}{n} = \ln 2$.
+        
+        Теперь переставим элементы и попробуем найти сумму получившегося ряда: \[ 1 - \frac{1}{2} - \frac{1}{4} + \frac{1}{3} - \frac{1}{6} - \frac{1}{8} + \frac{1}{5} - \frac{1}{10} - \frac{1}{12} + \dots \]
+        \begin{gather*}
+            \widetilde{S}_{3n} = \sum_{k = 1}^n \left(\underbrace{\frac{1}{2k - 1} - \frac{1}{2(2k - 1)}}_{= \frac{1}{2(2k - 1)}} - \frac{1}{2 * 2k}\right) = \\ 
+            =  \frac{1}{2}\sum_{k = 1}^n \left(\frac{1}{2k - 1} - \frac{1}{2k}\right) = \frac{1}{2}\left(1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \dots - \frac{1}{2n}\right) = \frac{S_{2n}}{2} \\
+            \Rightarrow \widetilde{S}_{3n} \to \frac{\ln 2}{2}
+        \end{gather*}
+        
+    \end{itemize}
+\end{example}

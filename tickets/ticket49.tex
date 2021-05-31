@@ -1,1 +1,66 @@
 \section{Теоремы о перестановке пределов и перестановке предела и суммы.}
+еперь обсудим свойства равномерно сходящихся последовательностей и рядов.
+ Эти свойства покажут нам, что условие равномерной сходимости очень полезное, и именно благодаря нему мы можем менять местами два предела, пределел с интегрированием и предел с дифференцированием.
+
+\vspace*{5mm}
+
+ \begin{theorem}
+     Пусть $f_n, f : E \to \R$, $a$ -- предельная точка $E$, $f_n \rightrightarrows f$ на $E$ и $\lim\limits_{x \to a} f_n(x) =: b_n \in \R$. 
+     Тогда $\lim b_n, \lim\limits_{x \to a} f(x)$ существуют, конечны и равны.
+     В частности $\lim\limits_{x \to a} \lim\limits_{n \to \infty} f_n(x) =  \lim\limits_{n \to \infty} \lim\limits_{x \to a} f_n(x)$.
+ \end{theorem}
+ \begin{proof}
+     Согласно критерию Коши: \[ \forall \varepsilon > 0 \;\; \exists N \;\; \forall n, m \geqslant N \;\; \forall x \in E \quad |f_n(x) - f_m(x)| < \varepsilon \]
+     \quad Устремим $x$ к $a$ и получим, что: \[ \forall \varepsilon > 0 \;\; \exists N \;\; \forall n, m \geqslant N \quad |b_n - b_m| < \varepsilon  \]
+     \quad Это критерий Коши для последовательности $b_n$, следовательно, у нее есть предел, обозначим его за $b \in \R$.
+     Докажем, что $\lim\limits_{x \to a} f(x) = b$. Оценим их разность c помощью неравенства треугольника:
+     \[ |f(x) - b| \leqslant |f_n(x) - f(x)| + |b_n - f_n(x)| + |b - b_n| \]
+     \quad Заметим, что первое и третье слагаемые будут $< \varepsilon$ при достаточно больших $n$, а второе будет $< \varepsilon$ в некоторой окрестности $a$.
+     А именно: \begin{itemize}
+         \item Первое слагаемое будет $< \varepsilon$ при $n \geqslant N_1$ из определения равномерной сходимости. 
+         \item Второе слагаемое будет $< \varepsilon$ при $|x - a| < \delta$, так как $f_n(x) \to b_n$ и $\delta$ взята как раз из этого предела.
+         \item Третье слагаемое будет $< \varepsilon$ при $n \geqslant N_2$, так как $b_n \to b$.
+     \end{itemize} 
+     \quad Таким образом, $|f(x) - b| < 3\varepsilon$ при $|x - a| < \delta$. Это и означает, что $\lim\limits_{x \to a} f(x) = b$.
+ \end{proof}
+
+\vspace*{7mm}
+
+Можно определить аналогичную вещь для рядов.
+
+ \begin{theorem}
+     Пусть $u_n: E \to \R, a$ -- предельная точка, $\sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится и $\lim\limits_{x \to a} u_n(x) = c_n$.
+     Тогда $\lim\limits_{x \to a} \sum\limits_{n=1}^\infty u_n(x) = \sum\limits_{n=1}^\infty c_n = \sum\limits_{n=1}^\infty \lim\limits_{x \to a} u_n(x)$ и этот ряд сходится.
+     То есть мы можем менять местами предел с суммой.
+ \end{theorem}
+ \begin{proof}
+    Чтобы воспользоваться предыдущей теоремой, введем 
+    \begin{gather*}
+        f_n(x) := \sum\limits_{k=1}^n u_k(x) \rightrightarrows f(x) := \sum_{n=1}^\infty u_n(x) \\
+        b_n: = \lim_{x \to a} f_n(x) = \lim_{x \to a} \sum_{k=1}^n u_k(x)
+    \end{gather*}
+    \quad Заметим, что так как сумма $\sum\limits_{k=1}^n u_k(x)$ конечная, мы можем менять местами сумму с пределом:
+    \[ b_n: = \lim_{x \to a} \sum_{k=1}^n u_k(x) = \sum_{k=1}^n \lim_{x \to a} u_k(x) = \sum_{k=1}^n c_k  \]
+    
+    \quad Тогда согласно теореме существует $\lim\limits_{n \to \infty} b_n$, то есть ряд $\sum\limits_{n = 1}^\infty c_n$ сходится, и $\lim\limits_{n \to \infty} b_n = \lim\limits_{x \to a} f(x)$, то есть $\sum\limits_{n = 1}^\infty c_n = \lim\limits_{x \to a} \sum\limits_{n = 1}^\infty u_n(x)$.
+ \end{proof}
+ \begin{follow}
+     Если $u_n$ непрерывны в точке $a$ и $\sum\limits_{n = 1}^\infty u_n(x)$ равномерно сходится, то $\sum\limits_{n = 1}^\infty u_n(x)$ непрерывна в точке $a$.
+ \end{follow}
+\begin{proof}
+    Непрерывность $u_n$ в точке $a$, говорит нам о том, что $c_n = \lim\limits_{x \to a} u_n(x) = u_n(a)$.
+
+    \quad Тогда \[ \lim\limits_{x \to a} \sum\limits_{n=1}^\infty u_n(x) = \sum\limits_{n=1}^\infty c_n = \sum\limits_{n=1}^\infty u_n(a)   \]
+    \quad Это и есть непрерывность $\sum\limits_{n = 1}^\infty u_n(x)$ в точке $a$.
+\end{proof}
+
+\begin{notice}
+    Равномерная непрерывность тут важна. 
+
+    Пример: $f_n(x) = x^n : [0, 1] \to \R$ -- непрерывные функции. Но предельная функция \[ f(x) = \begin{cases}
+        0, & \text{при $x \in [0, 1)$} \\
+        1, & \text{при $x = 1$}
+    \end{cases} \]
+    не будет непрерывной.
+ \end{notice}
+
