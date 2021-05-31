@@ -1,1 +1,85 @@
 \section{Две теоремы о дифференцируемости произведения функций}
+
+
+\begin{theorem}[дифф. произведения скалярной и векторной функции] $ $
+
+    Пусть 
+    \begin{itemize}
+        \item $E \subset \R^n$, $\lambda : E \to \R$, $f : E \to \R^m$;
+        \item $a \in \Int E$, $f$ и $\lambda$ дифф. в точке $a$
+    \end{itemize}
+    Тогда $\lambda f$ дифф. в точке $a$ и $d_a (\lambda f)(h)
+    = d_a \lambda (h) \cdot f(a) + \lambda(a) \cdot d_a f(h)$.
+\end{theorem}
+\begin{proof} $ $
+
+    По определению дифференцирумости:
+    \begin{align*}
+        f(a + h) &= f(a) + d_a f(h) + \alpha(h) \norm{h}, &&
+        \text{ где $\alpha(h) \to 0$ при $h \to 0$} \\
+        \lambda(a + h) &= \lambda(a) + d_a \lambda(h) + \beta(h) \norm{h}, &&
+        \text{ где $\beta(h) \to 0$ при $h \to 0$}
+    \end{align*}
+
+    Получаем:
+    \begin{gather*}
+        f(a + h) \cdot \lambda(a + h) - f(a) \cdot \lambda(a) = 
+        \underbrace{d_a \lambda(h) \cdot f(a) + 
+        \lambda(a) \cdot d_a f(h)}_{\text{то что нужно}} + \\ +
+        \underbrace{\lambda(a) \cdot \alpha(h) \norm{h}}
+        _{\text{очев. $=o(\norm{h})$}} + 
+        \underbrace{f(a) \cdot \beta(h) \norm{h}}
+        _{\text{очев. $=o(\norm{h})$}} +
+        \underbrace{d_a \lambda(h) \cdot d_a f(h)}_{\text{1.}} + \\ +
+        \underbrace{d_a \lambda(h) \cdot \alpha(h) \norm{h}}_{\text{2.}} + 
+        \underbrace{d_a f(h) \cdot \beta(h) \norm{h}}_{\text{2.}} +
+        \underbrace{\alpha(h) \beta(h) \norm{h}^2}_{\text{3.}}
+    \end{gather*}
+    \begin{enumerate}
+        \item Поймём, что $d_a \lambda(h) \cdot d_a f(h) = o(\norm{h})$:
+        $$\norm{\underbrace{d_a \lambda(h)}_{\text{число}} \cdot d_a f(h)}
+        = \abs{d_a \lambda(h)} \cdot \norm{d_a f(h)} \leqslant
+        \norm{d_a \lambda} \cdot \norm{h} \cdot \norm{d_a f(h)}
+        \leqslant \underbrace{\norm{d_a \lambda} \cdot \norm{d_a f}}
+        _{\text{= const}} \cdot \norm{h}^2 = o(\norm{h})$$
+
+        \item $d_a \lambda(h) \cdot \alpha(h) \norm{h} = o(\norm{h})$,
+        т.к. $\alpha(h) \to 0$ при $h \to 0$ по опр., $\norm{d_a \lambda(h)}
+        \leqslant \norm{d_a \lambda} \cdot \norm{h}$ $\Rightarrow$
+        $d_a \lambda(h)$ ограничена в окрестности 0. Аналогично с 
+        $d_a f(h) \cdot \beta(h) \norm{h}$.
+
+        \item $\alpha(h) \beta(h) \norm{h}^2 = o(\norm{h})$, т.к.
+        $\alpha(h) \to 0$, $\beta(h) \to 0$, $\norm{h} \to 0$ при $h \to 0$.
+    \end{enumerate} 
+\end{proof}
+
+\begin{theorem}[дифф. скалярного произведения]
+    Пусть $f, g : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$,
+    $f$ и $g$ дифф. в точке $a$. Тогда $\langle f, g \rangle$
+    дифф. в точке $a$ и $d_a \langle f, g \rangle (h) =
+    \langle d_a f(h), g(a) \rangle + \langle f(a), d_a g(h) \rangle$
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+        \langle f, g \rangle = \sum_{k = 1}^m f_k g_k
+        \Rightarrow 
+        \underbrace{d_a \langle f, g \rangle = 
+        \sum_{k = 1}^m d_a (f_k g_k)}
+        _\text{линейность дифф.}; \\
+        d_a \langle f, g \rangle (h) = 
+        \sum_{k = 1}^m d_a (f_k g_k)(h) =
+        \sum_{k = 1}^m 
+        \underbrace{(d_a f_k (h) \cdot g_k(a) + 
+        f_k (a) \cdot d_a g_k(h))}_{\text{пред. теорема}} = \\
+        = \sum_{k = 1}^m 
+        \underbrace{(d_a f(h))_k}_{\text{$k$-я коорд.}}
+        \cdot g_k(a) + 
+        \sum_{k = 1}^m f_k (a) \cdot (d_a g(h))_k =
+        \langle d_a f(h), g(a) \rangle + \langle f(a), d_a g(h) \rangle
+    \end{gather*}
+
+    \textit{Необходимо пояснение, почему $d_a f_k (h) = (d_a f(h))_k$}
+\end{proof}
+\textbf{Замечание.} Если $n = 1$, то $\langle f(x), g(x) \rangle' =
+\langle f'(x), g(x) \rangle + \langle f(x), g'(x) \rangle$

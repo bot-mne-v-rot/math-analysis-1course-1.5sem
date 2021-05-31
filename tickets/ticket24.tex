@@ -1,1 +1,59 @@
 \section{Длины эллипса и синусоиды. Эллиптические интегралы первого и второго рода. Связность линейно связного множества}
+
+\begin{examples}
+  \begin{enumerate}
+    \item Длина эллипса $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, \; a \geq b$. Пусть $\overbrace{x(t) = a\cos t}^{\mathclap{\gamma_1(t)}}, \, \overbrace{y(t) = b\sin t}^{\mathclap{\gamma_2(t)}}, \, t \in [0, 2\pi]$. Тогда
+    \begin{equation*}
+      \begin{gathered}
+        \gamma_1' = -a\sin t, \quad \gamma_2' = b \cos t \\
+        l = \int_{0}^{2\pi}\sqrt{a^2\sin^2  t + b^2\cos^2 t} \: dt =
+        4\int_{0}^{\frac{\pi}{2}}\sqrt{a^2 - (a^2 - b^2)\cos^2 t} \: dt
+        = 4a\int_{0}^{\frac{\pi}{2}}\sqrt{1 - \varepsilon^2\sin^2 t} \: dt
+        \text{,} \\ \text{где } \varepsilon = \frac{\sqrt{a^2 - b^2}}{a}\text{ --- эксцентриситет эллипса}
+      \end{gathered}
+    \end{equation*}
+    $ \displaystyle
+        E(k) = \int_{0}^{\frac{\pi}{2}}\sqrt{1 - k^2\sin^2 t} \: dt
+    $ --- эллиптический интеграл \rom{2} рода.
+
+    $ \displaystyle
+        K(k) = \int_{0}^{\frac{\pi}{2}} \frac{dt}{\sqrt{1 - k^2\sin^2 t}}
+    $ --- эллиптический интеграл \rom{1} рода.
+    \item Длина одного периода синусоиды $y = a\sin \frac{x}{b}, \; x \in [0, 2\pi b]$.
+    \begin{equation*}
+      l = \int_{0}^{2\pi b}\sqrt{1 + \left(\frac{a}{b}\cos \frac{x}{b}\right)^2} \: dx
+    \end{equation*}
+    Пусть $\frac{x}{b} = t$. Тогда
+    \begin{equation*}
+      \begin{gathered}
+        l = \int_{0}^{2\pi} \sqrt{1 + \frac{a^2}{b^2}\cos^2 t} \; b \; dt =
+        \int_{0}^{2\pi} \sqrt{b^2 + a^2\cos^2 t} \; dt =
+        4\int_{0}^{\frac{\pi}{2}}\sqrt{(a^2 + b^2) - a^2\sin^2 t} \; \: dt = \\
+        = 4\sqrt{a^2 + b^2}\int_{0}^{\frac{\pi}{2}}\sqrt{1 - \frac{a^2}{a^2 + b^2}\sin^2 t} \; \: dt
+        = 4\sqrt{a^2 + b^2} \; E\left(\frac{a}{\sqrt{a^2 + b^2}}\right)
+      \end{gathered}
+    \end{equation*}
+  \end{enumerate}
+\end{examples}
+
+\begin{conj}
+  $A$ --- линейно связное множество, если $\forall x,\, y \in A$ найдется
+  $\gamma\colon [a, b] \to A$ такой, что $\gamma(a) = x$ и $\gamma(b) = y$.
+\end{conj}
+
+\begin{theorem}
+  Линейно связное множество связно.
+\end{theorem} \nopagebreak[4]
+\begin{proof}
+  От противного. Пусть $A \subset U \cup V$ и $U,\, V$ --- открытые, $U \cap V = \varnothing$ и $A \cap U \neq \varnothing, \, A \cap V \neq \varnothing$.
+
+  Возьмем $x \in A \cap U, \, y \in A \cap V$. Тогда есть $\gamma\colon [a, b] \to A$ --- путь, их соединяющий. Тогда $[a, b] \subset \gamma^{-1}(U) \cap \gamma^{-1}(V)$ и при этом~$\gamma^{-1}(U) \cap \gamma^{-1}(V) = \varnothing, \, a \in \gamma^{-1}(U), \, b \in \gamma^{-1}(V)$. Это противоречит связности отрезка.
+\end{proof}
+
+\begin{conj}
+  Область --- открытое линейное связное множество.
+\end{conj}
+
+\begin{notice}
+  Можно доказать, что для открытых множеств связность = линейная связность.
+\end{notice}

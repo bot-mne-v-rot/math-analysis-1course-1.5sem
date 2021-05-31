@@ -1,1 +1,138 @@
 \section{Длина кривой, заданной параметрически (с леммой). Длина графика функции и длина кривой, заданной в полярных координатах}
+
+\begin{theorem}[о длине гладкого пути в $\R^d$]
+    \begin{equation*}
+      l(y) = \int_{a}^{b} \sqrt{\gamma'_1(t)^2 + \gamma'_2(t)^2 + \dotsb + \gamma'_d(t)^2} \: dt =
+      \int_{a}^{b} \| \gamma'(t) \| \: dt
+    \end{equation*}
+  \end{theorem}
+  \begin{proof}
+    Для начала докажем следующую лемму
+    \begin{lemma}
+      Пусть $\triangle$ --- отрезок, содержащийся в $[a, b], \; \gamma\colon [a, b] \to \R^d$. А также
+      \begin{equation*}
+        \begin{gathered}
+          m_{\triangle}^{(i)} \coloneqq \min\limits_{t \in \triangle} |\gamma_i'(t)|, \quad
+          M_{\triangle}^{(j)} \coloneqq \max\limits_{t \in \triangle} |\gamma_j'(t)|, \\
+          m_{\triangle} \coloneqq \sqrt{\sum\limits_{i = 1}^{d}\left(m_{\triangle}^{(i)}\right)^2}, \quad
+          M_{\triangle} \coloneqq \sqrt{\sum\limits_{i = 1}^{d}\left(M_{\triangle}^{(i)}\right)^2}
+        \end{gathered}
+      \end{equation*}
+      Тогда
+      \begin{equation*}
+        m_{\triangle}l(\triangle) \leq l(\gamma \big|_{\triangle}) \leq M_{\triangle}l(\triangle)
+      \end{equation*}
+    \end{lemma}
+    \begin{proof}
+      Возьмем $t_0 < t_1 < \dotsb < t_n$ --- дробление $\triangle, \, a_k$ --- длина $k$-ого звена(между~$\gamma(t_{k - 1})$ и $\gamma(t_k)$). Тогда
+      \begin{equation*}
+        \underbracket{
+        \gamma_i(t_k) - \gamma_i(t_{k - 1}) =
+        \gamma_i'(\overbrace{\xi_{ik}}^{\mathclap{\xi_{ik} \in [t_{k - 1}, t_k] \subset \triangle}})
+        (t_k - t_{k - 1})}_{\mathclap{\text{
+          по теореме Лагранжа
+        }}}
+        \leq M_{\triangle}^{(i)}(t_k - t_{k - 1})
+      \end{equation*}
+      Теперь возведем обе части неравенства в квадрат и просуммируем по всем $i$:
+      \begin{equation*}
+        \rho(\gamma(t_{k - 1}), \gamma(t_k))^2 = a_k^2 =
+        \sum\limits_{i = 1}^{d}(\gamma_i(t_k) - \gamma_i(t_{k - 1}))^2 \leq
+        (t_k - t_{k - 1})^2 \sum\limits_{i = 1}^{d}\left(M_{\triangle}^{(i)}\right)^2 =
+        (t_k - t_{k -1 })^2M_{\triangle}^2
+      \end{equation*}
+      Таким образом, просуммировав по всем $k$ от 1 до $n$ получаем, что
+      \begin{equation*}
+        \sum\limits_{k = 1}^{n} a_k \leq
+        M_{\triangle} \sum\limits_{k = 1}^{n}(t_k - t_{k - 1}) = M_{\triangle}l(\triangle)
+        \implies
+        \sup \sum\limits_{k = 1}^{n} a_k =
+        l(\gamma \big|_{\triangle}) \leq M_{\triangle}l(\triangle)
+      \end{equation*}
+      Аналогично доказывается ограничение снизу. Лемма доказана.
+    \end{proof}
+    Перейдем к доказательству теоремы. Рассмотрим дробление $a = t_0 < t_1 < \dotsb < t_{n - 1} < t_n = b$. Пусть $m_k \coloneqq m_{[t_{k - 1}, t_k]}$ и $M_k \coloneqq M_{[t_{k - 1}, t_k]}$. По лемме знаем, что
+    \begin{equation*}
+      m_k(t_k - t_{k - 1}) \leq l(\gamma\big|_{[t_{k - 1}, t_k]}) \leq M_k(t_k - t_{k - 1})
+    \end{equation*}
+    Заметим, что
+    \begin{equation*}
+      m_k(t_k - t_{k - 1}) \leq
+      \int_{t_{k - 1}}^{t_k} \|\gamma'(t) \| \: dt
+      \leq M_k(t_k - t_{k - 1})
+    \end{equation*}
+    Сложим наши неравенства для $k$ от 1 до $n$:
+    \begin{equation*}
+      \begin{gathered}
+        \sum\limits_{k = 1}^{n} m_k(t_k - t_{k - 1})
+        \leq l(\gamma) \leq \sum\limits_{k = 1}^{n} M_k(t_k - t_{k - 1}) \\
+        \sum\limits_{k = 1}^{n} m_k(t_k - t_{k - 1})
+        \leq \int_{a}^{b} \|\gamma'(t) \| \: dt \leq \sum\limits_{k = 1}^{n} M_k(t_k - t_{k - 1})
+      \end{gathered}
+    \end{equation*}
+    Заметим, что
+    \begin{equation*}
+      \begin{gathered}
+        M_k - m_k = \sqrt{\sum\limits_{i = 1}^{d}\left(M_{[t_{k - 1}, t_k]}^{(i)}\right)^2} -
+        \sqrt{\sum\limits_{i = 1}^{d}\left(m_{[t_{k - 1}, t_k]}^{(i)}\right)^2}
+        \leq \\ \leq
+        \sqrt{\sum_{i = 1}^{d}\left(M_{[t_{k - 1}, t_k]}^{(i)} - m_{[t_{k - 1}, t_k]}^{(i)}\right)^2} \leq
+        \sum\limits_{i = 1}^{d}\left(M_{[t_{k - 1}, t_k]}^{(i)} - m_{[t_{k - 1}, t_{k}]}^{(i)}\right) = \\
+        = \sum\limits_{i = 1}^{d}(\gamma_i'(\xi_{ik}) - \gamma_i'(\eta_{ik}))\text{, где }
+        \xi_{ik}, \eta_{ik} \in [t_{k - 1}, t_k] \leq \\
+        \leq \sum_{i = 1}^{d} \omega_{\gamma'_{i}}(|\tau|)\text{, где } \tau\text{ --- мелкость разбиения}
+      \end{gathered}
+    \end{equation*}
+    Но модуль непрерывности стремится к нулю, если мелкость стремится к нулю. А так как $d$ --- какое-то конечное число, то и вся сумма стремится нулю, а значит и $M_k - m_k$. Теперь просуммируем по всем $k$ от 1 до $n$:
+    \begin{equation*}
+      \sum\limits_{k = 1}^{n} (M_k - m_k)(t_k - t_{k - 1}) \leq
+      \left(\sum_{i = 1}^{d} \omega_{\gamma'_{i}}(|\tau|)\right)\left(\sum\limits_{k = 1}^{n} (t_k - t_{k - 1})\right) \leq \left(\sum_{i = 1}^{d} \omega_{\gamma'_{i}}(|\tau|)\right)(b - a)
+    \end{equation*}
+    Таким образом $\sum\limits_{k =1}^{n} m_k(t_k - t_{k - 1})$ и $\sum\limits_{k =1}^{n} M_k(t_k - t_{k - 1})$ могут находится сколь угодно близко друг к другу, а значит
+    \begin{equation*}
+      l(\gamma) = \int_{a}^{b} \| \gamma'(t)\| \: dt
+    \end{equation*}
+    Что и требовалось доказать.
+  \end{proof}
+  
+  \textbf{Следствия}.
+  \begin{enumerate}
+    \item Длина графика функции $f\colon [a, b] \to \R$ равна $\int_{a}^{b} \sqrt{1 + f'(x)^2} \: dx$.
+    \begin{proof}
+      Пусть
+      $
+      \gamma(t) =
+      \begin{pmatrix}
+        t\\
+        f(t)
+      \end{pmatrix}
+      $. Тогда
+      $
+      \gamma'(t) =
+      \begin{pmatrix}
+        1\\
+        f'(t)
+      \end{pmatrix}
+      $. Подставив $\gamma$ в формулу из теоремы получаем нужное равенство.
+    \end{proof}
+    \item Длина пути в полярных координатах $r\colon [\alpha, \beta] \to \R$ равна $\int_{\alpha}^{\beta} \sqrt{r^2(t) + r'(t)^2} \: dt$.
+    \begin{proof}
+      Пусть
+      $
+      \gamma(t) =
+      \begin{pmatrix}
+        r(t)\cos t \\
+        r(t)\sin t
+      \end{pmatrix}
+      $. Тогда
+      $
+      \gamma'(t) =
+      \begin{pmatrix}
+        r'(t)\cos t - r(t)\sin t \\
+        r'(t)\sin t + r(t)\cos t
+      \end{pmatrix}
+      $. Подставив $\gamma$ в формулу из теоремы получаем нужное равенство.
+    \end{proof}
+    \item $l(\gamma) \leq (b - a)\max\limits_{t \in [a, b]} \| \gamma'(t) \|$
+  \end{enumerate}
+  

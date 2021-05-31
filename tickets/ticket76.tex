@@ -1,1 +1,82 @@
 \section{Теорема Банаха о сжатии. Следствие}
+
+\begin{theorem} (Теорема Банаха о сжатии)
+
+    Пусть $X$ -- полное метрическое пространство. Есть $f: X \longrightarrow X$ и $0 < \lambda < 1$, такие, что:
+    \begin{gather*}
+        \rho(f(x), f(y)) \leqslant \lambda \rho(x, y) \quad \forall x, y \in X
+    \end{gather*}
+    Тогда существует единственное $x^* \in X$, такое, что $f(x^*) = x^*$. 
+    То есть если в полном метрическом пространстве у нас есть сжатие, то есть ровно одна неподвижная точка. 
+\end{theorem}
+\begin{proof}
+    Зафиксируем точку $x_0$. Последующие точки посчитаем как $x_{n+1} = f(x_n)$. 
+    Покажем, что последовательность точек фундаментальна. Посмотрим на расстояние между точками $x_{n+k}$ и $x_{n}$:
+    \begin{gather*}
+        \rho(x_{n+k}, x_n) = \rho(f(x_{n+k-1}), f(x_{n-1})) \leqslant \lambda \rho(x_{n+k-1}, x_{n-1})
+    \end{gather*}
+    Теперь проделаем такое телодвижение $n$ раз и упремся в расстояние между $x_k$ и $x_0$:
+    \begin{gather*}
+        \lambda \rho(x_{n+k-1}, x_{n-1}) \leqslant \dots \leqslant \lambda^n \rho(x_k, x_0)
+    \end{gather*}
+    Теперь максимально тупо оценим $\rho(x_k, x_0)$: 
+    \begin{align*}
+        \rho(x_0, x_k) &\leqslant \rho(x_0, x_1) + \lessbelow{\rho(x_1, x_2)}{\lambda \rho(x_0, x_1)} + \dots + \lessbelow{\rho(x_{k-1}, x_k)}{\lambda^{k-1} \rho(x_0, x_1)} \\
+        &\leqslant \rho(x_0, x_1) (1 + \lambda + \lambda^2 + \dots + \lambda^{k-1}) \\
+        &= \rho(x_0, x_1) \cdot \frac{1 \cdot (1 - \lambda^{k-1})}{1 - \lambda} < \frac{\rho(x_0, x_1)}{1 - \lambda}
+    \end{align*}
+    То есть мы поняли, что:
+    \begin{gather*}
+        \rho(x_{n+k}, x_n) < \frac{\lambda^n \rho(x_0, x_1)}{1 - \lambda} = \operatorname{const} \cdot \lambda^n
+    \end{gather*}
+    Из этого следует фундаментальность. Почему? Потому что фундаментальность означает, что между точками с большими номерами расстояние 
+    меньше $\varepsilon$. А в нашем случае для любого $\varepsilon$ мы можем подобрать $n$ настолько большим, 
+    что $\operatorname{const} \cdot \lambda^n$ будет меньше $\epsilon$ вне зависимости от $k$.
+
+    Раз пространство полное, то фундаментальность гарантирует нам наличие предела $x^* = \lim{x_n}$.
+    Наша функция равномерно непрерывна, так как мы можем взять $\delta = \varepsilon$. Если у нас расстояние 
+    между точками меньше, чем $\delta$, то расстояние между образами будет меньше, чем $\lambda \cdot \delta$. 
+    Пользуясь непрерывность функции проверим неподвижность точки $x^*$:
+    \begin{gather*}
+        f(x^*) = f(\lim{x_n}) = \lim{f(x_n)} = \lim{x_{n+1}} = x^*
+    \end{gather*}
+    Осталось проверить единственность $x^*$. Она очевидна. Предположим, что существуют $a$ и $b$ -- неподвижные точки. Тогда:
+    \begin{gather*}
+        \rho(\stackbelow{f(a)}{a}, \stackbelow{f(b)}{b}) \leqslant \inbelow{\lambda}{(0, 1)} \rho(a, b)
+    \end{gather*}
+    Противоречие. Это завершает доказательство.
+\end{proof}
+\notice
+\begin{gather*}
+    1. \; \rho(x_n, x^*) \leqslant \frac{\lambda^n}{1 - \lambda} \cdot \rho(x_0, x_1) \qquad \qquad 
+    2. \; \rho(x_n, x^*) \leqslant \lambda^n \cdot \text{ макс. расст. между точками в } X
+\end{gather*} 
+Этот факт позволяет нам понять, что $x_n$ довольно быстро сходится. То есть мы с хорошей точность и достаточно быстро можем посчитать $x^*$. 
+\begin{proof} \quad 
+
+    \begin{enumerate}
+        \item Мы знаем, что:
+        \begin{gather*}
+            \rho(x_n, x_{n+k}) \leqslant \frac{\lambda^n}{1 - \lambda} \cdot \rho(x_0, x_1)
+        \end{gather*}
+        Нужно просто устремить $k$ к бесконечности, тогда $x_{n+k}$ будет стремиться к $x^*$, а расстояние по левую сторону неравенства к $\rho(x_n, x^*)$.
+        \item \begin{gather*}
+            \rho(x_n, x_n+k) \leqslant \lambda^n \rho(x_0, x_k) \leqslant \lambda^n \cdot \text{ диаметр } X
+        \end{gather*}
+        Далее аналогично предыдущему пункту.
+    \end{enumerate}
+\end{proof}
+\follow \; (Безумное)
+
+Пусть $X$ -- полное метрическое пространство. Есть два сжатия $f$ и $g$ с одинаковым коэффициентом сжатия $\lambda \in (0, 1)$.
+И $x = f(x), y = g(y)$ -- их неподвижные точки. Тогда можно странным образом оценить расстояние между этими точками сверху: 
+\begin{gather*}
+    \rho(x, y) \leqslant \frac{\rho(f(x), g(x))}{1 - \lambda}
+\end{gather*}
+\begin{proof}
+    \begin{gather*}
+        \rho(x, y) = \rho(f(x), g(y)) \leqslant \rho(f(x), g(x)) + \lessabove{\rho(g(x), g(y))}{\lambda \rho(x, y)} \\
+        \rho(x, y) - \lambda \rho(x, y) \leqslant \rho(f(x), g(x)) \\
+        (1 - \lambda) \rho(x, y) \leqslant \rho(f(x), g(x))
+    \end{gather*}
+\end{proof}

@@ -1,1 +1,106 @@
 \section{Непрерывная дифференцируемость. Определение и равносильное ей свойство}
+
+\begin{conj}
+    Пусть $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$.
+    Тогда $f$ \textbf{непрерывно дифф.} в точке $a$, 
+    если $f$ дифф. в точке 
+    $a$ и $d_x f$ непрерывен в точке $a$, т.е. $\norm{d_x f - d_a f}
+    \to 0$ при $x \to a$.
+\end{conj}
+
+\begin{theorem}
+    $f$ непрерывно дифф. $\Longleftrightarrow$ $f$ дифф. в окрестности
+    точки $a$ и все её частные производные непрерывны в точке $a$.
+\end{theorem}
+\begin{proof} $ $
+
+    \begin{itemize}
+        \item[``$\Longleftarrow$'':]
+        $$ d_x f =
+        \begin{pmatrix*}
+            \frac{df_1}{dx_1}(x) & \frac{df_1}{dx_2}(x) &
+            \dots & \frac{df_1}{dx_n}(x) \\
+            \frac{df_2}{dx_1}(x) & \frac{df_2}{dx_2}(x) &
+            \dots & \frac{df_2}{dx_n}(x) \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \frac{df_m}{dx_1}(x) & \frac{df_m}{dx_2}(x) &
+            \dots & \frac{df_m}{dx_n}(x) \\
+        \end{pmatrix*}$$
+
+        Нужно доказать, что $\norm{d_x f - d_a f} \to 0$ при $x \to a$.
+        Оценим квадрат нормы этого линейного оператора:
+        $$ \norm{d_x f - d_a f}^2 \leqslant 
+        \sum_{j, k} \left( \frac{df_k}{dx_j}(x) -
+        \frac{df_k}{dx_j}(a) \right)^2 $$
+
+        $\frac{df_k}{dx_j}(x)$ непрерывна в точке $a$, поэтому:
+        $$ \frac{df_k}{dx_j}(x) - \frac{df_k}{dx_j}(a) \to 0
+        \text{ при } x \to a $$
+
+        \item[``$\Longrightarrow$'':]
+    
+        $$ \underbrace{\begin{pmatrix*}
+            \frac{df_1}{dx_j}(x) \\
+            \frac{df_2}{dx_j}(x) \\
+            \vdots \\
+            \frac{df_m}{dx_j}(x)
+        \end{pmatrix*}}_{\text{$j$-й столбец $d_x f$}} =
+        \begin{pmatrix*}
+            \frac{df_1}{dx_1}(x) & \frac{df_1}{dx_2}(x) &
+            \dots & \frac{df_1}{dx_n}(x) \\
+            \frac{df_2}{dx_1}(x) & \frac{df_2}{dx_2}(x) &
+            \dots & \frac{df_2}{dx_n}(x) \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \frac{df_m}{dx_1}(x) & \frac{df_m}{dx_2}(x) &
+            \dots & \frac{df_m}{dx_n}(x) \\
+        \end{pmatrix*} \cdot
+        \begin{pmatrix*}
+            0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0
+        \end{pmatrix*}
+        \begin{matrix*}
+            $ $ \\ $ $ \\ $ $ \\
+            \longleftarrow \text{$j$-е место}
+            \\ $ $ \\ $ $ \\ $ $
+        \end{matrix*} = d_x f (e_j)$$
+
+        Таким образом:
+        \begin{gather*}
+            \abs{\frac{d f_k}{d x_j}(x) - \frac{d f_k}{d x_j}(a)}
+            = \norm{\begin{pmatrix*}
+                0 \\ \vdots \\ 0 \\ 
+                \frac{d f_k}{d x_j}(x) - \frac{d f_k}{d x_j}(a) 
+                \\ 0 \\ \vdots \\ 0
+            \end{pmatrix*}}
+            \leqslant
+            \norm{\begin{pmatrix*}
+                \frac{df_1}{dx_j}(x) - \frac{df_1}{dx_j}(a) \\
+                \frac{df_2}{dx_j}(x) - \frac{df_2}{dx_j}(a) \\
+                \vdots \\
+                \frac{df_m}{dx_j}(x) - \frac{df_m}{dx_j}(a)
+            \end{pmatrix*}} = \\
+            = \norm{d_x f(e_j) - d_a f(e_j)} =
+            \norm{(d_x f - d_a f)(e_j)} \leqslant
+            \norm{d_x f - d_a f} \cdot \underbrace{\norm{e_j}}_{= 1}
+            = \norm{d_x f - d_a f} \xrightarrow[x \to a]{} 0
+        \end{gather*}
+    \end{itemize}
+    \textit{Возможно, это доказательство записано излишне подробно.
+    Всякие рассуждения с матрицами на экзамене можно проговаривать
+    устно.}
+\end{proof}
+
+\begin{theorem}
+    Непрерывная дифф. сохраняется при взятии лин. комбинации,
+    композиции, скал. произведения.
+\end{theorem}
+\begin{proof}
+    Предыдущая теорема говорила о том, что непрерывная 
+    дифференцируемость в точке эквивалентна непрерывности всех
+    коэффициентов матрицы дифференциала в этой точке.
+
+    Вспомним, что матрицы дифференциалов при взятии лин. комбинации,
+    композиции, скал. произведения -- это какие-то линейные комбинации
+    или произведения матриц дифференциалов исходных функций. Если
+    все коэфф. исходных матриц были непрерывны, то после перемножения
+    или сложения все коэфф. итоговой матрицы тоже будут непрерывны.
+\end{proof}

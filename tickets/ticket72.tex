@@ -1,1 +1,142 @@
 \section{Частные производные высших порядков. Теорема о перестановке частных производных в $\R^2$}
+
+\begin{conj}
+    Пусть $f : E \to \R$, $E \subset \R^n$, $a \in \Int E$.
+    Если существует $\frac{df}{d x_i}$ в окрестности $a$
+    и у неё есть частная производная $\frac{d}{d x_j}$,
+    то она называется \textbf{частной производной второго порядка}.
+    \textit{Т.е. это частная производная по частной производной}
+
+    Обозначение (длинное):
+    $$\frac{d^2 f}{d x_j d x_i} = \frac{d \frac{d f}{d x_i}}{d x_j}$$
+    \textit{Храбров считает, что такую запись надо читать так:
+    сначала дифф. по $i$-й координате, потом по $j$-й. В некоторых
+    книжках считают иначе.}
+
+    Альтернативное обозначение:
+    $$f''_{x_i x_j} = (f'_{x_i})_{x_j}$$
+\end{conj}
+
+\begin{conj}
+    Если существует в окр. точки $a$ частная производная порядка $r$:
+    $$ \frac{d^r f}{d x_{i_r} d x_{i_{r-1}} \dots d x_{i_1}} $$
+    и у этой производной есть частная производная $\frac{d}{d x_{r+1}}$,
+    то результат:
+    $$ \frac{d^{r+1} f}{d x_{i_{r+1}} d x_{i_{r}} \dots d x_{i_1}} $$
+    называют \textbf{частной производной порядка $r+1$}.
+\end{conj}
+
+\textbf{Пример:}
+$$f(x, y) = x^y \quad\quad \frac{df}{dx} = y x^{y - 1} 
+\quad\quad \frac{df}{dy} = x^y \cdot \ln x$$
+\begin{align*}
+    \frac{d^2 f}{d x^2} &= \frac{d}{dx} \left( \frac{df}{dx} \right)
+    = \frac{d}{dx} \left( y x^{y - 1} \right) = y(y-1) x^{y-2} \\
+    \frac{d^2 f}{d y^2} &= \frac{d}{dy} \left( \frac{df}{dy} \right)
+    = \frac{d}{dy} \left( x^y \cdot \ln x \right) = x^y \cdot \ln^2 x \\
+    \frac{d^2 f}{d y d x} &= \frac{d}{dy} \left( \frac{df}{dx} \right)
+    = \frac{d}{dy} \left( y \cdot x^{y - 1} \right) = x^{y-1} + 
+    y \cdot x^{y-1} \cdot \ln x \\
+    \frac{d^2 f}{d x d y} &= \frac{d}{dx} \left( \frac{df}{dy} \right)
+    = \frac{d}{dx} \left( x^y \cdot \ln x \right) =
+    y \cdot x^{y - 1} \cdot \ln x + x^y \cdot \frac{1}{x} =
+    \frac{d^2 f}{d y d x}
+\end{align*}
+\textit{Но частные производные по $x,y$ и по $y,x$ совпадают не всегда.}
+
+\textbf{Пример:}
+$$
+f(x, y) = \begin{cases}
+    xy \cdot \frac{x^2 - y^2}{x^2 + y^2} \text{ при } x^2 + y^2 \neq 0,\\
+    0, \text{ иначе.}
+\end{cases}
+$$
+Воспользуемся тем, что:
+$$\frac{x^2 - y^2}{x^2 + y^2} = 1 - \frac{2y^2}{x^2 + y^2}$$
+
+Пусть $x^2 + y^2 \neq 0$. Тогда:
+$$\frac{df}{dx} = y \cdot \frac{x^2 - y^2}{x^2 + y^2} + 
+xy(-2y^2) \frac{-2x}{(x^2 + y^2)^2} =
+y\frac{x^4 - y^4 + 4x^2y^2}{x^2 + y^2}$$
+
+$$\frac{df}{dx}(0, 0) = \lim_{h \to 0} \frac{f(h, 0) - f(0, 0)}{h} = 0$$
+$$\frac{d^2f}{dy dx} (0, 0) = \lim_{h \to 0} 
+\frac{\frac{df}{dx}(0, h) - \frac{df}{dx}(0, 0)}{h} =
+\lim_{h \to 0} \frac{1}{h} \cdot h \cdot (-1) = -1
+$$
+Легко заметить, взглянув на формулу, что производная по $x, y$ ---
+это производная по $y, x$, но с другим знаком, поэтому:
+$$\frac{d^2f}{dx dy} (0, 0) = 1 \neq \frac{d^2f}{dy dx} (0, 0)$$
+
+\begin{theorem}
+    Пусть $f : E \to \R$, $E \subset \R^2$, $(x_0, y_0) \in \Int E$,
+    частные производные $f'_x$, $f'_y$, $f''_{xy}$ существуют в
+    окрестности точки $(x_0, y_0)$ и $f''_{xy}$ непрерывна в 
+    $(x_0, y_0)$. Тогда существует $f''_{yx}(x_0, y_0)$ и 
+    $f''_{xy}(x_0, y_0) = f''_{yx}(x_0, y_0)$.
+\end{theorem}
+\begin{proof}
+    Введём:
+    $$\varphi(s) := f(s, y_0 + k) - f(s, y_0)$$
+    Эта функция дифферецируема в окрестности $x_0$, 
+    т.к. производная $\varphi(s)$
+    --- это частная производная $f$ по $x$ в окрестности $(x_0, y_0 + k)$
+    минус частная производная $f$ по $y$ в окрестности $(x_0, y_0)$.
+
+    Т.к. эта функция дифференцируема, мы можем написать для неё теорему
+    Лагранжа:
+    $$ \varphi(x_0 + h) - \varphi(x_0) = 
+    \underset{\text{где } \Theta_1 \in (0, 1)}
+    { h \varphi'(x_0 + \Theta_1 h)} =
+    h (f_x'(x_0 + \Theta_1 h, y_0 + k) - 
+    f_x'(x_0 + \Theta_1 h, y_0)) = \oast $$
+    Введём ещё:
+    $$ \psi(t) := f_x'(x_0 + \Theta_1 h, t)$$
+    Эта функция тоже дифференцируема в окрестности $y_0$,
+    т.к. производная этой функции -- это просто частная производная
+    $f$ сначала по $x$, потом по $y$. А она существует по условию.
+    
+    Т.к. эта ф-я дифф., то про неё тоже можно написать теорему
+    Лагранжа. Тогда:
+    $$ \oast = h(\psi(y_0 + k) - \psi(y_0)) =
+    \underset{\text{где } \Theta_2 \in (0, 1)}
+    {hk \cdot \psi'(y_0 + \Theta_2 k)} =
+    hk \cdot f''_{xy}(x_0 + \Theta_1 h, y_0 + \Theta_2 k) $$
+
+    Получили в итоге:
+    $$ f(x_0 + h, y_0 + k) - f(x_0 + h, y_0) - f(x_0, y_0 + k)
+    + f(x_0, y_0) = hk \cdot 
+    f''_{xy}(x_0 + \Theta_1 h, y_0 + \Theta_2 k) = \circledcirc $$
+
+    Воспользуемся теперь непрерывностью $f''_{xy}$ в точке $(x_0, y_0)$:
+    $$ \circledcirc = hk \cdot (f''_{xy}(x_0, y_0) + \alpha(h, k)) 
+    \text{, где $\alpha(h, k) \to 0$ при $(h, k) \to 0$} $$
+    Поделим выражение на $hk$. Тогда:
+    $$ \abs{\alpha(h, k)} = \abs{\frac{1}{h} \left( 
+        \underbrace{\frac{f(x_0 + h, y_0 + k) - f(x_0 + h, y_0)}{k}}
+        _{\longrightarrow f'_y(x_0 + h, y_0) \text{ при $k \to 0$}} - 
+        \underbrace{\frac{f(x_0, y_0 + k) - f(x_0, y_0)}{k}}
+        _{\longrightarrow f'_y(x_0, y_0) \text{ при $k \to 0$}}
+    \right) - f''_{xy}(x_0, y_0)} $$
+    При этом для любого $\varepsilon > 0$ верно, что
+    $ \abs{\alpha(h, k)} < \varepsilon$ при малых $h, k$.
+
+    Сделаем предельный переход:
+    $$ \abs{\frac{f'_y(x_0 + h, y_0) - f'_y(x_0, y_0)}{h}
+    - f''_{xy}(x_0, y_0)} 
+    \leqslant \varepsilon \text{ при малых $h$} $$
+
+    Получаем:
+    $$ f''_{yx}(x_0, y_0) = \lim_{h \to 0} 
+    \frac{f'_y(x_0 + h, y_0) - f'_y(x_0, y_0)}{h}
+    = f''_{xy}(x_0, y_0) $$
+
+\end{proof}
+
+\begin{theorem}
+    Если $f'_x$ и $f'_y$ определены в окрестности точки $(x_0, y_0)$
+    и дифф. в этой точке, то $f''_{xy}(x_0, y_0) = f''_{yx}(x_0, y_0)$.
+\end{theorem}
+\begin{proof}
+    \textit{Упражнение.}
+\end{proof}

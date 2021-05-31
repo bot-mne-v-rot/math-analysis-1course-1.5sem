@@ -1,1 +1,119 @@
 \section{Линейность диференциала. Дифференциал композиции}
+
+
+\begin{theorem}[линейность дифференциала] $ $
+
+    Пусть 
+    \begin{itemize}
+        \item $f, g : E \to \R^m$, $E \subset \R^n$;
+        \item $a \in \Int E$, $\lambda \in \R$;
+        \item $f$ и $g$ дифф. в точке $a$.
+    \end{itemize}
+    Тогда
+    \begin{itemize}
+        \item $f + g$ дифф. в точке $a$ и $d_a(f + g) = d_a f + d_a g$;
+        \item $\lambda f$ дифф. в точке $a$ и $d_a(\lambda f) = 
+        \lambda d_a f$.
+    \end{itemize}
+\end{theorem}
+\begin{proof} $ $
+    
+    По определению дифференцирумости:
+
+    $f(a + h) = f(a) + d_a f(h) + \alpha(h) \norm{h}$, где
+    $\alpha(h) \to 0$ при $h \to 0$. \\
+    $g(a + h) = g(a) + d_a g(h) + \beta(h) \norm{h}$, где
+    $\beta(h) \to 0$ при $h \to 0$.
+
+    Тогда $f(a + h) + g(a + h) = f(a) + g(a) + 
+    \underbrace{d_a f(h) + d_a g(h)}_{\text{лин. оператор}} +
+    \overbrace{\underbrace{(\alpha(h) + \beta(h))}_{\to 0} \norm{h}}
+    ^{= o(\norm{h})}$.
+
+    Равенство по определению выполняется, значит, 
+    $f + g$ дифф. в точке $a$ и $d_a(f+g) = d_a f + d_a g$.
+
+    $\lambda f(a + h) = \lambda f(a) + 
+    \underbrace{\lambda d_a f(h)}_{\text{лин. оп-р}} + 
+    \overbrace{\lambda \alpha(h) \norm{h}}^{=o(\norm{h})}$.
+
+    Равенство по определению выполняется, значит, 
+    $\lambda f$ дифф. в точке $a$ и $d_a(\lambda f) = \lambda d_a f$.
+\end{proof}
+\textit{В понимании дифференциала как матриц сложение дифференциалов
+и умножение дифференциала на скаляр просто соответствуют сложению
+матриц и умножению матрицы на скаляр. Хотя искушённому жуковским линалом
+читателю, это очевидно.}
+
+\begin{theorem}[дифференцируемость композиции]
+    Пусть
+    \begin{itemize}
+        \item $D \subset \R^n$, $f : D \to \R^m$;
+        \item $E \subset \R^m$, $g : E \to \R^l$;
+        \item $a \in \Int D$, $f(D) \subset E$, $f(a) \in \Int E$;
+        \item $f$ дифф. в точке $a$; $g$ дифф. в точке $f(a)$.
+    \end{itemize}
+    Тогда $g \circ f$ дифф. в точке $a$ и 
+    $d_a (g \circ f) = d_{f(a)} g \circ d_a f$.
+\end{theorem}
+\begin{proof} $ $
+
+    По определению дифференцирумости:
+    \begin{align*}
+        f(a + h) &= \overbrace{f(a)}^{=: b} + 
+        \overbrace{d_a f(h) + \alpha(h) \norm{h}}^{=: k}, &&
+        \text{ где $\alpha(h) \to 0$ при $h \to 0$} \\
+        g(b + k) &= g(b) + d_b g(k) + \beta(k) \norm{k}, &&
+        \text{ где $\beta(k) \to 0$ при $k \to 0$}
+    \end{align*}
+    
+    Тогда: $$g(f(a + h)) = g(b + k) = 
+    g(b) + d_b g(k) + \beta(k) \norm{k}$$
+
+    По линейности линейного отображения:
+    $$d_b g(k) = d_b g(d_a f(h) + \alpha(h) \norm{h}) = 
+    d_b g (d_a f(h)) + d_b g(\alpha(h)) \norm{h}$$
+
+    Теперь нужно понять, что $d_b g(\alpha(h)) \norm{h} = o(\norm{h})$,
+    т.е. $d_b g(\alpha(h)) \to 0$ при $h \to 0$:
+    $$
+    \norm{d_b g(\alpha(h))} \leqslant 
+    \underbrace{\norm{d_b g}}_{\text{const}} \cdot 
+    \underbrace{\norm{\alpha(h)}}_{\to 0 \text{ по опр.}} \to 0
+    $$
+
+    Теперь нужно доказать, что $\beta(k) \norm{k} = o(\norm{h})$,
+    т.е. $\beta(k) \frac{\norm{k}}{\norm{h}} \to 0$ при $h \to 0$:
+    $$\norm{k} = \norm{d_a f(h) + \alpha(h) \norm{h}}
+    \leqslant
+    \norm{d_a f(h)} + \norm{\alpha(h)} \cdot \norm{h}
+    \leqslant \norm{d_a f} \cdot \norm{h} + 
+    \norm{\alpha(h)} \cdot \norm{h}$$
+
+    По опр. $\alpha(h) \to 0$ при $h \to 0$, значит,
+    $\alpha(h)$ ограничена в окрестности 0, при этом 
+    $\norm{d_a f} = \text{const}$, поэтому 
+    $\norm{k} \leqslant M \norm{h}$ в окрестности 0. Поэтому 
+    $\norm{k} \to 0$ при $h \to 0$. Из этого следует, что
+    $\beta(k) \to 0$ при $h \to 0$, т.к. $k \to 0$. Получаем:
+    $$\beta(k) \frac{\norm{k}}{\norm{h}} \leqslant M \cdot 
+    \underbrace{\beta(k)}_{\to 0} \to 0$$
+
+    В исходном равенстве получаем:
+    $$g(f(a + h)) = g(b) + d_b g (d_a f(h)) + (d_b g(\alpha(h)) \norm{h}
+    + \beta(k) \norm{k}) = g(b) + d_b g (d_a f(h)) + o(\norm{h})$$
+    Отсюда по опр. дифф. получаем, что $g \circ f$ дифф. в точке $a$ и
+    $(d_a (g \circ f)) (h) = d_b g (d_a f(h))$, а значит,
+    $d_a (g \circ f) = d_{f(a)} g \circ d_a f$.
+
+\end{proof}
+
+\textbf{Следствие.} $(g \circ f)'(a) = g'(f(a)) \cdot f'(a)$
+
+\textit{Очень знакомая формула, только теперь не с числами, 
+а с матрицами}.
+\begin{proof}
+    $d_a(g \circ f) = d_{f(a)} g \circ d_a f$. 
+    Матрица композиции линейных отображений -- произведение 
+    матриц линейных отображении в том же порядке.
+\end{proof}

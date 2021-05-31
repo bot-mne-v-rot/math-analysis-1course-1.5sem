@@ -1,1 +1,51 @@
 \section{Теорема Лагранжа для векторнозначных функций}
+
+\begin{theorem}[теорема Лагранжа для векторнозначных функций] $ $\\
+    Пусть $f : [a, b] \to \R^m$, $f$ непрерывна и
+    дифф. на $[a, b]$. \\ Тогда $\exists c \in (a, b)$,
+    т. ч. $\norm{f(b) - f(a)} \leqslant \norm{f'(c)}(b - a)$.
+\end{theorem}
+\begin{proof}
+    Пусть $\varphi : [a, b] \to \R^m$,
+    $\varphi(x) := \langle f(x), f(b) - f(a) \rangle$. Она непрерывна
+    и дифф. на $(a, b)$, т.к. просто является произведением константы
+    на непр. и дифф. на $(a, b)$ функцию.
+
+    По замечанию к пред. теореме:
+    $$\varphi'(x) = \langle f(x), f(b) - f(a) \rangle' =
+    \langle f'(x), f(b) - f(a) \rangle +
+    \langle f(x), \underbrace{(f(b) - f(a))'}_{= 0} \rangle =
+    \langle f'(x), f(b) - f(a) \rangle$$
+
+    Применим одномерную теорему Лагранжа:
+    $$\exists c \in (a, b) : \varphi(b) - \varphi(a) =
+    \varphi'(c)(b - a) = 
+    (b - a) \langle \varphi'(c), f(b) - f(a) \rangle$$
+
+    С другой стороны:
+    $$\varphi(b) - \varphi(a) = \langle f(b), f(b) - f(a) \rangle
+    - \langle f(a), f(b) - f(a) \rangle = \norm{f(b) - f(a)}^2$$
+
+    Собираем вместе:
+    $$\norm{f(b) - f(a)}^2 = 
+    (b - a) \langle \varphi'(c), f(b) - f(a) \rangle
+    \stackrel{\text{КБШ}}{\leqslant} (b - a) \norm{\varphi'(c)}
+    \cdot \norm{f(b) - f(a)}$$
+
+    Если $f(b) - f(a)$, то неравенство в условии очевидно выполняется,
+    иначе можно сократить на $\norm{f(b) - f(a)}$.
+\end{proof}
+\textbf{Замечание.} Равенство $\norm{f(b) - f(a)} = \norm{f'(c)}(b - a)$
+может не достигаться ни в одной точке.
+
+\textbf{Пример:}
+
+Пусть $f(x) = (\cos x, \sin x)$, $x \in [a, b] = [0, 2\pi]$.
+Эта функция дифф., т.к. дифф. эквивалентна дифф. коорд. функций.
+\begin{gather*}
+    f(b) - f(a) = f(2\pi) - f(0) = (0, 0) \Rightarrow
+    \norm{f(b) - f(a)} = 0, \\
+    f'(x) = (-\sin x, \cos x) \Rightarrow \norm{f'(x)}^2 =
+    (-\sin x)^2 + \cos^2 x = 1 \Rightarrow \norm{f'(x)} \equiv 1 \\
+    \norm{f(b) - f(a)} = 0 < \norm{f'(x)}(b - a) = 2\pi
+\end{gather*}

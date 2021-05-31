@@ -1,1 +1,85 @@
 \section{Частные производные. Элементы матрицы Якоби. Координатная запись формул для производных}
+
+
+\begin{conj}
+    Пусть $f : E \to \R$. $a \in \Int E$. Тогда 
+    \textbf{частная производная} -- производная по направлению
+    $k$-го базисного вектора (по напр. $k$-й координаты):
+    $$\frac{df}{dx_k}(a) := \lim_{t \to 0} 
+    \frac{f(a + te_k) - f(a)}{t}$$
+    где $e_k$ -- $k$-й базисный вектор (нулевой вектор, 
+    кроме 1 на $k$-й позиции).
+    $$ 
+    e_k = \begin{pmatrix*}
+        0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0
+    \end{pmatrix*}
+    \begin{matrix*}
+        $ $ \\ $ $ \\ $ $ \\
+        \longleftarrow \text{$k$-е место}
+        \\ $ $ \\ $ $ \\ $ $
+    \end{matrix*}
+    $$
+    Обозначений много: $f'_k$, $D_k f$, $d_k f$, $\frac{df}{dx_k}$. 
+\end{conj}
+ 
+\textbf{Следствие 2:}
+\begin{enumerate}
+    \item[] \textbf{Каноническое определение градиента}.
+    $$\frac{df}{dx_k} = \langle \nabla f(a), e_k \rangle =
+    \text{$k$-я координата } \nabla f(a)$$
+    Другими словами:
+    $$ \nabla f(a) =
+    \begin{pmatrix*}
+        \frac{df}{dx_1}(a) \\
+        \frac{df}{dx_2}(a) \\
+        \vdots \\
+        \frac{df}{dx_n}(a) \\
+    \end{pmatrix*}$$
+    \textit{На лекции Храбров записал вектор-строку, но мы в $\R^n$ 
+    используем векторы-столбцы}.
+\end{enumerate}
+
+\textbf{Следствие 3:}
+\begin{enumerate}
+    \item[] 
+    Если $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$,
+    $f$ дифф. в точке $a$, то матрица Якоби в точке $a$
+    выглядит следующим образом:
+    $$ f'(a) =
+    \begin{pmatrix*}
+        \frac{df_1}{dx_1}(a) & \frac{df_1}{dx_2}(a) &
+        \dots & \frac{df_1}{dx_n}(a) \\
+        \frac{df_2}{dx_1}(a) & \frac{df_2}{dx_2}(a) &
+        \dots & \frac{df_2}{dx_n}(a) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \frac{df_m}{dx_1}(a) & \frac{df_m}{dx_2}(a) &
+        \dots & \frac{df_m}{dx_n}(a) \\
+    \end{pmatrix*}$$
+    где $f_k$ -- $k$-я координатная функция $f$.
+\end{enumerate}
+
+\textbf{Пример:}
+
+Пусть $f(x, y) = x^y$. Тогда
+$$
+\frac{df}{dx}(a, b) = 
+\lim_{t \to 0} \frac{f((a, b) + t(1, 0)) - f(a, b)}{t} =
+\lim_{t \to 0} \frac{f(a + t, b) - f(a, b)}{t} =
+(x^b)' \mid_{x = a} = b a^{b-1}
+$$
+\textit{У нас меняется только первая координата,
+т.е. по сути это определение производной в точке $x = a$ при
+фиксированном $y = b$. Т.е. мы просто воспринимаем $y$ как параметр
+и дифференцируем по одной переменной.}
+
+$$
+\frac{df}{dy}(a, b) = 
+\lim_{t \to 0} \frac{f((a, b) + t(0, 1)) - f(a, b)}{t} =
+\lim_{t \to 0} \frac{f(a, b + t) - f(a, b)}{t} =
+(a^y)' \mid_{y = b} = a^b \cdot \ln a
+$$
+
+\textit{Получается, что, когда мы считаем частную производную по $x_k$,
+мы фиксируем все остальные переменные, отличные от $x_k$ ---
+считаем, что они константы ---
+и просто получаем функцию от одной переменной.}

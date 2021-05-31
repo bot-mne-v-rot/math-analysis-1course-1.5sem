@@ -1,1 +1,58 @@
 \section{Группировка членов ряда. Свойства}
+
+\textbf{Достаточные условия сходимости при группировки членов ряда}.
+\begin{enumerate}
+  \item Каждая группа состоит из $\leq M$ слагаемых, $\lim x_n = 0$ и сгрупированный ряд сходится к~$S$. Тогда $\sum\limits_{n = 1}^{\infty} x_n = S$.
+  \begin{proof}
+    Заметим, что частичные суммы сгрупированного ряда это просто какая-то подпоследовательность частичных сумм нашего ряда $S_{n_1}, S_{n_2}, S_{n_3}, \dotsc, \quad \lim S_{n_k} = S$. Мы знаем, что в каждой группе ограниченное число слагаемых:
+    \begin{equation*}
+      \hphantom{, \quad n_k - n_{k - 1} \leq M}
+      n_1, n_2 - n_1, n_3 - n_2, \dotsc
+      , \quad n_k - n_{k - 1} \leq M
+    \end{equation*}
+    Возьмем произвольное $n\colon \; n_k \leq n < n_{k + 1}$.
+    Тогда $S_n = S_{n_k} + \overbrace{x_{n_{k + 1}} + x_{n_{k + 2}} + \dotsc + x_n}^{\mathclap{\text{
+       $\leq M$ слагаемых
+    }}}$. Тогда
+    \begin{equation*}
+      \| S_n - S \| \leq \| S_{n_k} - S \| + \| x_{n_{k + 1}} \| + \| x_{n_{k + 2}} \| + \dotsc + \| x_n \|
+    \end{equation*}
+    Также заметим, что
+    \begin{equation*}
+      \lim x_n = 0 \implies \exists N\colon \forall m \geq N\colon \| x_m \| < \varepsilon
+    \end{equation*}
+    Тогда мы знаем, что при достаточно больших $k\colon \|S_{n_k} - S\| < \varepsilon$, а так же при достаточно больших $k\colon \forall m \geq n_k\colon \| x_m \| < \varepsilon$. Значит при достаточно больших $k\colon$
+    \begin{equation*}
+      \| S_n - S \| \leq (M + 1)\varepsilon
+    \end{equation*}
+    где $(M + 1)$ --- константа, а $\varepsilon$ может быть сколь угодно маленьким. Значит
+    \begin{equation*}
+      \lim \| S_n - S \| = 0 \implies \lim S_n = S
+    \end{equation*}
+  \end{proof}
+
+  \item Для числовых рядов. Члены ряда в каждой группе одного знака и сгрупированный ряд сходится. Тогда и исходный ряд сходится.
+  \begin{proof}
+    Пусть $S_{n_1}, S_{n_2}, \dotsc$ --- частичные суммы для сгрупированного ряда. Берем произвольное $n$. Тогда $n_k \leq n < n_{k + 1}$ и
+    \begin{equation*}
+      S_n = S_{n_k} + x_{n_{k + 1}} + x_{n_{k + 2}} + \dotsc + x_n
+    \end{equation*}
+    Пусть все $x$ не отрицательны. Тогда $S_n \geq S_{n_k}$. Аналогично получаем, что $S_n \leq S_{n_{k + 1}}$. Тогда $S_n$ лежит между $S_{n_k}$ и $S_{n_{k + 1}}$, каждое из которых стремится к $S$. Значит по теореме о двух миллиционерах $S_n$ тоже стремится к $S$.
+  \end{proof}
+\end{enumerate}
+
+\begin{example}
+  Посмотрим на ряд $\sum\limits_{n = 1}^{\infty} \frac{(-1)^{[\sqrt[3]{n}]}}{\sqrt{n}}$. Поделим его на блоки следующего вида:
+  \begin{equation*}
+    (-1)^k \left(
+      \frac{1}{\sqrt{k^3}} + \frac{1}{\sqrt{k^3 + 1}} + \dotsb + \frac{1}{\sqrt{(k + 1)^3 - 1}}
+    \right)
+  \end{equation*}
+  Тогда заметим, что $(k + 1)^3 - k^3 \geq 3k^2$, а значит
+  \begin{equation*}
+    |\text{сумма в блоке}|
+    \geq
+    \frac{3k^2}{\sqrt{(k + 1)^3 - 1}} > 1
+  \end{equation*}
+  Таким образом сгрупированный ряд расходится, потому что не выполняется необходимое условие сходимости. А значит и наш ряд расходится, так как сгрупированный ряд это просто подпоследовательность нашего.
+\end{example}

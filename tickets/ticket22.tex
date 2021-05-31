@@ -1,1 +1,75 @@
 \section{Длина пути и длина кривой. Определение и простейшие свойства. Аддитивность длины кривой}
+
+\begin{conj}
+    Пусть $\gamma\colon [a, b] \to X$. Тогда
+    длиной пути называется
+    \begin{equation*}
+      l(\gamma) = \sup \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_k))
+    \end{equation*}
+    где $a = t_0 < t_1 < t_2 < \dotsb < t_n = b$.
+  
+  \end{conj}
+  
+  \begin{notice}
+    Длины эквивалентных путей и длины противоположных путей равны.
+  \end{notice}
+  
+  \begin{conj}
+    Длина кривой --- длина пути из класса эквивалентности.
+  \end{conj}
+  
+  \textbf{Свойства}.
+  \begin{enumerate}
+    \item Длина кривой $\geq \overbrace{\text{длина хорды, соединяющей ее начало и конец}}^{\mathclap{\text{
+      расстояние между началом и концом пути
+    }}}$.
+    \item Длина кривой $\geq$ длина вписанной в нее ломаной.
+  \end{enumerate}
+  
+  \begin{theorem}[аддитивность длины]
+    Пусть $\gamma\colon [a, b] \to X, \, c \in [a, b]$ и $\widetilde{\gamma} \coloneqq \gamma\smash{\big |_{[a, c]}}, \; \vardbtilde{\gamma} \coloneqq \gamma \smash{\big|_{[c, b]}}$.
+    Тогда
+    \begin{equation*}
+      l(\gamma) = l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})
+    \end{equation*}
+  \end{theorem}
+  \begin{proof}
+    \begin{enumerate}
+      \item[]
+      \item[,,$\geq$''] Докажем, что $l(\gamma) \geq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$. Пусть $a = t_0, t_1, \dotsc, t_n = c = u_0, u_1, \dots, u_m = b$ --- дробление отрезка~$[a, b]$. Тогда
+      \begin{equation*}
+        \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_{k})) +
+        \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k})) \leq l(\gamma)
+      \end{equation*}
+      Заменим каждую сумму на супремум и получим нужно неравенство $ l(\widetilde{\gamma}) + l(\vardbtilde{\gamma}) \leq l(\gamma)$.
+      \begin{notice}
+        \textit{(от редакторов конспекта)} Мы можем переходить к супремуму просто по определению. Оставим то что мы хотим заменить на супремум в левой части, все остальное перенесем направо. Получим
+        \begin{equation*}
+        \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_{k})) \leq l(\gamma) -
+        \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k}))
+        \end{equation*}
+        Тогда выражение справа это верхняя граница для всех выражений слева такого вида. Поэтому разумеется наименьшая из верхних границ тоже не больше этого выражения. Отсюда получаем
+        \begin{equation*}
+          \begin{gathered}
+              l(\widetilde{\gamma}) = \sup \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_{k})) \leq l(\gamma) -
+              \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k})) \\
+              l(\widetilde{\gamma}) +
+              \sum\limits_{k = 1}^{m} \rho(\gamma(u_{k - 1}), \gamma(u_{k})) \leq l(\gamma)
+          \end{gathered}
+        \end{equation*}
+        Аналогично заменяем на супремум второе слагаемое и неравенство доказано.
+      \end{notice}
+      \item[,,$\leq$''] Докажем, что $l(\gamma) \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$. Пусть $a = t_0, t_1, \dotsc, t_n = b$ --- дробление отрезка $[a, b]$ и $t_m \leq c < t_{m + 1}$. Тогда
+      \begin{equation*}
+        \begin{gathered}
+          \sum\limits_{k = 1}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_k))
+          \leq \\ \leq
+          \underbrace{\sum\limits_{k = 1}^{m} \rho(\gamma(t_{k - 1}), \gamma(t_k)) + \rho(\gamma(t_m), \gamma(c))}_{\mathclap{\leq l(\widetilde{\gamma})}} +
+          \underbrace{\rho(\gamma(c), \gamma(t_{m + 1})) + \sum\limits_{\mathclap{k = m + 2}}^{n} \rho(\gamma(t_{k - 1}), \gamma(t_k))}_{\mathclap{\leq l(\vardbtilde{\gamma})}} \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})
+        \end{gathered}
+      \end{equation*}
+      Переходим к супремуму и получаем нужно неравенство $l(\gamma) \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$.
+      \end{enumerate}
+      Таким образом $l(\gamma) \leq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$ и $l(\gamma) \geq l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$, а значит $l(\gamma) = l(\widetilde{\gamma}) + l(\vardbtilde{\gamma})$. Что и требовалось доказать.
+  \end{proof}
+  

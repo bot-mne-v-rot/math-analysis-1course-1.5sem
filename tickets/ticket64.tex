@@ -1,1 +1,70 @@
 \section{Примеры дифференцируемых отображений. Дифференцируемость координатных функций}
+
+
+\begin{theorem}
+    Пусть $f : E \to \R^m$, $E \subset \R^n$, $a \in \Int E$;
+    $f = \begin{pmatrix*}
+        f_1 \\ \vdots \\ f_m
+    \end{pmatrix*}$, где $f_j : \R^n \to \R$ -- коорд. функция.
+    Тогда $f$ дифференцируема в точке $a$ $\Longleftrightarrow$
+    $\forall j \;\; f_j$ дифференцируема в точке $a$.
+\end{theorem}
+\begin{proof} $ $
+    \begin{itemize}
+        \item[``$\Longrightarrow$'':]
+
+        Запишем определение дифференцируемости $f$:
+        $$f(a + h) = f(a) + Th + \alpha(h) \norm{h}$$ 
+        где $\alpha(h) \to 0$ при $h \to 0$ 
+        (это просто по определению $o(\dots)$).
+
+        Запишем равенство покоординатно: 
+        $$f_j(a + h) = f_j(a) + T_j h +
+        \alpha_j(h) \norm{h}$$ 
+        $\Rightarrow f_j$ дифф. в точке $a$.
+
+        \item[``$\Longleftarrow$'':]
+
+        $f_j(a + h) = f_j(a) + T_j h + \alpha_j(h) \norm{h}$
+        $$
+            f = \begin{pmatrix*}
+                f_1(a + h) \\
+                \vdots \\
+                f_m(a + h)
+            \end{pmatrix*}
+            = \begin{pmatrix*}
+                f_1(a) \\
+                \vdots \\
+                f_m(a)
+            \end{pmatrix*}
+            + \begin{pmatrix*}
+                T_1 h \\
+                \vdots \\
+                T_m h
+            \end{pmatrix*}
+            + \begin{pmatrix*}
+                \alpha_1(h) \\
+                \vdots \\
+                \alpha_m(h)
+            \end{pmatrix*} \norm{h}
+        $$
+
+        Надо доказать, что $\alpha(h) \to 0$ при $h \to 0$. \\
+        Док-во:
+        $$ \lim_{h \to 0} \norm{\alpha(h)}
+        = \lim_{h \to 0} \norm{\begin{pmatrix*}
+            \alpha_1(h) \\
+            \vdots \\
+            \alpha_m(h)
+        \end{pmatrix*}}
+        = \lim_{h \to 0} \sqrt{\alpha_1(h)^2 + \dots + \alpha_m(h)^2)}
+        = \sqrt{\sum_{i = 1}^m \lim_{h \to 0} \alpha_i(h)^2} = 0
+        $$
+
+    \end{itemize}
+\end{proof}
+
+\follow $ $ транспонированные строки матрицы Якоби -- 
+градиенты координатных функций.
+
+
