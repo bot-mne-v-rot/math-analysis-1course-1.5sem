@@ -450,7 +450,7 @@ $F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
       C_{2n}^{n} =
       \frac{(2n)!}{(n!)^2} =
       \frac{(2n)!! \cdot (2n - 1)!!}{(n!)^2} =
-      \frac{4^n \cdot (2n)!! \cdot (2n - 1)!!}{(2n!!)^2} =
+      \frac{4^n \cdot (2n)!! \cdot (2n - 1)!!}{((2n)!!)^2} =
       \frac{4^n \cdot (2n - 1)!!}{(2n)!!}
     \end{gathered}
   \end{equation*}
@@ -475,7 +475,7 @@ $F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
     Пусть $f \in C^{n + 1}\langle a, b \rangle$. Тогда
     \begin{equation*}
     f(x) =
-    \sum_{k = 1}^{n} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k +
+    \sum_{k = 0}^{n} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k +
     \underbrace{\frac{1}{n!}\int_{x_0}^{x} (x - t)^n f^{(n + 1)}(t) \: dt}_{\mathclap{R_n}}
     \end{equation*}
 \end{theorem}
@@ -495,7 +495,7 @@ $F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
     \end{equation*}
     \begin{equation*}
       (n - 1)!R_{n - 1} =
-      \int_{{x_0}}^{{x}} {\underbrace{(x - t)^{n - 1}}_{\mathclap{v'}}\cdot \underbrace{f^{(n)}}_{\mathclap{u}}} \: d{t} =
+      \int_{{x_0}}^{{x}} {\underbrace{(x - t)^{n - 1}}_{\mathclap{v'}}\cdot \underbrace{f^{(n)}(t)}_{\mathclap{u}}} \: d{t} =
       \overbrace{\left.-\frac{1}{n}f^{(n)}(t)(x - t)^n\right|_{t = x_0}^{t = x}}^{\mathclap{\frac{1}{n}f^{(n)}(x_0)(x - x_0)^n}}
       + \frac{1}{n} \int_{{x_0}}^{{x}} {(x - t)^n f^{(n + 1)}(t)} \: d{t}
     \end{equation*}
@@ -512,7 +512,7 @@ $F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
 
 \begin{example}
   \begin{equation*}
-    H_j \coloneqq \frac{1}{j!}\int_{0}^{\frac{\pi}{2}}\left((\frac{\pi}{2})^2 - x^2\right)^j \cos x \: dx
+    H_j \coloneqq \frac{1}{j!}\int_{0}^{\frac{\pi}{2}}\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j \cos x \: dx
   \end{equation*}
 \end{example}
 
@@ -524,18 +524,20 @@ $F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
     \end{equation*}
   \item Если $c > 0$, то $\smash{c^j H_j \underset{\mathclap{j \to \infty}}{\longrightarrow} 0}$
   \begin{proof}
-      $0 < c^j H_j \leq \left(\frac{c\pi^2}{4}\right)^j \cdot \frac{1}{j!} \longrightarrow 0$
+      \begin{gather*}
+        0 < c^j H_j \leq \left(\frac{c\pi^2}{4}\right)^j \cdot \frac{1}{j!} \longrightarrow 0
+      \end{gather*}
+      Так как факториал растет быстрее, чем показательная степень
   \end{proof}
   \item $H_0 = 1,\, H_1 = 2$
   \item $H_j = (4j - 2)H_{j - 1} - \pi^2 H_{j - 2}$
   \begin{proof}
     \begin{equation*}
       \begin{gathered}
-        j!\cdot H_j
-        = \\ =
-        \int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2} - x^2\right)^2\right)^j (\sin x)'} \: d{x} =
-        \overbrace{\left.\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j \sin x\right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}} +
-        2j \int_{0}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \sin x} \: d{x} \; =
+          j!\cdot H_j =
+          \int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j (\sin x)'} \: d{x} = \\
+          \overbrace{\left.\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j \sin x\right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}} +
+          2j \int_{0}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \sin x} \: d{x} \; = \oast 
       \end{gathered}
     \end{equation*}
     Теперь заметим, что
@@ -550,11 +552,11 @@ $F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
     Теперь можем расписать второй интеграл по формуле интегрирования по частям, используя полученные выражения.
     \begin{equation*}
       \begin{gathered}
-        = 2j \int_{{0}}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}(\cos x)'} \: d{x}
+        \oast = -2j \int_{{0}}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}(\cos x)'} \: d{x}
         = \\ =
         \overbrace{\left.-2jx \left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x \right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}}
-        + \overbrace{2j \int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x} \: d{x}}^{\mathclap{(j - 1)! \cdot H_{j - 1}}} -\\
-        - \underbrace{2j \cdot 2 (j - 1) \int_{{0}}^{{\frac{\pi}{2}}} {x^2\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 2} \cos x} \: d{x}}_{\mathclap{\left(\frac{\pi}{2}\right)^2(j - 2)!\cdot H_{j - 2} - (j - 1)!\cdot H_{j - 1}}}
+        + 2j \overbrace{\int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x} \: d{x}}^{\mathclap{(j - 1)! \cdot H_{j - 1}}} -\\
+        - 2j \cdot 2 (j - 1) \underbrace{\int_{{0}}^{{\frac{\pi}{2}}} {x^2\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 2} \cos x} \: d{x}}_{\mathclap{\left(\frac{\pi}{2}\right)^2(j - 2)!\cdot H_{j - 2} - (j - 1)!\cdot H_{j - 1} \text{ т. к. } x^2 = \left(\frac{\pi}{2}\right)^2 - \left( \left(\frac{\pi}{2}\right)^2 - x^2 \right) }}
       \end{gathered}
     \end{equation*}
     Таким образом:

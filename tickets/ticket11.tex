@@ -1,1 +1,104 @@
 \section{Оценка разности интеграла и интегральной суммы. Интеграл как предел интегральных сумм. Эквивалентная для суммы $\sum_{k=1}^n k^p$. Интегрируемость по Риману}
+\begin{theorem}[об интегральных суммах]
+    Пусть $f \in C[a, b]$. Тогда
+    \begin{equation*}
+    \smash{\Big{|} \underbrace{\int_{a}^{b} f - S(f, \tau, \xi)}_
+    {=: \triangle}\Big{|}}
+    \leq (b - a)\, \omega_f (|\tau|)
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{equation*}
+    \begin{gathered}
+      \triangle = \int_{a}^{b} f - \sum_{k = 1}^{n} f (\xi_k)
+      (x_k - x_{k - 1}) = \int_{a}^{b} f - \sum_{k = 1}^{n}
+      \int_{x_{k - 1}}^{x_k} f(\xi_k) \: dx
+      = \\ =
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f -
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f(\xi_k) \: dx =
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} (f(x) - f(\xi_k)) \: dx
+    \end{gathered}
+  \end{equation*}
+  Теперь оценим модуль полученного выражения:
+  \begin{equation*}
+    \begin{gathered}
+      |\triangle| \leq \sum_{k = 1}^{n} \Big| \dotso \Big| \leq
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} |f(x) - f(\xi_k)| \: dx \leq
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} \omega_f(|\tau|) \: dx
+      = \\ =
+      \sum_{k = 1}^{n} (x_k - x_{k - 1})\, \omega_f(|\tau|) = (b - a)\, \omega_f(|\tau|)
+    \end{gathered}
+  \end{equation*}
+\end{proof}
+
+\begin{follow}
+  \begin{enumerate}
+    \item $\forall \varepsilon > 0 \; \exists \, \delta > 0$ такое, что для любого дробления такого, что $|\tau| < \delta$, для любого его оснащения выполняется
+    \begin{equation*}
+        \Big| \int_{a}^{b} f -
+        S(f, \tau, \xi)\Big| < \varepsilon
+    \end{equation*}
+    \begin{proof}
+        Знаем, что $\lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$, а значит по $\varepsilon > 0$ можем выбрать $\delta$, для которого $\omega_f(\delta) < \frac{\varepsilon}{b - a}$:
+        \begin{equation*}
+            \Big| \int_{a}^{b} f - S(f, \tau, \xi)\Big| \leq
+            (b - a)\, \omega_f(|\tau|) \leq (b - a)\, \omega_f(\delta) < \varepsilon
+        \end{equation*}
+    \end{proof}
+
+    \item Если $r_n$ последовательность дроблений, ранг которых стремится к $0$, то
+    \begin{equation*}
+        S(f, \tau_n, \xi_n) \longrightarrow \int_{a}^{b} f
+    \end{equation*}
+    \begin{proof}
+        Следует из следствия 1.
+    \end{proof}
+  \end{enumerate}
+\end{follow}
+
+\begin{example}
+  Пусть $S_p(n) \coloneqq 1^p + 2^p + 3^p + \dotsb + n^p$. Заметим, что
+  \begin{equation*}
+    \frac{n}{2} \cdot \left(\frac{n}{2} \right)^p < S_p(n) < n \cdot n^p
+  \end{equation*}
+  Докажем, что $S_p(n) \sim \frac{n^{p + 1}}{p + 1}$:
+  \begin{equation*}
+      \lim\limits_{n \to \infty} \frac{S_p(n)}{n^{p + 1}} =
+      \lim\limits_{n \to \infty} \frac{1}{n^{p + 1}}\sum_{k = 1}^{n} k^p =
+      \lim\limits_{n \to \infty} \frac{1}{n}\sum_{k = 1}^{n} \left(\frac{k}{n}\right)^p = \oast
+  \end{equation*}
+  Полученное выражение это просто интегральная сумма для функции $f(x) = x^p$, дробления $x_k = \frac{k}{n}$ и оснащения $\xi_k = \frac{k}{n}$ на отрезке $[0, 1]$. Тогда воспользуемся следствием 2:
+  \begin{equation*}
+      \oast = \int_{0}^{1} x^p \: dx = \left. \frac{x^{p + 1}}{p + 1} \right|_{0}^{1} = \frac{1}{p + 1}
+  \end{equation*}
+  Более того, используя исходную теорему можно найти оценку на погрешность. Пусть $p \geq 1$. Тогда:
+  \begin{equation*}
+    \begin{gathered}
+      f(x) - f(y) = f'(c)(x - y) = pc^{p - 1}(x - y) \\
+      | f(x) - f(y) | \leq p \cdot |x - y|
+    \end{gathered}
+  \end{equation*}
+  А значит:
+  \begin{equation*}
+    \left |
+      \frac{S_p(n)}{n^{p + 1}} - \frac{1}{p + 1}
+    \right |
+    \leq \omega_f\left(\frac{1}{n}\right) \leq \frac{p}{n}
+  \end{equation*}
+  Отсюда:
+  \begin{equation*}
+    \left |
+      S_p(n) -
+      \frac{n^{p + 1}}{p + 1}
+    \right |
+    \leq p \cdot n^p
+  \end{equation*}
+\end{example}
+
+\begin{conj}
+    Пусть $f\colon [a, b] \to \R$ --- ограниченная функция.
+    Тогда $f$ называется интегрируемой по Риману, если $\forall \varepsilon > 0 \; \exists \delta > 0$ такое, что $\forall$ дробления ранга $< \delta,\; \forall$его оснащения выполняется
+    \begin{equation*}
+        | S(f, \tau, \xi) - I| < \varepsilon\text{, то } \int_{a}^{b} f \coloneqq I
+    \end{equation*}
+\end{conj}

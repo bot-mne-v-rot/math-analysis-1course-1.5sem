@@ -1,1 +1,42 @@
 \section{Формула Эйлера–Маклорена (для второй производной)}
+
+\begin{theorem}[формула Эйлера-Маклорена]
+    Пусть $f \in C^2[m, n], \: m,n \in \Z$. Тогда
+    \begin{equation*}
+        \sum\limits_{k = m}^{n} f(k) = \frac{f(m) + f(n)}{2} +
+        \int_{{m}}^{{n}} {f(t)} \: d{t} + \frac{1}{2}
+        \int_{{m}}^{{n}} {f''(t)\{t\}(1 - \{t\})} \: d{t}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  По лемме при $\alpha = k,\, \beta = k + 1$:
+  \begin{equation*}
+    \int_{{k}}^{{k + 1}} {f(t)} \: d{t} = \frac{f(k) + f(k + 1)}{2} -
+    \frac{1}{2} \int_{{k}}^{{k + 1}} {f''(t)
+    \smash{\overbrace{(t - k)(k + 1 - t)}^{\mathclap{\{t\}(1 - \{t\})}}}} \: d{t} {}
+  \end{equation*}
+  Тогда:
+  \begin{equation*}
+    \sum_{k = m}^{n - 1} \int_{{k}}^{{k + 1}} {f(t)} \: d{t} =
+    \sum_{k = m}^{n - 1} \frac{f(k) + f(k + 1)}{2} -
+    \frac{1}{2} \sum_{k = m}^{n - 1} \int_{{k}}^{{k + 1}}
+    {f''(t)\{t\}(1 - \{t\})} \: d{t}
+  \end{equation*}
+  Отсюда:
+  \begin{equation*}
+    \int_{{n}}^{{m}} {f(t)} \: d{t} = \frac{f(m) + f(n)}{2} +
+    \sum_{k = {m + 1}}^{n - 1} f(k) -
+    \frac{1}{2} \int_{{m}}^{{n}} {f''(t)\{t\}(1 - \{t\})} \: d{t}
+  \end{equation*}
+  Теперь заметим, что
+  \begin{equation*}
+    \sum\limits_{k = m + 1}^{n - 1} f(k)
+    = \sum\limits_{k = m}^{n} f(k) - f(m) - f(n)
+  \end{equation*}
+  Подставив это выражение получаем нужную формулу:
+  \begin{equation*}
+    \sum\limits_{k = m}^{n} f(k) = \frac{f(m) + f(n)}{2} +
+    \int_{{m}}^{{n}} {f(t)} \: d{t} + \frac{1}{2}
+    \int_{{m}}^{{n}} {f''(t)\{t\}(1 - \{t\})} \: d{t}
+  \end{equation*}
+\end{proof}

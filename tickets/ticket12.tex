@@ -1,1 +1,70 @@
 \section{Формула трапеций (с леммой)}
+\begin{lemma}
+    Пусть $f \in C^{2}[\alpha, \beta]$. Тогда
+    \begin{equation*}
+        \underbrace{\int_{\alpha}^{\beta} f(t) \: dt - \frac{f(\alpha) + f(\beta)}{2}(\beta - \alpha)}_{=: \triangle} =
+        -\frac{1}{2} \int_{\alpha}^{\beta} f''(t)(t - \alpha)(\beta - t) \: dt
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Пусть $\gamma \coloneqq \frac{\alpha + \beta}{2}$. Тогда
+    \begin{equation*}
+            \int_{\alpha}^{\beta} f(t) \: dt = \int_{\alpha}^{\beta} f(t)(t - \gamma)'
+            \: dt = \overbracket{f(t)(t - \gamma) \Big|_{t = \alpha}^{t = \beta}}^
+            {\mathclap{f(\beta)\frac{\beta - \alpha}{2} - f(\alpha)\frac{\alpha - \beta}{2}
+            = \frac{f(\alpha) + f(\beta)}{2}(\beta - \alpha)}}
+            -\int_{\alpha}^{\beta} f'(t)(t - \gamma) \: dt
+    \end{equation*}
+    Подставив полученное выражение в $\triangle$ получаем:
+    \begin{equation*}
+            \triangle = - \int_{\alpha}^{\beta} f'(t)(t - \gamma) \: dt = \frac{1}{2}
+            \int_{{\alpha}}^{{\beta}} {f'(t)((t - \alpha)(\beta - t))'} \: d{t}
+            = \oast
+    \end{equation*}
+    Отдельное посчитаем производную:
+    \begin{equation*}
+            ((t - \alpha)(\beta - t))' = (-t^2 + (\alpha + \beta)t - \alpha\beta)' =
+            -2t + \alpha + \beta = -2(t - \gamma)
+    \end{equation*}
+    Подставляем полученное выражение обратно в $\triangle$:
+    \begin{equation*}
+            \oast =
+            \smash{\underbrace{\frac{1}{2} f'(t)(t - \alpha)(\beta - t) \Big|_{t = \alpha}^{t = \beta}}_{0}}
+            - \frac{1}{2} \int_{{\alpha}}^{{\beta}} {f''(t)(t - \alpha)(\beta - t)} \: d{t}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}[оценка погрешности в формуле трапеций]
+    Пусть $f \in C^2[a, b]$. Тогда
+    \begin{equation*}
+        \Big| \underbrace{\int_{a}^{b} f - \sum_{k = 1}^{n}
+        \frac{f(x_{k - 1}) + f(x_k)}{2}(x_k - x_{k - 1})}_{\mathclap{=: \triangle}} \Big| \leq
+        \frac{|\tau|^2}{8}\int_{a}^{b} |f''|
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  По лемме:
+    \begin{equation*}
+            \triangle = \sum_{k = 1}^{n} \int_{{x_{k - 1}}}^{{x_k}} {f} -
+            \sum_{k = 1}^{n} \frac{f(x_{k - 1}) + f(x_k)}{2}(x_k - x_{k - 1}) =
+            \sum_{k = 1}^{n} - \frac{1}{2} \int_{{x_{k - 1}}}^{{x_k}} {f''(t)
+            (t - x_{k - 1})(x_k - t)} \: d{t}
+    \end{equation*}
+    Отсюда:
+    \begin{equation*}
+            |\triangle| \leq \frac{1}{2} \sum_{k = 1}^{n}
+            \int_{{x_{k - 1}}}^{{x_k}} {|f''(t)| \cdot |(t - x_{k - 1})(x_k - t)|} \: d{t}
+    \end{equation*}
+    При этом
+    \begin{equation*}
+            (t - x_{k - 1})(x_k - t) \leq \left(\frac{(x_k - t) + (t - x_{k - 1})}{2}\right)^2 =
+            \left(\frac{x_k - x_{k - 1}}{2}\right)^2 \leq \frac{|\tau|^2}{4} \\
+    \end{equation*}
+    А значит
+    \begin{equation*}
+            |\triangle| \leq
+            \frac{|\tau|^2}{8} \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k}|f''(t)| \: dt =
+            \frac{|\tau|^2}{8} \int_{a}^{b} |f''|
+    \end{equation*}
+    Что и требовалось доказать.
+\end{proof}

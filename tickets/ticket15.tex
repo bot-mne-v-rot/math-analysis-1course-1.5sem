@@ -1,1 +1,70 @@
 \section{Формула Стирлинга}
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Формула Стирлинга.  Распишем $\ln n! = \ln 1 + \ln 2 + \dotsb + \ln n$ по формуле Эйлера-Маклорена при $f(x) = \ln x, \, f'(x) = \frac{1}{x}, \, f''(x) = -\frac{1}{x^2}, \, m = 1$.
+    \begin{equation*}
+        \ln n! = \underbracket{\frac{\ln 1 + \ln n}{2}}_{\mathclap{\frac{\ln n}{2}}} +
+        \int_{1}^{n} \ln t \: dt -
+        \frac{1}{2}\underbrace{\int_{1}^{n} \frac{\{t\}(1 - \{t\})}{t^2}}_{\mathclap{=: b_n}} \: dt
+    \end{equation*}
+    Заметим, что
+    \begin{equation*}
+        \int_{1}^{n} \ln t \: dt = t\ln t \Big|_{1}^{n} - \int_{1}^{n} \frac{1}{t} \cdot t \: dt = n \ln n - (n - 1)
+    \end{equation*}
+    Подставим полученное выражение обратно в формулу:
+    \begin{equation*}
+        \ln n! = \frac{\ln n}{2} + n\ln n - n + 1 - \frac{b_n}{2}
+    \end{equation*}
+    Теперь воспользуемся тем же приемом, что и в прошлом примере. Заметим, что $b_n$ растут, оценим их сверху:
+    \begin{equation*}
+        b_n = \int_{1}^{n} = \frac{\{t\}(1 - \{t\})}{t^2} \: dt \leq
+        \frac{1}{4} \int_{1}^{n} \frac{dt}{t^2} = \frac{1}{4}\left(-\frac{1}{t}\right)\Big|_{1}^{n} = \frac{1}{4}\left(1 - \frac{1}{n}\right) < \frac{1}{4}
+    \end{equation*}
+    Поэтому $b_n = b + o(1)$. Подставим полученное тождество в формулу для $\ln n!$
+    \begin{equation*}
+        \ln n! = n\ln n + \frac{\ln n}{2} - n + C + o(1)
+    \end{equation*}
+    Возьмем экспоненты от обеих частей равенства:
+    \begin{equation*}
+        n! = n^{n}\sqrt{n}e^{-n}e^{C}e^{o(1)}
+    \end{equation*}
+    Расписав $e^{o(1)} = 1 + o(1)$ по формуле Тейлора получаем, что
+    \begin{equation*}
+        n! \sim e^Cn^ne^{-n}\sqrt{n}
+    \end{equation*}
+    Попробуем вычислить константу $C$. Для этого воспользуемся приближением для $C_{2n}^{n}$:
+    \begin{equation*}
+        C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi n}}
+    \end{equation*}
+    С другой стороны мы можем расписать $C_{2n}^{n}$ по определению и каждый из факториалов заменить на полученное нами ранее выражение.
+    \begin{equation*}
+        C_{2n}^{n} = \frac{(2n)!}{(n!)^2} \sim \frac{e^C(2n)^{2n}e^{-2n}\sqrt{2n}}{(e^Cn^ne^{-n}\sqrt{n})^2} =
+        \frac{\cancel{e^C}2^{2n}\cancel{n^{2n}}\cancel{e^{-2n}}\sqrt{2\cancel{n}}}{e^{\cancel{2}C}\cancel{n^{2n}}\cancel{e^{-2n}}\sqrt{n}\sqrt{\cancel{n}}} =
+        \frac{4^n\sqrt{2}}{e^C\sqrt{n}}
+    \end{equation*}
+    Значит
+    \begin{equation*}
+        \frac{4^n}{\sqrt{\pi n}} \sim \frac{4^n \sqrt{2}}{e^C \sqrt{n}}
+    \end{equation*}
+    Значит предел отношения этих величин равен единице, то есть:
+    \begin{equation*}
+        \lim\limits_{n \to +\infty} \frac{4^n e^C\sqrt{n}}{4^n \sqrt{\pi n} \sqrt{2}} = 1
+        \implies
+        \lim\limits_{n \to +\infty} \frac{e^C}{\sqrt{2\pi}} = 1
+    \end{equation*}
+    Но предел константы это всегда сама константа, значит
+    \begin{equation*}
+        \frac{e^C}{\sqrt{2\pi}} = 1 \implies e^C = \sqrt{2\pi}
+    \end{equation*}
+    Подставив $e^C$ получаем формулу Стирлинга:
+    \begin{equation*}
+        \boxed{n! \sim n^ne^{-n}\sqrt{2\pi n}}
+    \end{equation*}
+    \begin{notice}
+        Можно доказать, что
+        \begin{equation*}
+            n^ne^{-n}\sqrt{2\pi n} \: e^{\frac{1}{12n + 1}} < n! <
+            n^ne^{-n}\sqrt{2\pi n} \: e^{\frac{1}{12n}}
+        \end{equation*}
+    \end{notice}
+\end{enumerate}

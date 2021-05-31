@@ -1,1 +1,80 @@
 \section{Интеграл с переменным верхним пределом. Теорема Барроу. Следствия. Формула Ньютона–Лейбница}
+\begin{conj}
+    Интегралом с переменным нижним пределом называют
+    \begin{equation*}
+      \hphantom{, \quad x \in [a, b]}
+      \Psi(x) = \int_{x}^{b} f
+      , \quad x \in [a, b]
+    \end{equation*}
+\end{conj}
+
+\begin{notice}
+    \begin{equation*}
+      \Phi(x) + \Psi(x) = \int_{a}^{b} f
+    \end{equation*}
+\end{notice}
+
+\begin{theorem}[Барроу]
+    Если $f \in C[a, b]$, то $\Phi(x)$ --- первообразная $f$.
+\end{theorem}
+\begin{proof}
+    Пусть $y > x$ и
+    \begin{equation*}
+      R(y) = \frac{\Phi(y) - \Phi(x)}{y - x} = \frac{1}{y - x}\left(\int_{a}^{y} f - \int_{a}^{x} f\right) = \frac{1}{y - x}\int_{x}^{y} f
+    \end{equation*}
+    Тогда по теореме о среднем $R(y) = f(c)$ для некоторой точки $c \in [x, y]$. Докажем, что $\lim_{y \to x+} R(y) = f(x)$. Проверим на последовательностях. Возьмем $y_n$, которая монотонно убывает и стремится к $x$. Пусть $c_n$ --- соответствующая точка для $y_n$,\; $x \leq c_n \leq y_n$ такая, что $R(y_n) = f(c_n)$. Тогда $\lim c_n = x \implies \lim R(y_n) = \lim f(c_n) = f(x) \implies \Phi'(x) = f(x)$. Что и требовалось доказать.
+\end{proof}
+
+\begin{follow}
+  \begin{enumerate}
+    \item $\Psi'(x) = -f(x)$
+      \begin{proof}
+          $\displaystyle\Psi(x) = \int_{a}^{b}f - \Phi(x) \implies \Psi'(x) = (C - \Phi(x))' = -\Phi'(x) = -f(x)$
+      \end{proof}
+    \item Если $f \in C\langle a, b \rangle$, то у $f$ есть первообразная
+      \begin{proof}
+          Пусть $c \in (a, b)$.
+
+          \begin{equation*}
+              F(x) \coloneqq
+              \begin{cases}
+                  \displaystyle
+                  \int_{c}^{x} f & \text{ при $x \geq c$}, \quad x \in [c, b\rangle, \quad (F(x))' = f(x)\\
+                  \displaystyle
+                  -\int_{x}^{c} f & \text{ при $x \leq c$}, \quad x \in \langle a, c], \quad (F(x))' = -(-(f(x)))
+              \end{cases}
+          \end{equation*}
+      \end{proof}
+  \end{enumerate}
+\end{follow}
+
+\textbf{Обозначение.}
+$F \big|_{a}^{b} \coloneqq F(b) - F(a)$ --- подстановка
+
+\begin{theorem}[формула Ньютона-Лейбница]
+    Пусть $f \in C[a, b]$ и $F$ --- первообразная $f$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f = F(b) - F(a)
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    По теореме Барроу $\Phi(x)$ --- первообразная $f$. Тогда
+    \begin{equation*}
+      \Phi(x) = F(x) + C \implies
+      \begin{cases}
+        &0 = \Phi(a) = F(a) + C \implies C = -F(a) \\
+        &\Phi(b) = F(b) + C
+      \end{cases}
+    \end{equation*}
+    При этом
+    \begin{equation*}
+      \Phi(b) = \int_{a}^{b} f
+      \text{ по определению}
+    \end{equation*}
+    Тогда
+    \begin{equation*}
+      \int_{a}^{b} f = \Phi(b) = F(b) + C = F(b) - F(a)
+    \end{equation*}
+    Что и требовалось доказать.
+\end{proof}

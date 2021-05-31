@@ -1,1 +1,41 @@
 \section{Оценка сумм вида $\sum_{k=1}^n k^p$ при различных $p$. Постоянная Эйлера}
+\underline{Примеры:}
+
+\begin{enumerate}
+    \item $S_p = 1^p + 2^p + \dotsb + n^p$. Пусть $f(x) = x^p,\, f'(x) = px^{p - 1},\, f''(x) = p(p - 1)x^{p - 2},\, m = 1$. Тогда по формуле Эйлера-Маклорена:
+    \begin{equation*}
+      \begin{gathered}
+        S_p(n) = \frac{1 + n^p}{2} + \int_{1}^{n} x^p \: dx + \frac{1}{2} p(p - 1) \int_{{1}}^{{n}} t^{p - 2}\underbrace{\{t\}(1 - \{t\})}_{\mathclap{\leq \frac{1}{4}}} \: d{t} \leq \\
+        \leq \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{1}{8}p(p - 1)
+        \frac{n^{p - 1} - 1}{p - 1} \: dt =
+        \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{1}{8}p(n^{p - 1} - 1)
+      \end{gathered}
+    \end{equation*}
+    \begin{enumerate}
+        \item[] При $p \in (-1, 1)$ выражение $n^{p - 1} - 1$ не превосходит единицы по модулю, а значит все последнее слагаемое не превосходит $p$ по модулю. Тогда верно следующее:
+        \begin{equation*}
+            S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + \mathcal{O}(1)
+        \end{equation*}
+        \item[] При $p > 1, \, |\text{последнее слагаемое}| \leq \frac{p}{4} n^{p - 1}$. Значит верно следующее:
+        \begin{equation*}
+            S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + \mathcal{O}(n^{p - 1})
+        \end{equation*}
+    \end{enumerate}
+    \item Гармонические числа $H_n = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dotsb + \frac{1}{n}$. Пусть $f(x) = \frac{1}{x}, \, f''(x) = \frac{2}{x^3}, \, m = 1$. Тогда по формуле Эйлера-Маклорена:
+    \begin{equation*}
+        H_n = \frac{1 + \frac{1}{n}}{2} + \underbracket{\int_{1}^{n} \frac{dt}{t}}_{\mathclap{\ln t \big|_{1}^{n} = \ln n}} +
+        \frac{1}{2}\underbrace{\int_{1}^{n} \frac{2\{t\}(1 - \{t\})}{t^3} \: dt}_{\mathclap{=: a_n}}
+    \end{equation*}
+    Заметим, что $a_n$ монотонно растут, просто потому что $a_{n + 1} = a_n + $ что-то неотрицательное. Тогда попробуем оценить $a_n$ сверху:
+    \begin{equation*}
+        a_n = \int_{1}^{n} \frac{2\{t\}(1 - \{t\})}{t^3} \: dt \leq
+        \int_{1}^{n} \frac{dt}{t^3} = \left.\frac{1}{2}\left(-\frac{1}{2t^2}\right)\right|_{1}^{n} = \frac{1}{2}\left(\frac{1}{2} - \frac{1}{2n^2}\right) < \frac{1}{4}
+    \end{equation*}
+    То есть $a_n$ возрастают и ограничены сверху. Значит у $a_n$ есть предел. Тогда $a_n = a + o(1)$, где $a$ --- константа. Таким образом верно следующее равенство:
+    \begin{equation*}
+        \begin{gathered}
+        H_n = \frac{1}{2} + \frac{1}{2n} + \ln n + a + o(1) = \ln n + \underbrace{(a + \frac{1}{2})}_{\mathclap{\gamma\text{ --- постоянная Эйлера}}} + o(1) \\
+        H_n = \ln n + \gamma + o(1)
+        \end{gathered}
+    \end{equation*}
+\end{enumerate}

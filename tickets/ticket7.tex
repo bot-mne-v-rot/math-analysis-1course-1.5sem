@@ -1,1 +1,40 @@
 \section{Формула Тейлора с остатком в интегральной форме}
+
+\begin{theorem}[формула Тейлора с остатком в интегральной форме]
+    Пусть $f \in C^{n + 1}\langle a, b \rangle$. Тогда
+    \begin{equation*}
+    f(x) =
+    \sum_{k = 0}^{n} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k +
+    \underbrace{\frac{1}{n!}\int_{x_0}^{x} (x - t)^n f^{(n + 1)}(t) \: dt}_{\mathclap{R_n}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Индукция. По формуле Ньютона-Лейбница:
+    \begin{equation*}
+      f(x) = f(x_0) + \int_{x_0}^{x} f'(t) \: dt
+    \end{equation*}
+    Это наше выражение при $n = 0$. Теперь докажем переход $n - 1 \to n$:
+    \begin{equation*}
+      f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^{k} + R_{n - 1}
+    \end{equation*}
+
+    Надо доказать, что
+    \begin{equation*}
+      R_{n - 1} = \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + R_n
+    \end{equation*}
+    \begin{equation*}
+      (n - 1)!R_{n - 1} =
+      \int_{{x_0}}^{{x}} {\underbrace{(x - t)^{n - 1}}_{\mathclap{v'}}\cdot \underbrace{f^{(n)}(t)}_{\mathclap{u}}} \: d{t} =
+      \overbrace{\left.-\frac{1}{n}f^{(n)}(t)(x - t)^n\right|_{t = x_0}^{t = x}}^{\mathclap{\frac{1}{n}f^{(n)}(x_0)(x - x_0)^n}}
+      + \frac{1}{n} \int_{{x_0}}^{{x}} {(x - t)^n f^{(n + 1)}(t)} \: d{t}
+    \end{equation*}
+    Теперь поделим на $(n - 1)!$ и получим нужное выражение:
+    \begin{equation*}
+      R_{n - 1} =
+      \frac{1}{n!}f^{(n)}(x_0)(x - x_0)^{n} +
+      \frac{1}{n!} \int_{{x_0}}^{{x}} {(x - t)^n f^{(n + 1)}(t)} \: d{t}
+      =
+      \frac{1}{n!}f^{(n)}(x_0)(x - x_0)^{n} +
+      R_n
+    \end{equation*}
+\end{proof}

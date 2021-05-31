@@ -1,1 +1,77 @@
 \section{Линейность интеграла и формула интегрирования по частям. Замена переменной в определенном интеграле. Примеры}
+
+\begin{theorem}[линейность интеграла]
+    Пусть $f, g \in C[a, b]$ и $\alpha, \beta \in \R$. Тогда
+    \begin{equation*}
+    \int_{a}^{b}(\alpha f + \beta g) = \alpha \int_{a}^{b} f + \beta \int_{a}^{b} g
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Пусть $F, G$ --- первообразные $f$ и $g$. Тогда $\alpha F + \beta G$ --- первообразная для $\alpha f + \beta g$.
+    \begin{equation*}
+        \begin{gathered}
+          \int_{a}^{b}(\alpha f + \beta g) =
+          (\alpha F + \beta G) \big|_{a}^{b} =
+          \alpha F(b) + \beta G(b) - \alpha F(a) - \beta G(a)\\
+          \alpha \int_{a}^{b} f + \beta \int_{a}^{b} g =
+          \alpha F \big|_a^{b} + \beta G \big|_{a}^{b} =
+          \alpha F(b) - \alpha F(a) + \beta G(b) - \beta G(a)
+        \end{gathered}
+    \end{equation*}
+    Получили одно и то же.
+\end{proof}
+
+\begin{theorem}[формула интегрирования по частям]
+    Пусть $u, v \in C^{1}[a, b]$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} uv' = uv \big|_{a}^{b} - \int_{a}^{b} u'v
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  Пусть $H$ --- первообразная для $u'v$. Тогда $(uv - H)$ --- первообразная для $uv'$. А значит
+  \begin{equation*}
+    \int_{a}^{b} uv' = (uv - H) \big|_{a}^{b} = uv \big|_{a}^{b} - H \big|_{a}^{b} = uv|_{a}^{b} - \int_{a}^{b} u'v
+  \end{equation*}
+\end{proof}
+
+\textbf{Соглашение.} Если $a > b$, то $\displaystyle \int_{a}^{b} f \coloneqq -\int_{b}^{a} f$
+
+\begin{theorem}[замена переменной в интеграле]
+    Пусть $f \in C\langle a, b \rangle;\; \varphi \in C^{1}\langle c, d\rangle;\; \varphi\colon \langle c, d\rangle \to \langle a, b \rangle$ и $p, q \in \langle c, d \rangle$. Тогда
+    \begin{equation*}
+    \int_{p}^{q} f(\varphi(t))\varphi'(t) \: dt = \int_{\varphi(p)}^{\varphi(q)} f(x) \: dx
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Если $F$ --- первообразная $f$, то $F \circ \varphi$ --- первообразная $f(\varphi(t))\varphi'(t)$. А значит
+    \begin{equation*}
+      \int_{p}^{q} f(\varphi(t))\varphi'(t) \: dt =
+      F \circ \varphi \big|_{p}^{q} =
+      F(\varphi(q)) - F(\varphi(p)) =
+      F \big|_{\varphi(p)}^{\varphi(q)} =
+      \int_{\varphi(p)}^{\varphi(q)} f(x) \: dx
+    \end{equation*}
+\end{proof}
+
+\begin{examples}
+  \begin{enumerate}
+    \item
+      Посчитаем $\displaystyle \int_{1}^{n} \ln x \: dx$. Пусть $u = \ln x,\, v = x$. Тогда
+      \begin{equation*}
+        \int_{1}^{n} \ln x \: dx = \int_{1}^{n} u(x)v'(x) \: dx = uv \big|_{1}^{n} - \int_{1}^{n} u'v = x\ln x \big|_{1}^{n} - \int_{1}^{n} \: dx = n \ln n - (n - 1)
+      \end{equation*}
+    \item
+      Посчитаем $\displaystyle \frac{t}{1 + t^4} \: dt$. Пусть $\varphi(t) = t^2,\, f(x) = \frac{1}{1 + x^2}$. Тогда
+      \begin{equation*}
+        \begin{gathered}
+          \int_{a}^{b} \frac{t}{1 + t^4} \: dt =
+          \frac{1}{2}\int_{a}^{b} f(\varphi(t))\varphi'(t) \: dt =
+          \frac{1}{2} \int_{a^2}^{b^2} f(x) \: dx =
+          \frac{1}{2} \int_{a^2}^{b^2} \frac{dx}{1 + x^2}
+          = \\ =
+          \frac{1}{2} \arctan x \big|_{a^2}^{b^2} =
+          \frac{1}{2} \arctan b^2 - \frac{1}{2} \arctan a^2
+        \end{gathered}
+      \end{equation*}
+  \end{enumerate}
+\end{examples}

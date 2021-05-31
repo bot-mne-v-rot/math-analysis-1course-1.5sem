@@ -1,1 +1,70 @@
 \section{Положительная и отрицательная части функции и их свойства. Подграфик функции. Определенный интеграл. Определение и простейшие свойства}
+\begin{conj}
+    Отображение $\sigma\colon \overbrace{\mathcal{F}}^{\mathclap{\text{все огр. подмн-ва плоскости}}} \to [0, +\infty]$ --- квазиплощадь, если выполняются следующие свойства:
+  \begin{enumerate}
+     \item $\sigma([a, b] \times [c, d]) = (b - a) (d - c)$
+     \item $E \subset \widetilde{E} \implies \sigma(E) \leq \sigma(\widetilde{E})$
+     \item $E = E_{-} \cup E_{+} \implies \sigma(E) = \sigma(E_{-}) + \sigma(E_{+})$
+  \end{enumerate}
+\end{conj}
+
+\textbf{Обозначение.}
+$f_{+}(x) = \max\{f(x), 0\}, \qquad f_{-} = \max\{-f(x), 0\}$
+
+\textbf{Свойства:}
+\begin{enumerate}
+  \item $f_{\pm} \geq 0$
+  \item $f = f_{+} - f_{-}, \quad |f| = f_{+} + f_{-}$
+  \item $f_{+} = \frac{f + |f|}{2}, \quad f_{-} = \frac{|f| - f}{2}$
+  \item Если $f$ непрерывна, то $f_{\pm}$ непрерывна
+\end{enumerate}
+\begin{conj}
+  Подграфиком функции $f\colon E \to \R, f \geq 0$ называется
+  \begin{equation*}
+    P_f = \{ (x, y)\colon x \in E, \, 0 \leq y \leq f(x) \}
+  \end{equation*}
+\end{conj}
+
+\begin{notice}
+    Подграфик непрерывной на отрезке функции --- ограниченное множество.
+\end{notice}
+
+\begin{conj}
+  Пусть $f \in C[a, b]$. Тогда интегралом от $a$ до $b$ функции $f$ называют
+    \begin{equation*}
+      \int_{a}^{b} f =
+      \int_{a}^{b} f(x) \: dx \coloneqq \sigma(P_{f_{+}}) - \sigma(P_{f_{-}})
+    \end{equation*}
+    где $\sigma$ --- некоторая заранее зафиксированная квазиплощадь.
+\end{conj}
+
+\textbf{Свойства:}
+\begin{enumerate}
+\item $\displaystyle \int_{a}^{a} f = 0$
+\item $\displaystyle \int_{a}^{b} 0 = 0$
+\item Если $f \geq 0$, то $\displaystyle \int_{a}^{b} f = \sigma(P_f)$
+\item $\displaystyle \int_{a}^{b}(-f) = -\int_{a}^{b} f$
+\begin{proof}
+    \begin{equation*}
+        \begin{gathered}
+            (-f)_{+} = f_{-} \\
+            (-f)_{-} = f_{+}
+        \end{gathered}
+        \implies
+        \int_{{a}}^{{b}} {-f} \: d{x} =
+        \sigma(P_{f_{-}}) - \sigma(P_{f_{+}}) =
+        - \int_{{a}}^{{b}} {f} \: d{x}
+    \end{equation*}
+\end{proof}
+\item $\displaystyle \int_{a}^{b} c = c(b - a)$, где $c$ --- константа
+\item Если $a < b,\, f \geq 0, \, f \not \equiv 0$, то $\displaystyle \int_{a}^{b} f > 0$
+\begin{proof}
+    Пусть $f(x_0) > 0$. Тогда на $[x_0 - \delta, x_0 + \delta]$:
+    \begin{equation*}
+    f(x) \geq \frac{f(x_0)}{2}
+    \implies
+    P_f \supset [x_0 - \delta, x_0 + \delta] \times [0, \frac{f(x_0)}{2}] \implies
+    \int_{a}^{b} f = \sigma(P_f) \geq 2\delta \cdot \frac{f(x_0)}{2} = f(x_0)\delta > 0
+    \end{equation*}
+\end{proof}
+\end{enumerate}

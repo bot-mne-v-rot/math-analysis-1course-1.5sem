@@ -1,1 +1,51 @@
 \section{Формула Валлиса. Асимптотика наибольшего биномиального коэффициента}
+
+\begin{theorem}[формула Валлиса]
+    \begin{equation*}
+        \lim \frac{(2n)!!}{(2n - 1)!!}\frac{1}{\sqrt{2n + 1}} = \sqrt{\frac{\pi}{2}}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{equation*}
+    \begin{gathered}
+      W_{2n + 2} \leq W_{2n + 1} \leq W_{2n} \\
+      \frac{\pi}{2} \frac{(2n + 1)!!}{(2n + 2)!!} \leq \frac{(2n)!!}{(2n + 1)!!} \leq \frac{\pi}{2} \frac{(2n - 1)!!}{(2n)!!} \\
+      \frac{\pi}{2} \leftarrow \frac{\pi}{2} \cdot \frac{2n + 1}{2n + 2} \leq \frac{((2n)!!)^2}{(2n + 1)!!\cdot(2n - 1)!!} \leq \frac{\pi}{2} \\
+      \lim \frac{(2n!!)^2}{(2n + 1)!!\cdot(2n - 1)!!} = \frac{\pi}{2} \\
+      \lim \frac{(2n!!)^2}{(2n + 1)\cdot((2n - 1)!!)^2} = \frac{\pi}{2} \\
+      \lim \frac{(2n)!!}{\sqrt{2n + 1} \cdot (2n - 1)!!} = \sqrt{\frac{\pi}{2}}
+    \end{gathered}
+  \end{equation*}
+\end{proof}
+
+\begin{follow}
+  \begin{equation*}
+    C_{2n}^{n} = \frac{(2n - 1)!!}{(2n)!!} \cdot 4^n \sim \frac{4^n}{\sqrt{\pi n}}
+  \end{equation*}
+\end{follow}
+\begin{proof}
+  \begin{equation*}
+    \begin{gathered}
+      C_{2n}^{n} =
+      \frac{(2n)!}{(n!)^2} =
+      \frac{(2n)!! \cdot (2n - 1)!!}{(n!)^2} =
+      \frac{4^n \cdot (2n)!! \cdot (2n - 1)!!}{((2n)!!)^2} =
+      \frac{4^n \cdot (2n - 1)!!}{(2n)!!}
+    \end{gathered}
+  \end{equation*}
+  Теперь применим формулу Валлиса:
+  \begin{equation*}
+    \begin{gathered}
+        \frac{(2n)!!}{(2n - 1)!! \cdot \sqrt{2n + 1}} \sim \sqrt{\frac{\pi}{2}}
+        \implies
+        \frac{(2n)!!}{(2n - 1)!! \cdot \sqrt{2n}} \sim \sqrt{\frac{\pi}{2}}
+        \implies
+        \frac{(2n)!!}{(2n - 1)!!} \sim \sqrt{n\pi}
+        \implies \\
+        \implies
+        \frac{(2n - 1)!!}{(2n)!!} \sim \frac{1}{\sqrt{n\pi}}
+        \implies
+        \frac{(2n - 1)!!}{(2n)!!} \cdot 4^n \sim \frac{4^n}{\sqrt{n\pi}}
+    \end{gathered}
+  \end{equation*}
+\end{proof}

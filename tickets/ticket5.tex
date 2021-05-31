@@ -1,1 +1,65 @@
 \section{Вычисление интеграла $\int_{0}^{\pi/2} sin^n x dx$}
+\textbf{Утверждение.}
+\begin{equation*}
+  \int_{0}^{\frac{\pi}{2}} \sin^n x \: dx =
+  \int_{0}^{\frac{\pi}{2}} \cos^n x \: dx
+\end{equation*}
+\begin{proof}
+    Пусть $x = \frac{\pi}{2} - t = \varphi(t), \, \varphi'(t) = -1$. Тогда
+    \begin{equation*}
+      \int_{0}^{\frac{\pi}{2}} \cos^n x \: dx = -\int_{0}^{\frac{\pi}{2}} \cos^n(\varphi(t))\varphi'(t) \: dt = -\int_{\varphi(0)}^{\varphi(\frac{\pi}{2})} \sin^n x\: dx =\int_{0}^{\frac{\pi}{2}} \sin^n x \: dx
+    \end{equation*}
+\end{proof}
+
+Теперь посчитаем этот предел. Пусть
+\begin{equation*}
+  W_n \coloneqq \int_{0}^{\frac{\pi}{2}} \sin^n x \: dx, \qquad W_0 = \frac{\pi}{2},\, W_1 = 1
+\end{equation*}
+Тогда
+\begin{equation*}
+  \begin{gathered}
+    W_n = \int_{0}^{\frac{\pi}{2}} \sin^n x \: dx =
+    -\int_{0}^{\frac{\pi}{2}} \sin^{n - 1}x (\cos x)' \: dx
+    \overset{\mathclap{n \geq 2}}{=}
+    \underbrace{-\sin^{n - 1}x \cos x \big|_{0}^{\frac{\pi}{2}}}_{\mathclap{0}} +
+    \int_{0}^{\frac{\pi}{2}}(n - 1)\sin^{n - 2}x \cos^2 x \: dx
+    = \\ =
+    (n - 1)\int_{0}^{\frac{\pi}{2}} \sin^{n - 2} x (1 - \sin^2 x) \: dx =
+    (n -1 )(W_{n - 2} - W_n)
+    \end{gathered}
+\end{equation*}
+Отсюда
+\begin{equation*}
+    \begin{gathered}
+        W_n = (n - 1)(W_{n - 2} - W_n) \\
+        nW_n  = (n - 1)W_{n - 2} \\
+        W_n = \frac{n - 1}{n} W_{n - 2}
+    \end{gathered}
+\end{equation*}
+Таким образом мы можем отдельно написать ответ для четных, отдельно для нечетных $n$.
+\begin{equation*}
+  \begin{gathered}
+    W_{2n} =
+    \frac{2n - 1}{2n}W_{2n - 2} =
+    \frac{2n - 1}{2n}\cdot\frac{2n - 3}{2n - 2}W_{2n - 4}
+    = \dotsb =
+    \frac{(2n - 1)(2n - 3) \dotsm 1}{2n \cdot (2n - 2) \dotsm 2} \cdot \frac{\pi}{2} =
+    \frac{(2n - 1)!!}{(2n)!!} \cdot \frac{\pi}{2}
+    \\
+    W_{2n + 1} =
+    \frac{2n}{2n + 1} W_{2n - 1} =
+    \frac{2n}{2n + 1}\frac{2n - 2}{2n - 1}W_{2n - 3}
+    = \dotsb =
+    \frac{2n(2n - 2)\dotsm 2}{(2n + 1)(2n - 1)\dotsm 3}\cdot 1 =
+    \frac{(2n)!!}{(2n + 1)!!}
+  \end{gathered}
+\end{equation*}
+Заметим, что
+\begin{equation*}
+    \sin^{0} x \geq \sin^{1} x \geq \sin^2 x \geq \dotsb \geq \sin^n x, \quad x \in [0, \frac{\pi}{2}]
+\end{equation*}
+Теперь применив монотонность интеграла к полученному равенству можно получить, что:
+\begin{equation*}
+    W_0 \geq W_1 \geq W_2 \geq \dotsb \geq W_n
+\end{equation*}
+Это поможет нам в доказательстве следующей теоремы.

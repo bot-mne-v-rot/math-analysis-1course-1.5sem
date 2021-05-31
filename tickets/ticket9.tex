@@ -1,1 +1,51 @@
 \section{Модуль непрерывности. Свойства}
+
+\begin{conj}
+    Пусть $f\colon E \to \R$. Тогда модулем непрерывности $\omega_f$ от $\delta \geq 0$ называют
+    \begin{equation*}
+      \omega_f(\delta) \coloneqq
+      \sup\{|f(x) - f(y)| : x, y \in E
+      \text{ и }\rho(x, y) \leq
+      \delta\}
+    \end{equation*}
+\end{conj}
+
+\textbf{Свойства.}
+\begin{enumerate}
+  \item $\omega_f(\delta) \geq 0$ и $\omega_f(0) = 0$
+  \item $\omega_f$ нестрого возрастает
+  \item $|f(x) - f(y)| \leq \omega_f(\rho(x, y))$
+  \item Если $f$ --- липшицева с константой $M$, то $\omega_f(\delta) \leq M\delta$
+  \item $f$ равномерно непрерывна на $E \iff \omega_f$ непрерывна в нуле.
+  \begin{proof}
+    \begin{enumerate}
+      \item[]
+      \item[] $\boxed{\Rightarrow}$
+      Из равномерной непрерывности:
+      \begin{equation*}
+        \forall \varepsilon > 0 \; \exists \gamma > 0
+        \colon \forall x, y \in E\text{ и }\rho(x, y) < \gamma \implies |f(x) - f(y)| < \varepsilon
+      \end{equation*}
+
+      Тогда если взять $\delta < \gamma$ (можем так сделать, потому что на интересуют только маленькие $\delta$), то
+      \begin{equation*}
+        \rho(x, y) \leq \delta < \gamma \implies
+        |f(x) - f(y)| < \varepsilon \implies \omega_f(\delta) \leq \varepsilon
+        \implies \lim\limits_{\delta \to 0+} \omega_f(\delta) = 0 = \omega_f(0)
+      \end{equation*}
+
+      \item[] $\boxed{\Leftarrow}$
+      Пусть $\lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$. Тогда
+      \begin{equation*}
+        \hphantom{\text{, если $\rho(x, y) \leq \delta$}}
+        \forall \varepsilon > 0 \; \exists \delta > 0 \colon
+        \varepsilon > \omega_f(\delta) \geq |f(x) - f(y)|
+        \text{, если $\rho(x, y) \leq \delta$}
+      \end{equation*}
+      То есть мы поняли, что для любого $\varepsilon$ найдется такое $\delta$, что как только аргументы отличаются не больше чем на $\delta$, значения отличаются меньше чем на $\varepsilon$. Это равномерная непрерывность по определению.
+    \end{enumerate}
+  \end{proof}
+  \item Пусть $K$ --- компакт. Тогда $f \in C(K) \iff \lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$.
+
+  В частности $f \in C[a, b] \iff \lim\limits_{\delta \to 0+} \omega_f(\delta) = 0$.
+\end{enumerate}

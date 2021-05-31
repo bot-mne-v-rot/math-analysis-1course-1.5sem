@@ -56,7 +56,7 @@
         \colon \forall x, y \in E\text{ и }\rho(x, y) < \gamma \implies |f(x) - f(y)| < \varepsilon
       \end{equation*}
 
-      Тогда если взять $\delta < \gamma$(можем так сделать, потому что на интересуют только маленькие $\delta$), то
+      Тогда если взять $\delta < \gamma$ (можем так сделать, потому что на интересуют только маленькие $\delta$), то
       \begin{equation*}
         \rho(x, y) \leq \delta < \gamma \implies
         |f(x) - f(y)| < \varepsilon \implies \omega_f(\delta) \leq \varepsilon
@@ -120,7 +120,7 @@
       \int_{x_{k - 1}}^{x_k} f(\xi_k) \: dx
       = \\ =
       \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f -
-      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f_{\xi_k} \: dx =
+      \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} f(\xi_k) \: dx =
       \sum_{k = 1}^{n} \int_{x_{k - 1}}^{x_k} (f(x) - f(\xi_k)) \: dx
     \end{gathered}
   \end{equation*}
@@ -170,11 +170,11 @@
   \begin{equation*}
       \lim\limits_{n \to \infty} \frac{S_p(n)}{n^{p + 1}} =
       \lim\limits_{n \to \infty} \frac{1}{n^{p + 1}}\sum_{k = 1}^{n} k^p =
-      \lim\limits_{n \to \infty} \frac{1}{n}\sum_{k = 1}^{n} \left(\frac{k}{n}\right)^p =
+      \lim\limits_{n \to \infty} \frac{1}{n}\sum_{k = 1}^{n} \left(\frac{k}{n}\right)^p = \oast
   \end{equation*}
   Полученное выражение это просто интегральная сумма для функции $f(x) = x^p$, дробления $x_k = \frac{k}{n}$ и оснащения $\xi_k = \frac{k}{n}$ на отрезке $[0, 1]$. Тогда воспользуемся следствием 2:
   \begin{equation*}
-      = \int_{0}^{1} x^p \: dx = \left. \frac{x^{p + 1}}{p + 1} \right|_{0}^{1} = \frac{1}{p + 1}
+      \oast = \int_{0}^{1} x^p \: dx = \left. \frac{x^{p + 1}}{p + 1} \right|_{0}^{1} = \frac{1}{p + 1}
   \end{equation*}
   Более того, используя исходную теорему можно найти оценку на погрешность. Пусть $p \geq 1$. Тогда:
   \begin{equation*}
@@ -202,7 +202,7 @@
 
 \begin{conj}
     Пусть $f\colon [a, b] \to \R$ --- ограниченная функция.
-    Тогда $f$ называется интегрируемой по Риману, если $\forall \varepsilon > 0 \; \exists \delta > 0$ такое, что $\forall$дробления ранга $< \delta,\; \forall$его оснащения выполняется
+    Тогда $f$ называется интегрируемой по Риману, если $\forall \varepsilon > 0 \; \exists \delta > 0$ такое, что $\forall$ дробления ранга $< \delta,\; \forall$его оснащения выполняется
     \begin{equation*}
         | S(f, \tau, \xi) - I| < \varepsilon\text{, то } \int_{a}^{b} f \coloneqq I
     \end{equation*}
@@ -226,9 +226,9 @@
     \end{equation*}
     Подставив полученное выражение в $\triangle$ получаем:
     \begin{equation*}
-            \triangle = - \int_{a}^{b} f'(t)(t - \gamma) \: dt = \frac{1}{2}
+            \triangle = - \int_{\alpha}^{\beta} f'(t)(t - \gamma) \: dt = \frac{1}{2}
             \int_{{\alpha}}^{{\beta}} {f'(t)((t - \alpha)(\beta - t))'} \: d{t}
-            =
+            = \oast
     \end{equation*}
     Отдельное посчитаем производную:
     \begin{equation*}
@@ -237,7 +237,7 @@
     \end{equation*}
     Подставляем полученное выражение обратно в $\triangle$:
     \begin{equation*}
-            =
+            \oast =
             \smash{\underbrace{\frac{1}{2} f'(t)(t - \alpha)(\beta - t) \Big|_{t = \alpha}^{t = \beta}}_{0}}
             - \frac{1}{2} \int_{{\alpha}}^{{\beta}} {f''(t)(t - \alpha)(\beta - t)} \: d{t}
     \end{equation*}
@@ -252,6 +252,7 @@
     \end{equation*}
 \end{theorem}
 \begin{proof}
+  По лемме:
     \begin{equation*}
             \triangle = \sum_{k = 1}^{n} \int_{{x_{k - 1}}}^{{x_k}} {f} -
             \sum_{k = 1}^{n} \frac{f(x_{k - 1}) + f(x_k)}{2}(x_k - x_{k - 1}) =

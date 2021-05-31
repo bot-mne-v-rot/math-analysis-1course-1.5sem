@@ -1,1 +1,114 @@
 \section{Аддитивность интеграла и монотонность интеграла. Следствия монотонности интеграла. Среднее значение функции}
+\textbf{Обозначение.}
+$P_{g}(E)$ --- подграфик функции $g|_{E}$.
+
+\begin{theorem}[аддитивность интеграла]
+    Пусть $f \in C[a, b]$ и $c \in [a, b]$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    \begin{equation*}
+        \begin{gathered}
+             \int_{a}^{b} f = \sigma(P_{f_{+}}) - \sigma(P_{f_{-}})
+             = \\ =
+             \underbrace{(\sigma(P_{f_{+}}([a, c])) +
+             \sigma(P_{f_{+}}([c, b])))}_{\mathclap{\sigma(P_{f_{+}})}} -
+             \underbrace{(\sigma(P_{f_{-}}([a, c])) +
+             \sigma(P_{f_{-}}([c, b])))}_{\mathclap{\sigma(P_{f_{-}})}}
+             = \\ =
+             (\sigma(P_{f_{+}}([a, c])) -
+             \sigma(P_{f_{-}}([a, c])) +
+             (\sigma(P_{f_{+}}([c, b])) -
+             \sigma(P_{f_{-}}([c, b])))
+             = \\ =
+             \int_{a}^{c} f + \int_{c}^{b} f
+         \end{gathered}
+    \end{equation*}
+\end{proof}
+
+\begin{follow}
+    Пусть $f \in C[a, b]$ и $a \leq c_1 \leq c_2 \leq \dotsb \leq c_n \leq b$. Тогда
+    \begin{equation*}
+    \int_{a}^{b} f =
+    \int_{a}^{c_1} f +
+    \int_{c_1}^{c_2} f +
+    \dotsb +
+    \int_{c_{n - 1}}^{c_n} f +
+    \int_{c_n}^{b} f
+    \end{equation*}
+\end{follow}
+
+\begin{theorem}[монотонность интеграла]
+    Пусть $f, g \in C[a, b]$ и $f \leq g$ на $[a, b]$. Тогда
+    \begin{equation*}
+        \int_{a}^{b} f \leq \int_{a}^{b} g
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    \begin{equation*}
+        \begin{gathered}
+            \begin{gathered}
+                f_{+} = \max\{f, 0\} \leq \max\{g, 0\} = g_{+} \\
+                f_{-} = \max\{-f, 0\} \geq \max\{-g, 0\} = g_{-}
+            \end{gathered}
+            \implies
+            \begin{gathered}
+              P_{f_{+}} \subset P_{g_{+}} \\
+              P_{f_{-}} \supset P_{g_{-}}
+            \end{gathered}
+            \implies \\ \implies
+            \begin{gathered}
+                \sigma(P_{f_{+}}) \leq \sigma(P_{g_{+}}) \\
+                \sigma(P_{f_{-}}) \geq \sigma(P_{g_{-}})
+            \end{gathered}
+            \implies
+            \int_{a}^{b} f = \sigma(P_{f_{+}}) - \sigma(P_{f_{-}}) \leq \sigma(P_{g_{+}}) - \sigma(P_{g_{-}}) = \int_{a}^{b} g
+        \end{gathered}
+    \end{equation*}
+\end{proof}
+
+\begin{follow}
+  \begin{enumerate}
+    \item Пусть $f \in C[a, b]$. Тогда
+      \label{int_mon:1}
+      \begin{equation*}
+        (b - a)\min f \leq \int_{a}^{b} f \leq (b - a)\max f
+      \end{equation*}
+      \begin{proof}
+          $g_1(x) = \min f \leq f(x) \leq \max f = g_2(x)$
+      \end{proof}
+    \item Пусть $f \in C[a, b]$. Тогда
+    \begin{equation*}
+      \left|\int_{a}^{b} f \right| \leq \int_{a}^{b} |f|
+    \end{equation*}
+      \begin{proof}
+        \begin{equation*}
+          \begin{gathered}
+            -|f| \leq f \leq |f|
+            \implies \\ \implies
+            -\int_{a}^{b} |f| = \int_{a}^{b} -|f| \leq \int_{a}^{b} f \leq \int_{a}^{b}|f|
+            \implies \\ \implies
+            \left| \int_{a}^{b} f \right| \leq \int_{a}^{b} |f|
+          \end{gathered}
+        \end{equation*}
+      \end{proof}
+  \end{enumerate}
+\end{follow}
+
+\begin{theorem}[о среднем]
+    Пусть $f \in C[a, b]$. Тогда $\exists\, c \in [a,b]$, для которой
+    \begin{equation*}
+        \int_{a}^{b} f = f(c)(b - a)
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Пусть
+    \begin{equation*}
+      \hphantom{\text{среднее значение функции $f$ на $[a, b]$}}
+      I_f \coloneqq \frac{1}{b - a} \int_{a}^{b} f
+      \text{ --- среднее значение функции $f$ на $[a, b]$}
+    \end{equation*}
+    По следствию \hyperref[int_mon:1]{1} из монотонности интеграла: $f(u) = \min f \leq I_f \leq \max f = f(v)$ для некоторых $u, v \in [a, b]$ из т. Вейерштрасса. Тогда по т. Больцано-Коши $\exists \, c \in [u, v]$ такая, что $I_f = f(c)$
+\end{proof}

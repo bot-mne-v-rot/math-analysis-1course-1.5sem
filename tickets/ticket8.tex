@@ -1,1 +1,86 @@
 \section{Иррациональность числа $\pi$}
+
+\begin{example}
+    \begin{equation*}
+      H_j \coloneqq \frac{1}{j!}\int_{0}^{\frac{\pi}{2}}\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j \cos x \: dx
+    \end{equation*}
+  \end{example}
+  
+  \textbf{Свойства.}
+  \begin{enumerate}
+    \item
+      \begin{equation*}
+        0 < H_j \leq \frac{1}{j!}\int_{0}^{\frac{\pi}{2}} \left(\frac{\pi}{2}\right)^{2j} \cos x \: dx = \left(\frac{\pi}{2}\right)^{2j} \cdot \frac{1}{j!}
+      \end{equation*}
+    \item Если $c > 0$, то $\smash{c^j H_j \underset{\mathclap{j \to \infty}}{\longrightarrow} 0}$
+    \begin{proof}
+        \begin{gather*}
+          0 < c^j H_j \leq \left(\frac{c\pi^2}{4}\right)^j \cdot \frac{1}{j!} \longrightarrow 0
+        \end{gather*}
+        Так как факториал растет быстрее, чем показательная степень
+    \end{proof}
+    \item $H_0 = 1,\, H_1 = 2$
+    \item $H_j = (4j - 2)H_{j - 1} - \pi^2 H_{j - 2}$
+    \begin{proof}
+      \begin{equation*}
+        \begin{gathered}
+          j!\cdot H_j =
+          \int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j (\sin x)'} \: d{x} = \\
+          \overbrace{\left.\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j \sin x\right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}} +
+          2j \int_{0}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \sin x} \: d{x} \; = \oast 
+        \end{gathered}
+      \end{equation*}
+      Теперь заметим, что
+      \begin{equation*}
+        \begin{gathered}
+          \left(\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^j\right)' =
+          j\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}(-2x)         \\
+          \left(x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}\right)' =
+          \left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} + x(j - 1)\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 2}(-2x)
+        \end{gathered}
+      \end{equation*}
+      Теперь можем расписать второй интеграл по формуле интегрирования по частям, используя полученные выражения.
+      \begin{equation*}
+        \begin{gathered}
+          \oast = -2j \int_{{0}}^{{\frac{\pi}{2}}} {x\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1}(\cos x)'} \: d{x}
+          = \\ =
+          \overbrace{\left.-2jx \left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x \right|_{0}^{\frac{\pi}{2}}}^{\mathclap{0}}
+          + 2j \overbrace{\int_{{0}}^{{\frac{\pi}{2}}} {\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 1} \cos x} \: d{x}}^{\mathclap{(j - 1)! \cdot H_{j - 1}}} -\\
+          - 2j \cdot 2 (j - 1) \underbrace{\int_{{0}}^{{\frac{\pi}{2}}} {x^2\left(\left(\frac{\pi}{2}\right)^2 - x^2\right)^{j - 2} \cos x} \: d{x}}_{\mathclap{\left(\frac{\pi}{2}\right)^2(j - 2)!\cdot H_{j - 2} - (j - 1)!\cdot H_{j - 1} \text{ т. к. } x^2 = \left(\frac{\pi}{2}\right)^2 - \left( \left(\frac{\pi}{2}\right)^2 - x^2 \right) }}
+        \end{gathered}
+      \end{equation*}
+      Таким образом:
+      \begin{equation*}
+        \begin{gathered}
+          j! \cdot H_j = 2j!\cdot H_{j - 1} - \pi^2 j! \cdot H_{j - 2} + 4(j - 1)j! \cdot H_{j - 1}\\
+          H_j = 2\cdot H_{j - 1} - \pi^2 \cdot H_{j - 2} + 4(j - 1) \cdot H_{j - 1} = (4j - 2)H_{j - 1} - \pi^2 H_{j - 2}
+        \end{gathered}
+      \end{equation*}
+    \end{proof}
+    \item Существует многочлен $P_j$ с целыми коэффициентами, $\deg P_j \leq j$,
+    для которого $H_j = P_j(\pi^2)$.
+      \begin{proof}
+        По индукции. База $P_0 \equiv 1, P_1 \equiv 2$. Переход $j - 2, j - 1 \to j$:
+    
+        \begin{equation*}
+          \begin{gathered}
+            H_j = (4j - 2)H_{j - 1} - \pi^2H_{j - 2} = (4j - 2)P_{j - 1}(\pi^2) -
+            \pi^2P_{j - 2}(\pi^2) = P_j(\pi^2)\\
+            P_j(x) = (4j - 2)P_{j - 1}(x) - xP_{j - 2}(x)
+          \end{gathered}
+        \end{equation*}
+      \end{proof}
+    \end{enumerate}
+    
+    \begin{theorem}[Ламберта]
+        $\pi$ и $\pi^2$ иррациональны.
+    \end{theorem}
+    \begin{proof}[Доказательство(Эрмит)]
+        От противного. Пусть $\pi^2 = \frac{m}{n}$. Тогда
+        \begin{equation*}
+            0 < H_j = P_j(\frac{m}{n}) = \frac{\text{целое}}{n^{j}} \implies
+            H_j \geq \frac{1}{n^j} \implies n^{j}H_{j} \geq 1
+        \end{equation*}
+        Но мы знаем, что $n^jH_j \underset{j \to \infty}{\longrightarrow} 0$. Противоречие.
+    \end{proof}
+  

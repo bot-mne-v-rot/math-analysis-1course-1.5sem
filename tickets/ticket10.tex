@@ -1,1 +1,25 @@
 \section{Дробление, ранг, оснащение, сумма Римана}
+\begin{conj}
+    Дроблением(разбиением, пунктиром) для отрезка $[a, b]$ называется набор точек $x_i$ такой, что
+    \begin{equation*}
+        \begin{gathered}
+            a = x_0 < x_1 < x_2 < \dotsb < x_n = b\\
+            \tau = \{x_0, x_1, \dotsc, x_n\}\text{ --- дробление}
+        \end{gathered}
+    \end{equation*}
+
+    Рангом дробления называется самый длинный из отрезков в дроблении:
+    \begin{equation*}
+        |\tau| = \max\{x_1 - x_0, x_2 - x_1, \dotsc, x_n - x_{n - 1}\}
+    \end{equation*}
+
+    Оснащением дробления называется набор точек для каждого из отрезков в дроблении:
+    \begin{equation*}
+        \{\xi_k\}\colon \quad \xi_k \in [x_{k - 1}, x_k]
+    \end{equation*}
+
+    Пусть $f\colon [a, b] \to \R$. Тогда интегральной суммой(суммой Римана) называется:
+    \begin{equation*}
+        S(f, \tau, \xi) \coloneqq \sum\limits_{k = 1}^{n} f(\xi_k)(x_k - x_{k - 1})
+    \end{equation*}
+\end{conj}
