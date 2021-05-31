@@ -1,1 +1,37 @@
 \section{Признак Даламбера. Примеры. Связь между признаками Коши и Даламбера}
+\textbf{Признак Даламбера:} 
+Пусть $a_n > 0$. Тогда: \begin{enumerate}
+    \item Если $\frac{a_{n+1}}{a_n} \leqslant d < 1$, то $\sum a_n$ сходится.
+    \item Если $\frac{a_{n+1}}{a_n} \geqslant 1$, то $\sum a_n$ расходится.
+    \item Пусть $d^* := \lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n}$. Если $d^* < 1$, то ряд сходится, если $d^* > 1$, то расходится, иначе ничего утверждать нельзя (примеры те же).
+\end{enumerate}
+\begin{proof} \quad
+
+    \begin{enumerate}
+        \item В этом пункте утверждается, что $a_{n+1} \leqslant da_n \leqslant d^2a_{n - 1} \leqslant \dots \leqslant d^na_1$. Применяем признак сравнения с бесконечно убывающей геометрической прогрессией.
+        \item В этом пункте $a_{n+1} \geqslant a_n$, значит, нет необходимого условия сходимости.
+        \item Пусть $d^* < 1$. Вспомним, что это $\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n}$, а значит с какого-то момента $\frac{a_{n+1}}{a_n} < \frac{d^* + 1}{2} < 1$. Осталось применить первый пункт.
+        
+        Пусть $d^* > 1$. Тогда с какого-то момента $\frac{a_{n+1}}{a_n} \geqslant 1$. Осталось применить второй пункт.
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    Исследуем на сходимость ряд $\sum\limits_{n = 1}^\infty \frac{x_n}{n!}$ при $x > 0$.
+
+    По Даламберу: $\frac{a_{n+1}}{a_n} = \frac{x^{n+1}n!}{(n+1)!x^n} = \frac{x}{n+1} \to 0 \Rightarrow$ ряд сходится.
+
+    По Коши: $\sqrt[n]{a_n} = \frac{x}{\sqrt[n]{n!}} \thicksim \frac{x}{\sqrt[n]{n^ne^{-n}\sqrt{2\pi n}}} = \frac{x}{ne^{-1}\sqrt[2n]{2\pi n}} \to 0 \Rightarrow$ ряд сходится.
+\end{example}
+
+\vspace{5mm}
+
+
+\begin{theorem} (связь пр. Коши и Даламбера)
+    Если $a_n > 0$ и $d^* = \lim\limits_{n \to \infty} \frac{a_{n+1}}{a_n}$, то  = $\lim\limits_{n \to \infty} \sqrt[n]{a_n} = d^*$.
+\end{theorem}
+\begin{proof}
+    Будем считать $\lim\limits_{n \to \infty} \ln(\sqrt[n]{a_n}) = \lim\limits_{n \to \infty} \frac{\ln a_n}{n}$.
+    Для этого применим т. Штольца (знаменатель строго возрастает и стремится в $+\infty$): \[ \lim\limits_{n \to \infty} \frac{\ln a_n}{n} = \lim\limits_{n \to \infty} \frac{\ln a_{n+1} - \ln a_n}{n + 1 - n} = \lim\limits_{n \to \infty} \ln \frac{a_{n+1}}{a_n} = \ln d^* \]
+    \quad Значит, $\lim\limits_{n \to \infty} \sqrt[n]{a_n} = e^{\ln d^*} = d^*$.
+\end{proof}

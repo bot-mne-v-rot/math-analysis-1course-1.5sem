@@ -1,1 +1,68 @@
 \section{Теорема о дифференцировании равномерно сходящейся последовательности (ряда). Существенность равномерности}
+\begin{theorem} Пусть у нас есть:
+    \begin{itemize}
+       \item $f_n \in C^1[a, b]$
+       \item $f_n$ сходятся в какой-то точке $c \in [a, b]$, то есть $f_n(c) \to A$
+       \item $f_n' \rightrightarrows g$ на $[a, b]$
+   \end{itemize}
+   Тогда $f_n \rightrightarrows f$ на $[a, b]$, где $f \in C^1[a, b]$ и $f' = g$. В частности, $\lim\limits_{n \to \infty} f_n'(x) = (\lim\limits_{n \to \infty} f_n(x))'$.
+\end{theorem}
+\begin{proof}
+   Посмотрим на следующие интегралы:
+   \begin{gather*}
+       \int_c^x g(t)dt = \int_c^x \lim\limits_{n \to \infty} f_n'(t)dt \underbrace{=}_{\text{пред. теор.}} \lim\limits_{n \to \infty} \int_c^x  f_n'(t)dt = \\
+       = \lim\limits_{n \to \infty} (f_n(x) - f_n(c)) \underbrace{=}_{\text{исп. кон-ть $\lim f_n(c)$}} \lim\limits_{n \to \infty} f_n(x) - \lim\limits_{n \to \infty} f_n(c) = f(x) - A \\ 
+       \\
+       \Rightarrow f(x) = A + \int_c^x g(t)dt \Rightarrow f \in C^1[a, b] \text{ и } f'(x) = g(x)
+   \end{gather*}
+   \quad Вообще говоря, последний переход -- это теорема Барроу, так как согласно ней интеграл от непрерывной функции это функция дифференцируемая.
+
+   \quad Осталось проверить равномерную сходимость $f_n(x)$ к $f(x)$.
+   Заметим, что у нас есть следующие тождества:
+   \begin{gather*}
+       f_n(x) = \int_c^x f'_n(t)dt + f_n(c) \\
+       f(x) = \int_c^x g(t)dt + A
+   \end{gather*}
+   По предыдущей теореме $\int_c^x f'_n(t)dt \rightrightarrows \int_c^x g(t)dt$. 
+   По условию $f_n(c) \to A$, это не зависит от $x$, поэтому $f_n(c) \rightrightarrows A$.
+   Таким образом, $f_n(x) \rightrightarrows f(x)$.
+\end{proof}
+
+\vspace*{7mm}
+
+Можно определить аналогичную вещь для рядов.
+
+\begin{follow}
+   Пусть у нас есть: \begin{itemize}
+       \item $u_n \in C^1[a, b]$
+       \item $\sum\limits_{n=1}^\infty u_n$ сходится в какой-то точке $c \in [a, b]$, то есть $\sum\limits_{n=1}^\infty u_n(c) \to A$
+       \item $\sum\limits_{n=1}^\infty u_n'(x)$ равномерно сходится на $[a, b]$
+   \end{itemize}
+   Тогда $\sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится к дифференцируемой функции и:
+   \begin{gather*}
+       \left(\sum\limits_{n=1}^\infty u_n(x)\right)' = \sum\limits_{n=1}^\infty u_n'(x)
+   \end{gather*}
+\end{follow}
+\begin{proof}
+   Чтобы воспользоваться теоремой, введем $f_n(x) := \sum\limits_{k=1}^n u_k(x)$. 
+   Конечная сумма дифференцируемых функций это тоже дифференцируемая функция, поэтому $\sum\limits_{k=1}^n u_k(x) \in C^1[a, b]$. 
+   Производная конечной суммы это сумма производных, поэтому $f_n'(x) = \sum\limits_{k=1}^n u_k'(x)$, что по условию $\rightrightarrows \sum\limits_{k=1}^\infty u_k'(x) =: g(x)$.
+
+   \quad Применив предыдущую теорему, получаем, что $f_n \rightrightarrows f$, где $f' = g$. Это означает, что ряд равномерно сходится и:
+   \begin{gather*}
+       \left(\sum\limits_{n=1}^\infty u_n(x)\right)' = g(x) = \sum\limits_{n=1}^\infty u_n'(x)
+   \end{gather*}
+\end{proof}
+\begin{notice}
+   Тут важна именно равномерная сходимость производных, равномерной сходимости изначальных функций недостаточно.
+
+   \textbf{Пример:}
+   
+   Ряд $\sum\limits_{n=1}^\infty \frac{\sin nx}{n^2}$ равномерно сх-ся по признаку Вейерштрасса, так как $|\frac{\sin nx}{n^2}| \leqslant \frac{1}{n^2}$.
+   Но ряд из производных:
+   \begin{gather*}
+       \sum\limits_{n=1}^\infty (\frac{\sin nx}{n^2})' = \sum\limits_{n=1}^\infty \frac{\cos nx}{n}
+   \end{gather*} 
+   Расходится при $x = 0$. 
+   То есть мы получили, что почленное дифференцирование приводит к расходящемуся ряду, что не может быть производной сходящегося ряда.
+\end{notice}

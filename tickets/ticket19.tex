@@ -1,1 +1,80 @@
 \section{Абсолютная сходимость. Признаки Дирихле и Абеля}
+\begin{conj}
+    Пусть $f \in C[a, b)$. Тогда $\int_{a}^{b} f$ абсолютно сходится, если $\int_{a}^{b} |f|$ сходится.
+  \end{conj}
+  
+  \begin{theorem}
+    Если $\int_{a}^{b} f$ абсолютно сходится, то он сходится.
+  \end{theorem}
+  \begin{proof}
+    $\int_{a}^{b} f = \int_{a}^{b}(f_+ - f_-) = \int_{a}^{b} f_+ + \int_{a}^{b} (-f_-)$. Если правые интегралы сходятся, то и левый интеграл также сходится. Но мы знаем, что $0 \leq f_+ \leq |f|$ и $0 \leq -f_- \leq |f|$. Значит по признаку сравнимости $\int_{a}^{b} f_{\pm}$ сходится. А значит и наш интеграл тоже сходится.
+  \end{proof}
+  
+  \begin{notice}
+    Если $\int_{a}^{b} f$ абсолютно сходится, то $\left | \int_{a}^{b} f \right | \leq \int_{a}^{b} |f|$.
+  \end{notice}
+  \begin{proof}
+    \begin{equation*}
+      -\int_{a}^{b} |f| \leq \int_{a}^{b} f \leq \int_{a}^{b} |f|
+    \end{equation*}
+  \end{proof}
+  
+  \begin{theorem}[Признак Дирихле]
+    Пусть $f, \, g \in C[a, +\infty)$ и
+    \begin{enumerate}
+      \item $f$ имеет ограниченную первообразную. Иными словами существует $K$ такое, что
+      \begin{equation*}
+        \forall x > a\colon \left| \int_{a}^{x} f(t) \: dt \right| \leq K
+      \end{equation*}
+      \item $g$ монотонна
+      \item $\lim\limits_{\mathclap{x \to +\infty}} g(x) = 0$
+    \end{enumerate}
+    Тогда $\int_{a}^{+\infty} f(x)g(x) \: dx$ сходится.
+  \end{theorem}
+  \begin{proof}
+    Докажем для случая $g \in C^{1}[a, +\infty)$. Пусть $F(x) \coloneqq \int_{a}^{x} f(t) \: dt$. Тогда
+    \begin{equation*}
+      \int_{a}^{x} f(t) g(t) \: dt = \int_{a}^{x} F'(t) g(t) \: dt =
+      \underbrace{F(t) g(t) \Big|_{t = a}^{t = b}}_{\mathclap{F(x)g(x)}} - \int_{a}^{x} F(t) g'(t) \: dt
+    \end{equation*}
+    Устремим $x$ к бесконечности.
+    \begin{equation*}
+      \lim\limits_{x \to \infty} \overbrace{F(x)}^{\mathclap{\text{ограниченная}}} \underbrace{g(x)}_{\mathclap{\text{беск. малая}}} = 0
+    \end{equation*}
+    Осталось доказать, что $\int_{a}^{+\infty} F(t) g'(t) \: dt$ сходится. Проверим, что $\int_{a}^{+\infty} |F(t)||g'(t)| \: dt$ сходится и отсюда будет следовать абсолютная сходимость. Мы знаем, что $|F(t)| \leq K$.
+    Значит достаточно доказать, что $\int_{a}^{+\infty} |g'(t)| \: dt$ сходится.
+    НУО пусть $g$ монотонно возрастает. Тогда $g'(t) \geq 0$. Значит
+    \begin{equation*}
+      \int_{a}^{+\infty} |g'(t)| \: dt = \int_{a}^{+\infty} g'(t) \: dt = g \Big |_{a}^{+\infty} =
+      \lim\limits_{\mathclap{x \to +\infty}} g(x) - g(a) = -g(a)
+    \end{equation*}
+  \end{proof}
+  
+  \begin{theorem}[Признак Абеля]
+    Пусть $f, \, g \in C[a, +\infty)$ и
+    \begin{enumerate}
+      \item $\int_{a}^{+\infty} f$ сходится
+      \item $g$ монотонна
+      \item $g$ ограничена
+    \end{enumerate}
+    Тогда $\int_{a}^{+\infty} f(x) g(x) \: dx$ сходится.
+  \end{theorem}
+  \begin{proof}
+    Пусть $F(y) \coloneqq \int_{a}^{y} f(t) \: dt$. Тогда $\int_{a}^{+\infty} f(t) \: dt = \lim\limits_{y \to +\infty} F(y)$, то есть предел существует и конечен. Значит $F$ ограничена в некоторой окрестности $+\infty$, то есть ограничена на луче $(b, +\infty)$. Но на $[a, b]\ F$ ограничена, т.к. непрерывна. Следовательно $\forall\, y \geq a\colon |F(y)| \leq K$.
+  
+    Теперь заметим, что $g$ монотонна и ограничена, а значит существует конечный предел $\lim\limits_{\mathclap{y \to +\infty}} g(y) \leftcoleqq A$. Пусть $\widetilde{g}(x) \coloneqq~ g(x) - A$. Тогда заметим, что $\widetilde{g}(x)$ удовлетворяет условиям 2 и 3 из признака Дирихле.
+  
+    Таким образом по признаку Дирихле $\int_{a}^{+\infty} f(x) \widetilde{g}(x) \: dx$ сходится. Но тогда
+    \begin{equation*}
+      \underbrace{\int_{a}^{+\infty} f(x)(\widetilde{g}(x) + A) \: dx}_{\mathclap{
+        \int_{a}^{+\infty} f(x)g(x) \: dx
+      }} =
+      \underbrace{\int_{a}^{+\infty} f(x)\widetilde{g}(x) \: dx}_{\mathclap{
+        \substack{\text{сходится по} \\ \text{признаку Дирихле}}
+      }} +
+      \underbrace{A \int_{a}^{+\infty} f(x) \: dx}_{\mathclap{
+        \text{сходится по условию}
+      }}
+    \end{equation*}
+    Получилось, что нужный нам интеграл сходится как сумма двух сходящихся интегралов. Теорема доказана.
+  \end{proof}

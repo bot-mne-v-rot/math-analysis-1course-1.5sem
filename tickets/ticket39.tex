@@ -1,1 +1,99 @@
 \section{Произведение $\prod \frac{p_n}{p_n - 1}$ и ряд $\prod \frac{1}{p_n}$. Оценка частичных сумм ряда $\sum \frac{1}{p_n}$}
+\textbf{Пример к предыдущей теореме:}
+
+Пусть $p_n$ -- $p$-e простое число. Тогда $\prodn \frac{p_n}{p_n - 1}$ расходится.
+Более того, $\prodk \frac{p_k}{p_k - 1} \geq H_n$.
+
+\begin{proof}
+    Посчитав сумму геометрической прогрессии получаем:
+    \begin{gather*}
+        \frac{p}{p-1} = \frac{1}{1-\frac{1}{p}} = \sum \limits_{j=0}^\infty \frac{1}{p^j}
+    \end{gather*}
+    То есть искомое произвдение - это:
+    \begin{gather*}
+        \prodn \sum \limits_{j=0}^\infty \frac{1}{p^j}
+    \end{gather*}
+    Предположим, что мы умеем раскрывать скобки, тогда после раскрытия скобок получится сумма обратных ко всем числам:
+    \begin{gather*}
+        \prodn \sum \limits_{j=0}^\infty \frac{1}{p^j} = \sum \frac{1}{n}
+    \end{gather*}
+    Действительно, каждое число единственным образом раскладывается на простые множители, и каждый набор простых множителей дает какое-то уникальное число.
+
+    Это было интуитивное рассуждение. Теперь формализуем его для конечных сумм:
+
+    \[\sum \limits_{j=0}^\infty \frac{1}{p^j} \geq \sum \limits_{j=0}^n \frac{1}{p^j}\]
+    \[P_n = \prodk \frac{p_k}{p_k - 1} \geq \prodk \sum \limits_{j=0}^n \frac{1}{p^j} = 
+    \sum_{0 \leq \alpha_j \leq n} \frac{1}{p_1^{\alpha_1}p_2^{\alpha_2}\ldots p_n^{\alpha_n}} \geq \sumk \frac{1}{k} \]
+
+    Тогда в знаменателе встретятся все числа от $1$ до $n$. Действительно, любое число до $n$ раскладвыается на простые,
+    не большие $n$ со степенями не больше $n$ (даже $2^n$ уже больше $n$). Видно, что это очень грубая оценка, например можно
+    показать, что встретятся также и все числа до $p_n$.
+\end{proof}
+
+\begin{theorem}
+    Ряд $\sumn \frac{1}{p_n}$ расходится. $p_n$ -- $n$-е простое число.
+\end{theorem}
+
+\begin{proof}
+    $\prodn \frac{p_n}{p_n - 1}$ расходится $\Longrightarrow \sumn \ln(\frac{p_n}{p_n-1})$ расходится
+    \begin{gather*}
+        \ln(\frac{p}{p-1}) = \ln(\frac{1}{1-\frac{1}{p}}) = -\ln(1 - \frac{1}{p}) = \frac{1}{p} + O(\frac{1}{p^2})
+    \end{gather*}
+    То есть $\sumn \frac{1}{p_n} + O(\frac{1}{p_n^2})$ -- расходится. При этом знаем, что $\sumn O(\frac{1}{p^2})$ -- сходится.
+    Значит их разность расходится, а значит $\sumn \frac{1}{p_n}$ -- расходится
+\end{proof}
+
+\textbf{Замечания.} 
+\begin{enumerate}
+    \item \begin{gather*}
+        \sumk \frac{1}{p_k} \geq \ln H_n + O(1) \geq \ln \ln n + C
+    \end{gather*}
+    \begin{proof}
+        \begin{align*}
+            \sumk \frac{1}{p_k} &= \sumk (-\ln(1-\frac{1}{p^k}) + O(\frac{1}{p_k^2})) \\ 
+            &= \sumk (-\ln(1-\frac{1}{p^k})) + O(1) = \\
+            &= \ln \prodk \frac{p_k}{p_k-1} + O(1) \geqslant \ln H_n + O(1) \geqslant \ln \ln n + C
+        \end{align*}
+    \end{proof}
+    \item На самом деле $\sumn \frac{1}{p_k} = \ln \ln n + O(1)$
+    \item Докажем чуть менее точную оценку сверху:
+    \begin{gather*}
+        \sumk \frac{1}{p_k} \leq 2\ln \ln n
+    \end{gather*}
+    \begin{proof}
+        Покажем, что:
+        \begin{gather*}
+            \sum \limits_{a \leq p \leq a^2} \frac{1}{p} < \frac{4}{3}
+        \end{gather*}
+        Для этого выпишем числа $1, 2, 3, \ldots, a^2$. Зачеркнём делящиеся на $p$ для $a \leq p \leq a^2$.
+        Заметим, что каждое число мы вычеркнем не более одного раза, так как произведение любых двух простых
+        такого вида больше $a^2$. При этом для каждого $p$ мы зачеркиваем $\lfloor \frac{a^2}{p} \rfloor$ чисел, делящихся на $p$.
+        Но мы зачеркнули чисел всего не больше, чем у нас есть. Оценивая снизу округление вниз, получаем
+
+        \begin{gather*}
+            \sum_{a \leq p \leq a^2}(\frac{a^2}{p} - 1) \leqslant \sum_{a \leq p \leq a^2} \lfloor \frac{a^2}{p} \rfloor < a^2
+            \Longrightarrow \sum_{a \leq p \leq a^2} \frac{a^2}{p} < a^2 + \text{кол-во простых} < \frac{4}{3}a^2 \
+        \end{gather*}
+
+        Делим на $a^2$, получаем искомое неравенство. Использовали, что количество простых не больше чем $\frac{1}{3}a^2$ потому например
+        все простые кроме 2, 3 нечетны и не делятся на $3$, а таких уже треть.
+
+        Рассмотрим
+        \begin{gather*}
+            \sum_{p \leq 2^{2^n}} \frac{1}{p} = \sumk \sum_{2^{2^{k-1}} \leq p \leq 2^{2^k}} \frac{1}{p}
+            \leq \sumk \frac{4}{3} = \frac{4}{3}n
+        \end{gather*}
+        Тогда считая сумму обратных простых до некоторого $n$, возьмем $m = \lceil \log_2 \log_2 n \rceil$. Тогда
+
+        \begin{align*}
+            \sum_{j=1}^n \frac{1}{p_j} \leqslant \sum_{p \leqslant 2^{2^m}} \frac{1}{p} < \frac{4}{3}\lceil \log_2 \log_2 n \rceil
+            &\leqslant \frac{4}{3} (\log_2 \log_2 n + 1) \\
+            &= \frac{4}{3}(\log_2 \ln n + C) \\
+            &= \frac{4}{3} \cdot \frac{\ln \ln n}{\ln 2} + C \leq 2 \ln \ln n + C
+        \end{align*}
+
+        Легко видеть, что константа контролируется: она не больше $\frac{4}{3} (1 - \log_2 \ln 2) \approx 2.03$
+    \end{proof}   
+
+
+\end{enumerate}

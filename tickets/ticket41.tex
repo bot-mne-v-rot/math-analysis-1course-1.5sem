@@ -1,1 +1,48 @@
 \section{Произведение равномерно ограниченной и равномерно сходящейся последовательностей. Критерий Коши для равномерной сходимости последовательностей}
+\begin{conj}
+    Равномерно ограниченная последовательность.
+
+    $f_n: E \to \R$~--- равномерно ограниченная последовательность, если
+    \[ \exists \; M: \; \forall x \in E, \; \forall n \in \N: \; |f_n(x)| \leqslant M \]
+\end{conj}
+
+\begin{theorem}
+    Если $f_n$ равномерно ограничена и $g_n \doublerightarrow 0$, то $f_n \cdot g_n \doublerightarrow 0$.
+\end{theorem}
+\begin{proof}
+    Распишем равномерную ограниченность: $\forall n \in \N  \; \forall x \;\; \abs{f_n(x)} \leqslant M$.
+
+    Надо доказать, что $\sup\limits_{x \in E}{\abs{f_n(x)g_n(x)}} \to 0$:
+    \[ \abs{f_n(x) \cdot g_n(x)} \leqslant M \cdot \abs{g_n(x)} \Longrightarrow \sup_{x \in E}{\abs{f_n(x) - f(x)}} \leqslant M \cdot \sup_{x \in E}{\abs{g_n(x)}} \to 0 \]
+\end{proof}
+
+\begin{theorem}[Критерий Коши] 
+    Пусть $f_n: E \to \R$. Тогда
+    \[ f_n - \text{ равномерно сходится } \Longleftrightarrow \forall \varepsilon > 0 \; \exists N \; \forall n,m \geqslant N: \; \forall x \in E \; \abs{f_n(x) - f_m(x)} < \varepsilon \]
+\end{theorem}
+
+\begin{proof} \quad
+
+    "$\Longrightarrow$":
+    \begin{gather*}
+        \begin{split}
+            f_n \doublerightarrow f &\Longrightarrow \forall \varepsilon > 0 \;\; \exists N \;\; \forall n \geqslant N \;\; \forall x \in E: \; \abs{f_n(x) - f(x)} < \frac{\varepsilon}{2} \\
+            &\Longrightarrow \forall n, m \geqslant N \; \forall x \in E: \begin{cases}
+                \abs{f_n(x) - f(x)} < \frac{\varepsilon}{2} \\
+                \abs{f_m(x) - f(x)} < \frac{\varepsilon}{2} 
+            \end{cases} \\
+            &\Longrightarrow  \abs{f_n(x) - f_m(x)} \leqslant \abs{f_n(x) - f(x)} + \abs{f(x) - f_m(x)} < \varepsilon \\
+        \end{split}
+    \end{gather*}
+
+    "$\Longleftarrow$": Зафиксируем $x_0 \in E$. 
+    Тогда их условия $\forall \varepsilon > 0 \; \exists N: \forall n, m \geqslant N \; \abs{f_n(x_0) - f_m(x_0)} < \varepsilon$ будет следовать, что $f_n(x_0)$ -- 
+    фундаментальная последовательность.
+    Согласно критерию Коши для числовой последовательности существует конечный $\lim\limits_{n \to +\infty} f_n(x_0) =: f(x_0)$.
+    Проделаем это для всех $x \in E$. 
+    Осталось доказать, что $f_n \doublerightarrow f$:
+
+    \[ \forall \varepsilon > 0 \; \exists N: \; \forall n, m \geqslant N \; \forall x \in E \; \abs{f_n(x) - f_m(x)} < \varepsilon \stackrel{m \to +\infty}{\Longrightarrow} \abs{f_n(x) - f(x)} \leqslant \varepsilon \Longrightarrow f_n \doublerightarrow f \]
+
+
+\end{proof}

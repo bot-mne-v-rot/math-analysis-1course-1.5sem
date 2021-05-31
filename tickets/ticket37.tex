@@ -1,1 +1,68 @@
 \section{Теорема Абеля оп роизведении рядов(с леммой)}
+Докажем вспомогательную лемму, которая нам понадобится в следующей теореме.
+\begin{lemma}
+    Пусть $\lim x_n = x,\ \lim y_n = y$. Тогда:
+    \begin{gather*}
+        \frac{x_1 y_n + x_2y_{n-1} + \ldots + x_ny_1}{n} \to xy
+    \end{gather*}
+\end{lemma}
+\begin{proof} \quad 
+
+    \underline{Случай $y = 0$:}
+
+    Пусть $|x_n| \leq M,\ |y_n| \leq M$. Еще мы знаем, что $y_n \to 0$. Значит $|y_n| < \varepsilon$ при $n \geq N$.
+    Тогда ограничим иксы сверху $M$, $y_n$ ограничим $M$ для $n < N$ и $\varepsilon$ для $n \geqslant N$:
+    \begin{align*}
+        |x_1y_n + x_2y_{n-1} + \ldots + x_ny_1| &\leqslant |x_1y_n| + |x_2y_{n-1}| + \ldots + |x_ny_1| \\
+        &\leqslant M(|y_1|+|y_2|+\ldots + y_n) \\
+        &\leqslant M(NM + (n-N)\varepsilon)
+    \end{align*}
+    Поделим на $n$ и посмотрим, что получится при больших $n$:
+    \begin{gather*}
+        \left|\frac{x_1y_n+\ldots x_ny_1}{n}\right|
+        \leqslant \overbrace{\frac{NM^2}{n}}^{\to 0} +  \overbrace{\frac{(n-N)}{n}\varepsilon M}^{\leq 1} 
+        < \varepsilon M + \frac{NM^2}{n}
+        < \varepsilon M + \varepsilon
+    \end{gather*}
+    \underline{Случай $y_n = y$:} 
+    
+    То есть $y_n$ - стационарная последовательность.
+    \begin{gather*}
+        \frac{x_1y_n + \ldots + x_ny_1}{n} = y \cdot \frac{x_1+x_2+\ldots+x_n}{n} \longrightarrow yx \; \text{ по т. Штольца}
+    \end{gather*}
+
+    \underline{Общий случай:} 
+    
+    $y_n = y+z_n$, где $z_n \longrightarrow 0$
+    \begin{gather*}
+        \frac{x_1y_n + \ldots + x_ny_1}{n} = \frac{x_1(y+z_n) + x_2(y+z_{n-1}) + \ldots + x_n(y+z)1}{n} \longrightarrow xy + x\cdot 0 
+    \end{gather*}
+\end{proof}
+\begin{theorem}
+    (Теорема Абеля) 
+    
+    Если $\sumn a_n = A,\ \sumn b_n = B,\ \sumn c_n = C$ сходятся, то $AB = C$.
+\end{theorem}
+\begin{proof}
+     
+    По лемме:
+    \begin{gather*}
+     \frac{A_1B_n + A_2B_{n-1} + \ldots + A_nB_1}{n} \longrightarrow AB
+    \end{gather*}
+    Посчитаем, сколько раз $a_ib_j$ встречается в числителе и заметим, что 
+    \begin{gather*}
+        \frac{A_1B_n + A_2B_{n-1} + \ldots + A_nB_1}{n} = \\
+        = \frac{1}{n} ( n\overbrace{a_1b_1}^{c_1} 
+        + (n-1)\overbrace{(a_1b_2 + a_2b_1)}^{c_2} 
+        + (n-2)\overbrace{(a_1b_3+a_2b_2+a_3b_1)}^{c_3} + \ldots + 
+         \overbrace{(a_1b_n + a_2b_{n-1} + \ldots + a_nb_1)}^{c_n} ) \\
+        = \frac{C_1 + C_2 + \ldots + C_n}{n} \to C
+    \end{gather*}
+
+    Получили, что выражение стремится одновременно к $AB$ и к $C$, тогда $AB = C$. 
+
+    Пояснение последнего перехода: Почему длинная сумма равна сумме $C$-шек? 
+    $c_1$ встречается в $C_1 + C_2 + \ldots + C_n$ ровно $n$ раз, так как $C_n$ - это просто 
+    частичные суммы, то есть $c_1 + \ldots + c_n$. Тогда $c_2$ встречается $n-1$ раз, и так далее, $c_n$ встречается ровно один раз.
+     Это и написано в длинной сумме.
+\end{proof}

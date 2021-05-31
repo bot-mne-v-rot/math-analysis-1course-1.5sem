@@ -1,1 +1,57 @@
 \section{Несобственные интегралы от неотрицательных функций. Признак сравнения. Следствия}
+\begin{theorem}
+    Пусть $f \in C[a, b)$ и $f \geq 0$. Тогда сходимость $\int_{a}^{b} f$ равносильна ограниченности сверху $F(y) \coloneqq \int_{a}^{y} f$ на $[a, b)$.
+  \end{theorem}
+  \begin{proof}
+    Заметим, что $F(y)$ монотонна. Тогда
+    \begin{enumerate}
+      \item[]$\boxed{\Leftarrow}$
+      $F$ --- монотонна и ограничена, значит существует конечный $\lim\limits_{\mathclap{y \to b-}}F(y) = \lim\limits_{y \to b-}\int_{a}^{y} f$.
+      \item[]$\boxed{\Rightarrow}$
+      Если $\int_{a}^{b} f$ сходится, то существует конечный $\lim\limits_{\mathclap{y \to b-}} F(y) = \lim\limits_{y \to b-} \int_{a}^{y} f$. Значит $F$ ограничена.
+    \end{enumerate}
+  \end{proof}
+  
+  \begin{theorem}[признак сравнения]
+  Пусть $f,\, g \in C[a, b], \; f,\, g \geq 0$ и $f \leq g$. Тогда
+  \begin{enumerate}
+      \item Если $\int_{a}^{b} g$ сходится, то $\int_{a}^{b} f$ сходится
+      \item Если $\int_{a}^{b} f$ расходится, то $\int_{a}^{b} g$ расходится
+  \end{enumerate}
+  \end{theorem}
+  \begin{proof}
+    \begin{enumerate}
+      \item Пусть $F(y) \coloneqq \int_{a}^{y} f, \; G(y) \coloneqq \int_{a}^{y} g \implies F(y) \leq G(y)$ при всех $y$. Если $\int_{a}^{b} g$ сходится, то $G(y)$ ограничена сверху, а значит и $F(y)$ ограничена сверху. Значит $\int_{a}^{b} f$ сходится.
+      \item Если $\int_{a}^{b} g$ сходится, то по первому пукту и $\int_{a}^{b} f$ сходится. Противоречие.
+      \end{enumerate}
+  \end{proof}
+  
+  \begin{notice}
+    \begin{enumerate}
+      \item Неравенство $f \leq g$ нужно лишь в окрестности точки $b$.
+      \item Неравенство $f \leq g$ можно заменить на $f = \mathcal{O}(g)$.
+      \item Если $f = \mathcal{O}(\frac{1}{x^{1 + \varepsilon}})$ при $\varepsilon > 0$ и $f \in C[a, +\infty)$, то $\int_{a}^{+\infty} f$ --- сходится.
+    \end{enumerate}
+  \end{notice}
+  
+  \begin{follow}
+    Пусть $f, \, g \in C[a, b), \; f,\, g \geq 0$ и $f(x) \sim g(x)$ при $x \to b-$. Тогда $\int_{a}^{b} f$ и $\int_{a}^{b} g$ ведут себя одинаково.
+  \end{follow}
+  \begin{proof}
+    $f(x) = \varphi(x)g(x)$, где $\varphi(x) \underset{\mathclap{x \to b-}}{\longrightarrow} 1
+    \implies \frac{1}{2} \leq \varphi(x) \leq 2$ при $x$ близких к $b$. Значит
+    \begin{equation*}
+      \rlap{$
+      \overbrace{\phantom{\frac{g(x)}{2} \leq f(x)}}^{\mathclap{\text{
+        если $\int_{a}^{b} f$ сходится, то $\int_{a}^{b} g$ сходится
+      }}}$}
+      \frac{g(x)}{2} \leq
+      \underbrace{f(x) \leq 2g(x)}_{\mathclap{\text{
+        если $\int_{a}^{b} g$ сходится, то $\int_{a}^{b} f$ сходится
+      }}}
+    \end{equation*}
+  \end{proof}
+  
+  \begin{notice}
+    Если $\int_{a}^{\infty} f$ сходится и $f \geq 0$, то $f$ необязательно стремится к 0.
+  \end{notice}

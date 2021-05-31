@@ -1,1 +1,109 @@
 \section{Свойства несобственных интегралов}
+\textbf{Свойства несобственных интегралов}.
+
+В каждом из последующих свойств будем рассматривать функцию $f \in C[a, b)$.
+
+\begin{enumerate}
+  \item \textbf{Аддитивность}. Пусть $c \in (a, b)$. Если $\int_{a}^{b} f$ сходится, то $\int_{c}^{b} f$ также сходится и $\int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f$. А если $\int_{c}^{b} f$ сходится, то и $\int_{a}^{b} f$ сходится.
+  \begin{proof}
+    \begin{equation*}
+      \int_{a}^{b} f = \lim\limits_{B \to b-} \int_{a}^{B} f
+    \end{equation*}
+    Но у нас есть аддитивность для собственных интегралов. То есть
+    \begin{equation*}
+      \int_{a}^{B} f = \int_{a}^{c} f + \int_{c}^{B} f
+    \end{equation*}
+    Значит
+    \begin{equation*}
+      \int_{a}^{b} f = \lim\limits_{B \to b-} \left( \int_{a}^{c} + \int_{c}^{B} \right) =
+      \int_{a}^{c} + \int_{c}^{b}
+    \end{equation*}
+  \end{proof}
+
+  \item Если $\int_{a}^{b} f$ сходится, то $\lim\limits_{c \to b-} \int_{c}^{b} f = 0$.
+  \begin{proof}
+    По предыдущему свойству знаем, что
+    \begin{equation*}
+      \int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f
+    \end{equation*}
+    Значит
+    \begin{equation*}
+      \begin{gathered}
+        \int_{c}^{b} f = \int_{a}^{b} - \int_{a}^{c} f \\
+        \lim\limits_{c \to b-} \int_{c}^{b} f = \lim\limits_{c \to b-} \int_{a}^{b} - \int_{a}^{c} f = \int_{a}^{b}  -\int_{a}^{b} = 0
+      \end{gathered}
+    \end{equation*}
+  \end{proof}
+
+  \item \textbf{Линейность}. Если $\int_{a}^{b} f$ и $\int_{a}^{b} g$ сходятся, то $\int_{a}^{b}(\alpha f + \beta g)$ сходится и $\alpha\int_{a}^{b} f + \beta\int_{a}^{b} g = \int_{a}^{b}(\alpha f + \beta g)$.
+  \begin{proof}
+    \begin{equation*}
+      \alpha\int_{a}^{B} f + \beta\int_{a}^{B} g = \int_{a}^{B}(\alpha f + \beta g)
+    \end{equation*}
+    Устремляем $B$ к $b-$. Получаем, что
+    \begin{equation*}
+      \begin{gathered}
+        \lim\limits_{B \to b-} \int_{a}^{B}(\alpha f + \beta g) = \lim\limits_{B \to b-}\left(\alpha\int_{a}^{B} f + \beta\int_{a}^{B} g\right) \\
+        \int_{a}^{b} (\alpha f + \beta g) = \alpha \int_{a}^{b} f + \beta \int_{a}^{b} g
+      \end{gathered}
+    \end{equation*}
+  \end{proof}
+  \begin{notice}
+    \begin{enumerate}[1)]
+      \item Если $\int_{a}^{b} f$ сходится, а $\int_{a}^{b} g$ расходится, то $\int_{a}^{b}(f + g)$ расходится.
+
+      \item Сумма расходящихся интегралов может сходится. В качестве примера можно рассмотреть расходящийся интеграл $\int_{a}^{b} f$, тогда и $\int_{a}^{b} -f$ расходится, но $\int_{a}^{b} (f - f)$ сходится.
+    \end{enumerate}
+  \end{notice}
+
+  \item \textbf{Монотонность}. Пусть $\int_{a}^{b} f$ и $\int_{a}^{b} g$ существуют в $\overline{\R}$ и $f \leq g$ на $[a, b)$. Тогда $\int_{a}^{b} f \leq \int_{a}^{b} g$.
+  \begin{proof}
+    Мы знаем, что $\int_{a}^{B} f \leq \int_{a}^{B} g$, поэтому применяя предельный переход получаем нужно неравенство.
+  \end{proof}
+
+  \item \textbf{Интегрирование по частям}. Пусть $f, g \in C^{1}[a, b)$. Тогда
+  \begin{equation*}
+    \int_{a}^{b} fg' = fg \Big|_{a}^{b} - \int_{a}^{b} f'g
+  \end{equation*}
+  \begin{proof}
+    Мы знаем, что $\int_{a}^{B} fg' = fg \Big|_{a}^{B} - \int_{a}^{B} f'g$ для собственных интегралов. А значит применяя предельный переход получаем нужно равенство.
+  \end{proof}
+
+    \item \textbf{Замена переменной}. Пусть $\varphi\colon [\alpha, \beta) \to [a, b),\, \varphi \in C^{1}[\alpha, \beta)$ и $f \in C[a, b)$ и существует $\lim\limits_{\gamma \to \beta-}
+  \varphi(\gamma) \leftcoleqq \varphi(\beta-)$. Тогда
+    \begin{equation*}
+      \int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t) \: dt =
+      \int_{\varphi(\alpha)}^{\varphi(\beta-)} f(x) \: dx
+    \end{equation*}
+  то есть если существует один интеграл, то существует другой и они равны.
+  \begin{proof}
+    Пусть
+    \begin{equation*}
+      \begin{gathered}
+        F(y) \coloneqq \int_{\varphi(\alpha)}^{y} f(x) \: dx, \quad \Phi(\gamma) \coloneqq
+        \int_{\alpha}^{\gamma} f(\varphi(t))\varphi'(t) \: dt \\
+        \Phi(\gamma) = F(\varphi(\gamma))\text{ --- замена в собственном интеграле}
+      \end{gathered}
+    \end{equation*}
+    Рассмотрим два случая:
+    \begin{enumerate}[1)]
+      \item Существует правый интеграл, то есть существует $\lim\limits_{\mathclap{y \to \varphi(\beta-)-}} F(y)$. Возьмем последовательность $\gamma_n$, которая монотонно возрастает и стремится к $\beta$. Тогда $\varphi(\gamma_n) \to \varphi(\beta-)$.
+  А значит $\Phi(\gamma_n) = F(\varphi(\gamma_n)) \to \int_{\varphi(\alpha)}^{\varphi(\beta -)} f(x) \: dx$
+      \item Существует левый интеграл, то есть существует $\lim\limits_{\mathclap{\gamma \to \beta-}}\Phi(x)$. Докажем, что существует $\lim\limits_{\mathclap{y \to \varphi(\beta -)}}F(y)$.
+
+      Если $\varphi(\beta -) < b$, то интеграл справа собственный, значит пользуемся случаем 1.
+
+      Иначе пусть $\varphi(\beta -) = b$. Возьмем последовательность $b_n$, которая монотонно возрастает и стремится к $b$ и обрежем её так, чтобы $b_n \geq \varphi(\alpha)$. Тогда поймем, что существуют $\gamma_n \in [\alpha, \beta)$ такие, что $b_n = \varphi(\gamma_n)$. Действительно, $\varphi$ непрерывная функция, а значит по теореме Больцано-Коши найдется точка для каждого значения функции на отрезке $[\varphi(\alpha), b_n]$.
+
+      Докажем, что $\gamma_n \to \beta$. Пусть это не так, тогда $\exists \gamma_{n_k} \to \widetilde{\beta} < \beta \implies b_{n_k} = \varphi(\gamma_{n_k}) \to \varphi(\widetilde{\beta}) < b$. Но такого быть не может, так как все $b$ у нас стремятся к $\beta$.
+
+      Отсюда получаем, что $F(b_n) = F(\varphi(\gamma_n)) = \Phi(\gamma_n) \to \lim\limits_{\gamma \to \beta-} \Phi(\gamma)$. Получили первый случай.
+    \end{enumerate}
+  \end{proof}
+\end{enumerate}
+
+\begin{notice}
+  $\displaystyle \int_{a}^{b} f$ заменой $x = b - \frac{1}{t} \coloneqq \varphi(t)$ сводится к
+  $\displaystyle \int_{\frac{1}{b - a}}^{\infty} f(b - \frac{1}{t})\frac{dt}{t^2}$
+\end{notice}
+

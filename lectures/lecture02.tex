@@ -491,16 +491,16 @@
   \end{notice}
 \end{theorem}
 \begin{proof}
-    Пусть $F(x) \coloneqq \int\limits_{a}^{x} f$. Тогда
-    \begin{equation*}
-        \int_{a}^{b} f\text{ --- сходится } \iff
-        \overset{\mathclap{\text{конечный}}}{\exists}
-        \lim\limits_{B \to b-} \int_{a}^{B} f =
-        \lim\limits_{B \to b-} F(B)
-        \underbracket[1px][6px]{\overset{b = +\infty}{\iff}}_{\mathclap{\text{для $b < +\infty$ проверяется аналогично}}}
-        \overbrace{\forall \varepsilon > 0,\, \exists \, c > a,\, \forall A, B > c \Rightarrow |\underbracket{F(B) - F(A)}_{\mathclap{\int\limits_a^{B} f - \int\limits_a^{A} f = \int\limits_{A}^{B} f}}| < \varepsilon}^{\mathclap{\text{критерий Коши для функций}}}
-    \end{equation*}
-\end{proof}
+      Пусть $F(x) \coloneqq \int\limits_{a}^{x} f$. Тогда
+      \begin{align*}
+          \int_{a}^{b} f\text{ --- сходится } &\iff
+          \overset{\mathclap{\text{конечный}}}{\exists}
+          \lim\limits_{B \to b-} \int_{a}^{B} f =
+          \lim\limits_{B \to b-} F(B) \\
+          &\underbracket[1px][6px]{\overset{b = +\infty}{\iff}}_{\mathclap{\text{для $b < +\infty$ проверяется аналогично}}}
+          \overbrace{\forall \varepsilon > 0,\, \exists \, c > a,\, \forall A, B > c \Rightarrow |\underbracket{F(B) - F(A)}_{\mathclap{\int\limits_a^{B} f - \int\limits_a^{A} f = \int\limits_{A}^{B} f}}| < \varepsilon}^{\mathclap{\text{критерий Коши для функций}}}
+      \end{align*}
+  \end{proof}
 
 \begin{notice}
   Если $F$ --- первообразная, то

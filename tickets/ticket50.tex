@@ -1,1 +1,44 @@
 \section{Теорема об интегрировании равномерно сходящейся последовательности (ряда). Существенность равномерности}
+Теперь разберемся с интегрированием.
+
+\begin{theorem}
+    Пусть $f_n \in C[a, b]$, $f_n \rightrightarrows f$ на $[a, b]$ и $c \in [a, b]$. 
+    Тогда $\int_c^x f_n(t)dt \rightrightarrows \int_c^x f(t)dt$.
+
+    В частности $\lim\limits_{n \to \infty} \int_c^x f_n(t)dt = \int_c^x \lim\limits_{n \to \infty} f_n(t)dt$.
+\end{theorem}
+
+\begin{proof}
+    Введем $F_n(x) := \int_c^x f_n(t)dt$ и $F(x) := \int_c^x f(t)dt $. 
+    
+    \quad Будем оценивать разность:
+    \begin{gather*}
+        \begin{split}
+            |F_n(x) - F(x)| &= \left|\int_c^x f_n(t)dt - \int_c^x f(t)dt \right| \\
+            &\leqslant \int_c^x |f_n(t) - f(t)|dt \text{ (занесли под один интеграл и внесли модуль) } \\
+            &\leqslant (x - c) * \max_{t \in [c, x]} |f_n(t) - f(t)| \text{ (самая простая оценка интеграла) } \\
+            &\leqslant (b - a) * \max_{t \in [c, x]} |f_n(t) - f(t)| \text{ (еще увеличили длину) }\\
+            &= (b - a) * \underbrace{\sup_{t \in [c, x]} |f_n(t) - f(t)|}_{\to 0 \text{ т.к. равн. сх-ть}} \text{ (на отрезке $\max = \sup$) }
+        \end{split}
+    \end{gather*}
+    Наша разность оценилась как что-то стремящееся к 0 и не зависящее от $x$. Это и есть равномерная сходимость.
+\end{proof}
+
+\vspace*{7mm}
+
+Можно определить аналогичную вещь для рядов.
+
+\begin{follow}
+    Если $u_n \in C[a, b]$ и $\sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится, то $\int_c^x \sum\limits_{n=1}^\infty u_n(t) dt = \sum\limits_{n=1}^\infty \int_c^x u_n(t) dt$.
+\end{follow}
+\begin{proof}
+    В предыдущей теореме $f_n(t) = \sum\limits_{n=1}^\infty u_n(t)$.
+\end{proof}
+
+\begin{notice}
+    Поточечной сходимости не хватает.
+    
+    \quad Пример: $f_n(x) = nxe^{-nx^2}$ на $[0, 1]$.
+
+    \quad Очевидно, что $\forall x \;\; f_n(x) \to 0$ при $n \to \infty$. Но \[ \int_0^1 f_n(x)dx = \frac{-e^{-nx^2}}{2}\Big|_0^1 = \frac{1 - e^{-n}}{2} \nrightarrow 0 = \int_0^1 f(x)dx \]
+\end{notice}

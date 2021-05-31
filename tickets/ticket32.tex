@@ -1,1 +1,31 @@
 \section{Признак Абеля. Ряд $\sum \frac{\sin n}{n^p}$}
+\textbf{Признак Абеля.} 
+
+Пусть \begin{enumerate}
+    \item $\sum\limits_{n=1}^\infty a_n$ сходится
+    \item $b_n$ монотонны и ограничены
+\end{enumerate}
+Тогда $\sum\limits_{n=1}^\infty a_nb_n$ сходится.
+\begin{proof}
+    Второе и третье условие говорят нам о том, что существует конечный $\lim\limits_{n \to \infty} b_n = b$.
+    Тогда $\widetilde{b}_n := b_n - b$ монотонно стремится к 0.
+
+    \quad Первое условие говорит нам о том, что частичные суммы $A_n$ имеют конечный предел, следовательно, ограничены.
+    Тогда $\sum\limits_{n=1}^\infty a_n\widetilde{b}_n$ сходится по Дирихле.
+
+    \quad Используя полученное, перепишем наш ряд следующим образом: \[ \sum_{n=1}^\infty a_nb_n = \sum_{n=1}^\infty a_n(\widetilde{b}_n + b) = \underbrace{\sum_{n=1}^\infty a_n\widetilde{b}_n}_{\text{пр. Дирихле}} + \underbrace{b\sum_{n=1}^\infty a_n}_{\text{сх-ся по усл.}} \]
+    \quad Таким образом, $\sum\limits_{n=1}^\infty a_nb_n$ сходится.
+\end{proof}
+
+\vspace{4mm}
+
+\begin{example}
+    Исследуем на сходимость $\sum\limits_{n=1}^\infty \frac{\sin n}{n^p}$.
+    \begin{itemize}
+        \item Если $p > 1$, то ряд сходится абсолютно, ведь $\frac{|\sin n|}{n^p} \leqslant \frac{1}{n^p}$.
+        \item Если $0 < p \leqslant 1$, то будем применять признак Дирихле: $a_n = \sin n, b_n = \frac{1}{n^p}$. 
+        Частичные суммы $A_n$ действительно ограничены, так как $A_n = \sum\limits_{k=1}^n \sin k = \frac{\sin \frac{n+1}{2}\sin \frac{n}{2}}{\sin \frac{1}{2}}$. Тогда по признаку Дирихле ряд сходится.
+        \item Если $p \leqslant 0$, то $\lim \frac{\sin n}{n^p} \neq 0$, так как $\sin n \nrightarrow 0$. Необходимое условие невыполнено, ряд расходится.
+        \item Также заметим, что при $0 < p \leqslant 1$ ряд $\frac{|\sin n|}{n^p}$ расходится, так как либо $|\sin n| \geqslant \sin \frac{1}{2}$, либо $|\sin (n+1)| \geqslant \sin \frac{1}{2}$.
+    \end{itemize}
+\end{example}
