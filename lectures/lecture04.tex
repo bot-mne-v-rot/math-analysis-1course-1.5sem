@@ -16,7 +16,7 @@
 \end{conj}
 
 \begin{conj}
-  Противоположным к $\gamma$ путем называется путь $\gamma^{-1}\colon [a, b] \to X$ такой, что $\gamma^{-1}(t) = \gamma(a + b - t)$. В частности $\gamma^{-1}(a) = b$ и $\gamma^{-1}(b) = a$.
+  Противоположным к $\gamma$ путем называется путь $\gamma^{-1}\colon [a, b] \to X$ такой, что $\gamma^{-1}(t) = \gamma(a + b - t)$. В частности $\gamma^{-1}(a) = \gamma(b)$ и $\gamma^{-1}(b) = \gamma(a)$.
 \end{conj}
 
 \begin{conj}
@@ -297,7 +297,7 @@
 
 \pagebreak
 \begin{theorem}
-  Линейно свзяное множество связно
+  Линейно связное множество связно.
 \end{theorem} \nopagebreak[4]
 \begin{proof}
   От противного. Пусть $A \subset U \cup V$ и $U,\, V$ --- открытые, $U \cap V = \varnothing$ и $A \cap U \neq \varnothing, \, A \cap V \neq \varnothing$.
@@ -349,7 +349,7 @@
 \begin{theorem}[критерий Коши]
   Пусть $X$ --- полное нормированное пространство. Тогда
   \begin{equation*}
-    \text{Ряд }\sum\limits_{n = 1}^{\infty} x_n\text{ сходится }\iff \; \forall \varepsilon > 0, \: \exists N, \: \forall m,\, n \geq N\colon
+    \text{Ряд }\sum\limits_{n = 1}^{\infty} x_n\text{ сходится }\iff \; \forall \varepsilon > 0 \; \exists N \; \forall m,\, n \geq N\colon
     \left \|\sum\limits_{k = n}^{m} x_K \right \| < \varepsilon
   \end{equation*}
 \end{theorem}
@@ -358,9 +358,9 @@
     \text{Ряд сходится } &\iff \\
     \text{существует }\lim S_n &\iff \\
     S_n\text{ --- фундаментальная последовательность } &\iff \\
-    \forall \varepsilon > 0, \: \exists N, \: \forall m, \, n \geq N\colon \|S_n - S_m\| \leq \varepsilon &\iff \\
-    \forall \varepsilon > 0, \: \exists N, \: \forall m, \, n \geq N\colon
-    \left\|\sum\limits_{k = n+ 1}^{n} x_k\right\| \leq \varepsilon&
+    \forall \varepsilon > 0 \; \exists N \; \forall m, n \geq N\colon \|S_n - S_m\| < \varepsilon &\iff \\
+    \forall \varepsilon > 0 \; \exists N \; \forall m, n \geq N\colon
+    \left\|\sum\limits_{k = m + 1}^{n} x_k\right\| < \varepsilon&
   \end{align*}
 \end{proof}
 
@@ -377,9 +377,9 @@
   \end{equation*}
 \end{theorem}
 \begin{proof}
-  $\sum\limits_{n = 1}^{\infty}\|x_n\|$, а значит
+  $\sum\limits_{n = 1}^{\infty}\|x_n\|$ сходится, а значит
   \begin{equation*}
-    \forall \varepsilon > 0, \: \exists N, \: \forall n, m \geq N\colon \sum\limits_{k = n}^{m} \|x_k\| < \varepsilon
+    \forall \varepsilon > 0 \; \exists N \; \forall n, m \geq N\colon \sum\limits_{k = n}^{m} \|x_k\| < \varepsilon
   \end{equation*}
   Но
   \begin{equation*}
