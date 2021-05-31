@@ -178,21 +178,32 @@
         \item $\sum\limits_{n=1}^\infty u_n$ сходится в какой-то точке $c \in [a, b]$, то есть $\sum\limits_{n=1}^\infty u_n(c) \to A$
         \item $\sum\limits_{n=1}^\infty u_n'(x)$ равномерно сходится на $[a, b]$
     \end{itemize}
-    Тогда $\sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится к дифференцируемой функции и $\left(\sum\limits_{n=1}^\infty u_n(x)\right)' = \sum\limits_{n=1}^\infty u_n'(x)$. 
+    Тогда $\sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится к дифференцируемой функции и:
+    \begin{gather*}
+        \left(\sum\limits_{n=1}^\infty u_n(x)\right)' = \sum\limits_{n=1}^\infty u_n'(x)
+    \end{gather*}
 \end{follow}
 \begin{proof}
     Чтобы воспользоваться теоремой, введем $f_n(x) := \sum\limits_{k=1}^n u_k(x)$. 
     Конечная сумма дифференцируемых функций это тоже дифференцируемая функция, поэтому $\sum\limits_{k=1}^n u_k(x) \in C^1[a, b]$. 
     Производная конечной суммы это сумма производных, поэтому $f_n'(x) = \sum\limits_{k=1}^n u_k'(x)$, что по условию $\rightrightarrows \sum\limits_{k=1}^\infty u_k'(x) =: g(x)$.
 
-    \quad Применив предыдущую теорему, получаем, что $f_n \rightrightarrows f$, где $f' = g$. Это означает, что ряд равномерно сходится и $\left(\sum\limits_{n=1}^\infty u_n(x)\right)' = g(x) = \sum\limits_{n=1}^\infty u_n'(x)$.
+    \quad Применив предыдущую теорему, получаем, что $f_n \rightrightarrows f$, где $f' = g$. Это означает, что ряд равномерно сходится и:
+    \begin{gather*}
+        \left(\sum\limits_{n=1}^\infty u_n(x)\right)' = g(x) = \sum\limits_{n=1}^\infty u_n'(x)
+    \end{gather*}
 \end{proof}
-
 \begin{notice}
     Тут важна именно равномерная сходимость производных, равномерной сходимости изначальных функций недостаточно.
 
-    \quad Пример: $\sum\limits_{n=1}^\infty \frac{\sin nx}{n^2}$ равномерно сх-ся по признаку Вейерштрасса, так как $|\frac{\sin nx}{n^2}| \leqslant \frac{1}{n^2}$.
-    Но ряд из производных $\sum\limits_{n=1}^\infty (\frac{\sin nx}{n^2})' = \sum\limits_{n=1}^\infty \frac{\cos nx}{n}$ расходится при $x = 0$. 
+    \textbf{Пример:}
+    
+    Ряд $\sum\limits_{n=1}^\infty \frac{\sin nx}{n^2}$ равномерно сх-ся по признаку Вейерштрасса, так как $|\frac{\sin nx}{n^2}| \leqslant \frac{1}{n^2}$.
+    Но ряд из производных:
+    \begin{gather*}
+        \sum\limits_{n=1}^\infty (\frac{\sin nx}{n^2})' = \sum\limits_{n=1}^\infty \frac{\cos nx}{n}
+    \end{gather*} 
+    Расходится при $x = 0$. 
     То есть мы получили, что почленное дифференцирование приводит к расходящемуся ряду, что не может быть производной сходящегося ряда.
 \end{notice}
 
@@ -207,13 +218,17 @@
 
 \vspace*{5mm}
 
-\begin{theorem} (Абеля)
+\begin{theorem} (Теорема Абеля)
+
     Если $\sum\limits_{n=0}^\infty a_n z^n$ сходится при $z_0 \neq 0$, то он абсолютно сходится при $|z| < |z_0|$.    
 \end{theorem}
 \begin{proof}
     Если ряд $\sum\limits_{n=0}^\infty a_n z_0^n$ сходится, у нас должно выполняться необходимое условие сходимости: $a_nz_0^n \to 0$.
     Значит, $a_nz_0^n$ ограничены: $|a_nz_0^n| \leqslant M$. 
-    Тогда при $|z| < |z_0|$ наш ряд ограничен геометрической прогрессией: $|a_nz^n| = |a_nz_0^n| * |\frac{z}{z_0}|^n \leqslant M|\frac{z}{z_0}|^n$.
+    Тогда при $|z| < |z_0|$ наш ряд ограничен геометрической прогрессией:
+    \begin{gather*}
+        |a_nz^n| = |a_nz_0^n| * |\frac{z}{z_0}|^n \leqslant M|\frac{z}{z_0}|^n
+    \end{gather*}
     Она является сходящейся, поэтому наш ряд сходится по признаку сравнению.
 \end{proof}
 
@@ -242,7 +257,16 @@
 \end{conj}
 
 \begin{center}
-    \includegraphics[scale=0.4]{circle.png}    
+    % \includegraphics[scale=0.4]{circle.png}    
+    \begin{tikzpicture}[thick]
+        % Axes
+        \draw[-latex,name path=xaxis] (-0.5,0) -- (5,0) node[above]{\large $x$};
+        \draw[-latex] (0,-1) -- (0,4)node[right]{\large $y$};;
+        
+        \draw (2.5,1.5) node[circle,draw, inner sep=0.5pt,label=below:$z_0$](z0) {};
+        \draw (2.5,1.5) [cyan] circle (3*pi/5);
+        \draw[-stealth] (z0) -- (3.61, 3) node[midway,above]{$R$};
+    \end{tikzpicture}
 \end{center}
 
 \begin{notice}
@@ -256,10 +280,16 @@
 Давайте поймем, что любой степенной ряд имеет радиус сходимости.
 
 \begin{theorem} (Формула Коши-Адамара)
-    Всякий степенной ряд имеет радиус сходимости, причем его можно посчитать по формуле $R = \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_n|}}$.
+    Всякий степенной ряд имеет радиус сходимости, причем его можно посчитать по формуле:
+    \begin{gather*}
+        R = \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_n|}}
+    \end{gather*}
 \end{theorem}
 \begin{proof}
-    Применим к ряду $\sum\limits_{n = 0}^\infty a_n z^n$ признак Коши, а именно посчитаем $q^* = \overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_nz^n|}$. 
+    Применим к ряду $\sum\limits_{n = 0}^\infty a_n z^n$ признак Коши, а именно, посчитаем 
+    \begin{gather*}
+        q^* = \overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_nz^n|}
+    \end{gather*}
     (Вообще в признаке Коши под корнем нет модуля, но добавить его это законно, так как если сходится абсолютно, то сходится и обычно, а если абсолютно расходится, то по признаку Коши нет необходимого условия сходимости, то есть и обычно расходится.)
 
     Распишем $q^*:$ \[ q^* = \overline{\lim_{n \to \infty}} \sqrt[n]{|a_nz^n|} = \overline{\lim_{n \to \infty}} (\sqrt[n]{|a_n|} * |z|) = |z| * \overline{\lim_{n \to \infty}} \sqrt[n]{|a_n|}   \]
@@ -281,18 +311,25 @@
     \begin{enumerate}
         \item $\sum\limits_{n=0}^\infty n!z^n$. 
         По формуле $R = \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{n!}}$. 
-        Так как предел этой последовательности существует, мы можем убрать знак верхнего предела: $R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{n!}} \thicksim \frac{1}{\lim\limits_{n \to \infty} (\frac{n}{e}\sqrt[2n]{2\pi n})} = \frac{1}{+\infty} = 0$.
-        
-        $\Rightarrow$ ряд сходится только в 0.
+        Так как предел этой последовательности существует, мы можем убрать знак верхнего предела: 
+        \begin{gather*}
+            R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{n!}} \thicksim \frac{1}{\lim\limits_{n \to \infty} (\frac{n}{e}\sqrt[2n]{2\pi n})} = \frac{1}{+\infty} = 0
+        \end{gather*}
+        $\Longrightarrow$ ряд сходится только в 0.
         \item $\sum\limits_{n=0}^\infty \frac{z^n}{n!}$. 
         По формуле $R = \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{1/n!}}$.
-        Опять же можем убрать верхний предел: $R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{1/n!}} = \lim\limits_{n \to \infty} \sqrt[n]{n!} = +\infty$.
-
-        $\Rightarrow$ ряд сходится при всех $z \in \C$.
+        Опять же можем убрать верхний предел: 
+        \begin{gather*}
+            R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{1/n!}} = \lim\limits_{n \to \infty} \sqrt[n]{n!} = +\infty
+        \end{gather*}
+        $\Longrightarrow$ ряд сходится при всех $z \in \C$.
         \item $\sum\limits_{n=0}^\infty \frac{z^n}{n^p}$, где $p \in \R$.
-        По формуле (сразу заменяем на обычный предел): $R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{1/n^p}} = \lim\limits_{n \to \infty} \sqrt[n]{n^p} = 1$.
+        По формуле (сразу заменяем на обычный предел): 
+        \begin{gather*} 
+            R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{1/n^p}} = \lim\limits_{n \to \infty} \sqrt[n]{n^p} = 1
+        \end{gather*}
         
-        $\Rightarrow$ ряд сходится при $|z| < 1$ и расходится при $|z| > 1$.
+        $\Longrightarrow$ ряд сходится при $|z| < 1$ и расходится при $|z| > 1$.
 
         Этот пример также демонстрирует тот факт, что на границе круга ряд может как сходиться, так и расходиться: \begin{itemize}
             \item Если $p = 2$, то $|\frac{z}{n^2}| \leqslant \frac{1}{n^2}$ при $|z| \leqslant 1 \Rightarrow$ ряд сходится при $|z| \leqslant 1$.
@@ -329,7 +366,10 @@
 \end{theorem}
 \begin{proof}
     Рассмотрим ряд $\sum\limits_{n = 0}^\infty a_n x^n$, где $x \in [0, R]$.
-    Мы можем его переписать как $\sum\limits_{n = 0}^\infty a_n x^n = \sum\limits_{n = 0}^\infty a_n R^n (\frac{x}{R})^n$. 
+    Мы можем его переписать как:
+    \begin{gather*}
+        \sum\limits_{n = 0}^\infty a_n x^n = \sum\limits_{n = 0}^\infty a_n R^n (\frac{x}{R})^n
+    \end{gather*}
     Заметим, что $\sum\limits_{n = 0}^\infty a_n R^n$ сходится (по условию), причем равномерно, так как от $x$ не зависит. 
     Также последовательность $(\frac{x}{R})^n$ равномерно ограничена (например, числом 1) и монотонна как геометрическая прогрессия. 
     Тогда по признаку Абеля ряд $\sum\limits_{n = 0}^\infty a_n x^n$ сходится равномерно на $[0, R]$.
@@ -337,7 +377,10 @@
 
 \begin{follow}
     Пусть $R$ -- радиус сходимости и ряд сходится при $z = R$. 
-    Тогда его сумма непрерывна на $[0, R]$ и $\lim\limits_{x \to R-} \sum\limits_{n=0}^\infty a_nx^n = \sum\limits_{n=0}^\infty a_nR^n$.
+    Тогда его сумма непрерывна на $[0, R]$ и 
+    \begin{gather*}
+        \lim\limits_{x \to R-} \sum\limits_{n=0}^\infty a_nx^n = \sum\limits_{n=0}^\infty a_nR^n
+    \end{gather*}
 \end{follow}
 \begin{proof}
     По предыдущему следствию знаем, что сумма будет непрерывна. 
@@ -350,7 +393,10 @@
 
 \begin{lemma}
     Пусть $x_n, y_n \in \R$ и $\lim x_n \in (0, +\infty)$. 
-    Тогда $\overline{\lim} \, x_ny_n = \lim x_n * \overline{\lim} \, y_n$.
+    Тогда:
+    \begin{gather*}
+        \overline{\lim} \, x_ny_n = \lim x_n * \overline{\lim} \, y_n
+    \end{gather*}
 \end{lemma}
 \begin{proof}
     Введем $A := \lim x_n, B := \overline{\lim} \, y_n, C := \overline{\lim} \, x_ny_n$.
@@ -384,7 +430,11 @@
 \begin{theorem}
     Пусть $R$ -- радиус сходимости ряда $f(x) = \sum\limits_{n = 0}^\infty a_n(x - x_0)^n$.
     
-    Тогда при $|x - x_0| < R \quad \int_{x_0}^x f(t)dt = \sum\limits_{n = 0}^\infty a_n \frac{(x - x_0)^{n+1}}{n+1}$ и этот ряд имеет тот же радиус сходимости.
+    Тогда при $|x - x_0| < R:$
+    \begin{gather*}
+        \int_{x_0}^x f(t)dt = \sum\limits_{n = 0}^\infty a_n \frac{(x - x_0)^{n+1}}{n+1}
+    \end{gather*}
+    И этот ряд имеет тот же радиус сходимости.
 \end{theorem}
 \begin{proof}
     На $[x_0, x]$ ряд для $f$ сходится равномерно, так как этот отрезок полностью попал в круг сходимости $\Rightarrow$ можем интегрировать почленно:

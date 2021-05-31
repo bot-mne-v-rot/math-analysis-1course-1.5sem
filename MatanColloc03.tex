@@ -8,7 +8,6 @@
 \usepackage[russian]{babel}
 \usepackage[mathscr]{euscript}
 \usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
-\usepackage{pythonhighlight}
 \usepackage{lipsum}
 \usepackage{soul}
 \usepackage{amsmath,amssymb}
@@ -22,7 +21,6 @@
 \usepackage{tikz}
 \usepackage{thmtools}
 \usepackage{amsthm}
-\usepackage{mathtools}
 \usepackage{pdfcomment}
 \usepackage{blindtext}
 \usepackage{todonotes}
@@ -33,9 +31,15 @@
 \usepackage{tikzsymbols}
 \usepackage{cancel}
 \usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{extarrows}
+
 \usetikzlibrary{decorations.pathreplacing,
                 positioning, 
-                quotes}
+                quotes,
+                intersections,
+                calc}
 
 \graphicspath{ {./images/} }
 %%
@@ -68,6 +72,13 @@
 %\definecolor{oldmauve}{rgb}{0.4, 0.19, 0.28}
 % Configurando layout para mostrar codigos Java
 \usepackage{listings}
+
+\newcommand\butthole[1]{%
+  \mathpalette\assircled{#1}%
+}
+\newcommand\asscircled[2]{%
+  \tikz[baseline=(math.base)] \node[red, draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
 
 \newcommand{\estiloJava}{
 \lstset{
@@ -129,6 +140,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \renewcommand{\C}{\mathbb{C}}
 
 \newcommand{\follow}{\textbf{\textit{Следствие:}}}
@@ -160,6 +172,30 @@
     -- +(\a:\len pt)
   } -- cycle
 }
+
+\newcommand*{\colorboxed}{}
+\def\colorboxed#1#{%
+  \colorboxedAux{#1}%
+}
+\newcommand*{\colorboxedAux}[3]{%
+  % #1: optional argument for color model
+  % #2: color specification
+  % #3: formula
+  \begingroup
+    \colorlet{cb@saved}{.}%
+    \color#1{#2}%
+    \boxed{%
+      \color{cb@saved}%
+      #3%
+    }%
+  \endgroup
+}
+
+\def\inbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\in$}}{#2}}{#1}}
+\def\lessbelow#1#2{\underset{\displaystyle\overset{\displaystyle\rotatebox{270}{$\leqslant$}}{#2}}{#1}}
+\def\lessabove#1#2{\overset{\displaystyle\underset{\displaystyle\rotatebox{90}{$\leqslant$}}{#2}}{#1}}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackabove#1#2{\overset{\displaystyle\underset{\displaystyle\shortparallel}{#2}}{#1}}
 
 \newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand{\vardbtilde}[1]{\widetilde{\raisebox{0pt}[0.85\height]{$\widetilde{#1}$}}}
