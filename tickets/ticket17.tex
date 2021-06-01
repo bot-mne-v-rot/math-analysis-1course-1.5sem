@@ -15,8 +15,8 @@
     \end{equation*}
     Значит
     \begin{equation*}
-      \int_{a}^{b} f = \lim\limits_{B \to b-} \left( \int_{a}^{c} + \int_{c}^{B} \right) =
-      \int_{a}^{c} + \int_{c}^{b}
+      \int_{a}^{b} f = \lim\limits_{B \to b-} \left( \int_{a}^{c} f + \int_{c}^{B} f \right) =
+      \int_{a}^{c} f + \int_{c}^{b} f
     \end{equation*}
   \end{proof}
 
@@ -29,8 +29,8 @@
     Значит
     \begin{equation*}
       \begin{gathered}
-        \int_{c}^{b} f = \int_{a}^{b} - \int_{a}^{c} f \\
-        \lim\limits_{c \to b-} \int_{c}^{b} f = \lim\limits_{c \to b-} \int_{a}^{b} - \int_{a}^{c} f = \int_{a}^{b}  -\int_{a}^{b} = 0
+        \int_{c}^{b} f = \int_{a}^{b} f - \int_{a}^{c} f \\
+        \lim\limits_{c \to b-} \int_{c}^{b} f = \lim\limits_{c \to b-} \int_{a}^{b} f - \int_{a}^{c} f = \int_{a}^{b} f - \int_{a}^{b} f = 0
       \end{gathered}
     \end{equation*}
   \end{proof}

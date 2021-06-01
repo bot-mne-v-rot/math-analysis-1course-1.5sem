@@ -24,7 +24,7 @@
   \end{notice}
   \begin{proof}
     \begin{equation*}
-      \Big| \int_{a}^{b} f - \int_{a}^{B} f\Big| = \Big| \int_{B}^{b}\Big| \leq
+      \Big| \int_{a}^{b} f - \int_{a}^{B} f\Big| = \Big| \int_{B}^{b} f \Big| \leq
       \max\limits_{[a, b)} f \cdot (b - B) \underset{B \to b}{\longrightarrow} 0
     \end{equation*}
   
@@ -89,16 +89,16 @@
     \begin{enumerate}
       \item Посчитаем следующий интеграл:
       \begin{equation*}
-        \int_{1}^{+\infty} \frac{dx}{x^p} = \lim\limits_{B \to +\infty} \int_{1}^{B} \frac{dx}{x^p} =
+        \int_{1}^{+\infty} \frac{dx}{x^p} = \lim\limits_{B \to +\infty} \int_{1}^{B} \frac{dx}{x^p} = \oast
       \end{equation*}
       Рассмотрим два случая:
       \begin{align*}
-          &\underset{p \ne 1}{=} \lim_{B \to +\infty} -\frac{1}{p - 1} \frac{1}{x^{p - 1}}\Big|_{1}^{B} = \frac{1}{p - 1} - \lim\limits_{B \to +\infty} \frac{1}{p - 1}\frac{1}{B^{p - 1}} =
+          \oast &\underset{p \ne 1}{=} \lim_{B \to +\infty} -\frac{1}{p - 1} \frac{1}{x^{p - 1}}\Big|_{1}^{B} = \frac{1}{p - 1} - \lim\limits_{B \to +\infty} \frac{1}{p - 1}\frac{1}{B^{p - 1}} =
           \begin{cases}
               \frac{1}{p - 1}\text{, при $p > 1$}\\
               +\infty\text{, при $p < 1$}
           \end{cases} \\
-          &\underset{p = 1}{=} \lim_{B \to +\infty} \ln x \Big|_{1}^{B} =
+          \oast &\underset{p = 1}{=} \lim_{B \to +\infty} \ln x \Big|_{1}^{B} =
           \lim_{B \to +\infty} \ln B = +\infty
       \end{align*}
       Таким образом
@@ -108,17 +108,17 @@
   
       \item Теперь посчитаем тот же интеграл, но уже на отрезке $[0, 1]$.
       \begin{equation*}
-          \int_{0}^{1} \frac{dx}{x^p} = \lim_{A \to 0+} \int_{A}^{1} \frac{dx}{x^p} =
+          \int_{0}^{1} \frac{dx}{x^p} = \lim_{A \to 0+} \int_{A}^{1} \frac{dx}{x^p} = \oast 
       \end{equation*}
       Рассмотрим два случая:
       \begin{align*}
-        &\underset{p \ne 1}{=} \lim\limits_{A \to 0+} \left(-\frac{1}{p - 1}\frac{1}{x^{p - 1}}\Big |_{A}^{1}\right) =
+        \oast &\underset{p \ne 1}{=} \lim\limits_{A \to 0+} \left(-\frac{1}{p - 1}\frac{1}{x^{p - 1}}\Big |_{A}^{1}\right) =
         \lim\limits_{A \to 0+}\left(\frac{1}{1 - p} - \frac{1}{1 - p}\frac{1}{A^{p - 1}}\right) =
         \begin{cases}
           \frac{1}{1 - p}\text{, при $p < 1$}\\
           +\infty\text{, при $p > 1$}
         \end{cases} \\
-        &\underset{p = 1}{=} \lim\limits_{A \to 0+} \ln x \Big |_{A}^{1} =
+        \oast &\underset{p = 1}{=} \lim\limits_{A \to 0+} \ln x \Big |_{A}^{1} =
         1 - \lim\limits_{A \to 0+} \ln A = +\infty
       \end{align*}
       Таким образом
