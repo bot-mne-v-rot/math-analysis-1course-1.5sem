@@ -27,11 +27,11 @@
 
     \quad Пусть $f_n$~--- фундаментальная последовательность:
     \begin{gather*}
-        \forall \varepsilon > 0 \; \exists N: \; \forall n,m \geqslant N \;\; \underbrace{\norm{f_n(x) - f_m(x)}}_{= \sup\limits_{x \in E}{\abs{f_n(x) - f(x)}}} < \varepsilon \\
+        \forall \varepsilon > 0 \; \exists N: \; \forall n,m \geqslant N \;\; \underbrace{\norm{f_n(x) - f_m(x)}}_{= \sup\limits_{x \in E}{\abs{f_n(x) - f_m(x)}}} < \varepsilon \\
         \Longrightarrow \forall \varepsilon > 0 \;\; \exists N: \forall n,m \geqslant N \;\; \forall x \in E \;\;\;\; \abs{f_n(x) - f_m(x)} < \varepsilon - \text{ это критерий Коши} \\
         \Longrightarrow f_n \doublerightarrow f \Longrightarrow \norm{f_n - f} \to 0
     \end{gather*}
-    \quad Осталось убедиться, что $f$, к которой сходится наша фундоментальная последовательность, лежит в нашем пространстве, т.е. является ограниченной функцией.
+    \quad Осталось убедиться, что $f$, к которой сходится наша фундаментальная последовательность, лежит в нашем пространстве, т.е. является ограниченной функцией.
 
     \quad Возьмём $\varepsilon = 1$ из определения предела: $\; \exists N \; \forall n \geqslant N \;\; \norm{f_n - f} < 1$. 
     В терминах супремума это означает, что $\sup\limits_{x \in E}{\abs{f_n(x) - f(x)}} < 1$.
