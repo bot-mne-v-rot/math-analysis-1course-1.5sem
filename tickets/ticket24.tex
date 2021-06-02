@@ -47,7 +47,7 @@
 \begin{proof}
   От противного. Пусть $A \subset U \cup V$ и $U,\, V$ --- открытые, $U \cap V = \varnothing$ и $A \cap U \neq \varnothing, \, A \cap V \neq \varnothing$.
 
-  Возьмем $x \in A \cap U, \, y \in A \cap V$. Тогда есть $\gamma\colon [a, b] \to A$ --- путь, их соединяющий. Тогда $[a, b] \subset \gamma^{-1}(U) \cap \gamma^{-1}(V)$ и при этом~$\gamma^{-1}(U) \cap \gamma^{-1}(V) = \varnothing, \, a \in \gamma^{-1}(U), \, b \in \gamma^{-1}(V)$. Это противоречит связности отрезка.
+  Возьмем $x \in A \cap U, \, y \in A \cap V$. Тогда есть $\gamma\colon [a, b] \to A$ --- путь, их соединяющий. Тогда $[a, b] \subset \gamma^{-1}(U) \cup \gamma^{-1}(V)$ и при этом~$\gamma^{-1}(U) \cap \gamma^{-1}(V) = \varnothing, \, a \in \gamma^{-1}(U), \, b \in \gamma^{-1}(V)$. Мы знаем, что отрезок связен, но получили, что он не связен. Противоречие.
 \end{proof}
 
 \begin{conj}

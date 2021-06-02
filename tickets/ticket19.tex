@@ -7,7 +7,7 @@
     Если $\int_{a}^{b} f$ абсолютно сходится, то он сходится.
   \end{theorem}
   \begin{proof}
-    $\int_{a}^{b} f = \int_{a}^{b}(f_+ - f_-) = \int_{a}^{b} f_+ + \int_{a}^{b} (-f_-)$. Если правые интегралы сходятся, то и левый интеграл также сходится. Но мы знаем, что $0 \leq f_+ \leq |f|$ и $0 \leq -f_- \leq |f|$. Значит по признаку сравнимости $\int_{a}^{b} f_{\pm}$ сходится. А значит и наш интеграл тоже сходится.
+    $\int_{a}^{b} f = \int_{a}^{b}(f_+ - f_-) = \int_{a}^{b} f_+ + \int_{a}^{b} (-f_-)$. Если правые интегралы сходятся, то и левый интеграл также сходится. Но мы знаем, что $0 \leq f_+ \leq |f|$ и $0 \leq f_- \leq |f|$. Значит по признаку сравнимости $\int_{a}^{b} f_{\pm}$ сходится. А значит и наш интеграл тоже сходится.
   \end{proof}
   
   \begin{notice}
@@ -35,7 +35,7 @@
     Докажем для случая $g \in C^{1}[a, +\infty)$. Пусть $F(x) \coloneqq \int_{a}^{x} f(t) \: dt$. Тогда
     \begin{equation*}
       \int_{a}^{x} f(t) g(t) \: dt = \int_{a}^{x} F'(t) g(t) \: dt =
-      \underbrace{F(t) g(t) \Big|_{t = a}^{t = b}}_{\mathclap{F(x)g(x)}} - \int_{a}^{x} F(t) g'(t) \: dt
+      \underbrace{F(t) g(t) \Big|_{t = a}^{t = x}}_{\mathclap{F(x)g(x)}} - \int_{a}^{x} F(t) g'(t) \: dt
     \end{equation*}
     Устремим $x$ к бесконечности.
     \begin{equation*}
