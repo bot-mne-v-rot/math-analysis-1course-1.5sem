@@ -18,7 +18,7 @@
     Значит, $a_nz_0^n$ ограничены: $|a_nz_0^n| \leqslant M$. 
     Тогда при $|z| < |z_0|$ наш ряд ограничен геометрической прогрессией:
     \begin{gather*}
-        |a_nz^n| = |a_nz_0^n| * |\frac{z}{z_0}|^n \leqslant M|\frac{z}{z_0}|^n
+        |a_nz^n| = |a_nz_0^n| \cdot \left|\frac{z}{z_0}\right|^n \leqslant M\left|\frac{z}{z_0}\right|^n
     \end{gather*}
     Она является сходящейся, поэтому наш ряд сходится по признаку сравнению.
 \end{proof}
@@ -83,7 +83,7 @@
     \end{gather*}
     (Вообще в признаке Коши под корнем нет модуля, но добавить его это законно, так как если сходится абсолютно, то сходится и обычно, а если абсолютно расходится, то по признаку Коши нет необходимого условия сходимости, то есть и обычно расходится.)
 
-    Распишем $q^*:$ \[ q^* = \overline{\lim_{n \to \infty}} \sqrt[n]{|a_nz^n|} = \overline{\lim_{n \to \infty}} (\sqrt[n]{|a_n|} * |z|) = |z| * \overline{\lim_{n \to \infty}} \sqrt[n]{|a_n|}   \]
+    Распишем $q^*:$ \[ q^* = \overline{\lim_{n \to \infty}} \sqrt[n]{|a_nz^n|} = \overline{\lim_{n \to \infty}} (\sqrt[n]{|a_n|} \cdot |z|) = |z| \cdot \overline{\lim_{n \to \infty}} \sqrt[n]{|a_n|}   \]
     Тогда согласно признаку Коши: \begin{itemize}
         \item Если $q^* < 1$, то ряд сходится $\Rightarrow$ если $|z| < \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_n|}}$, то ряд сходится.
         \item Если $q^* > 1$, то ряд сходится $\Rightarrow$ если $|z| > \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_n|}}$, то ряд сходится.
@@ -104,7 +104,7 @@
         По формуле $R = \frac{1}{\overline{\lim\limits_{n \to \infty}} \sqrt[n]{n!}}$. 
         Так как предел этой последовательности существует, мы можем убрать знак верхнего предела: 
         \begin{gather*}
-            R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{n!}} \thicksim \frac{1}{\lim\limits_{n \to \infty} (\frac{n}{e}\sqrt[2n]{2\pi n})} = \frac{1}{+\infty} = 0
+            R = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{n!}} = \frac{1}{\lim\limits_{n \to \infty} (\frac{n}{e}\sqrt[2n]{2\pi n})} = \frac{1}{+\infty} = 0
         \end{gather*}
         $\Longrightarrow$ ряд сходится только в 0.
         \item $\sum\limits_{n=0}^\infty \frac{z^n}{n!}$. 
