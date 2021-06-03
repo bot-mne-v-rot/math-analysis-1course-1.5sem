@@ -11,11 +11,11 @@
       , \quad n_k - n_{k - 1} \leq M
     \end{equation*}
     Возьмем произвольное $n\colon \; n_k \leq n < n_{k + 1}$.
-    Тогда $S_n = S_{n_k} + \overbrace{x_{n_{k + 1}} + x_{n_{k + 2}} + \dotsc + x_n}^{\mathclap{\text{
+    Тогда $S_n = S_{n_k} + \overbrace{x_{n_{k}+1} + x_{n_{k}+2} + \dotsc + x_n}^{\mathclap{\text{
        $\leq M$ слагаемых
     }}}$. Тогда
     \begin{equation*}
-      \| S_n - S \| \leq \| S_{n_k} - S \| + \| x_{n_{k + 1}} \| + \| x_{n_{k + 2}} \| + \dotsc + \| x_n \|
+      \| S_n - S \| \leq \| S_{n_k} - S \| + \| x_{n_{k}+1} \| + \| x_{n_{k}+2} \| + \dotsc + \| x_n \|
     \end{equation*}
     Также заметим, что
     \begin{equation*}
@@ -35,7 +35,7 @@
   \begin{proof}
     Пусть $S_{n_1}, S_{n_2}, \dotsc$ --- частичные суммы для сгрупированного ряда. Берем произвольное $n$. Тогда $n_k \leq n < n_{k + 1}$ и
     \begin{equation*}
-      S_n = S_{n_k} + x_{n_{k + 1}} + x_{n_{k + 2}} + \dotsc + x_n
+      S_n = S_{n_k} + x_{n_{k}+1} + x_{n_{k}+2} + \dotsc + x_n
     \end{equation*}
     Пусть все $x$ не отрицательны. Тогда $S_n \geq S_{n_k}$. Аналогично получаем, что $S_n \leq S_{n_{k + 1}}$. Тогда $S_n$ лежит между $S_{n_k}$ и $S_{n_{k + 1}}$, каждое из которых стремится к $S$. Значит по теореме о двух миллиционерах $S_n$ тоже стремится к $S$.
   \end{proof}
