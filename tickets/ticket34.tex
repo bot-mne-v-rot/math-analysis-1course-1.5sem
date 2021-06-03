@@ -25,12 +25,12 @@
 
     \begin{enumerate}
         \item[Шаг 1.] 
-        \[a_n \geq 0,\ S_n = \sum \limits_{k=1}^n a_k, \quad \widetilde{S_n} = \sum \limits_{k=1}^n a_\varphi(n) \]
+        \[a_n \geq 0,\ S_n = \sum \limits_{k=1}^n a_k, \quad \widetilde{S_n} = \sum \limits_{k=1}^n a_{\varphi(n)} \]
         Ряд $\sumn a_n$ сходится $\Rightarrow S_n \leq S$
         \[\widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi(n)}\]
         Если докинуть к этой сумме еще какие-то $a$-шки, то сумма может только увеличиться, потому что они неотрицательны.
 
-        \[ \widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n} \leq S_{\max\{\varphi(1), \varphi(2), \ldots, \varphi(n)\}} \leq S\]
+        \[ \widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi(n)} \leq S_{\max\{\varphi(1), \varphi(2), \ldots, \varphi(n)\}} \leq S\]
 
         $\widetilde{S_n}$ монотонно возрастает и ограничена сверху $\Rightarrow$ имеет предел $\widetilde{S} \leq S$
 
@@ -39,7 +39,7 @@
         \item[Шаг 2.]
         При $a_n \in \R$
 
-        Обозначим за $(a_n)_{+} := \max\{a_n, 0\},\ (a_n)_- := \max(-a_n, 0)$. Тогда:
+        Обозначим за $(a_n)_{+} := \max\{a_n, 0\},\ (a_n)_- := \max\{-a_n, 0\}$. Тогда:
         \begin{gather*}
             a_n = (a_n)_+ - (a_n)_-, \qquad \abs{a_n} = (a_n)_+ + (a_n)_-
         \end{gather*}
