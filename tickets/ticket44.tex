@@ -6,7 +6,7 @@
 То есть мы берем и честно суммируем первые $n$ функций и в итоге получаем функцию $S_n(x)$.
 \begin{conj}
     Ряд сходится поточечно, если последовательность $S_n(x)$ сходятся поточечно.
-    Можно переформулировать это так: ряд сходится поточечно, если для любого $x \in E$ соотвествующий числовой ряд будет сходящимся.
+    Можно переформулировать это так: ряд сходится поточечно, если для любого $x \in E$ соответствующий числовой ряд будет сходящимся.
 
     Поточечно сходящийся ряд определяет новую функцию $S(x): E \to \R \;\; S(x) = \sum\limits_{n = 1}^\infty u_n(x)$.
     Тогда можно определить остаток ряда $r_n(x) := \sum\limits_{k = n + 1}^\infty u_k(x) = S(x) - S_n(x)$.
@@ -65,5 +65,5 @@
 \begin{proof}
     Знаем, что $ \sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится $\Leftrightarrow S_n$ равномерно сходятся.
     Осталось воспользоваться критерием Коши для функциональных последовательностей:
-    \[ \forall \varepsilon > 0 \; \exists N : \forall n,m \geqslant N \; \forall x \in E \;\; \underbrace{|S_m(x) - S_n(x)|}_{= \left|\sum\limits_{k=n+1}^m u_k(x)\right|} < \varepsilon  \] 
+    \[ \forall \varepsilon > 0 \; \exists N : \forall n,m \geqslant N \; \forall x \in E \;\; \stackbelow{\underbrace{\abs{S_m(x) - S_n(x)}}}{\left|\sum\limits_{k=n+1}^m u_k(x)\right|} < \varepsilon  \] 
 \end{proof}

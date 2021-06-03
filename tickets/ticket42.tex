@@ -1,11 +1,11 @@
 \section{Пространство $\ell^\infty (E)$ и его полнота}
 \begin{conj} Нормированое пространство ограниченных функций
-    \[ l^{\infty}(E) := \{ f: E \to R; f - \text{ ограниченая функция} \} \]
+    \[ \ell^{\infty}(E) := \{ f: E \to R; f - \text{ ограниченая функция} \} \]
     
     Введем на этом пространстве следующую норму:    
     \[ \norm{f}_{l^{\infty}(E)} := \norm{f}_{\infty} := \sup_{x \in E}{\abs{f(x)}} \text{ (он конечен, т.к. $f$~--- ограничена)} \]
 
-    Аксиомы нормы очевидны (кроме неравенства $\triangle$):
+    Аксиомы нормы очевидны (кроме неравенства 2-симплекса):
     \begin{gather*}
         \norm{f + g}_{\infty} \leqslant \norm{f}_{\infty} + \norm{g}_{\infty} \\
         \sup_{x \in E}{\abs{f(x) + g(x)}} \leqslant \sup_{x \in E}(\abs{f(x)} + \abs{g(x)}) \leqslant \sup_{x \in E}{\abs{f(x)}} + \sup_{x \in E}{\abs{g(x)}} = \norm{f}_{\infty} + \norm{g}_{\infty}
@@ -19,7 +19,7 @@
 \[ f_n \doublerightarrow f \text{ на } E \Longleftrightarrow \norm{f_n - f}_{l^{\infty}(E)} \to 0 \]
 Это действительно так, ведь просто по определению $\norm{f_n - f}_{l^{\infty}(E)} = \sup_{x \in E}{\abs{f_n(x) - f(x)}}$)
 \begin{theorem}
-    $l^{\infty}(E)$~--- полное пространство.
+    $\ell^{\infty}(E)$~--- полное пространство.
 \end{theorem}
 
 \begin{proof}
@@ -27,7 +27,7 @@
 
     \quad Пусть $f_n$~--- фундаментальная последовательность:
     \begin{gather*}
-        \forall \varepsilon > 0 \; \exists N: \; \forall n,m \geqslant N \;\; \underbrace{\norm{f_n(x) - f_m(x)}}_{= \sup\limits_{x \in E}{\abs{f_n(x) - f_m(x)}}} < \varepsilon \\
+        \forall \varepsilon > 0 \; \exists N: \; \forall n,m \geqslant N \;\; \underbrace{\norm{f_n(x) - f_m(x)}}_{=\sup\limits_{x \in E}{\abs{f_n(x) - f_m(x)}}} < \varepsilon \\
         \Longrightarrow \forall \varepsilon > 0 \;\; \exists N: \forall n,m \geqslant N \;\; \forall x \in E \;\;\;\; \abs{f_n(x) - f_m(x)} < \varepsilon - \text{ это критерий Коши} \\
         \Longrightarrow f_n \doublerightarrow f \Longrightarrow \norm{f_n - f} \to 0
     \end{gather*}
@@ -36,6 +36,6 @@
     \quad Возьмём $\varepsilon = 1$ из определения предела: $\; \exists N \; \forall n \geqslant N \;\; \norm{f_n - f} < 1$. 
     В терминах супремума это означает, что $\sup\limits_{x \in E}{\abs{f_n(x) - f(x)}} < 1$.
     Оставим только $N$-тую функцию: $\forall x \in E \;\; \abs{f_{N}(x) - f(x)} < 1$.
-    Мы знаем, что она ограничена, так как лежит в $l^{\infty}(E)$, поэтому $\forall x \in E \;\; \abs{f(x)} < 1 + \abs{f_{N}(x)} \leqslant 1 + C$.
+    Мы знаем, что она ограничена, так как лежит в $\ell^{\infty}(E)$, поэтому $\forall x \in E \;\; \abs{f(x)} < 1 + \abs{f_{N}(x)} \leqslant 1 + C$.
 \end{proof}
 
