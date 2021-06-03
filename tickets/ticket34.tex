@@ -27,7 +27,7 @@
         \item[Шаг 1.] 
         \[a_n \geq 0,\ S_n = \sum \limits_{k=1}^n a_k, \quad \widetilde{S_n} = \sum \limits_{k=1}^n a_\varphi(n) \]
         Ряд $\sumn a_n$ сходится $\Rightarrow S_n \leq S$
-        \[\widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n}\]
+        \[\widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi(n)}\]
         Если докинуть к этой сумме еще какие-то $a$-шки, то сумма может только увеличиться, потому что они неотрицательны.
 
         \[ \widetilde{S_n} = a_{\varphi(1)} + a_{\varphi(2)} + \ldots + a_{\varphi_n} \leq S_{\max\{\varphi(1), \varphi(2), \ldots, \varphi(n)\}} \leq S\]
@@ -55,7 +55,7 @@
             &= \sumn (a_n)_+ - \sumn (a_n)_- = \sumn a_n 
         \end{align*}
         \item[Шаг 3.]
-        При $a_n \in C$
+        При $a_n \in \C$
         \begin{gather*}
             \abs{\operatorname{Re} a_n},\ \abs{\operatorname{Im}  a_n} \leqslant \abs{a_n} \Longrightarrow \sum \operatorname{Re} a_n,\ \sum \operatorname{Im}  a_n \text{ абсолютно сходятся}  
         \end{gather*}
