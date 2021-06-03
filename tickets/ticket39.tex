@@ -1,7 +1,7 @@
 \section{Произведение $\prod \frac{p_n}{p_n - 1}$ и ряд $\prod \frac{1}{p_n}$. Оценка частичных сумм ряда $\sum \frac{1}{p_n}$}
 \textbf{Пример к предыдущей теореме:}
 
-Пусть $p_n$ -- $p$-e простое число. Тогда $\prodn \frac{p_n}{p_n - 1}$ расходится.
+Пусть $p_n$ -- $n$-e простое число. Тогда $\prodn \frac{p_n}{p_n - 1}$ расходится.
 Более того, $\prodk \frac{p_k}{p_k - 1} \geq H_n$.
 
 \begin{proof}
@@ -9,7 +9,7 @@
     \begin{gather*}
         \frac{p}{p-1} = \frac{1}{1-\frac{1}{p}} = \sum \limits_{j=0}^\infty \frac{1}{p^j}
     \end{gather*}
-    То есть искомое произвдение - это:
+    То есть искомое произведение - это:
     \begin{gather*}
         \prodn \sum \limits_{j=0}^\infty \frac{1}{p^j}
     \end{gather*}
@@ -25,7 +25,7 @@
     \[P_n = \prodk \frac{p_k}{p_k - 1} \geq \prodk \sum \limits_{j=0}^n \frac{1}{p^j} = 
     \sum_{0 \leq \alpha_j \leq n} \frac{1}{p_1^{\alpha_1}p_2^{\alpha_2}\ldots p_n^{\alpha_n}} \geq \sumk \frac{1}{k} \]
 
-    Тогда в знаменателе встретятся все числа от $1$ до $n$. Действительно, любое число до $n$ раскладвыается на простые,
+    Тогда в знаменателе встретятся все числа от $1$ до $n$. Действительно, любое число до $n$ раскладывается на простые,
     не большие $n$ со степенями не больше $n$ (даже $2^n$ уже больше $n$). Видно, что это очень грубая оценка, например можно
     показать, что встретятся также и все числа до $p_n$.
 \end{proof}
@@ -39,7 +39,7 @@
     \begin{gather*}
         \ln(\frac{p}{p-1}) = \ln(\frac{1}{1-\frac{1}{p}}) = -\ln(1 - \frac{1}{p}) = \frac{1}{p} + O(\frac{1}{p^2})
     \end{gather*}
-    То есть $\sumn \frac{1}{p_n} + O(\frac{1}{p_n^2})$ -- расходится. При этом знаем, что $\sumn O(\frac{1}{p^2})$ -- сходится.
+    То есть $\sumn \frac{1}{p_n} + O(\frac{1}{p_n^2})$ -- расходится. При этом знаем, что $\sumn O(\frac{1}{p_n^2})$ -- сходится.
     Значит их разность расходится, а значит $\sumn \frac{1}{p_n}$ -- расходится
 \end{proof}
 
@@ -50,8 +50,8 @@
     \end{gather*}
     \begin{proof}
         \begin{align*}
-            \sumk \frac{1}{p_k} &= \sumk (-\ln(1-\frac{1}{p^k}) + O(\frac{1}{p_k^2})) \\ 
-            &= \sumk (-\ln(1-\frac{1}{p^k})) + O(1) = \\
+            \sumk \frac{1}{p_k} &= \sumk (-\ln(1-\frac{1}{p_k}) + O(\frac{1}{p_k^2})) \\
+            &= \sumk (-\ln(1-\frac{1}{p_k})) + O(1) = \\
             &= \ln \prodk \frac{p_k}{p_k-1} + O(1) \geqslant \ln H_n + O(1) \geqslant \ln \ln n + C
         \end{align*}
     \end{proof}

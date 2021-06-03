@@ -80,24 +80,36 @@
     Пусть
     \begin{equation*}
       \begin{gathered}
-        F(y) \coloneqq \int_{\varphi(\alpha)}^{y} f(x) \: dx, \quad \Phi(\gamma) \coloneqq
-        \int_{\alpha}^{\gamma} f(\varphi(t))\varphi'(t) \: dt \\
+        \Phi(\gamma) \coloneqq
+        \int_{\alpha}^{\gamma} f(\varphi(t))\varphi'(t) \: dt, \quad
+        F(y) \coloneqq \int_{\varphi(\alpha)}^{y} f(x) \: dx \\
         \Phi(\gamma) = F(\varphi(\gamma))\text{ --- замена в собственном интеграле}
       \end{gathered}
     \end{equation*}
     Рассмотрим два случая:
     \begin{enumerate}[1)]
-      \item Существует правый интеграл, то есть существует $\lim\limits_{\mathclap{y \to \varphi(\beta-)-}} F(y)$. Возьмем последовательность $\gamma_n$, которая монотонно возрастает и стремится к $\beta$. Тогда $\varphi(\gamma_n) \to \varphi(\beta-)$.
-  А значит $\Phi(\gamma_n) = F(\varphi(\gamma_n)) \to \int_{\varphi(\alpha)}^{\varphi(\beta -)} f(x) \: dx$
-      \item Существует левый интеграл, то есть существует $\lim\limits_{\mathclap{\gamma \to \beta-}}\Phi(x)$. Докажем, что существует $\lim\limits_{\mathclap{y \to \varphi(\beta -)}}F(y)$.
+      \item Существует правый интеграл, то есть существует $\lim\limits_{\mathclap{y \to \varphi(\beta-)-}} F(y)$. Возьмем последовательность~$\gamma_n$, которая монотонно возрастает и стремится к $\beta$. Тогда $\varphi(\gamma_n) \to \varphi(\beta-)$.
+  А значит
+  \begin{equation*}
+    \Phi(\gamma_n) = F(\varphi(\gamma_n)) \to \int_{\varphi(\alpha)}^{\varphi(\beta -)} f(x) \: dx
+  \end{equation*}
+      \item Существует левый интеграл, то есть существует $\lim\limits_{\mathclap{\gamma \to \beta-}}\Phi(x)$.
 
       Если $\varphi(\beta -) < b$, то интеграл справа собственный, значит пользуемся случаем 1.
 
       Иначе пусть $\varphi(\beta -) = b$. Возьмем последовательность $b_n$, которая монотонно возрастает и стремится к $b$ и обрежем её так, чтобы $b_n \geq \varphi(\alpha)$. Тогда поймем, что существуют $\gamma_n \in [\alpha, \beta)$ такие, что $b_n = \varphi(\gamma_n)$. Действительно, $\varphi$ непрерывная функция, а значит по теореме Больцано-Коши найдется точка для каждого значения функции на отрезке $[\varphi(\alpha), b_n]$.
 
-      Докажем, что $\gamma_n \to \beta$. Пусть это не так, тогда $\exists \gamma_{n_k} \to \widetilde{\beta} < \beta \implies b_{n_k} = \varphi(\gamma_{n_k}) \to \varphi(\widetilde{\beta}) < b$. Но такого быть не может, так как все $b$ у нас стремятся к $\beta$.
+      Докажем, что $\gamma_n \to \beta$. Пусть это не так, тогда
+      \begin{equation*}
+        \exists \gamma_{n_k} \to \widetilde{\beta} < \beta \implies b_{n_k} = \varphi(\gamma_{n_k}) \to \varphi(\widetilde{\beta}) < b
+      \end{equation*}
+      Но такого быть не может, так как $b_n$ у нас стремится к $\beta$.
 
-      Отсюда получаем, что $F(b_n) = F(\varphi(\gamma_n)) = \Phi(\gamma_n) \to \lim\limits_{\gamma \to \beta-} \Phi(\gamma)$. Получили первый случай.
+      Отсюда получаем, что
+      \begin{equation*}
+        F(b_n) = F(\varphi(\gamma_n)) = \Phi(\gamma_n) \to \lim\limits_{\gamma \to \beta-} \Phi(\gamma)
+      \end{equation*}
+      Таким образом предел первообразной существует и равен пределу первообразной $\Phi(\gamma)$. Значит оба интеграла существуют и равны друг другу.
     \end{enumerate}
   \end{proof}
 \end{enumerate}
