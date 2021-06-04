@@ -11,14 +11,14 @@
 
 \begin{theorem} (Теорема Абеля)
 
-    Если $\sum\limits_{n=0}^\infty a_n z^n$ сходится при $z_0 \neq 0$, то он абсолютно сходится при $|z| < |z_0|$.    
+    Если $\sum\limits_{n=0}^\infty a_n z^n$ сходится при $\widetilde{z} \neq 0$, то он абсолютно сходится при $|z| < |\widetilde{z}|$.    
 \end{theorem}
 \begin{proof}
-    Если ряд $\sum\limits_{n=0}^\infty a_n z_0^n$ сходится, у нас должно выполняться необходимое условие сходимости: $a_nz_0^n \to 0$.
-    Значит, $a_nz_0^n$ ограничены: $|a_nz_0^n| \leqslant M$. 
-    Тогда при $|z| < |z_0|$ наш ряд ограничен геометрической прогрессией:
+    Если ряд $\sum\limits_{n=0}^\infty a_n (\widetilde{z})^n$ сходится, у нас должно выполняться необходимое условие сходимости: $a_n(\widetilde{z})^n \to 0$.
+    Значит, $a_n(\widetilde{z})^n$ ограничены: $|a_n(\widetilde{z})^n| \leqslant M$. 
+    Тогда при $|z| < |\widetilde{z}|$ наш ряд ограничен геометрической прогрессией:
     \begin{gather*}
-        |a_nz^n| = |a_nz_0^n| * |\frac{z}{z_0}|^n \leqslant M|\frac{z}{z_0}|^n
+        |a_nz^n| = |a_n\widetilde{z}^n| * \left| \frac{z}{\widetilde{z}} \right|^n \leqslant M \left|\frac{z}{\widetilde{z}} \right|^n
     \end{gather*}
     Она является сходящейся, поэтому наш ряд сходится по признаку сравнению.
 \end{proof}
