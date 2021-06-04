@@ -64,7 +64,7 @@
     чтобы остаток был высоты $r+1$. Тогда он занулится, все слагаемые меньшего порядка 
     тоже занулятся, а нам останется только следующее: 
     \begin{align*}
-        f(x) &= \sum\limits_{\abs{k} = r} \frac{f^{(k)(0)}}{k!}x^k \\
+        f(x) &= \sum\limits_{\abs{k} = r} \frac{f^{(k)}(0)}{k!}x^k \\
         &= \sum\limits_{\abs{k} = r} \frac{r!}{k!} x^k \\
         &= \sum\limits_{\abs{k} = r} \binom{r}{k_1, k_2, \dots, k_n} x_1^{k_1} x_2^{k_2} \dots x_n^{k_n}
     \end{align*}
