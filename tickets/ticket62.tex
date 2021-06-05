@@ -11,7 +11,7 @@
 \begin{proof}
     $4. \Longrightarrow 3. \Longrightarrow 2.$ очевидно 
 
-    $1. \Longrightarrow 4$:
+    $1. \Longrightarrow 4.$:
     
     \begin{gather*}
         \norm{\A x - \A y} = \norm{\A (x-y)} \leqslant \norm{\A} \cdot \norm{x - y} < \varepsilon \text{ если } \norm{x - y} < \delta
@@ -19,7 +19,7 @@
     Тогда понятно, какую дельту нужно взять. Просто возьмем $\delta := \frac{\varepsilon}{\norm{\A}}$. Тогда если у нас $x$ от $y$ 
     отличается меньше, чем на $\delta$, то $\A x$ будет отличаться от $\A y$ меньше чем на $\varepsilon$. Вот и равномерная непрерывность.
 
-    $2. \longrightarrow 1.$:
+    $2. \Longrightarrow 1.$:
 
     Берем $\varepsilon = 1$ и $\delta > 0$ по нему. Тогда:
     \begin{gather*}
@@ -59,7 +59,7 @@
     $$
     Тогда:
     $$
-    \norm{Ax} = 
+    \norm{Ax}^2 =
     \norm{\begin{pmatrix*}
         \sum_{k=1}^n a_{1k} x_k \\ 
         \vdots \\ 

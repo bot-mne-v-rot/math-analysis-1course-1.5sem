@@ -26,33 +26,33 @@
 
 Докажем еще пару теорем необходимых для доказательства теоремы об обратной функции.
 \begin{theorem}
-    Пусть $f: \R^n \to \R^m$ -- функция, дифференерцируемая в шаре $B_r(a)$, и $\forall x \in B_r(a)$ норма $\| f'(x) \| \leqslant C$. 
+    Пусть $f: \R^n \to \R^m$ -- функция, дифференцируемая в шаре $B_r(a)$, и $\forall x \in B_r(a)$ норма $\| f'(x) \| \leqslant C$. 
     Тогда $\forall x, y \in B_r(a)$ выполняется $\| f(x) - f(y) \| \leqslant C \| x - y \|$.
 \end{theorem}
 \begin{proof}
     Введем $\varphi:[0, 1] \to \R \;\; \varphi(t) = \langle f(x + t(y - x)), f(y) - f(x) \rangle$.
-    Она дифференерцируема, так как $f(x + t(y - x))$ дифференерцируема, ведь отрезок $[x, y] \subset B_r(a)$, $f(y) - f(x)$ -- константный вектор, и скалярное произведение дифференерцируемо.
+    Она дифференцируема, так как $f(x + t(y - x))$ дифференцируема, ведь отрезок $[x, y] \subset B_r(a)$, $f(y) - f(x)$ -- константный вектор, и скалярное произведение дифференцируемо.
 
     \quad Согласно одномерной теореме Лагранжа: $\varphi(1) - \varphi(0) = \varphi'(\theta)$, где $\theta \in (0, 1)$. 
     Распишем по формуле дифференцирования скалярного произведения: \begin{gather*}
         \begin{split}
-            \varphi'(\theta) &= \langle f'(x + \theta(y - x))*(y - x), f(y) - f(x) \rangle + \underbrace{\langle f(x + \theta(y - x)), 0 \rangle}_0  \\
-            &\overset{\text{КБШ}}{\leqslant} \| f'(x + \theta(y - x))*(y - x) \| * \| f(y) - f(x) \| \\
-            &\leqslant \| f'(x + \theta(y - x))\| * \| y - x \| * \| f(y) - f(x) \| \\
-            &\leqslant C\| y - x \| * \| f(y) - f(x) \|
+            \varphi'(\theta) &= \langle f'(x + \theta(y - x))\cdot(y - x), f(y) - f(x) \rangle + \underbrace{\langle f(x + \theta(y - x)), 0 \rangle}_0  \\
+            &\overset{\text{КБШ}}{\leqslant} \| f'(x + \theta(y - x))\cdot(y - x) \| \cdot \| f(y) - f(x) \| \\
+            &\leqslant \| f'(x + \theta(y - x))\| \cdot \| y - x \| \cdot \| f(y) - f(x) \| \\
+            &\leqslant C\| y - x \| \cdot \| f(y) - f(x) \|
         \end{split}
     \end{gather*}
     \quad Распишем $\varphi(1) - \varphi(0)$ по определению: \begin{gather*}
         \varphi(1) - \varphi(0) = \langle f(y), f(y) - f(x) \rangle - \langle f(x), f(y) - f(x) \rangle = \\
         = \langle f(y), f(y) \rangle - 2 \langle f(y), f(x) \rangle +  \langle f(x), f(x) \rangle = \| f(y) - f(x) \|^2 \\ \\
-        \Rightarrow \| f(y) - f(x) \|^2 \leqslant C \| y - x \| * \| f(y) - f(x) \| \\
+        \Rightarrow \| f(y) - f(x) \|^2 \leqslant C \| y - x \| \cdot \| f(y) - f(x) \| \\
         \Rightarrow \| f(y) - f(x) \| \leqslant C \| y - x \|
     \end{gather*} 
 \end{proof}
 
 \begin{theorem} (об обратимости оператора близкого к обратимому) \\
-    Пусть $\A: \R^n \to \R^n$ -- линейный обратимый оператор, $\B: \R^n \to \R^n$ -- просто линейный оператор, и выполняется $\| \B - \A \| \leqslant \frac{1}{\| \A^{-1} \|}$ (они достаточно близки).
-    Тогда $\B$ обратим, \\ $\| \B^{-1} \| \leqslant \frac{1}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$ и обратные также достаточно близки $\| \B^{-1} - \A^{-1} \| \leqslant \frac{\| \A^{-1} \| * \| \B - \A \|}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$.
+    Пусть $\A: \R^n \to \R^n$ -- линейный обратимый оператор, $\B: \R^n \to \R^n$ -- просто линейный оператор, и выполняется $\| \B - \A \| < \frac{1}{\| \A^{-1} \|}$ (они достаточно близки).
+    Тогда $\B$ обратим, \\ $\| \B^{-1} \| \leqslant \frac{1}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$ и обратные также достаточно близки $\| \B^{-1} - \A^{-1} \| \leqslant \frac{\| \A^{-1} \| \cdot \| \B - \A \|}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$.
 \end{theorem}
 \begin{proof}
     Напишем неравенство треугольника: \begin{gather*}
@@ -63,12 +63,12 @@
     Подставим все это в неравенство: \begin{gather*}
         \| \B x \| \geqslant  \frac{\| x \|}{\| \A^{-1} \|} - \| \A - \B \| \| x \| = \underbrace{\left(\frac{1}{\| \A^{-1} \|} - \| \A - \B \| \right)}_{=: m} \| x \|
     \end{gather*}
-    \quad Тогда по предпредыдущей тоереме $\B$ обратим и $\| \B^{-1} \| \leqslant \frac{1}{m} = \frac{1}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$. 
+    \quad Тогда по предпредыдущей теореме $\B$ обратим и $\| \B^{-1} \| \leqslant \frac{1}{m} = \frac{1}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}$.
     Осталось только неравенство на норму разности: 
     \begin{align*} 
         \| \B^{-1} - \A^{-1} \| &= \| \B^{-1}(\A - \B)\A^{-1} \| \\
         &\leqslant \| \B^{-1}\| \| \A - \B \| \| \A^{-1} \| \\
         &\leqslant \frac{1}{m}\| \A - \B \| \| \A^{-1} \| \\
-        &= \frac{\| \A^{-1} \| * \| \B - \A \|}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|} 
+        &= \frac{\| \A^{-1} \| \cdot \| \B - \A \|}{\frac{1}{\| \A^{-1} \|} - \| \B - \A \|}
     \end{align*}
 \end{proof}
