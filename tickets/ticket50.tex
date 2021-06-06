@@ -32,7 +32,25 @@
     Если $u_n \in C[a, b]$ и $\sum\limits_{n=1}^\infty u_n(x)$ равномерно сходится, то $\int_c^x \sum\limits_{n=1}^\infty u_n(t) dt = \sum\limits_{n=1}^\infty \int_c^x u_n(t) dt$.
 \end{follow}
 \begin{proof}
-    В предыдущей теореме $f_n(t) = \sum\limits_{n=1}^\infty u_n(t)$.
+  Для конечных рядов знаем, что
+  \begin{equation*}
+    \int_{c}^{x} \sum\limits_{k = 1}^{n} u_k(t) \: dt = \sum\limits_{k = 1}^{n} \int_{c}^{x} u_k(t) \: dt
+  \end{equation*}
+  Тогда:
+  \begin{equation*}
+    \begin{gathered}
+      \int_{c}^{x} \sum\limits_{k = 1}^{\infty} u_k(t) \: dt =
+      \int_{c}^{x} \lim\limits_{n \to \infty} \sum\limits_{k = 1}^{n} u_k(t) \: dt
+      \overset{\text{по теореме}}{=}
+      \lim\limits_{n \to \infty} \int_{c}^{x} \sum\limits_{k = 1}^{n} u_k(t) \: dt
+      \overset{\substack{
+        \text{конечный} \\
+        \text{ряд}
+      }}{=} \\
+      = \lim\limits_{n \to \infty} \sum\limits_{k = 1}^{n} \int_{c}^{x} u_k(t) \: dt =
+      \sum\limits_{k = 1}^{\infty} \int_{c}^{x} u_k(t) \: dt
+    \end{gathered}
+  \end{equation*}
 \end{proof}
 
 \begin{notice}

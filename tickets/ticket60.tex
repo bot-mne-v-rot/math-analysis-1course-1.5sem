@@ -7,10 +7,12 @@
     \end{gather*}
     Если $\norm{\A} < +\infty$, то оператор ограниченный.
 \end{conj}
-\notice \; Ограниченный оператор и ограниченное отображение -- это не одно и то же. Более того, линейность + ограниченное отображение = тождественный 0, так как:
+\notice \; Ограниченный оператор и ограниченное отображение -- это не одно и то же. Более того, линейность + ограниченное отображение = тождественный 0. Пусть это не так и $\mathcal{A}x \neq 0$. Тогда:
 \begin{gather*}
-    \norm{\A (\lambda x)} = \abs{\lambda} \underbrace{\norm{\A x}}_{\neq 0} \overset{\lambda \rightarrow 0}{\longrightarrow} 0 
+  \norm{\mathcal{A}x} \neq 0 \implies \norm{\mathcal{A}(\lambda x)} = | \lambda | \norm{\mathcal{A}x} \underset{\lambda \to \infty}{\longrightarrow} \infty
 \end{gather*}
+Получили противоречие. Значит не существует линейных ограниченных отображений, помимо тривиального.
+
 \textit{\textbf{Свойства: }}
 \begin{enumerate}
     \item $\norm{\A + \B} \leqslant \norm{\A} + \norm{\B}$
