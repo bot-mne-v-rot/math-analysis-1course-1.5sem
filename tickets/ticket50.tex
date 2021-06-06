@@ -16,9 +16,9 @@
         \begin{split}
             |F_n(x) - F(x)| &= \left|\int_c^x f_n(t)dt - \int_c^x f(t)dt \right| \\
             &\leqslant \int_c^x |f_n(t) - f(t)|dt \text{ (занесли под один интеграл и внесли модуль) } \\
-            &\leqslant (x - c) * \max_{t \in [c, x]} |f_n(t) - f(t)| \text{ (самая простая оценка интеграла) } \\
-            &\leqslant (b - a) * \max_{t \in [c, x]} |f_n(t) - f(t)| \text{ (еще увеличили длину) }\\
-            &= (b - a) * \underbrace{\sup_{t \in [c, x]} |f_n(t) - f(t)|}_{\to 0 \text{ т.к. равн. сх-ть}} \text{ (на отрезке $\max = \sup$) }
+            &\leqslant (x - c) \cdot \max_{t \in [c, x]} |f_n(t) - f(t)| \text{ (самая простая оценка интеграла) } \\
+            &\leqslant (b - a) \cdot \max_{t \in [c, x]} |f_n(t) - f(t)| \text{ (еще увеличили длину) }\\
+            &= (b - a) \cdot \underbrace{\sup_{t \in [c, x]} |f_n(t) - f(t)|}_{\to 0 \text{ т.к. равн. сх-ть}} \text{ (на отрезке $\max = \sup$) }
         \end{split}
     \end{gather*}
     Наша разность оценилась как что-то стремящееся к 0 и не зависящее от $x$. Это и есть равномерная сходимость.

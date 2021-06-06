@@ -15,9 +15,9 @@
         \left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right|
     \end{gather*} 
     Теперь применим преобразование Абеля: 
-    \[ \left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right| = (A_m(x) - A_n(x))b_m(x) + \sum_{k = 1}^{m - n - 1} (A_{n+k}(x) - A_n(x))(b_{n+k}(x) - b_{n+k+1}(x)) \leqslant \oast \]
+    \[ \left| \sum\limits_{k = 1}^{m-n} a_{n+k}(x)b_{n+k}(x) \right| = \abs{(A_m(x) - A_n(x))b_m(x) + \sum_{k = 1}^{m - n - 1} (A_{n+k}(x) - A_n(x))(b_{n+k}(x) - b_{n+k+1}(x)) } \leqslant \oast \]
     \quad Частичные суммы тут действительно считаются правильно, ведь $a_{n+1}(x) + \dots + a_{n+k}(x) = A_{n+k}(x) - A_n(x)$.
-    Оценим все по модулю: \[ \oast \leqslant |A_m(x) - A_n(x)||b_m(x)| + \sum_{k = 1}^{m - n - 1} |A_{n+k}(x) - A_n(x)||(b_{n+k}(x) - b_{n+k+1}(x)| < \oast \]
+    \[ \oast \leqslant |A_m(x) - A_n(x)| \cdot |b_m(x)| + \sum_{k = 1}^{m - n - 1} |A_{n+k}(x) - A_n(x)| \cdot |b_{n+k}(x) - b_{n+k+1}(x)| < \oast \]
     \quad Мы знаем, что $\sum\limits_{n = 1}^\infty a_n(x)$ равномерно сходится, поэтому мы можем применить к ниму критерий Коши: $\forall \varepsilon > 0$ найдется такой номер $N$, что начиная с него, $\forall x \in E$ все отрезки ряда будет иметь сумму $<\varepsilon$.
     Следовательно, если $n$ будет $\geqslant N$, то $|A_m(x) - A_n(x)| < \varepsilon$ и $|A_{n+k}(x) - A_n(x)| < \varepsilon$.
     Также стоит вспомнить, что $b_n$ были равномерно ограничены $\Leftrightarrow \forall n \in \N \; \forall x \in E \;\; |b_n(x)| \leqslant K$.
