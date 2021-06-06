@@ -20,7 +20,7 @@
     Применим одномерную теорему Лагранжа:
     $$\exists c \in (a, b) : \varphi(b) - \varphi(a) =
     \varphi'(c)(b - a) = 
-    (b - a) \langle \varphi'(c), f(b) - f(a) \rangle$$
+    (b - a) \langle f'(c), f(b) - f(a) \rangle$$
 
     С другой стороны:
     $$\varphi(b) - \varphi(a) = \langle f(b), f(b) - f(a) \rangle
@@ -28,11 +28,11 @@
 
     Собираем вместе:
     $$\norm{f(b) - f(a)}^2 = 
-    (b - a) \langle \varphi'(c), f(b) - f(a) \rangle
-    \stackrel{\text{КБШ}}{\leqslant} (b - a) \norm{\varphi'(c)}
+    (b - a) \langle f'(c), f(b) - f(a) \rangle
+    \stackrel{\text{КБШ}}{\leqslant} (b - a) \norm{f'(c)}
     \cdot \norm{f(b) - f(a)}$$
 
-    Если $f(b) - f(a)$, то неравенство в условии очевидно выполняется,
+    Если $f(b) = f(a)$, то неравенство в условии очевидно выполняется,
     иначе можно сократить на $\norm{f(b) - f(a)}$.
 \end{proof}
 \textbf{Замечание.} Равенство $\norm{f(b) - f(a)} = \norm{f'(c)}(b - a)$
