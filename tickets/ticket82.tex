@@ -1,1 +1,107 @@
 \section{Задача Коши для дифференциального уравения. Теорема Пикара}
+\begin{conj}
+\textbf{Задача Коши для дифференциального уравнения}. Хотим найти функцию $y\colon (a, b) \to \R$ дифференцируемую такую, что
+\begin{itemize}
+    \item $y'(x) = f(x, y(x))$.
+    \item $y(x_0) = y_0$, где $x_0 \in (a, b)$.
+\end{itemize}
+\end{conj}
+
+\begin{examples}
+\begin{enumerate}
+    \item
+    Хотим решить систему
+    \begin{equation*}
+    \begin{cases}
+        y' = y \\
+        y(0) = 1
+    \end{cases}
+    \end{equation*}
+    Тогда:
+    \begin{equation*}
+    \frac{y'(x)}{y(x)} = 1 \implies (\ln y(x))' = 1 \implies \ln y(x) = x + C \implies y(x) = e^{x + c} \implies y(x) = Ce^x
+    \end{equation*}
+    Дальше подставляем $y(0) = 1$ и понимаем, что $C = 1$, а значит $y(x) = e^x$.
+
+    \item
+    Пример отображения заданного не на всей прямой: система
+    \begin{equation*}
+    \begin{cases}
+        y' = -y^2 \\
+        y(1) = 1
+    \end{cases}
+    \end{equation*}
+    имеет решение $y(x) = 1/x$. Легко проверить что такая функция подходит и можно показать, что это решение единственно.
+\end{enumerate}
+\end{examples}
+
+\begin{theorem}[Пикара]
+Пусть:
+\begin{itemize}
+    \item $f\colon D \to \R$, где $D \subset \R^2$ и $D$ --- открыто.
+    \item $f$ --- непрерывна.
+    \item $(x_0, y_0) \in D$.
+    \item $|f(x, y) - f(x, \widetilde{y})| \leqslant M |y - \widetilde{y} | \;\; \forall y, \widetilde{y}$.
+\end{itemize}
+Тогда при некотором $\delta > 0$ на отрезке $[x_0 - \delta, x_0 + \delta]$ существует единственная 
+\begin{equation*}
+    \varphi\colon [x_0 - \delta, x_0 + \delta] \to \R
+\end{equation*}
+такая, что $\varphi'(x) = f(x, \varphi(x))$ и $\varphi(x_0) = y_0$(то есть $\varphi$ --- решение задачи Коши).
+\end{theorem}
+\begin{proof}
+Найдем функцию, удовлетворяющую равенству
+\begin{equation*}
+    \varphi(x) = y_0 + \int_{x_0}^{x} f(x, \varphi(x)) \: dx
+\end{equation*}
+Во-первых $\varphi(x_0) = y_0$(интеграл от отрезка длины ноль равен нулю), во-вторых $\varphi(x)$ --- дифференцируемая, так как равна интегралу от непрерывной функции и в-третьих $\varphi'(x) = f(x, \varphi(x))$ просто потому что мы взяли такой интеграл. Поэтому такое $\varphi$ точно подойдет.
+
+Пусть $r$ такой, что $\Cl B_r(x_0, y_0) \subset D$. Тогда по теореме Вейерштрасса $f$ ограничена на $B_r(x_0, y_0)$, то есть $|f(x, y)| \leqslant K \;\; \forall x, y \in B_r(x_0, y_0)$.
+
+Выберем $\delta > 0$ так, что:
+\begin{enumerate}
+    \item $M \delta < 1$.
+    \item Если $|x - x_0| \leqslant \delta$ и $|y - y_0| \leqslant K \delta$, то $(x, y) \in B_r(x_0, y_0)$(то есть $\delta^2(1 + K^2) \leqslant r^2$).
+\end{enumerate}
+
+Пусть:
+\begin{equation*}
+    C^{*} = \{\varphi \in C[x_0 - \delta, x_0 + \delta]\text{ и } |\varphi(x) - y_0| \leqslant K\delta\} \subset C[x_0 - \delta, x_0 + \delta]
+\end{equation*}
+Заметим, что $C^{*}$ --- замкнутое подмножество полного пространства $C[x_0 - \delta, x_0 + \delta]$, а значит оно само является полным пространством.
+
+Рассмотрим отображение $T\colon C^{*} \to C^{*}$ такое, что $T(\varphi) = \psi$, где
+\begin{equation*}
+    \psi(x) = y_0 + \int_{x_0}^{x} f(t, \varphi(t)) \: dt
+\end{equation*}
+
+Проверим, что $T$ --- корректно заданное отображение:
+\begin{enumerate}
+    \item Первое условие $\psi \in C[x_0 - \delta, x_0 + \delta]$ --- непрерывна потому что равна какому-то интегралу от непрерывной функции.
+    \item Второе условие $|\psi(x) - y_0| \leqslant K \delta$:
+    \begin{equation*}
+    |\psi(x) - y_0| = 
+    \left | \int_{x_0}^{x} f(t, \varphi(t)) \right | \leqslant
+    \int_{x_0}^{x} | f(t, \varphi(t)) | \leqslant \oast
+    \end{equation*}
+    Заметим, что $|x - x_0| \leqslant \delta$, просто потому что мы рассматриваем такие $x$, а так же $| \varphi(t) - y_0 | \leqslant K \delta$, потому что отображение действует из $C^{*}$. Значит $(t, \varphi(t)) \in B_r(x_0, y_0) \implies f(t, \varphi(t)) \leqslant K$. Таким образом мы можем ограничить наш интеграл констаной $K$, умноженной на длину отрезка:
+    \begin{equation*}
+    \oast \leqslant
+    K |x - x_0|
+    \leqslant K \delta
+    \end{equation*}
+\end{enumerate}
+Теперь проверим, что $T$ --- сжатие:
+\begin{equation*}
+    \begin{gathered}
+    |\psi(x) - \widetilde{\psi}(x)| =
+    \left | \int_{x_0}^{x} f(t, \varphi(t)) \: dt - \int_{x_0}^{x} f(t, \widetilde{\varphi}(t)) \: dt \right | \leqslant
+    \int_{x_0}^{x} | f(t, \varphi(t)) - f(t, \widetilde{\varphi}(t)) | \: dt 
+    \leqslant \\ \leqslant
+    M \int_{x_0}^{x} | \varphi(t) - \widetilde{\varphi}(t)| \: dt \leqslant
+    M |x_0 - x| \| \varphi - \widetilde{\varphi} \| \leqslant
+    M \delta \| \varphi - \widetilde{\varphi} \|
+    \end{gathered}
+\end{equation*}
+Таким образом у нас получилось сжатие с коэффициентом $M\delta$(что меньше единицы, потому что мы выбирали так $\delta$), а значит существует ровно одна неподвижная точка для такого отображения. Тогда легко видеть, что такое отображение будет искомым(функцией из начала доказательства) и почему оно будет решением задачи Коши уже было доказано раннее. Единственность же верна из единственности неподвижной точки в теореме Банаха.
+\end{proof}

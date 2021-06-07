@@ -8,6 +8,11 @@
 \end{gather*}
 \notice \; На самом деле для формулы достаточно $r$-ой дифференцируемости в точке $a$
 \begin{proof}
+    Запишем многомерную формулу Тейлора с остатком по Лагранжу для $f \in C^r(D)$ (т.е. мы уменьшаем $r$ на 1 по сравнению с классической формулой):
+    \begin{gather*}
+        f(x) = \sum_{\abs{k} \leqslant r - 1} \frac{f^{(k)}(a)}{k!} (x-a)^k + \sum_{\abs{k} = r} \frac{f^{(k)}(a+\Theta(x-a))}{k!}(x-a)^k
+    \end{gather*}
+    Увеличим границу суммирования в первой сумме и отнимем, что прибавилось, во второй:
     \begin{gather*}
         f(x) = \sum_{\abs{k} \leqslant r} \frac{f^{(k)}(a)}{k!} (x-a)^k + \underbrace{\sum_{\abs{k} = r} \left[ \frac{f^{(k)}(a+\Theta(x-a))}{k!}(x-a)^k - \frac{f^{(k)}(a)}{k!}(x-a)^k\right]}_{\heartsuit}
     \end{gather*}
