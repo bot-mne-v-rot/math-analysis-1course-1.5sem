@@ -5,7 +5,8 @@
     некотором $m > 0$, то $\A$ обратим и $\norm{\A^{-1}} \leqslant \frac{1}{m}$.
 \end{theorem}
 \begin{proof}
-    Для обратимости нужна биективность. Сюръективность очевидна, так как размерность сохраняется, так что осталось проверить инъективность:
+    Для обратимости нужна биективность. Так как размерности равны, достаточно доказать или инъективность, или сюръективность.
+    Проверим первое:
     \begin{align*}
         \A x = \A y 
         &\Longrightarrow \A(x - y) = 0 \\
@@ -15,7 +16,7 @@
     \end{align*}
     Значит $\A$ -- обратим. Тогда:
     \begin{gather*}
-        \norm{A^{-1}} = \sup\limits_{y \neq 0} \frac{\norm{\A^{-1}y}}{\norm{y}} \xlongequal{y = \A x} 
+        \norm{\A^{-1}} = \sup\limits_{y \neq 0} \frac{\norm{\A^{-1}y}}{\norm{y}} \xlongequal{y = \A x} 
         \sup\limits_{x \neq 0} \frac{\norm{\A^{-1}(\A x)}}{\norm{\A x}} = 
         \sup\limits_{x \neq 0} \frac{\norm{x}}{\norm{\A x}} \leqslant 
         \sup\limits_{x \neq 0} \frac{\cancel{\norm{x}}}{m \cancel{\norm{x}}} = \frac{1}{m}
@@ -30,7 +31,10 @@
     Тогда $\forall x, y \in B_r(a)$ выполняется $\| f(x) - f(y) \| \leqslant C \| x - y \|$.
 \end{theorem}
 \begin{proof}
-    Введем $\varphi:[0, 1] \to \R \;\; \varphi(t) = \langle f(x + t(y - x)), f(y) - f(x) \rangle$.
+    Введем \begin{gather*}
+        \varphi:[0, 1] \to \R \\
+        \varphi(t) = \langle f(x + t(y - x)), f(y) - f(x) \rangle    
+    \end{gather*}
     Она дифференцируема, так как $f(x + t(y - x))$ дифференцируема, ведь отрезок $[x, y] \subset B_r(a)$, $f(y) - f(x)$ -- константный вектор, и скалярное произведение дифференцируемо.
 
     \quad Согласно одномерной теореме Лагранжа: $\varphi(1) - \varphi(0) = \varphi'(\theta)$, где $\theta \in (0, 1)$. 
