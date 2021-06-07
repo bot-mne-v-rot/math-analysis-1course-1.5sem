@@ -6,27 +6,28 @@
 \begin{proof}
     Хотим доказать, что остаток стремится к нулю. Запишем его в интегральной форме:
     \begin{gather*}
-        R_n(x) = \frac{1}{n!} \int\limits_0^x (x - t)^n (1+t)^{p-n+1} p(p-1)\dots(p-n+1)dt
+        R_n(x) = \frac{1}{n!} \int\limits_0^x (x - t)^n ((1 + t)^p)^{(n+1)} \; dt = \frac{1}{n!} \int\limits_0^x (x - t)^n (1+t)^{p-n-1} p(p-1)\dots(p-n)dt
     \end{gather*}
     Чтобы доказать, что он стремится к нулю, посмотрим на отношение соседних членов:
     \begin{gather*}
-        \abs{\frac{R_{n+1}(x)}{R_n(x)}} = \frac{\abs{p-n}}{n+1} \cdot \frac{\abs{\int\limits_0^x (x - t)^{n+1}(1+t)^{p-n} dt}}{\abs{\int\limits_0^x (x - t)^{n}(1+t)^{p-n+1} dt}} = 
-        \frac{\abs{p-n}}{n+1} \cdot \frac{\abs{\int\limits_0^x f(t) \frac{x-t}{1+t} dt}}{\abs{\int\limits_0^x f(t) dt}} = \oast 
+        \abs{\frac{R_{n+1}(x)}{R_n(x)}} = \frac{\abs{p-n-1}}{n+1} \cdot \frac{\abs{\int\limits_0^x (x - t)^{n+1}(1+t)^{p-n-2} dt}}{ \bigg| \int\limits_0^x \underbrace{(x - t)^{n}(1+t)^{p-n-1}}_{=: f(t)} dt \bigg| } = 
+        \frac{\abs{p-n-1}}{n+1} \cdot \frac{\abs{\int\limits_0^x f(t) \frac{x-t}{1+t} dt}}{\abs{\int\limits_0^x f(t) dt}} = \oast 
     \end{gather*}
     Хочется доказать, что $\abs{\frac{x - t}{1 + t}} \le |x|$.
-    При $t >= 0$ это очевидно.
-    Ну а для отрицательных $t$ возьмем $x =: -y, t =: -u$, тогда:
+    При $x >= 0$ это очевидно, т.к. $t \in [0, x]$.
+    Ну а для отрицательных $x$ возьмем $x =: -y, t =: -u$, тогда
+    $y, u \geqslant 0$ и $u \in [0, y]$. Вспомним ещё, что $x \in (-1, 1)$. Получаем:
     \begin{gather*}
         \abs{\frac{-y + u}{1 - u}} = \frac{y - u}{1 - u} \leqslant y
     \end{gather*}
     (Неравенство проверяется домножением на знаменатель)
     Если приглядеться, то оба интеграла знакопостоянны, так что мы можем занести модуль под интеграл:
     \begin{gather*}
-        \oast = \frac{\abs{p-n}}{n+1} \cdot \frac{\int\limits_0^x \abs{f(t)} \lessabove{\abs{\frac{x-t}{1+t}}}{\abs{x}} dt}{\int\limits_0^x \abs{f(t)} dt} \leqslant \bigstar  
+        \oast = \frac{\abs{p-n-1}}{n+1} \cdot \frac{\int\limits_0^x \abs{f(t)} \lessabove{\abs{\frac{x-t}{1+t}}}{\abs{x}} dt}{\int\limits_0^x \abs{f(t)} dt} \leqslant \bigstar  
     \end{gather*}
-    Ну выходит эти интегралы у нас различаются не больше чем на $\abs{x}$, а $\frac{|p-n|}{n+1}\to 1$, значит:
+    Ну выходит эти интегралы у нас различаются не больше чем на $\abs{x}$, а $\frac{|p-n-1|}{n+1}\to 1$, значит:
     \begin{gather*}
-        \bigstar \leqslant \frac{\abs{p - n}}{n + 1} \cdot \abs{x} \leqslant (1+\varepsilon)\abs{x} \text{ при больших } n 
+        \bigstar \leqslant \frac{\abs{p - n-1}}{n + 1} \cdot \abs{x} \leqslant (1+\varepsilon)\abs{x} \text{ при больших } n 
     \end{gather*}
     Знаем $|x|<1$ $\Rightarrow$ мы можем подобрать такое $\varepsilon$, что эта штука с какого то номера станет $\le c < 1$ для некоторого $c$.
     Отсюда сразу видно, что $R_n \to 0$.
