@@ -7,11 +7,12 @@
     \end{gather*}
     Если $\norm{\A} < +\infty$, то оператор ограниченный.
 \end{conj}
-\notice \; Ограниченный оператор и ограниченное отображение -- это не одно и то же. Более того, линейность + ограниченное отображение = тождественный 0. Пусть это не так и $\mathcal{A}x \neq 0$. Тогда:
+
+\notice \; Ограниченный оператор и ограниченное отображение -- это не одно и то же. Более того, линейность + ограниченное отображение = тождественный 0.
+Почему? Ну пусть $\exists x : \A x \neq 0$. Тогда 
 \begin{gather*}
-  \norm{\mathcal{A}x} \neq 0 \implies \norm{\mathcal{A}(\lambda x)} = | \lambda | \norm{\mathcal{A}x} \underset{\lambda \to \infty}{\longrightarrow} \infty
+    \norm{\A (\lambda x)} = \abs{\lambda} \norm{\A x} \overset{\lambda \rightarrow \infty}{\longrightarrow} \infty 
 \end{gather*}
-Получили противоречие. Значит не существует линейных ограниченных отображений, помимо тривиального.
 
 \textit{\textbf{Свойства: }}
 \begin{enumerate}
@@ -23,7 +24,7 @@
             &\leqslant \sup \norm{\A x}_Y + \sup \norm{\B x}_Y = \norm{\A} + \norm{\B}
         \end{align*}
     \end{proof}
-    \item $\norm{\alpha \A} = \abs{\lambda} \cdot \norm{\A}$
+    \item $\norm{\lambda \A} = \abs{\lambda} \cdot \norm{\A}$
     \begin{proof}
         \begin{gather*}
             \norm{\lambda \A} = \sup\limits_{\norm{x}_X \leqslant 1} \norm{\lambda \A x}_Y = \abs{\lambda} \cdot \sup \norm{\A x}_Y = \abs{\lambda} \cdot \norm{\A}
