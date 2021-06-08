@@ -104,9 +104,10 @@ $$\frac{d^2f}{dx dy} (0, 0) = 1 \neq \frac{d^2f}{dy dx} (0, 0)$$
     hk \cdot f''_{xy}(x_0 + \Theta_1 h, y_0 + \Theta_2 k) $$
 
     Получили в итоге:
-    $$ f(x_0 + h, y_0 + k) - f(x_0 + h, y_0) - f(x_0, y_0 + k)
-    + f(x_0, y_0) = hk \cdot 
-    f''_{xy}(x_0 + \Theta_1 h, y_0 + \Theta_2 k) = \circledcirc $$
+    \begin{gather*}
+        \varphi(x_0 + h) - \varphi(x_0) = f(x_0 + h, y_0 + k) - f(x_0 + h, y_0) - f(x_0, y_0 + k) + f(x_0, y_0) = \\ 
+        hk \cdot f''_{xy}(x_0 + \Theta_1 h, y_0 + \Theta_2 k) = \circledcirc 
+    \end{gather*} 
 
     Воспользуемся теперь непрерывностью $f''_{xy}$ в точке $(x_0, y_0)$:
     $$ \circledcirc = hk \cdot (f''_{xy}(x_0, y_0) + \alpha(h, k)) 
