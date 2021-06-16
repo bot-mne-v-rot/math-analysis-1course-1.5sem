@@ -31,7 +31,7 @@
 
 \follow $\, \| A \| = \max \{ \sqrt{\lambda} : \lambda - \text{ собственное число матрицы } A^TA \}$, где $A$ -- матрица линейного отображения из $\R^n$ в $\R^m$.
 \begin{proof}
-    По определению нормы $\|A\| = \max\limits_{\|x\| = 1} \|Ax\|^2 = \max\limits_{\|x\| = 1} \langle Ax, Ax \rangle$.
+    По определению нормы $\|A\|^2 = \max\limits_{\|x\| = 1} \|Ax\|^2 = \max\limits_{\|x\| = 1} \langle Ax, Ax \rangle$.
     
     Воспользуемся алгебраическим фактом: $\langle Ax, Ax \rangle = \langle A^TAx, x \rangle$.
     А ведь $\max\limits_{\|x\| = 1} \langle A^TAx, x \rangle$ это и есть наибольшее значение квадратичной формы для матрицы $A^TA$ на единичной сфере.
